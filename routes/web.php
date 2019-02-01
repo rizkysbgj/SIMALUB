@@ -11,6 +11,45 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route LOGIN
+    Route::get('/login', function () {
+        return view('login');
+    });
+
+//Route untuk manager teknis
+    //Route nyoba
+    Route::get('/', function () {
+        return view('manajerTeknis.layout.index');
+    });
+    //Route dashboard manajer teknis
+    Route::get('/dashboardMT', function () {
+        return view('manajerTeknis.layout.page.dashboardMT');
+    });
+
+    //Route proyek manajer teknis
+    Route::get('/editProject', function () {
+        return view('manajerTeknis.layout.page.project.editProject');
+    });
+
+    //Route staff
+    Route::get('/halamanStaff', function () {
+        return view('manajerTeknis.layout.page.staff.halamanStaff');
+    });
+    Route::get('/tambahStaff', function () {
+        return view('manajerTeknis.layout.page.staff.tambahStaff');
+    });
+    Route::get('/editStaff', function () {
+        return view('manajerTeknis.layout.page.staff.editStaff');
+    });
+
+    //Route Jabatan
+    Route::get('/halamanJabatan', function () {
+        return view('manajerTeknis.layout.page.jabatan.halamanJabatan');
+    });
+    Route::get('/tambahJabatan', function () {
+        return view('manajerTeknis.layout.page.jabatan.tambahJabatan');
+    });
+    Route::get('/editJabatan', function () {
+        return view('manajerTeknis.layout.page.jabatan.editJabatan');
+    });
+
