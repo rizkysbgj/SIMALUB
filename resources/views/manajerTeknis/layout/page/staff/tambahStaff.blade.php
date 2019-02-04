@@ -39,8 +39,8 @@
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Status:
                             </label>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='@Html.ValueFor(model => model.ProjectInitial)' />
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <input data-switch="true" type="checkbox" checked="checked" data-on-text="Active" data-handle-width="70" data-off-text="Deactive" data-on-color="info" id="btnStatus">
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -48,7 +48,7 @@
                                 ID Staff<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='@Html.ValueFor(model => model.ProjectInitial)' />
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -56,7 +56,7 @@
                                 Nama Lengkap<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -64,7 +64,7 @@
                                 Inisial Nama<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -72,7 +72,7 @@
                                 Email<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -88,7 +88,7 @@
                                 Password<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -96,7 +96,7 @@
                                 Konfirmasi Password<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -104,10 +104,10 @@
                                 Photo Profil<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="file" class="custom-file" id="inputPhotoProfile" name="inputPhotoProfile" style="margin-top: 5px" />
                             </div>
                         </div>
-                    </div>
+                    </div>                    
 
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">

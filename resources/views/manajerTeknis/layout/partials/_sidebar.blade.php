@@ -8,7 +8,7 @@
             m-menu-vertical="1" m-menu-scrollable="0" m-menu-dropdown-timeout="500">
             <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
                 <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
-                    <a href="index.html" class="m-menu__link ">
+                    <a href="{{ url('halamandashboardMT') }}" class="m-menu__link ">
                         <i class="m-menu__link-icon flaticon-line-graph"></i>
                         <span class="m-menu__link-title">
                             <span class="m-menu__link-wrap">
@@ -66,33 +66,17 @@
                 </li>
                 <!-- MODUL PROJECT -->
                 <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                    <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                        <i class="m-menu__link-icon flaticon-share"></i>
+                    <a href="{{ url('halamanProject') }}" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon flaticon-folder-1"></i>
                         <span class="m-menu__link-text">
-                            Project
+                            Proyek
                         </span>
-                        <i class="m-menu__ver-arrow la la-angle-right"></i>
                     </a>
-                    <div class="m-menu__submenu ">
-                        <span class="m-menu__arrow"></span>
-                        <ul class="m-menu__subnav">
-                            <li class="m-menu__item " aria-haspopup="true">
-                                <a href="components/icons/flaticon.html" class="m-menu__link ">
-                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="m-menu__link-text">
-                                        Edit Project
-                                    </span>
-                                </a>
-                            </li> 
-                        </ul>
-                    </div>
                 </li>
                 <!-- MODUL STAFF -->
                 <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                    <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                        <i class="m-menu__link-icon flaticon-share"></i>
+                    <a href="{{ url('halamanStaff') }}" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon flaticon-avatar"></i>
                         <span class="m-menu__link-text">
                             Staff
                         </span>
@@ -100,8 +84,8 @@
                 </li>
                 <!-- MODUL JABATAN -->
                 <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                    <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                        <i class="m-menu__link-icon flaticon-share"></i>
+                    <a href="{{ url('halamanJabatan') }}" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon flaticon-layers"></i>
                         <span class="m-menu__link-text">
                             Jabatan
                         </span>

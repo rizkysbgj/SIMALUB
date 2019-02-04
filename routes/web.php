@@ -22,11 +22,14 @@
         return view('manajerTeknis.layout.index');
     });
     //Route dashboard manajer teknis
-    Route::get('/dashboardMT', function () {
-        return view('manajerTeknis.layout.page.dashboardMT');
+    Route::get('/halamandashboardMT', function () {
+        return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
     });
 
     //Route proyek manajer teknis
+    Route::get('/halamanProject', function () {
+        return view('manajerTeknis.layout.page.project.halamanProject');
+    });
     Route::get('/editProject', function () {
         return view('manajerTeknis.layout.page.project.editProject');
     });
@@ -51,5 +54,13 @@
     });
     Route::get('/editJabatan', function () {
         return view('manajerTeknis.layout.page.jabatan.editJabatan');
+    });
+
+    //Route Pinned Project
+    Route::get('/halamanpinnedProject', function () {
+        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject');
+    });
+    Route::get('/detailTugas', function () {
+        return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
     });
 

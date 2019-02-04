@@ -14,7 +14,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Edit Project
+                                Edit Proyek
                             </h3>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Status:
                             </label>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='@Html.ValueFor(model => model.ProjectInitial)' />
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <input data-switch="true" type="checkbox" checked="checked" data-on-text="Active" data-handle-width="70" data-off-text="Deactive" data-on-color="info" id="btnStatus">
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -50,7 +50,7 @@
                                 Inisial Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='@Html.ValueFor(model => model.ProjectInitial)' />
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='' />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -58,12 +58,12 @@
                                 Nama Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='@Html.ValueFor(model => model.ProjectName)' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Project to Pin:
+                                Pin Proyek:
                             </label>
                             <div class="col-lg-6">
                                 <div class="m-checkbox-inline m-checkbox-list">
@@ -87,7 +87,7 @@
                                 Tanggal Mulai:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxManDays" class="form-control m-input" maxlength="100" name="tbxManDays" value='@Html.ValueFor(model => model.ManDays)' />
+                                <input type="text" id="tbxManDays" class="form-control m-input" maxlength="100" name="tbxManDays" value='' />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -96,7 +96,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='@Html.ValueFor(model => model.KickOffDate)' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='' />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -111,7 +111,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxGoLivePlan" readonly id="tbxGoLivePlan" value='@Html.ValueFor(model => model.GoLivePlan)' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxGoLivePlan" readonly id="tbxGoLivePlan" value='' />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -125,7 +125,7 @@
                                 Deskripsi Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4">@Html.ValueFor(model => model.ProjectDescription)</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4">narik deskripsi</textarea>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -133,7 +133,7 @@
                                 Sponsor Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4">@Html.ValueFor(model => model.ProjectSponsor)</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4">narik sponsor proyek</textarea>
                             </div>
                         </div>
 
