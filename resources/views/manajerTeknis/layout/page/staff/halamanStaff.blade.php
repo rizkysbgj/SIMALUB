@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ url('tambahStaff') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <a href="{{ url('halamanStaff/tambahStaff') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                     <span>
                                         <i class="fa fa-plus"></i>
                                         <span>

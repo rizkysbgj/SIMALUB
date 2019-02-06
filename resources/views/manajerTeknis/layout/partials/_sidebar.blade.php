@@ -31,7 +31,7 @@
                     <i class="m-menu__section-icon flaticon-more-v3"></i>
                 </li>
                 <li class="m-menu__item " aria-haspopup="true">
-                    <a href="components/base/state.html" class="m-menu__link ">
+                    <a href="#" class="m-menu__link ">
                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                             <span></span>
                         </i>
@@ -48,7 +48,7 @@
                     <i class="m-menu__section-icon flaticon-more-v3"></i>
                 </li>
                 <li class="m-menu__item " aria-haspopup="true">
-                    <a href="components/base/state.html" class="m-menu__link ">
+                    <a href="#" class="m-menu__link ">
                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                             <span></span>
                         </i>

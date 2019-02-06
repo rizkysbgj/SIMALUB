@@ -38,9 +38,11 @@
     Route::get('/halamanStaff', function () {
         return view('manajerTeknis.layout.page.staff.halamanStaff');
     });
-    Route::get('/tambahStaff', function () {
-        return view('manajerTeknis.layout.page.staff.tambahStaff');
-    });
+    // Route::get('/halamanStaff/tambahStaff', function () {
+    //     return view('manajerTeknis.layout.page.staff.tambahStaff');
+    // });
+    Route::get('/halamanStaff/tambahStaff', 'CreateStaffController@createStaff') -> name('halamanStaff.tambahStaff');
+    
     Route::get('/editStaff', function () {
         return view('manajerTeknis.layout.page.staff.editStaff');
     });
