@@ -21,11 +21,11 @@
     </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
-    <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
 
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/logo_ipb.png">
+    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/logo_ipb.png') }}">
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -34,22 +34,21 @@
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <div id="divLogin" class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" style="background-image: url(content/images/background/login-bg.jpg);">
             <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
-                <div class="m-login__container">
+                <div class="m-login__container">    
                     <div class="m-login__logo">
-                        <a href="#">
-                            <img src="assets/demo/default/media/img/logo/logo_ipb.png" />
-                        </a>
+                        <!-- <a href="#">
+                            <img src="{{ asset('assets/demo/default/media/img/logo/logo_ipb.png') }}" />
+                        </a> -->
                     </div>
-                    @RenderBody()
-                    @RenderSection("Scripts", required: false)
+                    @yield('login_content')
                 </div>
             </div>
         </div>
     </div>
     <!-- end:: Page -->
     <!--begin::Base Scripts -->
-    <script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-    <script src="assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
     <!--end::Base Scripts -->
     <!--begin::Page Snippets -->
     <!-- <script src="@Url.Content("~/Scripts/login/index.js")" type="text/javascript"></script> -->

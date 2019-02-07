@@ -4,27 +4,6 @@
 <div class="m-content">
     <div class="row">
 
-        <div class="col-lg-1" id="sidebarShow">
-            <div class="m-portlet">
-                <div class="m-portlet__head" style="border-bottom-width: 0px; padding-right: 18px; padding-left: 10px;">
-                    <div class="m-portlet__head-tools">
-                        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" id="minimizeTaskRight">
-                            <i class="fa fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="height: 111.6px;">
-					<div class="m--align-center">
-						<div class="row" style="-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform:  rotate(90deg); transform: rotate(90deg);">
-							<h4 style="margin-bottom: 0px;">
-								Tasks
-							</h4>
-						</div>
-					</div>
-                </div>
-            </div>
-        </div>
-
         <div class="col-lg-4" id="removeTaskList">
             <!--begin:: Widgets/Tasks -->
             <div class="m-portlet m-portlet--full-height" id="bebasMinimize">
@@ -85,17 +64,6 @@
                                 </div>
                             </li>
                         </ul>
-
-                    </div>
-
-                    <div class="m-portlet__head-tools">
-                        <ul class="m-portlet__nav">
-                            <li class="m-portlet__nav-item" m-dropdown-toggle="hover" aria-expanded="true">
-                                <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" id="minimizeTaskLeft">
-                                    <i class="fa fa-chevron-left"></i>
-                                </button>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="m-portlet__body">
@@ -109,7 +77,7 @@
         </div>  
 
         <div class="col-lg-8" id="detailTask">
-        
+            @include('manajerTeknis.layout.page.pinnedProject.detailTugas')
         </div>
     </div>
 

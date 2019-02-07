@@ -1,15 +1,12 @@
-@extends('manajerTeknis.layout.index')
-
-@section('content')
 <div class="m-portlet m-portlet--mobile">
     <div class="m-portlet__head">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
 
                 <h3 class="m-portlet__head-text">
-                    @Html.ValueFor(model => model.Task.TaskName)
+                    Nama Tugas
                     <small>
-                        @Html.ValueFor(model => model.Task.ProjectName) / @Html.ValueFor(model => model.Task.TaskCode)
+                        Nama Projek / Kode Tugas
                     </small>
                 </h3>
             </div>
@@ -45,16 +42,22 @@
                             <span style="margin-right: 5px;">
                                 <i class="flaticon-user"></i>
                             </span>
-                            <span>
-                                @Html.ValueFor(model => model.Task.PIC)
+                            <span class="text-sm-left">
+                                Tugas Berada di : <br>
+                            </span>
+                            <span style="margin-left: 25px;">
+                                <strong>Rudi Heryanto</strong>
                             </span>
                         </div>
                         <div class="m-portlet__head-icon">
                             <span style="margin-right: 5px;">
                                 <i class="flaticon-route"></i>
                             </span>
-                            <span>
-                                @Html.ValueFor(model => model.Task.Milestone)
+                            <span class="text-sm-left">
+                                Tugas Berada pada Tahap : <br>
+                            </span>
+                            <span style="margin-left: 25px;">
+                                <strong>Kaji Ulang Analisis</strong>
                             </span>
                         </div>
                     </div>
@@ -62,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5" style="padding-left: 55px;">
+            <div class="col-lg-5" style="padding-left: 25px;">
 
                 <div class="m-portlet__head-title">
                     <div class="m-portlet__head-text">
@@ -72,10 +75,10 @@
                                 <i class="flaticon-music-2"></i>
                             </span>
                             <span class="text-sm-left">
-                                Start Plan :
+                                Rencana Mulai Dikerjakan : <br>
                             </span>
-                            <span class="text-sm-left" id="txtStartPlan">
-                                @Html.ValueFor(model => model.Task.StartPlan)
+                            <span style="margin-left: 25px;">
+                                <strong>07-Januari-2019</strong>
                             </span>
                         </div>
                         <div class="m-portlet__head-icon">
@@ -83,10 +86,10 @@
                                 <i class="flaticon-music-1"></i>
                             </span>
                             <span class="text-sm-left">
-                                End Plan :
+                                Rencana Deadline : <br>
                             </span>
-                            <span class="text-sm-left" id="txtEndPlan">
-                                @Html.ValueFor(model => model.Task.EndPlan)
+                            <span style="margin-left: 25px;">
+                                <strong>14-Januari-2019</strong>
                             </span>
                         </div>
 
@@ -104,7 +107,7 @@
         </div>
 
         <div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide m--margin-top-15" data-scrollbar-shown="true" data-scrollable="true" data-max-height="380" style="overflow: visible; position: relative;">
-            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;">@Html.ValueFor(model => model.Task.TaskDescription)</textarea>
+            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;">//Deskripsinya</textarea>
         </div>
 
         <ul class="nav nav-pills nav-fill nav-pills--warning" role="tablist">
@@ -127,7 +130,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
                 <div class="m_datatable" id="divMilestoneList">
-                    @*Tab Content*@
+                    @include('manajerTeknis.layout.page.pinnedProject.detailTab')
                 </div>
             </div>
             <div class="tab-pane" id="m_tabs_5_2" role="tabpanel">
@@ -143,5 +146,3 @@
         </div>
     </div>
 </div>
-
-@endsection
