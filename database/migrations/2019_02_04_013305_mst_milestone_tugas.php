@@ -16,7 +16,7 @@ class MstMilestoneTugas extends Migration
         Schema::create('mstmilestonetugas', function (Blueprint $table) {
             $table->increments('IDMilestoneTugas');
             $table->string('MilestoneTugas');
-            $table->integer('IDROle');
+            $table->integer('IDRole');
         });
     }
 
