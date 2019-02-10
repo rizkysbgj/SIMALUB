@@ -32,3 +32,12 @@ Route::get('proyek', 'mstProyekController@GetListProyek');
 Route::get('proyek/{IDProyek}', 'mstProyekController@GetProyek');
 Route::put('proyek', 'mstProyekController@UpdateProyek');
 
+Route::post('tugas', 'mstTugasController@CreateTugas');
+Route::get('tugas', 'mstTugasController@GetListTugas');
+Route::get('tugas/{IDTugas}', 'mstTugasController@GetTugas');
+Route::put('tugashomecontroller', 'mstTugasController@UpdateTugas');
+
+Route::post('subkontrak', 'SubKontrakControler@CreateSubKontrak');
+Route::get('subkontrak', 'SubKontrakControler@GetListSubKontrak');
+Route::get('subkontrak/{IDSubKontrak}', 'SubKontrakControler@GetSubKontrak');
+Route::put('subkontrak', 'SubKontrakControler@UpdateSubKontrak');

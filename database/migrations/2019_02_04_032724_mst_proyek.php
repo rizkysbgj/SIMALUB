@@ -15,8 +15,8 @@ class MstProyek extends Migration
     {
         Schema::create('mstproyek', function (Blueprint $table) {
             $table->increments('IDProyek');
-            $table->string('NamaProyek');
-            $table->string('InisialProyek');
+            $table->string('NamaProyek',100)->unique();
+            $table->string('InisialProyek',10)->unique();
             $table->string('PenanggungJawab');
             $table->enum('Status', ['Aktif', 'Batal']);
             $table->dateTime('TanggalMulai');

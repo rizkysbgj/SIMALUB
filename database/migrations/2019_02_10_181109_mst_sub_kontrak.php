@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMstusersTable extends Migration
+class MstSubKontrak extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateMstusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('mstuser', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('IDUser',20)->unique();
-            $table->string('NamaLengkap');
-            $table->integer('IDRole');
-            $table->string('Password');
+        Schema::create('mstsubkontrak', function (Blueprint $table) {
+            $table->increments('IDSubKontrak');
+            $table->integer('IDTugas');
+            $table->date('WaktuDikirim');
+            $table->date('WaktuDiterima');
+            // $table->enum('Status');
             $table->string('CreatedBy');
-            $table->string('UpdatedBy')->nullable();
+            $table->string('UpdatedBy');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateMstusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mstuser');
+        Schema::dropIfExists('mstsubkontrak');
     }
 }

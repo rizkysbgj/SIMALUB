@@ -8,4 +8,5 @@ class mstUser extends Model
 {
     protected $table = "mstusers";
     protected $guarded = ['id'];
+    public $timestamps = true; 
 }

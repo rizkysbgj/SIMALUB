@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MstRole extends Migration
+class MstKategoriTugas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class MstRole extends Migration
      */
     public function up()
     {
-        Schema::create('mstrole', function (Blueprint $table) {
-            $table->increments('IDRole');
-            $table->string('Role',25)->unique();
+        Schema::create('mstkategoritugas', function (Blueprint $table) {
+            $table->increments('IDKategori');
+            $table->string('Kategori');
         });
     }
 
@@ -26,6 +26,6 @@ class MstRole extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mstrole');
+        Schema::dropIfExists('mstkategoritugas');
     }
 }

@@ -8,6 +8,6 @@ class mstProyek extends Model
 {
     public $primaryKey = 'IDProyek';
     protected $table = "mstproyek";
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = ['IDProyek'];
 }
