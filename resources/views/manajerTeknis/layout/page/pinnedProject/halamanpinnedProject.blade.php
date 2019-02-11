@@ -2,11 +2,39 @@
 
 @section('content')
 <div class="m-content">
+
+<!-- <div class="details" style="display:none">HIDDEN CONTENT</div>
+<a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'See Less Details':'See More Details');});">See More Details</a> -->
+
+<!-- <div class="details" id="isiContent" style="display:none">HIDDEN CONTENT</div>
+<a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'See Less Details':'#isiContent');});">See More Details</a> -->
+
     <div class="row">
+
+        <div class="col-lg-1" id="more">
+            <div class="m-portlet">
+                <div class="m-portlet__head" style="border-bottom-width: 0px; padding-right: 18px; padding-left: 10px;">
+                    <div class="m-portlet__head-tools">
+                        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'':'#isiContent');});">
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="height: 111.6px;">
+					<div class="m--align-center">
+						<div class="row" style="-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform:  rotate(90deg); transform: rotate(90deg);">
+							<h4 style="margin-bottom: 0px;">
+								Tasks
+							</h4>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-lg-4" id="removeTaskList">
             <!--begin:: Widgets/Tasks -->
-            <div class="m-portlet m-portlet--full-height" id="bebasMinimize">
+            <div class="m-portlet m-portlet--full-height details" style="display:none">
                 <div class="m-portlet__head">
 
                     <div class="m-portlet__head-caption">
@@ -15,8 +43,7 @@
                                 Tasks
 								<span class="m-menu__link-badge">
 									<span class="m-badge m-badge--info">
-										<!-- untuk menunjukkan total tugas yang ada dari project  -->
-                                        
+										
 									</span>
 								</span>
                             </h3>
@@ -64,6 +91,17 @@
                                 </div>
                             </li>
                         </ul>
+
+                    </div>
+
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item" m-dropdown-toggle="hover" aria-expanded="true">
+                                <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" onclick="$('#more').slideToggle(function(){$('.details').html($('#more').is(':visible')?'':'');});">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="m-portlet__body">
@@ -74,7 +112,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
 
         <div class="col-lg-8" id="detailTask">
             @include('manajerTeknis.layout.page.pinnedProject.detailTugas')

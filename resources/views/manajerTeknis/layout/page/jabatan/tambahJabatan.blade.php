@@ -19,7 +19,7 @@
                 </div>
                 <!--begin::Form-->
                 <form class="m-form m-form--fit m-form--label-align-right" id="formCreateRole">
-
+                    {{ csrf_field() }}
                     <div class="m-form__content">
                         <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgLogFail">
                             <div class="m-alert__icon">
@@ -68,4 +68,8 @@
 
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/jabatan/create.js') }}" type="text/javascript"></script>
+
 @endsection
+

@@ -51,6 +51,9 @@
     Route::get('/halamanJabatan', function () {
         return view('manajerTeknis.layout.page.jabatan.halamanJabatan');
     });
+    Route::get('/halamanJabatan/tambahJabatan', 'CreateJabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
+
+
     Route::get('/tambahJabatan', function () {
         return view('manajerTeknis.layout.page.jabatan.tambahJabatan');
     });
