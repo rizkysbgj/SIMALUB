@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use App\mstUser;
 
-class mstUserController extends Controller
+class UserController extends Controller
 {
     public function CreateUser(Request $request)
     {

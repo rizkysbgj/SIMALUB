@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ControllersApi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class mstTugasController extends Controller
+class TugasController extends Controller
 {
     public function CreateTugas(Request $request)
     {

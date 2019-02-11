@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use App\mstProyek;
 
-class mstProyekController extends Controller
+class ProyekController extends Controller
 {
     public function CreateProyek(Request $request)
     {
