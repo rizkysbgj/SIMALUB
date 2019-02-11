@@ -48,10 +48,10 @@ class RoleController extends Controller
         }
     }
 
-    public function UpdateRole(Request $request, $RoleID)
+    public function UpdateRole(Request $request)
     {
         try {
-            $mstRole = mstrole::where('IDRole', $IDRole)->firstorfail();
+            $mstRole = mstrole::where('IDRole', $request->IDRole)->firstorfail();
             $mstRole->Role = $request->Role;
             $mstRole->save();
             $mstRole->ErrorType = 0;
