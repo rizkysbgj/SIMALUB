@@ -30,14 +30,14 @@ var Transaction = function () {
     
 
     $.ajax({
-        url: "/api/role/Update",
+        url: "/api/role/{IDRole}",
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(params),
     }).done(function (data, textStatus, jqXHR) {
         if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Edit Role Success", '/Role');
+            Common.Alert.SuccessRoute("Edit Role Success", '/halamanJabatan');
         else
             Common.Alert.Error(data.ErrorMessage);
         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
