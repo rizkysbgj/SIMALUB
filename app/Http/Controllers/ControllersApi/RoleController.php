@@ -18,6 +18,7 @@ class RoleController extends Controller
             $mstRole = new mstrole();
             $mstRole->Role = $request->Role;
             $mstRole->save();
+            $mstRole->ErrorType = 0;
             return response($mstRole->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
@@ -52,6 +53,7 @@ class RoleController extends Controller
             $mstRole = mstrole::where('IDRole', $IDRole)->firstorfail();
             $mstRole->Role = $request->Role;
             $mstRole->save();
+            $mstRole->ErrorType = 0;
             return response($mstRole->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
