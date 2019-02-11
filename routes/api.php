@@ -17,25 +17,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('user', 'mstUserController@CreateUser');
-Route::get('user/{IDUser}', 'mstUserController@GetUser');
-Route::get('user', 'mstUserController@GetListUser');
-Route::put('user', 'mstUserController@UpdateUser');
+Route::post('user', 'ControllersApi\UserController@CreateUser');
+Route::get('user/{IDUser}', 'ControllersApi\UserController@GetUser');
+Route::get('user', 'ControllersApi\UserController@GetListUser');
+Route::put('user', 'ControllersApi\UserController@UpdateUser');
 
-Route::post('role', 'mstRoleController@CreateRole');
-Route::get('role', 'mstRoleController@GetListRole');
-Route::get('role/{IDRole}', 'mstRoleController@GetRole');
-Route::put('role', 'mstUserController@UpdateRole');
+Route::post('role', 'ControllersApi\RoleController@CreateRole');
+Route::get('role', 'ControllersApi\RoleController@GetListRole');
+Route::get('role/{IDRole}', 'ControllersApi\RoleController@GetRole');
+Route::put('role', 'ControllersApi\UserController@UpdateRole');
 
-Route::post('proyek', 'mstProyekController@CreateProyek');
-Route::get('proyek', 'mstProyekController@GetListProyek');
-Route::get('proyek/{IDProyek}', 'mstProyekController@GetProyek');
-Route::put('proyek', 'mstProyekController@UpdateProyek');
+Route::post('proyek', 'ControllersApi\ProyekController@CreateProyek');
+Route::get('proyek', 'ControllersApi\ProyekController@GetListProyek');
+Route::get('proyek/{IDProyek}', 'ControllersApi\ProyekController@GetProyek');
+Route::put('proyek', 'ControllersApi\ProyekController@UpdateProyek');
 
-Route::post('tugas', 'mstTugasController@CreateTugas');
-Route::get('tugas', 'mstTugasController@GetListTugas');
-Route::get('tugas/{IDTugas}', 'mstTugasController@GetTugas');
-Route::put('tugashomecontroller', 'mstTugasController@UpdateTugas');
+Route::post('tugas', 'ControllersApi\TugasController@CreateTugas');
+Route::get('tugas', 'ControllersApi\TugasController@GetListTugas');
+Route::get('tugas/{IDTugas}', 'ControllersApi\TugasController@GetTugas');
+Route::put('tugashomecontroller', 'ControllersApi\TugasController@UpdateTugas');
 
 Route::post('subkontrak', 'SubKontrakControler@CreateSubKontrak');
 Route::get('subkontrak', 'SubKontrakControler@GetListSubKontrak');
