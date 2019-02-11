@@ -55,4 +55,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/staff/index.js') }}" type="text/javascript"></script>
+
 @endsection

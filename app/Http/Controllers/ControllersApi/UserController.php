@@ -24,6 +24,7 @@ class UserController extends Controller
             $mstUser->Status = $request->Status;
             $mstUser->CreatedBy = "Admin";
             $mstUser->save();
+            $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
