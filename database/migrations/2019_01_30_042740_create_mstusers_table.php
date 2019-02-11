@@ -15,12 +15,16 @@ class CreateMstusersTable extends Migration
     {
         Schema::create('mstuser', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('IDUser',20)->unique();
+            $table->string('IDUser');
+            $table->string('NIK');
             $table->string('NamaLengkap');
             $table->integer('IDRole');
+            $table->string('Email');
             $table->string('Password');
+            $table->enum('Status', ['Aktif', 'Tidak Aktif']);
             $table->string('CreatedBy');
             $table->string('UpdatedBy')->nullable();
+            $table->string('Avatar')->nullable();
             $table->timestamps();
         });
     }

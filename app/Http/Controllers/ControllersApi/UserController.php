@@ -15,7 +15,13 @@ class UserController extends Controller
     {
         try {
             $mstUser = new mstUser();
-            $mstUser->fill($request->all());
+            $mstUser->IDUser = $request->IDUser;
+            $mstUser->NIK = $request->NIK;
+            $mstUser->NamaLengkap = $request->NamaLengkap;
+            $mstUser->IDRole = $request->IDRole;
+            $mstUser->Email = $request->Email;
+            $mstUser->Password = bcrypt($request->Password);
+            $mstUser->Status = $request->Status;
             $mstUser->CreatedBy = "Admin";
             $mstUser->save();
             return response($mstUser->jsonSerialize(), Response::HTTP_CREATED);
@@ -51,11 +57,15 @@ class UserController extends Controller
     {
         try {
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
+            $mstUser->IDUser = $request->IDUser;
+            $mstUser->NIK = $request->NIK;
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
-            $mstUser->Password = md5($request->Password);
+            $mstUser->Password = bcrypt($request->Password);
+            $mstUser->Status = $request->Status;
             $mstUser->UpdatedBy = "Admin";
             $mstUser->save();
+            $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
