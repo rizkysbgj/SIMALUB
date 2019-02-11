@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form m-form--label-align-right" id="formEditProject">
-
+                <form class="m-form m-form--label-align-right" id="formEditStaff">
+                    {{ csrf_field() }} 
                     <div class="m-form__content">
                         <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgProjectFail">
                             <div class="m-alert__icon">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="m-portlet__body">
-                    <div class="form-group m-form__group row">
+                        <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Status:
                             </label>
@@ -47,26 +47,10 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                ID Staff<strong style="color:red" ;>*</strong>:
-                            </label>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='' />
-                            </div>
-                        </div>
-                        <div class="form-group m-form__group row">
-                            <label class="col-form-label col-lg-3 col-sm-12">
                                 Nama Lengkap<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
-                            </div>
-                        </div>
-                        <div class="form-group m-form__group row">
-                            <label class="col-form-label col-lg-3 col-sm-12">
-                                Inisial Nama<strong style="color:red" ;>*</strong>:
-                            </label>
-                            <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="text" id="tbxFullName" class="form-control m-input" maxlength="100" name="tbxFullName" value="{{$mstUser['NamaLengkap']}}"/>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -74,7 +58,7 @@
                                 Email<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="email" id="tbxEmail" class="form-control m-input" maxlength="100" name="tbxEmail" value="{{$mstUser['Email']}}"/>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -82,34 +66,36 @@
                                 Jabatan <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <select class="form-control  m-select2" id="slsProjectManager" required></select>
+                                <select class="form-control  m-select2" id="slsRole" required></select>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Password<strong style="color:red" ;>*</strong>:
+                                Password <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="password" class="form-control" id="tbxNewPassword" name="tbxNewPassword" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Konfirmasi Password<strong style="color:red" ;>*</strong>:
+                                Konfirmasi Password <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="password" class="form-control" id="tbxConfirmNewPassword" name="tbxConfirmNewPassword" />
+                                <span id="message"></span>
                             </div>
                         </div>
-                        <div class="form-group m-form__group row">
+                       
+                        <!-- <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Photo Profil<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
                                 <input type="file" class="custom-file" id="inputPhotoProfile" name="inputPhotoProfile" style="margin-top: 5px" />
                             </div>
-                        </div>
-                    </div>
+                        </div> -->
+                    </div>                    
 
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
@@ -118,7 +104,7 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Cancel
                                     </button>
-                                    <button id="btnEdit" class="btn btn-primary">
+                                    <button id="btnEditStaff" class="btn btn-primary">
                                         Edit
                                     </button>
                                 </div>
@@ -132,4 +118,9 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" id="inptRoleID" value="{{ $mstUser['IDRole'] }}">
+<input type="hidden" id="tbxUserID" value="{{ $mstUser['IDUser'] }}">
+<script src="{{ asset('assets/app/js/staff/edit.js') }}" type="text/javascript"></script>
+
 @endsection

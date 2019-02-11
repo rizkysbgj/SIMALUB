@@ -38,14 +38,7 @@
     Route::get('/halamanStaff', function () {
         return view('manajerTeknis.layout.page.staff.halamanStaff');
     });
-    // Route::get('/halamanStaff/tambahStaff', function () {
-    //     return view('manajerTeknis.layout.page.staff.tambahStaff');
-    // });
     Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
-    
-    // Route::get('/editStaff', function () {
-    //     return view('manajerTeknis.layout.page.staff.editStaff');
-    // });
     Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
 
 
@@ -54,11 +47,6 @@
         return view('manajerTeknis.layout.page.jabatan.halamanJabatan');
     });
     Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
-
-
-    Route::get('/tambahJabatan', function () {
-        return view('manajerTeknis.layout.page.jabatan.tambahJabatan');
-    });
     Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
    
 

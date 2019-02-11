@@ -1,8 +1,17 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Form.Init();
-});
+    Control.Init();
+    BootstrapSwitch.init();
 
+
+    $('#tbxConfirmNewPassword').on('keyup', function () {
+        if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) {
+            $('#message').html('');
+        } else
+            $('#message').html('Password Not Match').css('color', 'red');
+    });
+});
 
 var Form = {
     Init: function () {
@@ -18,16 +27,55 @@ var Form = {
     },
 }
 
+var BootstrapSwitch = {
+    init: function () {
+        $("[data-switch=true]").bootstrapSwitch();
+    }
+}
+
+var Control = {
+    Init: function () {
+        Control.Select2();
+    },
+    Select2: function () {
+        var IDRole = $("#inptRoleID").val();
+        $.ajax({
+            url: "/api/role",
+            type: "GET"
+        }).done(function (data, textStatus, jqXHR) {
+            $("#slsRole").html("<option></option>");
+            $.each(data, function (i, item) {
+                if (item.IDRole == IDRole)
+                    $("#slsRole").append("<option value='" + item.IDRole + "'selected >" + item.Role + "</option>");
+                else
+                    $("#slsRole").append("<option value='" + item.IDRole + "'>" + item.Role + "</option>");
+            })
+            $("#slsRole").select2({ placeholder: "Select Role" });
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            Common.Alert.Error(errorThrown);
+        });
+        $("#slsRole").select2({ placeholder: "Select Role", minimumResultsForSearch: 1 / 0 });
+    }
+}
+
 var Transaction = function () {
     var btn = $("#btnEditStaff");
 
     btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
+    // var model = new FormData();
+
+    if($("#btnStatus").prop('checked')) {
+        var status = 1;
+    }
+    else {
+        var status = 2;
+    }
+
     var params = {
         Status: status,
         // Status: $("#btnStatus").prop('checked'),
         IDUser: $("#tbxUserID").val(),
-        NIK: $("#tbxNIK").val(),
         NamaLengkap: $("#tbxFullName").val(),
         Email: $("#tbxEmail").val(),
         IDRole: $("#slsRole").val(),
@@ -35,7 +83,6 @@ var Transaction = function () {
         
     }
     
-
     $.ajax({
         url: "/api/user/",
         type: "PUT",

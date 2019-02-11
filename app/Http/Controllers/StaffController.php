@@ -18,10 +18,10 @@ class StaffController extends Controller
     {
         $mstUser = new mstUser();
         $UserController = new UserController();
-        $mstUser = $UserController->GetIDUser($IDUser);
+        $mstUser = $UserController->GetUser($IDUser);
         //return $mstRole;
 
-        
+
         return view ('manajerTeknis.layout.page.staff.editStaff')->with('mstUser', $mstUser);
     }
 

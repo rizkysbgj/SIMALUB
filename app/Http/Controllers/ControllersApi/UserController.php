@@ -36,7 +36,8 @@ class UserController extends Controller
     {
         try {
             $mstUser = mstUser::where('IDUser', $IDUser)->firstorfail();
-            return response($mstUser->jsonSerialize(), Response::HTTP_OK);
+            return $mstUser;
+            // return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
@@ -58,10 +59,9 @@ class UserController extends Controller
     {
         try {
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
-            $mstUser->IDUser = $request->IDUser;
-            $mstUser->NIK = $request->NIK;
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
+            $mstUser->Email = $request->Email;
             $mstUser->Password = bcrypt($request->Password);
             $mstUser->Status = $request->Status;
             $mstUser->UpdatedBy = "Admin";
