@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form m-form--fit m-form--label-align-right" id="formCreateRole">
+                <form class="m-form m-form--fit m-form--label-align-right" id="formEditRole">
 
                     <div class="m-form__content">
                         <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgLogFail">
@@ -38,10 +38,10 @@
                         
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Edit Jabatan <strong style="color:red" ;>*</strong>:
+                                Nama Jabatan <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" name="tbxRoleName" id="tbxRoleName" required />
+                                <input type="text" class="form-control m-input" name="tbxRoleName" id="tbxRoleName" value="{{$mstRole['Role']}}" required />
                             </div>
                         </div>
                        
@@ -54,8 +54,8 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Cancel
                                     </button>
-                                    <button id="btnAddRole" class="btn btn-success">
-                                        Create
+                                    <button id="btnEditRole" class="btn btn-success">
+                                        Edit
                                     </button>
                                 </div>
                             </div>
@@ -68,4 +68,7 @@
 
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/jabatan/edit.js') }}" type="text/javascript"></script>
+
 @endsection

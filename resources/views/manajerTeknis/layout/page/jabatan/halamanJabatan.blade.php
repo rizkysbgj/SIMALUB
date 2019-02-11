@@ -48,11 +48,14 @@
                     </div>
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    <div class="m_datatable" id="divUserList"></div>
+                    <div class="m_datatable" id="divRoleList"></div>
                     <!--end: Datatable -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/jabatan/index.js') }}" type="text/javascript"></script>
+
 @endsection

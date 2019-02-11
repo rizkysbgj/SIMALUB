@@ -57,9 +57,10 @@
     Route::get('/tambahJabatan', function () {
         return view('manajerTeknis.layout.page.jabatan.tambahJabatan');
     });
-    Route::get('/editJabatan', function () {
-        return view('manajerTeknis.layout.page.jabatan.editJabatan');
-    });
+    Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
+    // Route::get('/editJabatan', function () {
+    //     return view('manajerTeknis.layout.page.jabatan.editJabatan');
+    // });
 
     //Route Pinned Project
     Route::get('/halamanpinnedProject', function () {

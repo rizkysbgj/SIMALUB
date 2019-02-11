@@ -40,7 +40,8 @@ class RoleController extends Controller
     {
         try {
             $mstRole = mstrole::where('IDRole', $IDRole)->firstorfail();
-            return response($mstRole->jsonSerialize(), Response::HTTP_OK);
+            return $mstRole;
+            //return response($mstRole->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

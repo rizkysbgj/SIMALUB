@@ -11,7 +11,7 @@ var Table = {
                 type: "remote",
                 source: {
                     read: {
-                        url: "/api/role/list",
+                        url: "/api/role",
                         method: "GET",
                         map: function (r) {
                             var e = r;
@@ -47,13 +47,13 @@ var Table = {
             columns: [
 
                 {
-                    field: "RoleID", title: "Action", sortable: false, textAlign: "center", width: 200, template: function (t) {
-                        var strBuilder = '<a href="/Role/Edit/' + t.RoleID + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-                        strBuilder += '<a href="/Role/Delete/' + t.RoleID + '" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete"><i class="la la-eraser"></i></a>';
+                    field: "IDRole", title: "Action", sortable: false, textAlign: "center", width: 200, template: function (t) {
+                        var strBuilder = '<a href="/editJabatan/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+                        strBuilder += '<a href="/Role/Delete/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete"><i class="la la-eraser"></i></a>';
                         return strBuilder;
                     }
                 },
-                { field: "Role", title: "Role Name", textAlign: "center", width: 300 },
+                { field: "Role", title: "Nama Jabatan", textAlign: "center", width: 300 },
             ]
         })
 
