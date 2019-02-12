@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
 use App\mstProyek;
+use App\vwProyek;
 
 class ProyekController extends Controller
 {
@@ -18,6 +19,7 @@ class ProyekController extends Controller
             $mstProyek->fill($request->all());
             $mstProyek->CreatedBy = "Admin";
             $mstProyek->save();
+            $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
@@ -39,7 +41,7 @@ class ProyekController extends Controller
     public function GetListProyek()
     {
         try {
-            return response(mstProyek::all()->jsonSerialize(), Response::HTTP_OK);
+            return response(vwProyek::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
@@ -53,6 +55,7 @@ class ProyekController extends Controller
             $mstProyek->fill($request->all());
             $mstProyek->UpdatedBy = "Admin";
             $mstProyek->save();
+            $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
