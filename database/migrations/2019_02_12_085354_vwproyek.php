@@ -40,6 +40,7 @@ SQL;
         return <<<SQL
 CREATE VIEW `vwproyek` AS
 SELECT 
+    mp.`IDProyek`,
     mp.`NamaProyek`,
     mp.`InisialProyek`,
     mu.`NamaLengkap` as `PenanggungJawab`,
