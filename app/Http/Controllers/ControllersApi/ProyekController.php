@@ -18,9 +18,7 @@ class ProyekController extends Controller
             $mstProyek = new mstProyek();
             $mstProyek->fill($request->all());
             $mstProyek->CreatedBy = "Admin";
-            $mstProyek->TanggalMulai = Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d');
-            $mstProyek->RencanaSelesai = Carbon::parse($mstProyek->RencanaSelesai)->format('Y-m-d');
-            $mstProyek->RealitaSelesai = Carbon::parse($mstProyek->RealitaSelesai)->format('Y-m-d');
+            $mstProyek = $this->ChangeDateFormat($mstProyek);
             $mstProyek->save();
             $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
@@ -57,6 +55,7 @@ class ProyekController extends Controller
             $mstProyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
             $mstProyek->fill($request->all());
             $mstProyek->UpdatedBy = "Admin";
+            $mstProyek = $this->ChangeDateFormat($mstProyek);
             $mstProyek->save();
             $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_OK);
@@ -64,5 +63,13 @@ class ProyekController extends Controller
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
+    }
+
+    private function ChangeDateFormat($mstProyek)
+    {
+        $mstProyek->TanggalMulai = Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d');
+        $mstProyek->RencanaSelesai = Carbon::parse($mstProyek->RencanaSelesai)->format('Y-m-d');
+        $mstProyek->RealitaSelesai = Carbon::parse($mstProyek->RealitaSelesai)->format('Y-m-d');
+        return $mstProyek;
     }
 }
