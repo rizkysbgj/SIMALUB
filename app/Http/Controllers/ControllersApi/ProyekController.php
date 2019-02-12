@@ -18,6 +18,9 @@ class ProyekController extends Controller
             $mstProyek = new mstProyek();
             $mstProyek->fill($request->all());
             $mstProyek->CreatedBy = "Admin";
+            $mstProyek->TanggalMulai = Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d');
+            $mstProyek->RencanaSelesai = Carbon::parse($mstProyek->RencanaSelesai)->format('Y-m-d');
+            $mstProyek->RealitaSelesai = Carbon::parse($mstProyek->RealitaSelesai)->format('Y-m-d');
             $mstProyek->save();
             $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
@@ -31,7 +34,7 @@ class ProyekController extends Controller
     {
         try {
             $mstProyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
-            return response($mstProyek->jsonSerialize(), Response::HTTP_OK);
+            return $mstProyek;
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

@@ -11,8 +11,8 @@ var Control = {
 	},
 	BootstrapDatepicker: function () {
 		$(".datepicker").datepicker({
-            format: 'yyyy-m-dd',
-            // format: 'dd-M-yyyy',
+            // format: 'yyyy-m-dd',
+            format: 'dd-M-yyyy',
 			todayBtn: "linked", clearBtn: !0, todayHighlight: !0, templates: {
 				leftArrow: '<i class="la la-angle-left"></i>', rightArrow: '<i class="la la-angle-right"></i>'
 			}
