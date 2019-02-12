@@ -19,6 +19,7 @@ class MstProyek extends Migration
             $table->string('InisialProyek',10)->unique();
             $table->string('PenanggungJawab');
             $table->enum('Status', ['Aktif', 'Batal']);
+            $table->integer('PinKeMenu');
             $table->dateTime('TanggalMulai');
             $table->dateTime('RencanaSelesai');
             $table->dateTime('RealitaSelesai')->nullable();

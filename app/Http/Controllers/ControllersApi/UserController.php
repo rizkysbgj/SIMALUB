@@ -46,10 +46,13 @@ class UserController extends Controller
         
     }
 
-    public function GetListUser()
+    public function GetListUser($IDRole)
     {
         try {
-            return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
+            if($IDRole != 0)
+                return response(vwUser::where('IDRole', $IDRole)->get(), Response::HTTP_OK);
+            else
+                return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

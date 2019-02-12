@@ -43,6 +43,7 @@ SELECT
     mu.`id`,
     mu.`IDUser`,
     mu.`NamaLengkap`,
+    mu.`IDRole`,
     mr.`Role`,
     mu.`Status`
     FROM `mstuser` as mu

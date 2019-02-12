@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('user', 'ControllersApi\UserController@CreateUser');
 Route::get('user/{IDUser}', 'ControllersApi\UserController@GetUser');
-Route::get('user', 'ControllersApi\UserController@GetListUser');
+Route::get('user/list/{IDRole}', 'ControllersApi\UserController@GetListUser');
 Route::put('user', 'ControllersApi\UserController@UpdateUser');
 
 Route::post('role', 'ControllersApi\RoleController@CreateRole');
