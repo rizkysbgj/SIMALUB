@@ -23,7 +23,8 @@ class MstTugas extends Migration
             $table->string('PIC');
             $table->integer('IDMilestone');
             $table->date('RencanaMulai');
-            $table->date('RencanaSelesai')->nullable();
+            $table->date('RencanaSelesai');
+            $table->date('RealitaMulai')->nullable();
             $table->date('RealitaSelesai')->nullable();
             $table->string('Status');
             $table->string('CreatedBy');
