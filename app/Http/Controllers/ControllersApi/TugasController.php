@@ -39,7 +39,7 @@ class TugasController extends Controller
             if($IDKategori != 0)
                 $mstTugasList = mstProyek::where('IDProyek', $IDProyek)>get();
             else
-                $mstTugasList = mstProyek::where('IDProyek', $IDProyek)->get();
+                $mstTugasList = mstProyek::all();
             return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
