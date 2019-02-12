@@ -15,16 +15,16 @@ class MstTugas extends Migration
     {
         Schema::create('msttugas', function (Blueprint $table) {
             $table->increments('IDTugas');
-            $table->string('KodeTugas',10)->unique();
+            $table->string('InisialTugas',10)->unique();
             $table->string('NamaTugas');
             $table->string('DeskripsiTugas');
             $table->integer('IDKategori');
             $table->integer('IDProyek');
             $table->string('PIC');
             $table->integer('IDMilestone');
-            $table->date('WaktuMulai');
-            $table->date('WaktuSelesai')->nullable();
-            $table->integer('Durasi')->nullable();
+            $table->date('RencanaMulai');
+            $table->date('RencanaSelesai')->nullable();
+            $table->date('RealitaSelesai')->nullable();
             $table->string('Status');
             $table->string('CreatedBy');
             $table->string('UpdatedBy');

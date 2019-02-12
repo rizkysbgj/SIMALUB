@@ -32,10 +32,13 @@ class TugasController extends Controller
         }
     }
 
-    public function GetListProyek()
+    public function GetListTugas($IDProyek, $IDKategori)
     {
         try {
-            $mstTugasList = mstProyek::all();
+            if($IDKategori != 0)
+                $mstTugasList = mstProyek::where('IDProyek', $IDProyek)->where('IDKategori', $IDKategori)->get();
+            else
+                $mstTugasList = mstProyek::where('IDProyek', $IDProyek)->get();
             return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
