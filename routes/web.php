@@ -30,9 +30,12 @@
     Route::get('/halamanProject', function () {
         return view('manajerTeknis.layout.page.project.halamanProject');
     });
-    Route::get('/editProject', function () {
-        return view('manajerTeknis.layout.page.project.editProject');
-    });
+    Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
+    Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
+   
+    // Route::get('/editProject', function () {
+    //     return view('manajerTeknis.layout.page.project.editProject');
+    // });
 
     //Route staff
     Route::get('/halamanStaff', function () {

@@ -33,15 +33,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                                <a href="{{ url('halamanProject/tambahProject') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                    <span>
+                                        <i class="fa fa-plus"></i>
+                                        <span>
+                                            Tambah Proyek
+                                        </span>
+                                    </span>
+                                </a>
+                                <div class="m-separator m-separator--dashed d-xl-none"></div>
+                            </div>
                         </div>
                     </div>
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    <div class="m_datatable" id="divUserList"></div>
+                    <div class="m_datatable" id="divProjectList"></div>
                     <!--end: Datatable -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/project/index.js') }}" type="text/javascript"></script>
 @endsection

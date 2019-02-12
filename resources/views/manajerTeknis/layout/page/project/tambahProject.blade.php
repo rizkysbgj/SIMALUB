@@ -14,14 +14,14 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Edit Proyek
+                                Tambah Proyek
                             </h3>
                         </div>
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form m-form--label-align-right" id="formEditProject">
-                    {{ csrf_field() }}
+                <form class="m-form m-form--label-align-right" id="formNewProject">
+                    {{ csrf_field() }}  
                     <div class="m-form__content">
                         <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgProjectFail">
                             <div class="m-alert__icon">
@@ -42,7 +42,7 @@
                                 Nama Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -50,7 +50,7 @@
                                 Inisial Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='' />
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxProjectInitial" id="tbxProjectInitial" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -80,7 +80,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -95,7 +95,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxDeadline" readonly id="tbxDeadline" />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -110,7 +110,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxGoLivePlan" readonly id="tbxGoLivePlan" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxRealitaSelesai" readonly id="tbxRealitaSelesai" />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -124,7 +124,7 @@
                                 Deskripsi Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4">narik deskripsi</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -132,12 +132,11 @@
                                 Sponsor Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4">narik sponsor proyek</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4"></textarea>
                             </div>
                         </div>
 
                     </div>
-
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions">
                             <div class="row">
@@ -145,8 +144,8 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Cancel
                                     </button>
-                                    <button id="btnEdit" class="btn btn-primary">
-                                        Edit
+                                    <button id="btnCreate" class="btn btn-success">
+                                        Create
                                     </button>
                                 </div>
                             </div>
@@ -159,4 +158,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/project/create.js') }}" type="text/javascript"></script>
 @endsection
