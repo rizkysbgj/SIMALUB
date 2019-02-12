@@ -17,7 +17,7 @@ class TugasController extends Controller
 
             $mstProyek = mstProyek::where('IDProyek', $mstTugas->IDProyek)->firstorfail();
 
-            $mstTugas->InisialTugas = $mstProyek->InisialTugas + '-' + (string)(mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1); 
+            $mstTugas->InisialTugas = $mstProyek->InisialProyek + '-' + (string)(mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1); 
             $mstTugas->save();
             return response($mstTugas->jsonSerialize(), Response::HTTP_CREATED);
         }
