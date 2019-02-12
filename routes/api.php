@@ -33,9 +33,9 @@ Route::get('proyek/{IDProyek}', 'ControllersApi\ProyekController@GetProyek');
 Route::put('proyek', 'ControllersApi\ProyekController@UpdateProyek');
 
 Route::post('tugas', 'ControllersApi\TugasController@CreateTugas');
-Route::get('tugas', 'ControllersApi\TugasController@GetListTugas');
+Route::get('tugas/list/{IDProyek}', 'ControllersApi\TugasController@GetListTugas');
 Route::get('tugas/{IDTugas}', 'ControllersApi\TugasController@GetTugas');
-Route::put('tugashomecontroller', 'ControllersApi\TugasController@UpdateTugas');
+Route::put('tugas', 'ControllersApi\TugasController@UpdateTugas');
 
 Route::post('subkontrak', 'SubKontrakControler@CreateSubKontrak');
 Route::get('subkontrak', 'SubKontrakControler@GetListSubKontrak');

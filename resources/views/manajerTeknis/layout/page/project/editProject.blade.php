@@ -42,7 +42,7 @@
                                 Nama Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value='' />
+                                <input type="text" id="tbxProjectName" class="form-control m-input" maxlength="100" name="tbxProjectName" required value="{{$mstProyek['NamaProyek']}}" />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -50,7 +50,7 @@
                                 Inisial Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value='' />
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value="{{$mstProyek['InisialProyek']}}"/>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -80,7 +80,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value="{{$mstProyek['TanggalMulai']}}"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -95,7 +95,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxDeadline" readonly id="tbxDeadline" value="{{$mstProyek['RencanaSelesai']}}"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -110,7 +110,7 @@
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxGoLivePlan" readonly id="tbxGoLivePlan" value='' />
+                                    <input type="text" class="form-control m-input datepicker" name="tbxRealitaSelesai" readonly id="tbxRealitaSelesai" value="{{$mstProyek['RealitaSelesai']}}"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -124,7 +124,7 @@
                                 Deskripsi Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4">narik deskripsi</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4">{{$mstProyek['DeskripsiProyek']}}</textarea>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -132,7 +132,7 @@
                                 Sponsor Proyek:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4">narik sponsor proyek</textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4">{{$mstProyek['SponsorProyek']}}</textarea>
                             </div>
                         </div>
 
@@ -159,4 +159,9 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" id="inptProjectManager" value="{{ $mstProyek['PenanggungJawab'] }}">
+<input type="hidden" id="tbxProjectID" value="{{ $mstProyek['IDProyek'] }}">
+<script src="{{ asset('assets/app/js/project/edit.js') }}" type="text/javascript"></script>
+
 @endsection
