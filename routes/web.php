@@ -34,23 +34,17 @@
     Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
    
     //Route tugas
-    Route::get('/halamanTugas/{IDProyek}', function () {
-        return view('manajerTeknis.layout.page.tugas.halamanTugas');
-    });
-    Route::get('/halamanTugas/tambahTugas', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
+    Route::get('/halamanTugas/{IDProyek}', 'TugasController@indexTugas') -> name('halamanTugas');
+    Route::get('/halamanTugas/tambahTugas/{IDProyek}', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
 
     //Route staff
-    Route::get('/halamanStaff', function () {
-        return view('manajerTeknis.layout.page.staff.halamanStaff');
-    });
+    Route::get('/halamanStaff', 'StaffController@indexStaff') -> name('halamanStaff');
     Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
     Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
 
 
     //Route Jabatan
-    Route::get('/halamanJabatan', function () {
-        return view('manajerTeknis.layout.page.jabatan.halamanJabatan');
-    });
+    Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
     Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
     Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
    

@@ -12,7 +12,7 @@ var Table = {
 				type: "remote",
 				source: {
 					read: {
-						url: "/api/tugas/" + IDProyek,
+						url: "/api/tugas/list/" + IDProyek,
 						method: "GET",
 						map: function (r) {
 							var e = r;
@@ -61,7 +61,7 @@ var Table = {
 					}
 				},
 				{
-					field: "RencanaSelesai", title: "End Plan", sortable: false, textAlign: "center", template: function (t) {
+					field: "RencanaSelesai", title: "Tanggal Deadline", sortable: false, textAlign: "center", template: function (t) {
 						return t.RencanaSelesai != null ? Common.Format.Date(t.RencanaSelesai) : "-"
 					}
 				},

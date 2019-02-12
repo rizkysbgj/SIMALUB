@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function indexProject()
+    {
+        return view('manajerTeknis.layout.page.project.halamanProject');
+    }
+
     public function createProject()
     {
         return view ('manajerTeknis.layout.page.project.tambahProject');

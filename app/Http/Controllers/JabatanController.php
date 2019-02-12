@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class JabatanController extends Controller
 {
+    public function indexJabatan()
+    {
+        return view('manajerTeknis.layout.page.jabatan.halamanJabatan');
+    }
+
     public function createJabatan()
     {
         return view ('manajerTeknis.layout.page.jabatan.tambahJabatan');

@@ -21,7 +21,7 @@
 				</div>
 				<!--begin::Form-->
 				<form class="m-form m-form--label-align-right" id="formNewStory">
-
+                    {{ csrf_field() }} 
 					<div class="m-form__content">
 						<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgStoryFail">
 							<div class="m-alert__icon">
@@ -108,4 +108,7 @@
 		</div>
 	</div>
 </div>
+
+<input type="hidden" id="ProjectID" value="{{$IDProyek}}">
+<script src="{{ asset('assets/app/js/tugas/create.js') }}" type="text/javascript"></script>
 @endsection

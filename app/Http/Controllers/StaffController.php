@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
+    public function indexStaff()
+    {
+        return view('manajerTeknis.layout.page.staff.halamanStaff');
+    }
+    
     public function createStaff()
     {
         return view ('manajerTeknis.layout.page.staff.tambahStaff');
