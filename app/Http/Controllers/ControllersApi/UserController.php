@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
 use App\mstUser;
+use App\vwUser;
 
 class UserController extends Controller
 {
@@ -48,7 +49,7 @@ class UserController extends Controller
     public function GetListUser()
     {
         try {
-            return response(mstUser::all()->jsonSerialize(), Response::HTTP_OK);
+            return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
