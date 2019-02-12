@@ -26,16 +26,18 @@
         return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
     });
 
-    //Route proyek manajer teknis
+    //Route proyek 
     Route::get('/halamanProject', function () {
         return view('manajerTeknis.layout.page.project.halamanProject');
     });
     Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
     Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
    
-    // Route::get('/editProject', function () {
-    //     return view('manajerTeknis.layout.page.project.editProject');
-    // });
+    //Route tugas
+    Route::get('/halamanTugas/{IDProyek}', function () {
+        return view('manajerTeknis.layout.page.tugas.halamanTugas');
+    });
+    Route::get('/halamanTugas/tambahTugas', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
 
     //Route staff
     Route::get('/halamanStaff', function () {

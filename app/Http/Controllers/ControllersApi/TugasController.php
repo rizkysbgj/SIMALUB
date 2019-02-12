@@ -36,7 +36,7 @@ class TugasController extends Controller
     public function GetListTugas($IDProyek)
     {
         try {
-            if($IDKategori != 0)
+            if($IDProyek != 0)
                 $mstTugasList = mstProyek::where('IDProyek', $IDProyek)>get();
             else
                 $mstTugasList = mstProyek::all();

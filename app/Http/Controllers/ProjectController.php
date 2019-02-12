@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\mstProyek;
+use App\Http\Controllers\ControllersApi\ProyekController;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -14,8 +16,8 @@ class ProjectController extends Controller
     public function editProject($IDProyek)
     {
         $mstProyek = new mstProyek();
-        $ProjectController = new ProjectController();
-        $mstProyek = $ProjectController->GetProyek($IDProyek);
+        $ProyekController = new ProyekController();
+        $mstProyek = $ProyekController->GetProyek($IDProyek);
         //return $mstRole;
         return view ('manajerTeknis.layout.page.project.editProject')->with('mstProyek', $mstProyek);
     }

@@ -67,9 +67,9 @@ class ProyekController extends Controller
 
     private function ChangeDateFormat($mstProyek)
     {
-        $mstProyek->TanggalMulai = Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d');
-        $mstProyek->RencanaSelesai = Carbon::parse($mstProyek->RencanaSelesai)->format('Y-m-d');
-        $mstProyek->RealitaSelesai = Carbon::parse($mstProyek->RealitaSelesai)->format('Y-m-d');
+        $mstProyek->TanggalMulai = ($mstProyek->TanggalMulai != "") ? Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d') : $mstProyek->TanggalMulai;
+        $mstProyek->RencanaSelesai = ($mstProyek->RencanaSelesai != "") ? Carbon::parse($mstProyek->RencanaSelesai)->format('Y-m-d') : $mstProyek->RencanaSelesai;
+        $mstProyek->RealitaSelesai = ($mstProyek->RealitaSelesai != "") ? Carbon::parse($mstProyek->RealitaSelesai)->format('Y-m-d') : $mstProyek->RealitaSelesai;
         return $mstProyek;
     }
 }
