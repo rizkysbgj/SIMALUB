@@ -48,12 +48,12 @@ var Table = {
 			columns: [
 				{
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
-						var strBuilder = '<a href="/Story/Edit/' + t.ProjectID + '/' + t.TaskID + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Document"><i class="la la-file"></i></a>';
 						return strBuilder;
 					}
 				},
-				{ field: "KodeTugas", title: "Kode Tugas", textAlign: "center" },
+				{ field: "InisialTugas", title: "Kode Tugas", textAlign: "center" },
 				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
 				{
 					field: "RencanaMulai", title: "Tanggal Penugasan", sortable: false, textAlign: "center", template: function (t) {

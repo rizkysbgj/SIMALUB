@@ -2,20 +2,13 @@
 
 @section('content')
 <div class="m-content">
-
-<!-- <div class="details" style="display:none">HIDDEN CONTENT</div>
-<a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'See Less Details':'See More Details');});">See More Details</a> -->
-
-<!-- <div class="details" id="isiContent" style="display:none">HIDDEN CONTENT</div>
-<a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'See Less Details':'#isiContent');});">See More Details</a> -->
-
     <div class="row">
 
-        <div class="col-lg-1" id="more">
+        <div class="col-lg-1" id="sidebarShow">
             <div class="m-portlet">
                 <div class="m-portlet__head" style="border-bottom-width: 0px; padding-right: 18px; padding-left: 10px;">
                     <div class="m-portlet__head-tools">
-                        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'':'#isiContent');});">
+                        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" id="minimizeTaskRight">
                             <i class="fa fa-chevron-right"></i>
                         </button>
                     </div>
@@ -34,7 +27,7 @@
 
         <div class="col-lg-4" id="removeTaskList">
             <!--begin:: Widgets/Tasks -->
-            <div class="m-portlet m-portlet--full-height details" style="display:none">
+            <div class="m-portlet m-portlet--full-height" id="bebasMinimize">
                 <div class="m-portlet__head">
 
                     <div class="m-portlet__head-caption">
@@ -43,7 +36,7 @@
                                 Tasks
 								<span class="m-menu__link-badge">
 									<span class="m-badge m-badge--info">
-										
+										5
 									</span>
 								</span>
                             </h3>
@@ -97,7 +90,7 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item" m-dropdown-toggle="hover" aria-expanded="true">
-                                <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" onclick="$('#more').slideToggle(function(){$('.details').html($('#more').is(':visible')?'':'');});">
+                                <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only" id="minimizeTaskLeft">
                                     <i class="fa fa-chevron-left"></i>
                                 </button>
                             </li>
@@ -114,10 +107,14 @@
             </div>
         </div>
 
+        
+
         <div class="col-lg-8" id="detailTask">
-            @include('manajerTeknis.layout.page.pinnedProject.detailTugas')
+        
         </div>
     </div>
 
 </div>
+
+<script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
 @endsection
