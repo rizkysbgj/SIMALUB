@@ -10,7 +10,7 @@ use Exception;
 use App\mstProyek;
 use App\vwProyek;
 
-class ProyekController extends Controller
+class ProyekControllerApi extends Controller
 {
     public function CreateProyek(Request $request)
     {

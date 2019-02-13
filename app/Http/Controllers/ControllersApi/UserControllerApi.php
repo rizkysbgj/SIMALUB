@@ -10,7 +10,7 @@ use Exception;
 use App\mstUser;
 use App\vwUser;
 
-class UserController extends Controller
+class UserControllerApi extends Controller
 {
     public function CreateUser(Request $request)
     {

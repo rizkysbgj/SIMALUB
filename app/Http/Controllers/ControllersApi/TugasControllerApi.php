@@ -10,7 +10,7 @@ use App\mstTugas;
 use App\mstProyek;
 
 
-class TugasController extends Controller
+class TugasControllerApi extends Controller
 {
     public function CreateTugas(Request $request)
     {

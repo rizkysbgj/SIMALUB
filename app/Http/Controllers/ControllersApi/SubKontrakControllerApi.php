@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mstSubKontrak;
 
-class SubKontrakController extends Controller
+class SubKontrakControllerApi extends Controller
 {
     public function CreateSubKontrak(Request $request)
     {

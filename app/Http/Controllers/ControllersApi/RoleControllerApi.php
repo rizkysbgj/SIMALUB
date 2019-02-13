@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use App\mstrole;
 
-class RoleController extends Controller
+class RoleControllerApi extends Controller
 {
 
     public function CreateRole(Request $request)
