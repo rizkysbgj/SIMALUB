@@ -27,9 +27,10 @@
     });
 
     //Route proyek 
-    Route::get('/halamanProject', function () {
-        return view('manajerTeknis.layout.page.project.halamanProject');
-    });
+    // Route::get('/halamanProject', function () {
+    //     return view('manajerTeknis.layout.page.project.halamanProject');
+    // });
+    Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
     Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
     Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
    

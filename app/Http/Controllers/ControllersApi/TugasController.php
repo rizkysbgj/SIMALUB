@@ -4,6 +4,10 @@ namespace App\Http\Controllers\ControllersApi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Carbon\Carbon;
+use App\mstTugas;
+
 
 class TugasController extends Controller
 {
@@ -16,6 +20,10 @@ class TugasController extends Controller
             $mstTugas = $this->ChangeDateFormat($mstTugas);
 
             $mstProyek = mstProyek::where('IDProyek', $mstTugas->IDProyek)->firstorfail();
+            //set default value
+            $mstTugas->IDKategori = 0;
+            $mstTugas->PIC = "Admin";
+            $mstTugas->Status = "OK";
 
             $mstTugas->InisialTugas = $mstProyek->InisialProyek + '-' + (string)(mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1); 
             $mstTugas->save();
@@ -41,9 +49,9 @@ class TugasController extends Controller
     {
         try {
             if($IDProyek != 0)
-                $mstTugasList = mstProyek::where('IDProyek', $IDProyek)>get();
+                $mstTugasList = mstTugas::where('IDProyek', $IDProyek)>get();
             else
-                $mstTugasList = mstProyek::all();
+                $mstTugasList = mstTugas::all();
             return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {

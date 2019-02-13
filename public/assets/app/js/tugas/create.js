@@ -7,7 +7,6 @@ jQuery(document).ready(function () {
 var Control = {
 	Init: function () {
 		Control.BootstrapDatepicker();
-		Control.Select2();
 	},
 	BootstrapDatepicker: function () {
 		$(".datepicker").datepicker({
@@ -44,7 +43,7 @@ var Transaction = function () {
         IDProyek: $('#ProjectID').val(),
         IDMilestone: "1",
         RencanaMulai: $("#tbxStartPlan").val(),
-        RencanaDeadlineL:$("#tbxEndPlan").val()
+        RencanaSelesai:$("#tbxEndPlan").val()
 	};
 	btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
