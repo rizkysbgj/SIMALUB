@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
 use App\mstTugas;
+use App\mstProyek;
 
 
 class TugasController extends Controller
@@ -16,17 +17,21 @@ class TugasController extends Controller
         try {
             $mstTugas = new mstTugas();
             $mstTugas->fill($request->all());
-            $mstTugas->CreatedBy = "Admin";
             $mstTugas = $this->ChangeDateFormat($mstTugas);
-
-            $mstProyek = mstProyek::where('IDProyek', $mstTugas->IDProyek)->firstorfail();
-            //set default value
+            $mstProyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
+            // //set default value
             $mstTugas->IDKategori = 0;
             $mstTugas->PIC = "Admin";
             $mstTugas->Status = "OK";
+            
+            $count = mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1;
+            
+            $mstTugas->InisialTugas = $mstProyek->InisialProyek.'-'.(string)$count; 
+            $mstTugas->CreatedBy = "Admin";
+            $mstTugas->UpdatedBy = "Admin";
 
-            $mstTugas->InisialTugas = $mstProyek->InisialProyek + '-' + (string)(mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1); 
             $mstTugas->save();
+            $mstTugas->ErrorType = 0;
             return response($mstTugas->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
@@ -49,7 +54,7 @@ class TugasController extends Controller
     {
         try {
             if($IDProyek != 0)
-                $mstTugasList = mstTugas::where('IDProyek', $IDProyek)>get();
+                $mstTugasList = mstTugas::where('IDProyek', $IDProyek)->get();
             else
                 $mstTugasList = mstTugas::all();
             return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
@@ -67,7 +72,10 @@ class TugasController extends Controller
             $mstTugas->UpdatedBy = "Admin";
             $mstTugas = $this->ChangeDateFormat($mstTugas);
             $mstTugas->save();
-            return response($mstTugas->jsonSerialize(), Response::HTTP_OK);
+            $mstTugas->ErrorType = 0;
+            
+            return $mstTugas;
+            //return response($mstTugas->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

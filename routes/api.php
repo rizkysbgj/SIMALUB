@@ -28,16 +28,16 @@ Route::get('role/{IDRole}', 'ControllersApi\RoleController@GetRole');
 Route::put('role', 'ControllersApi\RoleController@UpdateRole');
 
 Route::post('proyek', 'ControllersApi\ProyekController@CreateProyek');
-Route::get('proyek', 'ControllersApi\ProyekController@GetListProyek');
+Route::get('proyek/list/{IDProyek}', 'ControllersApi\ProyekController@GetListProyek');
 Route::get('proyek/{IDProyek}', 'ControllersApi\ProyekController@GetProyek');
 Route::put('proyek', 'ControllersApi\ProyekController@UpdateProyek');
 
 Route::post('tugas', 'ControllersApi\TugasController@CreateTugas');
 Route::get('tugas/list/{IDProyek}', 'ControllersApi\TugasController@GetListTugas');
 Route::get('tugas/{IDTugas}', 'ControllersApi\TugasController@GetTugas');
-Route::put('tugas', 'ControllersApi\TugasController@UpdateTugas');
+Route::put('tugashomecontroller', 'ControllersApi\TugasController@UpdateTugas');
 
-Route::post('subkontrak', 'SubKontrakControler@CreateSubKontrak');
-Route::get('subkontrak', 'SubKontrakControler@GetListSubKontrak');
-Route::get('subkontrak/{IDSubKontrak}', 'SubKontrakControler@GetSubKontrak');
-Route::put('subkontrak', 'SubKontrakControler@UpdateSubKontrak');
+Route::post('subkontrak', 'ControllersApi\SubKontrakController@CreateSubKontrak');
+Route::get('subkontrak', 'ControllersApi\SubKontrakController@GetListSubKontrak');
+Route::get('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakController@GetSubKontrak');
+Route::put('subkontrak', 'ControllersApi\SubKontrakController@UpdateSubKontrak');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ControllersApi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\mstSubKontrak;
 
 class SubKontrakController extends Controller
 {
