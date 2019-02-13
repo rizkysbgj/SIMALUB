@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\mstRole;
-use App\Http\Controllers\ControllersApi\RoleController;
+use App\Http\Controllers\ControllersApi\RoleControllerApi;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
@@ -21,7 +21,7 @@ class JabatanController extends Controller
     public function editJabatan($IDRole)
     {
         $mstRole = new mstRole();
-        $RoleController = new RoleController();
+        $RoleController = new RoleControllerApi();
         $mstRole = $RoleController->GetRole($IDRole);
         //return $mstRole;
         return view ('manajerTeknis.layout.page.jabatan.editJabatan')->with('mstRole', $mstRole);

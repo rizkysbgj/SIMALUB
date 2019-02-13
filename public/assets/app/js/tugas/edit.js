@@ -46,12 +46,12 @@ var Form = {
 
 var Transaction = function () {
 	var btn = $("#btnEdit");
-	var IDProyek = $("#ProjectID").val();
+	var IDProyek = $("#inptProjectID").val();
 	var params = {
 
         NamaTugas:$("#tbxTaskName").val(),
         DeskripsiTugas: $("#tbxTaskDescription").val(),
-        IDProyek: $('#ProjectID').val(),
+        IDTugas: $('#TugasID').val(),
         RencanaMulai: $("#tbxStartPlan").val(),
         RencanaSelesai:$("#tbxEndPlan").val()
 	};

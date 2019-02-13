@@ -43,7 +43,7 @@
 								Nama Tugas <strong style="color:red" ;>*</strong>:
 							</label>
 							<div class="col-lg-6">
-								<input type="text" class="form-control m-input" maxlength="100" name="tbxTaskName" id="tbxTaskName" required >
+								<input type="text" class="form-control m-input" maxlength="100" name="tbxTaskName" id="tbxTaskName" value="{{$mstTugas['NamaTugas']}}" required >
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -51,7 +51,7 @@
 								Deskripsi Tugas <strong style="color:red" ;>*</strong>:
 							</label>
 							<div class="col-lg-6">
-								<textarea type="text" class="form-control m-input" name="tbxTaskDescription" id="tbxTaskDescription" rows="4" required></textarea>
+								<textarea type="text" class="form-control m-input" name="tbxTaskDescription" id="tbxTaskDescription" rows="4" required>{{$mstTugas['DeskripsiTugas']}}</textarea>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -60,7 +60,7 @@
 							</label>
 							<div class="col-lg-4 col-md-9 col-sm-12">
 								<div class="input-group date">
-									<input type="text" class="form-control m-input datepicker" name="tbxStartPlan" readonly id="tbxStartPlan" required />
+									<input type="text" class="form-control m-input datepicker" name="tbxStartPlan" readonly id="tbxStartPlan" value="{{$mstTugas['RencanaMulai']}}" required />
 									<div class="input-group-append">
 										<span class="input-group-text">
 											<i class="la la-calendar"></i>
@@ -75,7 +75,7 @@
 							</label>
 							<div class="col-lg-4 col-md-9 col-sm-12">
 								<div class="input-group date">
-									<input type="text" class="form-control m-input datepicker" name="tbxEndPlan" readonly id="tbxEndPlan" required />
+									<input type="text" class="form-control m-input datepicker" name="tbxEndPlan" readonly id="tbxEndPlan" value="{{$mstTugas['RencanaSelesai']}}" required />
 									<div class="input-group-append">
 										<span class="input-group-text">
 											<i class="la la-calendar"></i>
@@ -94,7 +94,7 @@
 									<button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
 										Cancel
 									</button>
-                                    <button id="btnCreate" class="btn btn-primary">
+                                    <button id="btnEdit" class="btn btn-primary">
                                         Edit
                                     </button>
 								</div>
@@ -109,6 +109,7 @@
 	</div>
 </div>
 
-<input type="hidden" id="ProjectID" value="{{$IDProyek}}">
+<input type="hidden" id="inptProjectID" value="{{ $mstTugas['IDProyek'] }}">
+<input type="hidden" id="TugasID" value="{{ $mstTugas['IDTugas'] }}">
 <script src="{{ asset('assets/app/js/tugas/edit.js') }}" type="text/javascript"></script>
 @endsection

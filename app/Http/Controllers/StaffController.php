@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\mstUser;
-use App\Http\Controllers\ControllersApi\UserController;
+use App\Http\Controllers\ControllersApi\UserControllerApi;
 use Illuminate\Http\Request;
 
 
@@ -22,7 +22,7 @@ class StaffController extends Controller
     public function editStaff($IDUser)
     {
         $mstUser = new mstUser();
-        $UserController = new UserController();
+        $UserController = new UserControllerApi();
         $mstUser = $UserController->GetUser($IDUser);
         //return $mstRole;
 

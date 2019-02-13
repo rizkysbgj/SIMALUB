@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\mstTugas;
-use App\Http\Controllers\ControllersApi\TugasController;
+use App\Http\Controllers\ControllersApi\TugasControllerApi;
 
 class TugasController extends Controller
 {
@@ -19,11 +19,11 @@ class TugasController extends Controller
 
     public function editTugas($IDTugas)
     {
-        $msttugas = new mstTugas();
-        $TugasController = new TugasController();
-        $msttugas = $TugasController->GetTugas($IDTugas);
+        $mstTugas = new mstTugas();
+        $TugasController = new TugasControllerApi();
+        $mstTugas = $TugasController->GetTugas($IDTugas);
         //return $mstRole;
-        return view ('manajerTeknis.layout.page.tugas.editTugas')->with('msttugas', $msttugas);
+        return view ('manajerTeknis.layout.page.tugas.editTugas')->with('mstTugas', $mstTugas);
      
     }
 }
