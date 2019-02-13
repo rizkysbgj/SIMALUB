@@ -28,7 +28,7 @@ Route::get('role/{IDRole}', 'ControllersApi\RoleController@GetRole');
 Route::put('role', 'ControllersApi\RoleController@UpdateRole');
 
 Route::post('proyek', 'ControllersApi\ProyekController@CreateProyek');
-Route::get('proyek/list/{IDProyek}', 'ControllersApi\ProyekController@GetListProyek');
+Route::get('proyek', 'ControllersApi\ProyekController@GetListProyek');
 Route::get('proyek/{IDProyek}', 'ControllersApi\ProyekController@GetProyek');
 Route::put('proyek', 'ControllersApi\ProyekController@UpdateProyek');
 
