@@ -57,7 +57,8 @@ class TugasControllerApi extends Controller
                 $mstTugasList = mstTugas::where('IDProyek', $IDProyek)->get();
             else
                 $mstTugasList = mstTugas::all();
-            return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
+            return $mstTugasList;
+                //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

@@ -63,9 +63,6 @@ var Table = {
 
 var Control = {
     Init: function () {
-        if ($("#errorMsg").val() != "-") {
-            Common.Alert.ErrorRoute($("#errorMsg").val(), document.referrer);
-        }
 
         $.ajax({
             url: "/api/user/list",

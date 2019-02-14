@@ -76,36 +76,3 @@ var Table = {
 
 	}
 }
-
-// var Control = {
-// 	Init: function () {
-// 		if ($("#errorMsg").val() != "-") {
-// 			Common.Alert.ErrorRoute($("#errorMsg").val(), document.referrer);
-// 		}
-
-// 		$.ajax({
-// 			url: "/api/user",
-// 			type: "GET",
-// 			dataType: "json",
-// 			contenType: "application/json",
-// 			success: function (data) {
-// 				var html = "<option value=''>All</option>";
-// 				var select = $("#slsProjectManager");
-
-// 				$.each(data, function (i, item) {
-// 					html += '<option value="' + item.FullName + '">' + item.FullName + '</option>';
-// 				});
-
-// 				$("#slsProjectManager").append(html);
-// 				$("#slsProjectManager").selectpicker("refresh");
-// 			},
-// 			error: function (xhr) {
-// 				alert(xhr.responseText)
-// 			}
-// 		});
-
-// 		$("#slsProjectManager").on("change", function () {
-// 			t.search($(this).val(), "ProjectManager")
-// 		})
-// 	}
-// }

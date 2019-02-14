@@ -4,7 +4,7 @@
 <div class="m-content">
     <div class="row">
 
-        <div class="col-lg-1" id="sidebarShow">
+        <div class="col-lg-1" id="sidebarShow" style="display:none">
             <div class="m-portlet">
                 <div class="m-portlet__head" style="border-bottom-width: 0px; padding-right: 18px; padding-left: 10px;">
                     <div class="m-portlet__head-tools">
@@ -116,5 +116,6 @@
 
 </div>
 
+<input type="hidden" id="IDProyek" value="{{ $IDProyek }}">
 <script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
 @endsection
