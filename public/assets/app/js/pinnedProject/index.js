@@ -1,20 +1,34 @@
-var KeyID = $("#inptKeyID").val();
-var TaskID = $("#inptTaskID").val();
-var pageNow = $("#inptPage").val();
+// var KeyID = $("#inptKeyID").val();
+// var TaskID = $("#inptTaskID").val();
+// var pageNow = $("#inptPage").val();
 
-if (TaskID == -1) {
-	if (pageNow == "PinnedProject")
-		window.location.href = "/Story/Create/" + ProjectID;
-	else
-		$("#containerMyTask").html("<div class='m-content' style='padding-top:10px'><div class='alert alert-success m-alert--default m--align-center' role='alert' style='padding:20px;'><strong>Yay, </strong>you don't have any task right now! </div></div>");
-}
+// if (TaskID == -1) {
+// 	if (pageNow == "PinnedProject")
+// 		window.location.href = "/Story/Create/" + ProjectID;
+// 	else
+// 		$("#containerMyTask").html("<div class='m-content' style='padding-top:10px'><div class='alert alert-success m-alert--default m--align-center' role='alert' style='padding:20px;'><strong>Yay, </strong>you don't have any task right now! </div></div>");
+// }
+var IDProyek = $("#IDProyek").val();
 //== Class Initialization
 jQuery(document).ready(function () {
-	$("#sidebarShow").hide();
+	GetData.TaskList();
+	// $("#sidebarShow").hide();
 
-	if (TaskID != -1) {
-		Page.Init();
-	}
+	$("#minimizeTaskLeft").on('click', function (){
+		$("#removeTaskList").hide();
+		$("#sidebarShow").show();
+		
+	});
+
+	$("#minimizeTaskRight").on('click', function (){
+		$("#removeTaskList").show();
+		$("#sidebarShow").hide();
+		
+	});
+
+	// if (TaskID != -1) {
+	// 	Page.Init();
+	// }
 });
 
 var Ctrl = {
@@ -149,7 +163,7 @@ var Button = {
 
 var Page = {
 	Init: function () {
-		GetData.TaskList("UpdatedDate");
+		// GetData.TaskList("UpdatedDate");
 		GetData.TaskDetail(TaskID);
 
 		//Event
@@ -202,15 +216,12 @@ var TaskTransaction = {
 }
 
 var GetData = {
-	TaskList: function (strOrderBy) {
-		var link = pageNow == "PinnedProject" ? "/PinnedProject/TaskList" : "/MyTask/MyTaskList"
+	TaskList: function () {
+		// var link = pageNow == "PinnedProject" ? "/PinnedProject/TaskList" : "/MyTask/MyTaskList"
+		var link = "/halamananpinnedProject/TaskList/" + IDProyek;
 		$.ajax({
 			url: link,
 			type: 'GET',
-			data: {
-				Key: KeyID,
-				order: strOrderBy
-			},
 			success: function (data) {
 				$("#showTask").html(data);
 			},

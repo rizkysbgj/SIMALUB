@@ -49,9 +49,9 @@
    
 
     //Route Pinned Project
-    Route::get('/halamanpinnedProject', function () {
-        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject');
-    });
+    Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
+    Route::get('/halamananpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
+    
     Route::get('/detailTugas', function () {
         return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
     });
