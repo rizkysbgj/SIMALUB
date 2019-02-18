@@ -14,6 +14,7 @@ jQuery(document).ready(function () {
 	// GetData.TaskList();
 	// GetData.TaskDetail(IDTugas);
 	Page.Init();
+	Page.BootstrapDatepicker();
 	// $("#sidebarShow").hide();
 
 	$("#minimizeTaskLeft").on('click', function (){
@@ -181,6 +182,8 @@ var Page = {
 			console.log(IDTugas);
 			GetData.TaskDetail(IDTugas);
 		});
+
+		
 	},
 }
 
@@ -220,7 +223,7 @@ var TaskTransaction = {
 var GetData = {
 	TaskList: function () {
 		// var link = pageNow == "PinnedProject" ? "/PinnedProject/TaskList" : "/MyTask/MyTaskList"
-		var link = "/halamananpinnedProject/TaskList/" + IDProyek;
+		var link = "/halamanpinnedProject/TaskList/" + IDProyek;
 		$.ajax({
 			url: link,
 			type: 'GET',
@@ -241,7 +244,7 @@ var GetData = {
 			// data: { IDTugas: IDTugas },
 			success: function (data) {
 				$("#detailTask").html(data);
-				// Function.ChangeFormatDate();
+				Function.ChangeFormatDate();
 				// Button.Init();
 				// Ctrl.Select2();
 				// Summernote.Init();

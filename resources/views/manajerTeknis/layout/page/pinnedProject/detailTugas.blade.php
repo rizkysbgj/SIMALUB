@@ -4,9 +4,9 @@
             <div class="m-portlet__head-title">
 
                 <h3 class="m-portlet__head-text">
-                    Nama Tugas
+                    {{ $mstTugasDetail['tugas']['NamaTugas'] }}
                     <small>
-                        Nama Projek / Kode Tugas
+                        {{ $mstTugasDetail['tugas']['NamaProyek'] }} / {{ $mstTugasDetail['tugas']['InisialTugas'] }}
                     </small>
                 </h3>
             </div>
@@ -18,7 +18,7 @@
         <div class="form-group m-form__group">
             <div class="alert m-alert m-alert--default" role="alert" style="margin-bottom: 20px;">
                 <div class="col-lg-12 m--align-center" id="btnGenerate">
-                    <a href="/Story/Edit/@Html.ValueFor(model => model.Task.ProjectID)/@Html.ValueFor(model => model.Task.TaskID)" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air" style="margin-right: 10px;">
+                    <a href="{{ url('/editTugas/'.$mstTugasDetail['tugas']['IDTugas']) }}" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air" style="margin-right: 10px;">
                         <span>
                             <i class="la la-edit"></i>
                             <span>
@@ -28,6 +28,88 @@
                     </a>
                     <!-- looping dan kondisi untuk modal dan button -->
                     <!-- disini -->
+                    @foreach ($mstTugasList as $mstTugas)
+                    {
+                        <!-- modal -->
+                        @if (Model.Task.LastTaskMilestoneID == 2 || Model.Task.LastTaskMilestoneID == 5 || (Model.Task.LastTaskMilestoneID == 11 && i.Code == "DONE") || (Model.Task.LastTaskMilestoneID == 13 && i.Code == "DONE"))
+                        {
+                            <div class="modal hide fade" id="@i.TaskMilestoneID-@i.Code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                @i.Action
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Attachment :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        @*<label class="custom-file-label" for="customFile">
+                                                                Choose file
+                                                            </label>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Remark <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <textarea class="summernote" name="tbxRemark" id="tbxRemark-@i.Code" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="btnSubmit-@i.Code">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- button -->
+                        if (Model.Task.PICID == UserManager.User.UserID)
+                        {
+                            if (Model.Task.LastTaskMilestoneID != 8)
+                            {
+                                <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="@i.Code" style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#@i.TaskMilestoneID-@i.Code">
+                                    <span>
+                                        <i class="la la-info"></i>
+                                        <span>
+                                            @i.Action
+                                        </span>
+                                    </span>
+                                </a>
+                            }
+
+                            else if (i.NextTaskMilestoneID == 9)
+                            {
+                                <a href="/BugTracker/ListPlan/@ViewBag.SITProjectID" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" style="margin-left:10px; margin-right:10px">
+                                    <span>
+                                        <i class="la la-info"></i>
+                                        <span>
+                                            Go to SIT
+                                        </span>
+                                    </span>
+                                </a>
+                            }
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -46,7 +128,7 @@
                                 Tugas Berada di : <br>
                             </span>
                             <span style="margin-left: 25px;">
-                                <strong>Rudi Heryanto</strong>
+                                <strong>{{ $mstTugasDetail['tugas']['PenanggungJawab'] }}</strong>
                             </span>
                         </div>
                         <div class="m-portlet__head-icon">
@@ -57,7 +139,7 @@
                                 Tugas Berada pada Tahap : <br>
                             </span>
                             <span style="margin-left: 25px;">
-                                <strong>Kaji Ulang Analisis</strong>
+                                <strong>{{ $mstTugasDetail['tugas']['Milestone'] }}</strong>
                             </span>
                         </div>
                     </div>
@@ -78,7 +160,7 @@
                                 Rencana Mulai Dikerjakan : <br>
                             </span>
                             <span style="margin-left: 25px;">
-                                <strong>07-Januari-2019</strong>
+                                <strong id='txtStartPlan'>{{ $mstTugasDetail['tugas']['RencanaMulai'] }}</strong>
                             </span>
                         </div>
                         <div class="m-portlet__head-icon">
@@ -89,7 +171,7 @@
                                 Rencana Deadline : <br>
                             </span>
                             <span style="margin-left: 25px;">
-                                <strong>14-Januari-2019</strong>
+                                <strong id='txtEndPlan'>{{ $mstTugasDetail['tugas']['RencanaSelesai'] }}</strong>
                             </span>
                         </div>
 
@@ -107,7 +189,7 @@
         </div>
 
         <div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide m--margin-top-15" data-scrollbar-shown="true" data-scrollable="true" data-max-height="380" style="overflow: visible; position: relative;">
-            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;">//Deskripsinya</textarea>
+            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;">{{ $mstTugasDetail['tugas']['DeskripsiTugas'] }}</textarea>
         </div>
 
         <ul class="nav nav-pills nav-fill nav-pills--warning" role="tablist">
@@ -146,3 +228,4 @@
         </div>
     </div>
 </div>
+

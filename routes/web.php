@@ -50,10 +50,10 @@
 
     //Route Pinned Project
     Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
-    Route::get('/halamananpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
-    Route::get('/halamananpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
+    Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
+    Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
     
-    Route::get('/detailTugas', function () {
-        return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
-    });
+    // Route::get('/detailTugas', function () {
+    //     return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
+    // });
 
