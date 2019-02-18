@@ -22,7 +22,7 @@ class PinnedProjectController extends Controller
         return view('manajerTeknis.layout.page.pinnedProject.showTugas')->with('mstTugasList', $mstTugasList);
     }
 
-    public function detailTask($IDProyek)
+    public function detailTask($IDTugas)
     {
         $TugasControllerApi = new TugasControllerApi();
         $mstTugasDetail = $TugasControllerApi->GetDetailTugas($IDTugas);

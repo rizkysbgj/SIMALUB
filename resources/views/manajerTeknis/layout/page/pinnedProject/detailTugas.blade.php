@@ -130,17 +130,17 @@
         <div class="tab-content">
             <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
                 <div class="m_datatable" id="divMilestoneList">
-                    @include('manajerTeknis.layout.page.pinnedProject.detailTab')
+                    <!-- @include('manajerTeknis.layout.page.pinnedProject.detailTab') -->
                 </div>
             </div>
             <div class="tab-pane" id="m_tabs_5_2" role="tabpanel">
                 <div class="m_datatable" id="divWorkLogList">
-                    @*Tab Content*@
+                    <!-- @*Tab Content*@ -->
                 </div>
             </div>
             <div class="tab-pane" id="m_tabs_5_3" role="tabpanel">
                 <div class="m_datatable" id="divHistoryList">
-                    @*Tab Content*@
+                    <!-- @*Tab Content*@ -->
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@ var IDProyek = $("#IDProyek").val();
 //== Class Initialization
 jQuery(document).ready(function () {
 	// GetData.TaskList();
+	// GetData.TaskDetail(IDTugas);
 	Page.Init();
 	// $("#sidebarShow").hide();
 
@@ -165,20 +166,20 @@ var Button = {
 var Page = {
 	Init: function () {
 		GetData.TaskList();
-		GetData.TaskDetail(IDTugas);
+		// GetData.TaskDetail(IDTugas);
 
 		//Event
-		$(".TaskOrderBy").on("click", function () {
-			var order = (this.id).replace("Order-", "");
-			GetData.TaskList(order);
-		});
+		// $(".TaskOrderBy").on("click", function () {
+		// 	var order = (this.id).replace("Order-", "");
+		// 	GetData.TaskList(order);
+		// });
 
 		$('#showTask').on('click', '.divShowDetail', function () {
-			// var IDTugas = this.id;
+			var IDTugas = this.id;
 			// $(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
 			// $(this).addClass("selected").siblings().removeClass("selected");
-			console.log("AAAAAA");
-			// GetData.TaskDetail(IDTask);
+			console.log(IDTugas);
+			GetData.TaskDetail(IDTugas);
 		});
 	},
 }
@@ -233,17 +234,17 @@ var GetData = {
 	},
 	TaskDetail: function (IDTugas) {
 		// var link = pageNow == "PinnedProject" ? "/PinnedProject/DetailTask" : "/MyTask/DetailTask"
-		var link = "/halamanpinnedProject/DetailTask/" + IDTugas;
+		var link = "/halamanpinnedProject/detailTask/" + IDTugas;
 		$.ajax({
 			url: link,
 			type: "GET",
-			data: { IDTugas: IDTugas },
+			// data: { IDTugas: IDTugas },
 			success: function (data) {
 				$("#detailTask").html(data);
 				// Function.ChangeFormatDate();
-				Button.Init();
-				Ctrl.Select2();
-				Summernote.Init();
+				// Button.Init();
+				// Ctrl.Select2();
+				// Summernote.Init();
 				// Table.Milestone(TaskID);
 				// Table.Worklog(TaskID);
 				// Table.History(TaskID);
