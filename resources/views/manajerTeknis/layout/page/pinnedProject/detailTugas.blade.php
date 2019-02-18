@@ -28,17 +28,15 @@
                     </a>
                     <!-- looping dan kondisi untuk modal dan button -->
                     <!-- disini -->
-                    @foreach ($mstTugasList as $mstTugas)
-                    {
+                    @foreach ($mstTugasDetail['flow'] as $flow)
                         <!-- modal -->
-                        @if (Model.Task.LastTaskMilestoneID == 2 || Model.Task.LastTaskMilestoneID == 5 || (Model.Task.LastTaskMilestoneID == 11 && i.Code == "DONE") || (Model.Task.LastTaskMilestoneID == 13 && i.Code == "DONE"))
-                        {
-                            <div class="modal hide fade" id="@i.TaskMilestoneID-@i.Code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        @if ( $mstTugasDetail['tugas']['IDMilestone'] == 2 || $mstTugasDetail['tugas']['IDMilestone'] == 5 || ($mstTugasDetail['tugas']['IDMilestone'] == 8 && $flow['Kode'] == "SELESAI") )
+                            <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">
-                                                @i.Action
+                                                {{ $flow['Aksi'] }}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">
@@ -54,9 +52,9 @@
                                                 <div class="col-lg-9 col-md-9 col-sm-12">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
-                                                        @*<label class="custom-file-label" for="customFile">
+                                                        <!-- <label class="custom-file-label" for="customFile">
                                                                 Choose file
-                                                            </label>*@
+                                                        </label> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,36 +78,127 @@
                                     </div>
                                 </div>
                             </div>
-                        }
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestone'] == 3 || $mstTugasDetail['tugas']['IDMilestone'] == 6 )
+                            <div class="modal fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                {{ $flow['Aksi'] }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Programmer <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                                    <select class="form-control m-select2" id="slsUser" style="width:550px"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Hours <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <input type="number" class="form-control m-input" name="tbxHours" id="tbxHours" min="1" max="8760" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="btnSubmit-@i.Code">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        @elseif ($mstTugasDetail['tugas']['IDMilestone'] == 8 && $flow['Kode'] == "SALAH")
+                            <div class="modal fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                {{ $flow['Aksi'] }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Programmer <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <select class="form-control m-select2" id="slsUser" style="width:550px"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Hours <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <input type="number" class="form-control m-input" name="tbxHours" id="tbxHours" min="1" max="8760" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Attachment:
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        <!-- <label class="custom-file-label" for="customFile">
+                                                                Choose file
+                                                        </label> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">
+                                                    Remark <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    <textarea class="summernote" name="tbxRemark" id="tbxRemark-@i.Code" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="btnSubmit-@i.Code">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        @endif
 
                         <!-- button -->
-                        if (Model.Task.PICID == UserManager.User.UserID)
-                        {
-                            if (Model.Task.LastTaskMilestoneID != 8)
-                            {
-                                <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="@i.Code" style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#@i.TaskMilestoneID-@i.Code">
-                                    <span>
-                                        <i class="la la-info"></i>
-                                        <span>
-                                            @i.Action
-                                        </span>
-                                    </span>
-                                </a>
-                            }
-
-                            else if (i.NextTaskMilestoneID == 9)
-                            {
-                                <a href="/BugTracker/ListPlan/@ViewBag.SITProjectID" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" style="margin-left:10px; margin-right:10px">
-                                    <span>
-                                        <i class="la la-info"></i>
-                                        <span>
-                                            Go to SIT
-                                        </span>
-                                    </span>
-                                </a>
-                            }
-                        }
-                    }
+                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}" style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                            <span>
+                                <i class="la la-info"></i>
+                                <span>
+                                {{ $flow['Aksi'] }}
+                                </span>
+                            </span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
