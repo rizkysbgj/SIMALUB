@@ -8,6 +8,9 @@ use Illuminate\Http\Response;
 use Carbon\Carbon;
 use App\mstTugas;
 use App\mstProyek;
+use App\mstmilestoneflowtugas;
+use App\viewmodel\vmtugas;
+use App\trxTaskLog;
 
 
 class TugasControllerApi extends Controller
@@ -79,6 +82,70 @@ class TugasControllerApi extends Controller
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function GetDetailTugas($IDTugas)
+    {
+        try
+        {
+            $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestone)->firstorfail();
+            $model = new vmtugas();
+            $model->tugas = $tugas;
+            $model->flow = $flow;
+            return $model;
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    private function AddTransaction($IDTugas, $IDMilestoneTugas, $MilestoneAksi, $IDUser, $PIC)
+    {
+        try
+        {
+            //create trxTugasLog
+            $this->CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser);
+
+            //Update mstTugas
+            $tugas = new mstTugas();
+            $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
+            $tugas->IDMilestone = $IDMilestoneTugas;
+            $tugas->PIC = $PIC;
+            $tugas->UpdatedBy = $IDUser;
+            
+            /*tanggal mulai&selesai
+            ------
+            ------
+            */
+
+            $task->save();
+            return "Sukses";
+
+        }
+        catch (Exception $e)
+        {
+            return $e->getMessage();
+        }
+    }
+
+    private function CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser)
+    {
+        $trxTaskLog = new trxTaskLog();
+        try
+        {
+            $trxTaskLog->IDTugas = $IDTugas;
+            $trxTaskLog->Milestone = $MilestoneAksi;
+            $trxTaskLog->IDUser = $IDUser;
+
+            $trxTaskLog->save();
+            return "Sukses";
+        }
+        catch (Exception $e)
+        {
+            return $e->getMessage();
         }
     }
 
