@@ -92,7 +92,7 @@ class TugasControllerApi extends Controller
         try
         {
             $tugas = vwTugas::where('IDTugas', $IDTugas)->firstorfail();
-            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestone)->firstorfail();
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestone)->get();
             $model = new vmtugas();
             $model->tugas = $tugas;
             $model->flow = $flow;
