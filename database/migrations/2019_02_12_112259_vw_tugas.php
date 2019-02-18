@@ -41,15 +41,22 @@ SQL;
 CREATE VIEW `vwtugas` AS
 SELECT 
     mt.`IDTugas`,
+    mt.`InisialTugas`,
+    mt.`IDProyek`,
+    mp.`NamaProyek`,
     mt.`NamaTugas`,
     mkt.`Kategori`,
+    mt.`DeskripsiTugas`,
     mt.`RencanaMulai`,
     mt.`RencanaSelesai`,
     mt.`RealitaMulai`,
     mt.`RealitaSelesai`,
+    mt.`PIC` as `IDPIC`,
     mu.`NamaLengkap` as `PenanggungJawab`,
+    mt.`IDMilestone`,
     mmt.`MilestoneTugas` as `Milestone`
     FROM `msttugas` as mt
+    LEFT JOIN `mstproyek` as mp ON mt.`IDProyek` = mp.`IDProyek`
     LEFT JOIN `mstkategoritugas` as mkt ON mt.`IDKategori` = mkt.`IDKategori`
     LEFT JOIN `mstuser` as mu ON mt.`PIC` = mu.`IDUser`
     LEFT JOIN `mstmilestonetugas` as mmt ON mt.`IDMilestone` = mmt.`IDMilestoneTugas`

@@ -11,6 +11,7 @@ use App\mstProyek;
 use App\mstmilestoneflowtugas;
 use App\viewmodel\vmtugas;
 use App\trxTaskLog;
+use App\vwTugas;
 
 
 class TugasControllerApi extends Controller
@@ -90,7 +91,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
+            $tugas = vwTugas::where('IDTugas', $IDTugas)->firstorfail();
             $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestone)->firstorfail();
             $model = new vmtugas();
             $model->tugas = $tugas;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2019 at 02:48 AM
+-- Generation Time: Feb 18, 2019 at 05:45 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -307,13 +307,19 @@ CREATE TABLE `vwproyek` (
 --
 CREATE TABLE `vwtugas` (
 `IDTugas` int(10) unsigned
+,`InisialTugas` varchar(10)
+,`IDProyek` int(11)
+,`NamaProyek` varchar(100)
 ,`NamaTugas` varchar(255)
 ,`Kategori` varchar(255)
+,`DeskripsiTugas` varchar(255)
 ,`RencanaMulai` date
 ,`RencanaSelesai` date
 ,`RealitaMulai` date
 ,`RealitaSelesai` date
+,`IDPIC` varchar(255)
 ,`PenanggungJawab` varchar(255)
+,`IDMilestone` int(11)
 ,`Milestone` varchar(255)
 );
 
@@ -348,7 +354,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtugas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtugas`  AS  select `mt`.`IDTugas` AS `IDTugas`,`mt`.`NamaTugas` AS `NamaTugas`,`mkt`.`Kategori` AS `Kategori`,`mt`.`RencanaMulai` AS `RencanaMulai`,`mt`.`RencanaSelesai` AS `RencanaSelesai`,`mt`.`RealitaMulai` AS `RealitaMulai`,`mt`.`RealitaSelesai` AS `RealitaSelesai`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mmt`.`MilestoneTugas` AS `Milestone` from (((`msttugas` `mt` left join `mstkategoritugas` `mkt` on((`mt`.`IDKategori` = `mkt`.`IDKategori`))) left join `mstuser` `mu` on((`mt`.`PIC` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`mt`.`IDMilestone` = `mmt`.`IDMilestoneTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtugas`  AS  select `mt`.`IDTugas` AS `IDTugas`,`mt`.`InisialTugas` AS `InisialTugas`,`mt`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mt`.`NamaTugas` AS `NamaTugas`,`mkt`.`Kategori` AS `Kategori`,`mt`.`DeskripsiTugas` AS `DeskripsiTugas`,`mt`.`RencanaMulai` AS `RencanaMulai`,`mt`.`RencanaSelesai` AS `RencanaSelesai`,`mt`.`RealitaMulai` AS `RealitaMulai`,`mt`.`RealitaSelesai` AS `RealitaSelesai`,`mt`.`PIC` AS `IDPIC`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mt`.`IDMilestone` AS `IDMilestone`,`mmt`.`MilestoneTugas` AS `Milestone` from ((((`msttugas` `mt` left join `mstproyek` `mp` on((`mt`.`IDProyek` = `mp`.`IDProyek`))) left join `mstkategoritugas` `mkt` on((`mt`.`IDKategori` = `mkt`.`IDKategori`))) left join `mstuser` `mu` on((`mt`.`PIC` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`mt`.`IDMilestone` = `mmt`.`IDMilestoneTugas`))) ;
 
 -- --------------------------------------------------------
 
