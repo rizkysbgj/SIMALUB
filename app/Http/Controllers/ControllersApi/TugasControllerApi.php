@@ -103,6 +103,41 @@ class TugasControllerApi extends Controller
         }
     }
 
+    public function TugasTransaction(Request $request)
+    {
+        try
+        {
+            //get milestone terakhir
+            $flow = new mstmilestoneflowtugas();
+            $flow = mstmilestoneflowtuga::where('IDMilestoneTugas', $request)->where('Kode', $request)->firstorfail();
+            
+            $trxTugas = new trxTugas();
+
+            $IDMilestoneNow = $request;
+            $IDMilestoneNext = $flow->IDMilestoneLanjut;
+
+            //set value trxTugas
+            $trxTugas->IDTugas = $request;
+            $trxTugas->PIC = $request;
+            $trxTugas->Catatan = $request;
+            $trxTugas->IDMilestoneTugas = $IDMilestoneNext;
+            
+            /*ubah milestone
+            ....................
+            ....................
+            */
+
+            /*AddTransaction
+            ....................
+            ....................
+            */
+        }
+        catch (Exception $e)
+        {
+            return $e->getMessage();
+        }
+    }
+
     private function AddTransaction($IDTugas, $IDMilestoneTugas, $MilestoneAksi, $IDUser, $PIC)
     {
         try
