@@ -58,10 +58,10 @@ class TugasControllerApi extends Controller
     {
         try {
             if($IDProyek != 0)
-                $mstTugasList = mstTugas::where('IDProyek', $IDProyek)->get();
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->get();
             else
-                $mstTugasList = mstTugas::all();
-            return $mstTugasList;
+                $tugasList = vwTugas::all();
+            return $tugasList;
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
