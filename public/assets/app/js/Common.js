@@ -100,7 +100,7 @@ jQuery(document).ready(function () {
 
 
     $('.sidebarActive').each(function () {
-        if (path2 == 'PinnedProject') {
+        if (path2 == '/halamanProject') {
             if (this.id == path)
                 $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
 

@@ -11,7 +11,8 @@
 var IDProyek = $("#IDProyek").val();
 //== Class Initialization
 jQuery(document).ready(function () {
-	GetData.TaskList();
+	// GetData.TaskList();
+	Page.Init();
 	// $("#sidebarShow").hide();
 
 	$("#minimizeTaskLeft").on('click', function (){
@@ -163,21 +164,21 @@ var Button = {
 
 var Page = {
 	Init: function () {
-		// GetData.TaskList("UpdatedDate");
-		GetData.TaskDetail(TaskID);
+		GetData.TaskList();
+		GetData.TaskDetail(IDTugas);
 
 		//Event
 		$(".TaskOrderBy").on("click", function () {
 			var order = (this.id).replace("Order-", "");
 			GetData.TaskList(order);
-		})
+		});
 
-		$("#showTask").on("click", "div.divShowDetail", function (e) {
-			var IDTask = this.id;
-			$(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
-			$(this).addClass("selected").siblings().removeClass("selected");
-
-			GetData.TaskDetail(IDTask);
+		$('#showTask').on('click', '.divShowDetail', function () {
+			// var IDTugas = this.id;
+			// $(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
+			// $(this).addClass("selected").siblings().removeClass("selected");
+			console.log("AAAAAA");
+			// GetData.TaskDetail(IDTask);
 		});
 	},
 }
@@ -230,21 +231,22 @@ var GetData = {
 			}
 		});
 	},
-	TaskDetail: function (TaskID) {
-		var link = pageNow == "PinnedProject" ? "/PinnedProject/DetailTask" : "/MyTask/DetailTask"
+	TaskDetail: function (IDTugas) {
+		// var link = pageNow == "PinnedProject" ? "/PinnedProject/DetailTask" : "/MyTask/DetailTask"
+		var link = "/halamanpinnedProject/DetailTask/" + IDTugas;
 		$.ajax({
 			url: link,
 			type: "GET",
-			data: { TaskID: TaskID },
+			data: { IDTugas: IDTugas },
 			success: function (data) {
 				$("#detailTask").html(data);
-				Function.ChangeFormatDate();
+				// Function.ChangeFormatDate();
 				Button.Init();
 				Ctrl.Select2();
 				Summernote.Init();
-				Table.Milestone(TaskID);
-				Table.Worklog(TaskID);
-				Table.History(TaskID);
+				// Table.Milestone(TaskID);
+				// Table.Worklog(TaskID);
+				// Table.History(TaskID);
 
 				$("#minimizeTaskRight").hide();
 

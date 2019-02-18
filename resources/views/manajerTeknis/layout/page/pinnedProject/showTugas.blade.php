@@ -2,7 +2,7 @@
 <!-- @*<div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide" data-scrollbar-shown="true" data-scrollable="true" data-max-height="380" style="overflow: visible; height: 380px; max-height: 380px; position: relative;">*@ -->
 
 @foreach ($mstTugasList as $mstTugas)
-	<div class="tab-content divShowDetail" id="@Html.DisplayFor(modelItem => task.TaskID)">
+	<div class="tab-content divShowDetail" id="{{ $mstTugas['IDTugas'] }}">
 		<div class="tab-pane active" id="m_widget2_tab1_content">
 			<div class="m-widget2">
 				<div class="m-widget2__item m-widget2__item--@color">

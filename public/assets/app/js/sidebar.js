@@ -1,6 +1,21 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Pinned.Init();
+    // var path = window.location.pathname;
+    // path2 = path.split('/')[1];
+
+
+    // $('.sidebarActive').each(function () {
+    //     if (path2 == '/halamanProject') {
+    //         if (this.id == path)
+    //             $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
+
+    //     }
+    //     else if (this.id == path2)
+    //         $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
+
+    // })
+    // //
 });
 
 var Pinned = {
