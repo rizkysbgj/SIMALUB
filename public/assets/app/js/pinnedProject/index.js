@@ -1,6 +1,6 @@
 // var KeyID = $("#inptKeyID").val();
-// var TaskID = $("#inptTaskID").val();
-var pageNow = $("#inptPage").val();
+var IDTugas = $("#inptTaskID").val();
+// var pageNow = $("#inptPage").val();
 
 // if (TaskID == -1) {
 // 	if (pageNow == "PinnedProject")
@@ -111,7 +111,7 @@ var Button = {
 					var Regex;
 					var Remark;
 					if (!done) {
-						if (Kode == "DONE") {
+						if (Kode == "SELESAI") {
 							fileInput = document.getElementById("inputFile");
 							uploadedFile = fileInput.files[0];
 
@@ -129,7 +129,7 @@ var Button = {
 							model.append("Remarks", Remark);
 							model.append('Document', uploadedFile);
 						}
-						else if (Kode == "ASSIGN") {
+						else if (Kode == "PILIH") {
 
 							params.PIC = $("#slsUser").val();
 							params.ManHours = $("#tbxHours").val();
@@ -217,7 +217,7 @@ var TaskTransaction = {
 		$.ajax({
 			url: "/api/pinned",
 			type: 'POST',
-			data: data,
+			data: model,
 			dataType: "json",
 			contentType: false,
 			processData: false
@@ -225,7 +225,7 @@ var TaskTransaction = {
 			console.log(data);
 			if (Common.CheckError.Object(data) == true) {
 				// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
-				var link = "/halamanpinnedProject/" + data.IDProyek;
+				var link = "/halamanpinnedProject/" + data.IDProyek
 				Common.Alert.SuccessRoute("Success", link);
 			}
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

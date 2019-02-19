@@ -184,8 +184,8 @@ class TugasControllerApi extends Controller
 
             $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
 
-            $request->ErrorType = 0;
-            return $request;
+            $trxTugas->ErrorType = 0;
+            return response($trxTugas->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e)
         {
