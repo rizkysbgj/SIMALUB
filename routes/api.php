@@ -42,3 +42,5 @@ Route::post('subkontrak', 'ControllersApi\SubKontrakControllerApi@CreateSubKontr
 Route::get('subkontrak', 'ControllersApi\SubKontrakControllerApi@GetListSubKontrak');
 Route::get('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@GetSubKontrak');
 Route::put('subkontrak', 'ControllersApi\SubKontrakControllerApi@UpdateSubKontrak');
+
+Route::post('pinned', 'ControllersApi\TugasControllerApi@TugasTransaction');

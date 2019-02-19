@@ -10,8 +10,9 @@ use App\mstTugas;
 use App\mstProyek;
 use App\mstmilestoneflowtugas;
 use App\viewmodel\vmtugas;
-use App\trxTaskLog;
+use App\trxTugasLog;
 use App\vwTugas;
+use App\trxTugas;
 
 
 class TugasControllerApi extends Controller
@@ -108,30 +109,83 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            //get milestone terakhir
+            //declare
             $flow = new mstmilestoneflowtugas();
-            $flow = mstmilestoneflowtuga::where('IDMilestoneTugas', $request)->where('Kode', $request)->firstorfail();
-            
             $trxTugas = new trxTugas();
 
-            $IDMilestoneNow = $request;
+            //get flow milestone
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
+            
+            //set current & next milestone
+            $IDMilestoneNow = $request->IDMilestoneTugas;
             $IDMilestoneNext = $flow->IDMilestoneLanjut;
 
-            //set value trxTugas
-            $trxTugas->IDTugas = $request;
-            $trxTugas->PIC = $request;
-            $trxTugas->Catatan = $request;
-            $trxTugas->IDMilestoneTugas = $IDMilestoneNext;
-            
-            /*ubah milestone
-            ....................
-            ....................
-            */
+            //MilestoneAksi
+            $MilestoneAksi = $flow->Aksi;
 
-            /*AddTransaction
-            ....................
-            ....................
-            */
+            //set value trxTugas
+            $trxTugas->IDTugas = $request->IDTugas;
+            $trxTugas->PIC = $request->PIC;
+            $trxTugas->Catatan = $request->Catatan;
+            $trxTugas->IDMilestoneTugas = $IDMilestoneNext;
+            $trxTugas->CreatedBy = "Admin";
+            $trxTugas->UpdatedBy = "Admin";
+            
+            //ubah milestone
+            if($request->Kode == "SELESAI")
+            {
+                $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->firstorfail();
+
+                $oldTrxTugas->Catatan = $request->Catatan;
+                $oldTrxTugas->Attachment = $request->Attachment;
+                $oldTrxTugas->ContentType = $request->ContentType;
+                $oldTrxTugas->FileName = $request->FileName;
+                $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
+                $oldTrxTugas->save();
+            }
+            else
+            {
+                $count = trxTugas::where('IDTugas', $request)->where('IDMilestoneTugas', $request)->count();
+
+                if($count>0 && $request != 7)
+                {
+                    if($request->Kode == "MULAI")
+                    {
+                        $oldTrxTugas->WaktuMulai = Carbon::now()->toDateString();
+                        $oldTrxTugas->Catatan = $request;
+                        $oldTrxTugas->Attachment = $request;
+                        $oldTrxTugas->ContentType = $request;
+                        $oldTrxTugas->FileName = $request;
+                        $oldTrxTugas->save();
+                    }
+
+                    if($request->IDMilestoneTugas == 11)
+                    {
+                        $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $flow->IDMilestoneLanjut)->firstorfail();
+                        $trxTugas->IDMilestoneTugas = $flow->IDMilestoneLanjut;
+                        $trxTugas->save();
+                    }
+                }
+                else
+                {
+                    if($request->Kode == "PILIH")
+                    {
+                        $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $flow->IDMilestoneLanjut)->firstorfail();
+                        $trxTugas->IDMilestoneTugas = $flow->IDMilestoneLanjut;
+                    }
+                    else if($request->Kode == "MULAI")
+                    {
+                        $trxTugas->WaktuMulai = Carbon::now()->toDateString();
+                    }
+                    $trxTugas->save();
+                }
+                
+            }
+
+            $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
+
+            $request->ErrorType = 0;
+            return $request;
         }
         catch (Exception $e)
         {
@@ -144,21 +198,21 @@ class TugasControllerApi extends Controller
         try
         {
             //create trxTugasLog
-            $this->CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser);
+            // $this->CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser);
 
             //Update mstTugas
             $tugas = new mstTugas();
             $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
             $tugas->IDMilestone = $IDMilestoneTugas;
             $tugas->PIC = $PIC;
-            $tugas->UpdatedBy = $IDUser;
+            $tugas->UpdatedBy = "Admin";
             
             /*tanggal mulai&selesai
             ------
             ------
             */
 
-            $task->save();
+            $tugas->save();
             return "Sukses";
 
         }
@@ -170,7 +224,7 @@ class TugasControllerApi extends Controller
 
     private function CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser)
     {
-        $trxTaskLog = new trxTaskLog();
+        $trxTaskLog = new trxTugasLog();
         try
         {
             $trxTaskLog->IDTugas = $IDTugas;
