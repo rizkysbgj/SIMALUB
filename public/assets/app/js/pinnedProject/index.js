@@ -1,6 +1,6 @@
 // var KeyID = $("#inptKeyID").val();
 // var TaskID = $("#inptTaskID").val();
-// var pageNow = $("#inptPage").val();
+var pageNow = $("#inptPage").val();
 
 // if (TaskID == -1) {
 // 	if (pageNow == "PinnedProject")
@@ -14,20 +14,39 @@ jQuery(document).ready(function () {
 	// GetData.TaskList();
 	// GetData.TaskDetail(IDTugas);
 	Page.Init();
-	Page.BootstrapDatepicker();
 	// $("#sidebarShow").hide();
 
-	$("#minimizeTaskLeft").on('click', function (){
-		$("#removeTaskList").hide();
+	// $("#minimizeTaskLeft").on('click', function (){
+	// 	$("#removeTaskList").hide();
+	// 	$("#sidebarShow").show();
+	// });
+
+	// $("#minimizeTaskRight").on('click', function (){
+	// 	$("#removeTaskList").show();
+	// 	$("#sidebarShow").hide();	
+	// });
+
+	$("#minimizeTaskRight").hide();
+
+	$("#minimizeTaskLeft").on("click", function () {
+		$("#bebasMinimize").hide();
+		$("#detailTask").addClass("col-lg-11");
+		$("#removeTaskList").removeClass("col-lg-4");
+		$("#minimizeTaskLeft").hide();
+		$("#minimizeTaskRight").show();
+		$("#sidebarShow").addClass("col-s-1");
 		$("#sidebarShow").show();
-		
 	});
 
-	$("#minimizeTaskRight").on('click', function (){
-		$("#removeTaskList").show();
+	$("#minimizeTaskRight").on("click", function () {
+		$("#bebasMinimize").show();
+		$("#detailTask").removeClass("col-lg-11");
+		$("#removeTaskList").addClass("col-lg-4");
+		$("#sidebarShow").removeClass("col-s-1");
 		$("#sidebarShow").hide();
-		
+		$("#minimizeTaskLeft").show();
 	});
+
 
 	// if (TaskID != -1) {
 	// 	Page.Init();
@@ -60,48 +79,49 @@ var Ctrl = {
 var Button = {
 	Init: function () {
 		$(".btn-generate").on("click", function () {
-			var Code = this.id;
+			var Kode = this.id;
 			var done = false;
 			var params = {
-				TaskID: $("#inptTaskID").val(),
-				TaskMilestoneID: $("#inptMilestone").val(),
+				IDTugas: $("#inptTaskID").val(),
+				IDMilestoneTugas: $("#inptMilestone").val(),
 				PIC: $("#inptPICID").val(),
-				Remarks: "",
-				ManHours: 0,
-				ProjectID: $("#inptProjectID").val(),
-				Code: Code
+				Catatan: "",
+				IDProyek: $("#inptProjectID").val(),
+				Kode: Kode
 			};
+			
+			console.log("e");
 
 			var model = new FormData();
-			model.append("TaskID", params.TaskID);
-			model.append("TaskMilestoneID", params.TaskMilestoneID);
-			model.append("ProjectID", params.ProjectID);
-			model.append("Code", params.Code);
+			model.append("IDTugas", params.IDTugas);
+			model.append("IDMilestoneTugas", params.IDMilestoneTugas);
+			model.append("IDProyek", params.IDProyek);
+			model.append("Kode", params.Kode);
 
-			if (Code == "START" || Code == "GOLIVE") {
+			if (Kode == "MULAI" || Kode == "GOLIVE") {
 				$(".btn-generate").addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 				model.append("PIC", params.PIC);
 
 				TaskTransaction.Init(model, params);
 			}
 			else {
-				$("#btnSubmit-" + Code).on("click", function () {
+				$("#btnSubmit-" + Kode).on("click", function () {
 					var fileInput;
 					var uploadedFile;
 					var Regex;
 					var Remark;
 					if (!done) {
-						if (Code == "DONE") {
+						if (Kode == "DONE") {
 							fileInput = document.getElementById("inputFile");
 							uploadedFile = fileInput.files[0];
 
-							Remark = $("#tbxRemark-" + Code).val();
+							Remark = $("#tbxRemark-" + Kode).val();
 							Regex = /(<([^>]+)>)/gi;
 							Remark = Remark.replace(Regex, "");
 
 							params.Remarks = Remark;
 
-							if ($("#tbxRemark-" + Code).val() == "") {
+							if ($("#tbxRemark-" + Kode).val() == "") {
 								Common.Alert.Warning("Please Input Remarks!");
 								return false;
 							}
@@ -109,7 +129,7 @@ var Button = {
 							model.append("Remarks", Remark);
 							model.append('Document', uploadedFile);
 						}
-						else if (Code == "ASSIGN") {
+						else if (Kode == "ASSIGN") {
 
 							params.PIC = $("#slsUser").val();
 							params.ManHours = $("#tbxHours").val();
@@ -123,17 +143,17 @@ var Button = {
 							model.append("ManHours", params.ManHours);
 
 						}
-						else if (Code == "FEEDBACK") {
+						else if (Kode == "FEEDBACK") {
 							fileInput = document.getElementById("inputFile");
 							uploadedFile = fileInput.files[0];
 
-							Remark = $("#tbxRemark-" + Code).val();
+							Remark = $("#tbxRemark-" + Kode).val();
 							Regex = /(<([^>]+)>)/gi;
 							Remark = Remark.replace(Regex, "");
 
 							params.Remarks = Remark;
 
-							if ($("#tbxRemark-" + Code).val() == "") {
+							if ($("#tbxRemark-" + Kode).val() == "") {
 								Common.Alert.Warning("Please Input Remarks!");
 								return false;
 							}
@@ -154,7 +174,7 @@ var Button = {
 						}
 						console.log(params.Remarks);
 
-						$("#btnSubmit-" + Code).addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+						$("#btnSubmit-" + Kode).addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 						TaskTransaction.Init(model, params);
 						done = true;
 					}
@@ -177,8 +197,8 @@ var Page = {
 
 		$('#showTask').on('click', '.divShowDetail', function () {
 			var IDTugas = this.id;
-			// $(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
-			// $(this).addClass("selected").siblings().removeClass("selected");
+			$(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
+			$(this).addClass("selected").siblings().removeClass("selected");
 			console.log(IDTugas);
 			GetData.TaskDetail(IDTugas);
 		});
@@ -189,28 +209,24 @@ var Page = {
 
 var TaskTransaction = {
 	Init: function (model, data) {
-		var btn = $("#btnSubmit-" + data.Code);
-		if (data.Code == "START" || data.Code == "GOLIVE") {
+		var btn = $("#btnSubmit-" + data.Kode);
+		if (data.Kode == "MULAI" || data.Kode == "GOLIVE") {
 			btn = $(".btn-generate");
 		}
 
 		$.ajax({
-			url: "/api/task/TaskTransaction",
+			url: "/api/pinned",
 			type: 'POST',
-			data: model,
+			data: data,
 			dataType: "json",
 			contentType: false,
 			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
 			if (Common.CheckError.Object(data) == true) {
-				if ($("#inptMilestone").val() == 7) {
-					Common.Alert.SuccessRoute("Success", '/BugTracker/Create/' + data.SITProjectID);
-				}
-				else {
-					var link = pageNow == "PinnedProject" ? "/PinnedProject/" + data.ProjectID : "/MyTask/"
-					Common.Alert.SuccessRoute("Success", link);
-				}
+				// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
+				var link = "/halamanpinnedProject/" + data.IDProyek;
+				Common.Alert.SuccessRoute("Success", link);
 			}
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -245,9 +261,9 @@ var GetData = {
 			success: function (data) {
 				$("#detailTask").html(data);
 				Function.ChangeFormatDate();
-				// Button.Init();
+				Button.Init();
 				// Ctrl.Select2();
-				Summernote.Init();
+				// Summernote.Init();
 				// Table.Milestone(TaskID);
 				// Table.Worklog(TaskID);
 				// Table.History(TaskID);
