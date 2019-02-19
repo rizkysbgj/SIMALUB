@@ -247,7 +247,7 @@ var GetData = {
 				Function.ChangeFormatDate();
 				// Button.Init();
 				// Ctrl.Select2();
-				// Summernote.Init();
+				Summernote.Init();
 				// Table.Milestone(TaskID);
 				// Table.Worklog(TaskID);
 				// Table.History(TaskID);

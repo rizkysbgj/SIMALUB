@@ -2,10 +2,10 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 18, 2019 at 05:45 AM
+-- Host: 127.0.0.1
+-- Generation Time: Feb 19, 2019 at 03:21 AM
 -- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `SIMALUB`
+-- Database: `simalub`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,7 @@ INSERT INTO `mstmilestoneflowtugas` (`IDMilestoneFlowTugas`, `IDMilestoneTugas`,
 (5, 5, 'SELESAI', 'SELESAI ANALISIS', 6),
 (6, 6, 'PILIH', 'PILIH PENYELIA', 7),
 (7, 7, 'MULAI', 'MULAI PENGOREKSIAN', 8),
-(8, 8, 'SALAH', 'PILIH ANALIS', 4),
+(8, 8, 'SALAH', 'KEMBALIKAN KE ANALIS', 4),
 (9, 8, 'SELESAI', 'SELESAI DIKOREKSI', 9),
 (10, 9, 'MULAI', 'MULAI PEMBUATAN SERTIFIKAT', 10),
 (11, 10, 'SELESAI', 'SERTIFIKAT SELESAI', 11);
@@ -113,16 +113,16 @@ CREATE TABLE `mstmilestonetugas` (
 
 INSERT INTO `mstmilestonetugas` (`IDMilestoneTugas`, `MilestoneTugas`, `IDRole`) VALUES
 (1, 'Siap Kaji Ulang', 1),
-(11, 'Sedang Dikaji Ulang', 1),
-(12, 'Kaji Ulang Selesai', 1),
-(13, 'Siap Dianalisis', 1),
-(14, 'Sedang Dianalisis', 1),
-(15, 'Analisis Selesai', 1),
-(16, 'Siap Dikoreksi', 1),
-(17, 'Sedang Dikoreksi', 1),
-(18, 'Pengoreksian Selesai', 1),
-(19, 'Pembuatan Sertifikat', 1),
-(20, 'Sertifikat Selesai', 1);
+(2, 'Sedang Dikaji Ulang', 1),
+(3, 'Kaji Ulang Selesai', 1),
+(4, 'Siap Dianalisis', 1),
+(5, 'Sedang Dianalisis', 1),
+(6, 'Analisis Selesai', 1),
+(7, 'Siap Dikoreksi', 1),
+(8, 'Sedang Dikoreksi', 1),
+(9, 'Pengoreksian Selesai', 1),
+(10, 'Pembuatan Sertifikat', 1),
+(11, 'Sertifikat Selesai', 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `mstproyek` (
 --
 
 INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'test', 'admin', 'Aktif', 1, '2019-02-13 00:00:00', '2019-02-13 00:00:00', '2019-02-13 00:00:00', 'test', 'test', 'Admin', NULL, '2019-02-13 07:01:06', '2019-02-13 07:01:06');
+(2, 'Chimory', 'CHI', 'rudi_heryanto', 'Aktif', 1, '2019-02-18 00:00:00', '2019-03-04 00:00:00', NULL, 'Susu chimory', 'Chimory Riverside', 'Admin', NULL, '2019-02-18 04:59:28', '2019-02-18 04:59:28');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,12 @@ CREATE TABLE `mstrole` (
 --
 
 INSERT INTO `mstrole` (`IDRole`, `Role`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(6, 'Administrasi'),
+(4, 'Analis'),
+(2, 'Manajer Puncak'),
+(3, 'Manajer Teknis'),
+(5, 'Penyelia');
 
 -- --------------------------------------------------------
 
@@ -221,7 +226,8 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDKategori`, `IDProyek`, `PIC`, `IDMilestone`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `Status`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'test-1', 'test', 'test', 0, 1, 'Admin', 1, '2019-02-13', '2019-02-14', NULL, NULL, 'OK', 'Admin', 'Admin', '2019-02-13 07:16:28', '2019-02-13 07:16:28');
+(2, 'CHI-1', 'Analisis kadar susu Chimory', 'Analisis kadar susu dalam sapi asli bogor puncak jabar indonesia papua indo jawa suma', 0, 2, 'Admin', 2, '2019-02-18', '2019-02-20', NULL, NULL, 'OK', 'Admin', 'Admin', '2019-02-18 05:00:15', '2019-02-18 06:25:12'),
+(3, 'CHI-2', 'Analisis Kimia Cokelat Chimory', 'Cokelat boyyy', 0, 2, 'Admin', 1, '2019-02-18', '2019-03-04', NULL, NULL, 'OK', 'Admin', 'Admin', '2019-02-18 05:00:50', '2019-02-18 05:00:50');
 
 -- --------------------------------------------------------
 
@@ -244,6 +250,17 @@ CREATE TABLE `mstuser` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mstuser`
+--
+
+INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, `Password`, `Status`, `CreatedBy`, `UpdatedBy`, `Avatar`, `created_at`, `updated_at`) VALUES
+(1, 'wisnu_ananta', 'SIMALUB001', 'Wisnu Ananta Kusuma', 2, 'wisnu@gmail.com', '$2y$10$HPU35mSvCdJCNTx8xXhVNuUr72wo/FGQsgKpOCovCEAOhadsTOm42', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:53:19', '2019-02-18 04:53:19'),
+(2, 'rudi_heryanto', 'SIMALUB002', 'Rudi Heryanto', 3, 'rudi@gmail.com', '$2y$10$cqSwetILHYiKiVfE./xle.FKJj5bGecCwsx66/mORkbuHb.3epcoO', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:54:13', '2019-02-18 04:54:13'),
+(3, 'salinah', 'SIMALUB003', 'Salinah', 4, 'salinah@gmail.com', '$2y$10$rPrYbMexydkuTulNQW1x8uiBjT683eQplVPjrpyCMQV4HplmDFyCy', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:55:50', '2019-02-18 04:55:50'),
+(4, 'nunuk', 'SIMALUB004', 'Nunuk', 5, 'nunuk@gmail.com', '$2y$10$Qmy1qLfzyYEX2fj.d0nqMeAI8nhrW163Jnf0agwFMZ93AdiRZ.nNG', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:56:40', '2019-02-18 04:56:40'),
+(5, 'wiwik', 'SIMALUB005', 'Wiwik', 6, 'wiwik@gmail.com', '$2y$10$JcuZ3l2lWrX4QZ09CXVk1O3yIN/BeHOQHj6W.wlsE..DqCU1Tlh0K', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:57:11', '2019-02-18 04:57:11');
 
 -- --------------------------------------------------------
 
@@ -465,19 +482,19 @@ ALTER TABLE `mstmilestoneflowtugas`
 -- AUTO_INCREMENT for table `mstmilestonetugas`
 --
 ALTER TABLE `mstmilestonetugas`
-  MODIFY `IDMilestoneTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `IDMilestoneTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
 --
 ALTER TABLE `mstrole`
-  MODIFY `IDRole` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDRole` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mstsubkontrak`
@@ -489,13 +506,13 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mstuser`
 --
 ALTER TABLE `mstuser`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
