@@ -33,8 +33,49 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- modal untuk create jabatan -->
+                            <div id="formCreateRole">
+                                <div class="modal hide fade" id="tambahJabatan" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    Tambah Jabatan
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        &times;
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                        Nama Jabatan <strong style="color:red" ;>*</strong>:
+                                                    </label>
+                                                    <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
+                                                        <input type="text" class="form-control m-input" name="tbxRoleName" id="tbxRoleName" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-success" id="btnAddRole">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ url('halamanJabatan/tambahJabatan') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <!-- <a href="{{ url('halamanJabatan/tambahJabatan') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
+                                <a href="#" data-toggle="modal" data-target="#tambahJabatan" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                     <span>
                                         <i class="fa fa-plus"></i>
                                         <span>
@@ -57,5 +98,6 @@
 </div>
 
 <script src="{{ asset('assets/app/js/jabatan/index.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/app/js/jabatan/create.js') }}" type="text/javascript"></script>
 
 @endsection

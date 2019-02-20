@@ -1,5 +1,5 @@
-// var KeyID = $("#inptKeyID").val();
-var IDTugas = $("#inptTaskID").val();
+// var KeyID = $("#inptKeyID").val(); gausah ini ga dipakek di simalub
+// var IDTugas = $("#inptTaskID").val();
 // var pageNow = $("#inptPage").val();
 
 // if (TaskID == -1) {
@@ -98,7 +98,7 @@ var Button = {
 			model.append("IDProyek", params.IDProyek);
 			model.append("Kode", params.Kode);
 
-			if (Kode == "MULAI" || Kode == "GOLIVE") {
+			if (Kode == "MULAI") {
 				$(".btn-generate").addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 				model.append("PIC", params.PIC);
 
@@ -210,7 +210,10 @@ var Page = {
 var TaskTransaction = {
 	Init: function (model, data) {
 		var btn = $("#btnSubmit-" + data.Kode);
-		if (data.Kode == "MULAI" || data.Kode == "GOLIVE") {
+
+		btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+
+		if (data.Kode == "MULAI" ) {
 			btn = $(".btn-generate");
 		}
 
@@ -223,11 +226,13 @@ var TaskTransaction = {
 			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
-			if (Common.CheckError.Object(data) == true) {
-				// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
-				var link = "/halamanpinnedProject/" + data.IDProyek
+			// var link = '/halamanpinnedProject/' + data.IDProyek;
+			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			// if (Common.CheckError.Object(data) == true) {
+			// 	// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
+				var link = "/halamanpinnedProject/" + data.IDProyek;
 				Common.Alert.SuccessRoute("Success", link);
-			}
+			// }
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);

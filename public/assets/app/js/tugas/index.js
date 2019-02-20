@@ -50,8 +50,17 @@ var Table = {
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Document"><i class="la la-file"></i></a>';
+						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill" title="Kaji Ulang" data-toggle="modal" data-target="#kajiulang"><i class="la la-clipboard"></i></a>';
 						return strBuilder;
 					}
+				},
+				{
+					field: "#", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
+						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+						var strBuilder = '<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#kajiulang" style="width: 100px;"><span><small>Belum Dikaji</small></span></a>';
+						return strBuilder;
+					}
+					
 				},
 				{ field: "InisialTugas", title: "Kode Tugas", textAlign: "center" },
 				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },

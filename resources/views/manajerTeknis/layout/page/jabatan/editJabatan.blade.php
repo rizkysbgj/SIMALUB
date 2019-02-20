@@ -54,7 +54,7 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Cancel
                                     </button>
-                                    <button id="btnEditRole" class="btn btn-success">
+                                    <button id="btnEditRole" class="btn btn-primary">
                                         Edit
                                     </button>
                                 </div>

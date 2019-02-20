@@ -116,6 +116,6 @@
 
 </div>
 
-<input type="hidden" id="IDProyek" value="{{ $IDProyek }}">
+<input type="hidden" id="IDProyek" value="{{ $IDProyek }}" >
 <script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
 @endsection
