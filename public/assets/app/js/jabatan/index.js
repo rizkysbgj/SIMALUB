@@ -50,7 +50,7 @@ var Table = {
                     field: "IDRole", title: "Action", sortable: false, textAlign: "center", width: 200, template: function (t) {
                         // var strBuilder = '<a href="/editJabatan/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
                         var strBuilder = '<a href="/editJabatan/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-                        strBuilder += '<a href="/Role/Delete/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete"><i class="la la-eraser"></i></a>';
+                        strBuilder += '<a href="/Role/Delete/' + t.IDRole + '" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-eraser"></i></a>';
                         return strBuilder;
                     }
                 },

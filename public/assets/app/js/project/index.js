@@ -47,8 +47,8 @@ var Table = {
 			columns: [
 				{
 					field: "IDProyek", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
-						var strBuilder = '<a href="/editProject/' + t.IDProyek + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						strBuilder += '<a href="/halamanTugas/' + t.IDProyek + '" class="m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill" title="Story Project"><i class="la la-folder-o"></i></a>';
+						var strBuilder = '<a href="/editProject/' + t.IDProyek + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Proyek"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+						strBuilder += '<a href="/halamanTugas/' + t.IDProyek + '" class="m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill" title="Daftar Tugas Proyek"><i class="la la-folder-o"></i></a>';
 						return strBuilder;
 					}
 				},

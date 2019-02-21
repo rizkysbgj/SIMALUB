@@ -18,7 +18,7 @@
 					<!--begin: Search Form -->
 					<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
 						<div class="row align-items-center">
-							<div class="col-xl-8 order-2 order-xl-1">
+							<div class="col-xl-4 order-2 order-xl-1">
 								<div class="form-group m-form__group row align-items-center">
 									<div class="col-md-5">
 										<div class="m-input-icon m-input-icon--left">
@@ -252,9 +252,19 @@
                                 </div>
                             </div>
 
-							<div class="col-xl-4 order-1 order-xl-2 m--align-right">
+							<!-- 2 Button di atas kanan halaman -->
+							<div class="col-xl-8 order-1 order-xl-2 m--align-right">
+								<a href="{{ url('halamanSubkontrak/'.$IDProyek) }}" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+								<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
+									<span>
+										<i class="fa fa-folder"></i>
+										<span>
+											Daftar Subkontrak
+										</span>
+									</span>
+								</a>
 								<!-- <a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
-								<a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+								<a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
 									<span>
 										<i class="fa fa-plus"></i>
 										<span>

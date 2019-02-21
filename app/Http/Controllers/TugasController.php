@@ -12,6 +12,10 @@ class TugasController extends Controller
         return view('manajerTeknis.layout.page.tugas.halamanTugas')->with('IDProyek', $IDProyek);
     }
 
+    public function indexSubkontrak($IDProyek){
+        return view('manajerTeknis.layout.page.tugas.halamanSubkontrak')->with('IDProyek', $IDProyek);
+    }
+
     public function createTugas($IDProyek)
     {
         return view ('manajerTeknis.layout.page.tugas.tambahTugas')->with('IDProyek', $IDProyek);

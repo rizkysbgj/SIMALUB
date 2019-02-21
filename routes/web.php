@@ -36,6 +36,8 @@
     Route::get('/halamanTugas/tambahTugas/{IDProyek}', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
     Route::get('/editTugas/{IDTugas}', 'TugasController@editTugas');
 
+    Route::get('/halamanSubkontrak/{IDProyek}', 'TugasController@indexSubkontrak') -> name('halamanSubkontrak');
+
     //Route staff
     Route::get('/halamanStaff', 'StaffController@indexStaff') -> name('halamanStaff');
     Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
