@@ -6,7 +6,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="index.html" class="m-brand__logo-wrapper">
-                            <img alt="" src="{{ asset('assets/demo/default/media/img/logo/SIMALUB.png') }}" />
+                            <img alt="" src="{{ asset('../../assets/demo/default/media/img/logo/SIMALUB.png') }}" />
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -103,7 +103,7 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">
                                                 9 New
                                             </span>
@@ -319,7 +319,7 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">
                                                 Quick Actions
                                             </span>
@@ -371,7 +371,7 @@
                                 m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered"
+                                        <img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered"
                                             alt="" />
                                     </span>
                                     <span class="m-topbar__username m--hide">
@@ -381,10 +381,10 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless"
+                                                    <img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless"
                                                         alt="" />
                                                 </div>
                                                 <div class="m-card-user__details">
@@ -466,13 +466,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                            <li id="m_quick_sidebar_toggle" class="m-nav__item">
-                                <a href="#" class="m-nav__link m-dropdown__toggle">
-                                    <span class="m-nav__link-icon">
-                                        <i class="flaticon-grid-menu"></i>
-                                    </span>
-                                </a>
                             </li>
                         </ul>
                     </div>

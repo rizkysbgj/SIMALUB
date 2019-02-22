@@ -22,7 +22,7 @@ var Pinned = {
     Init: function () {
 
         $.ajax({
-            url: "/api/proyek",
+            url: "/api/proyek/",
             type: "GET",
             dataType: "json",
             contenType: "application/json",

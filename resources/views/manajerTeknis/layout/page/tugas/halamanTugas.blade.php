@@ -263,8 +263,8 @@
 										</span>
 									</span>
 								</a>
-								<!-- <a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
-								<a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
+								<a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+								<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;"> -->
 									<span>
 										<i class="fa fa-plus"></i>
 										<span>

@@ -13,11 +13,11 @@
                         </button>
                     </div>
                 </div>
-                <div class="m-portlet__body" style="height: 111.6px;">
+                <div class="m-portlet__body" style="height: 111.6px;padding-top: 15px;">
 					<div class="m--align-center">
 						<div class="row" style="-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform:  rotate(90deg); transform: rotate(90deg);">
 							<h4 style="margin-bottom: 0px;">
-								Tasks
+								Tugas
 							</h4>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Tasks
+                                Daftar Tugas
 								<span class="m-menu__link-badge">
 									<span class="m-badge m-badge--info">
 										5
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="m-portlet__head-tools">
+                    <!-- <div class="m-portlet__head-tools">
 
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
@@ -85,7 +85,7 @@
                             </li>
                         </ul>
 
-                    </div>
+                    </div> -->
 
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
@@ -98,7 +98,8 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <div class="m-scrollable" data-scrollable="true" data-max-height="500px" style="height: 380px; overflow: hidden;">
+                    <!-- <div class="m-scrollable" data-scrollable="true" data-max-height="500px" style="height: 380px; overflow: hidden;"> -->
+                    <div class="m-scrollable" data-scrollable="true" data-max-height="100px" style="height: 380px; overflow: hidden;">
                         <div id="showTask">
 
                         </div>

@@ -7,7 +7,7 @@
     <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1"
         m-menu-scrollable="0" m-menu-dropdown-timeout="500">
         <ul id="sidebar" class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-            <li class="m-menu__item {{Request::is('halamandashboardMT')?'m-menu__item--active':''}}" aria-haspopup="true">
+            <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{ url('halamandashboardMT') }}" class="m-menu__link ">
                     <i class="m-menu__link-icon flaticon-line-graph"></i>
                     <span class="m-menu__link-title">
@@ -37,7 +37,7 @@
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
             <!-- MODUL PROJECT -->
-            <li class="m-menu__item {{Request::is('halamanProject')?'m-menu__item--active':''}}" aria-haspopup="true"
+            <li class="m-menu__item sidebarActive" aria-haspopup="true"
                 m-menu-submenu-toggle="hover">
                 <a href="{{ url('halamanProject') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-folder-1"></i>
@@ -47,7 +47,7 @@
                 </a>
             </li>
             <!-- MODUL STAFF -->
-            <li class="m-menu__item {{Request::is('halamanStaff')?'m-menu__item--active':''}}" aria-haspopup="true"
+            <li class="m-menu__item sidebarActive" aria-haspopup="true"
                 m-menu-submenu-toggle="hover">
                 <a href="{{ url('halamanStaff') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-avatar"></i>
@@ -57,8 +57,9 @@
                 </a>
             </li>
             <!-- MODUL JABATAN -->
-            <li class="m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}}" aria-haspopup="true"
+            <li class="m-menu__item sidebarActive" aria-haspopup="true"
                 m-menu-submenu-toggle="hover">
+                <!-- m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}} -->
                 <a href="{{ url('halamanJabatan') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-layers"></i>
                     <span class="m-menu__link-text">

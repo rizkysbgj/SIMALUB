@@ -1,3 +1,23 @@
+jQuery(document).ready(function () {
+	// Common.CheckError();
+	Common.Alert();
+
+    var path = window.location.pathname;
+    path2 = path.split('/')[1];
+
+    $('.sidebarActive').each(function () {
+        if (path2 == 'halamanpinnedProject') {
+            if (this.id == path)
+                $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
+
+        }
+        else if (this.id == path2)
+            $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
+
+    })
+    //
+});
+
 var Common = {
 	//Check Error
 	CheckError: {
@@ -94,20 +114,3 @@ var Common = {
     }
 }
 
-jQuery(document).ready(function () {
-    var path = window.location.pathname;
-    path2 = path.split('/')[1];
-
-
-    $('.sidebarActive').each(function () {
-        if (path2 == '/halamanProject') {
-            if (this.id == path)
-                $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
-
-        }
-        else if (this.id == path2)
-            $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
-
-    })
-    //
-});
