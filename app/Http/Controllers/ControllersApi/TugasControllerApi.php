@@ -186,6 +186,7 @@ class TugasControllerApi extends Controller
 
             $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
 
+            $trxTugas->IDProyek = $request->IDProyek;
             $trxTugas->ErrorType = 0;
             return response($trxTugas->jsonSerialize(), Response::HTTP_OK);
         }

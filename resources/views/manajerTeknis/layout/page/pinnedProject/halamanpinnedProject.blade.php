@@ -99,7 +99,7 @@
                 </div>
                 <div class="m-portlet__body">
                     <!-- <div class="m-scrollable" data-scrollable="true" data-max-height="500px" style="height: 380px; overflow: hidden;"> -->
-                    <div class="m-scrollable" data-scrollable="true" data-max-height="300px" style="height: 380px; overflow: hidden;">
+                    <div class="m-scrollable" data-scrollable="true" data-max-height="380px" style="height: 380px; overflow: hidden;">
                         <div id="showTask">
 
                         </div>

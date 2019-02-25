@@ -14,17 +14,6 @@ jQuery(document).ready(function () {
 	// GetData.TaskList();
 	// GetData.TaskDetail(IDTugas);
 	Page.Init();
-	// $("#sidebarShow").hide();
-
-	// $("#minimizeTaskLeft").on('click', function (){
-	// 	$("#removeTaskList").hide();
-	// 	$("#sidebarShow").show();
-	// });
-
-	// $("#minimizeTaskRight").on('click', function (){
-	// 	$("#removeTaskList").show();
-	// 	$("#sidebarShow").hide();	
-	// });
 
 	$("#minimizeTaskRight").hide();
 
@@ -56,18 +45,18 @@ jQuery(document).ready(function () {
 var Ctrl = {
 	Select2: function () {
 		var milestone = $("#inptMilestone").val();
-		var role = 0;
-		if (milestone == 3 || milestone == 9 || milestone == 11 || milestone == 13)
-			role = 6;
-		else if (milestone == 6)
-			role = 5;
+		var role = 4;
+		// if (milestone == 3 || milestone == 9 || milestone == 11 || milestone == 13)
+		// 	role = 6;
+		// else if (milestone == 6)
+		// 	role = 5;
 		$.ajax({
-			url: "/api/user/list?roleID=" + role,
+			url: "/api/user/list/" + role,
 			type: "GET"
 		}).done(function (data, textStatus, jqXHR) {
 			$("#slsUser").html("<option></option>");
 			$.each(data, function (i, item) {
-				$("#slsUser").append("<option value='" + item.UserID + "'>" + item.FullName + "</option>");
+				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
 			})
 			$("#slsUser").select2({ placeholder: "Select People" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -112,8 +101,6 @@ var Button = {
 					var Remark;
 					if (!done) {
 						if (Kode == "SELESAI") {
-							fileInput = document.getElementById("inputFile");
-							uploadedFile = fileInput.files[0];
 
 							Remark = $("#tbxRemark-" + Kode).val();
 							Regex = /(<([^>]+)>)/gi;
@@ -132,7 +119,6 @@ var Button = {
 
 							model.append("PIC", params.PIC);
 							model.append("Remarks", Remark);
-							model.append('Document', uploadedFile);
 						}
 						else if (Kode == "PILIH") {
 
@@ -231,14 +217,11 @@ var TaskTransaction = {
 			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
-			// var link = '/halamanpinnedProject/' + data.IDProyek;
+			var link = '/halamanpinnedProject/' + data.IDProyek;
 			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
-			// if (Common.CheckError.Object(data) == true) {
-			// 	// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
-				location.reload();
-				var link = "/halamanpinnedProject/" + data.IDProyek;
-				//Common.Alert.SuccessRoute("Add User Success", '/halamanStaff');
-			// }
+			if (Common.CheckError.Object(data) == true) {
+				Common.Alert.SuccessRoute("Success", link);
+			}
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);
@@ -273,7 +256,7 @@ var GetData = {
 				$("#detailTask").html(data);
 				Function.ChangeFormatDate();
 				Button.Init();
-				// Ctrl.Select2();
+				Ctrl.Select2();
 				// Summernote.Init();
 				// Table.Milestone(TaskID);
 				// Table.Worklog(TaskID);
@@ -306,7 +289,7 @@ var GetData = {
 			}
 		});
 	},
-}
+};
 
 var Summernote = {
 	Init: function () {
