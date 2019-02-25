@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
 	// Common.CheckError();
-	Common.Alert();
+	// Common.Alert();
 
     var path = window.location.pathname;
     path2 = path.split('/')[1];

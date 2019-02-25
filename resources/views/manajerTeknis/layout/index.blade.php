@@ -2,6 +2,8 @@
 <html lang="en">
 <!-- begin::Head -->
 @include('manajerTeknis.layout.partials._head')
+
+@include('manajerTeknis.layout.partials._scripts')
 <!-- end::Head -->
 
 <!-- begin::body -->
@@ -36,9 +38,6 @@
     </div>
     <!-- end::Scroll Top -->		    
         
-    <!-- SCRIPT -->
-    @include('manajerTeknis.layout.partials._scripts')
-    <!-- END SCRIPT -->
 </body>
 <!-- end::Body -->
 

@@ -490,5 +490,4 @@
 <input type="hidden" id="inptProjectID" value="{{ $mstTugasDetail['tugas']['IDProyek'] }}" />
 <input type="hidden" id="inptMilestone" value="{{ $mstTugasDetail['tugas']['IDMilestone'] }}" />
 <input type="hidden" id="inptPICID" value="{{ $mstTugasDetail['tugas']['IDPIC'] }}" />
-
 </div>
