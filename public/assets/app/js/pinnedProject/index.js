@@ -126,6 +126,11 @@ var Button = {
 								return false;
 							}
 
+							$('input[type="file"]').each(function($i){
+								model.append("Attachment", $(this)[0].files[0]);
+							  });
+
+							model.append("PIC", params.PIC);
 							model.append("Remarks", Remark);
 							model.append('Document', uploadedFile);
 						}
@@ -230,8 +235,9 @@ var TaskTransaction = {
 			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
 			// if (Common.CheckError.Object(data) == true) {
 			// 	// var link = pageNow == "halamanpinnedProject" ? "/halamanpinnedProject/" + data.IDProyek : "/halamanpinnedProject/"
+				location.reload();
 				var link = "/halamanpinnedProject/" + data.IDProyek;
-				Common.Alert.SuccessRoute("Success", link);
+				//Common.Alert.SuccessRoute("Add User Success", '/halamanStaff');
 			// }
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
