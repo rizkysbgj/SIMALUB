@@ -124,20 +124,10 @@ var Button = {
 						else if (Kode == "PILIH") {
 
 							params.PIC = $("#slsUser").val();
-							params.ManHours = $("#tbxHours").val();
-
-							if (params.PIC == "" || params.ManHours == "") {
-								Common.Alert.Warning("Please Input ManHours!");
-								return false;
-							}
-
 							model.append("PIC", params.PIC);
-							model.append("ManHours", params.ManHours);
 
 						}
-						else if (Kode == "FEEDBACK") {
-							fileInput = document.getElementById("inputFile");
-							uploadedFile = fileInput.files[0];
+						else if (Kode == "SALAH") {
 
 							Remark = $("#tbxRemark-" + Kode).val();
 							Regex = /(<([^>]+)>)/gi;
@@ -150,19 +140,14 @@ var Button = {
 								return false;
 							}
 
-							if (params.TaskMilestoneID == 11 || params.TaskMilestoneID == 13) {
-								params.PIC = $("#slsUser").val();
-								params.ManHours = $("#tbxHours").val();
+							$('input[type="file"]').each(function($i){
+								model.append("Attachment", $(this)[0].files[0]);
+							  });
 
-								if (params.PIC == "" || params.ManHours == "") {
-									Common.Alert.Warning("Please Input ManHours!");
-									return false;
-								}
-								model.append("PIC", params.PIC);
-								model.append("ManHours", params.ManHours);
-							}
+							params.PIC = $("#slsUser").val();
+
+							model.append("PIC", params.PIC);
 							model.append("Remarks", Remark);
-							model.append('Document', uploadedFile);
 						}
 						console.log(params.Remarks);
 
