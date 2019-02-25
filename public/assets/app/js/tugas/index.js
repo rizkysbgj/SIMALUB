@@ -51,7 +51,6 @@ var Table = {
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-file"></i></a>';
-						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill" title="Kaji Ulang" data-toggle="modal" data-target="#kajiulang"><i class="la la-clipboard"></i></a>';
 						return strBuilder;
 					}
 				},

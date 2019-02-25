@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-
+@section('title', 'Halaman Tugas')
 @section('content')
 <div class="m-content">
 	<div class="row">
@@ -48,120 +48,122 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    Metode :
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa
-															<span></span>
-														</label>
+											<form class="m-form">
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														Metode :
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalMetode" value="1">
+																	Bisa
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalMetode" value="2">
+																	Tidak Bisa
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    Peralatan :
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa
-															<span></span>
-														</label>
+												</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														Peralatan :
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPeralatan" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalPeralatan" value="1">
+																	Bisa
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalPeralatan" value="2">
+																	Tidak Bisa
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    Personil :
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa
-															<span></span>
-														</label>
+												</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														Personil :
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPersonil" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalPersonil" value="1">
+																	Bisa
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalPersonil" value="2">
+																	Tidak Bisa
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    Bahan Kimia :
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa
-															<span></span>
-														</label>
+												</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														Bahan Kimia :
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalbahanKimia" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalbahanKimia" value="1">
+																	Bisa
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalbahanKimia" value="2">
+																	Tidak Bisa
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    kondisi Akomodasi :
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa
-															<span></span>
-														</label>
+												</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														kondisi Akomodasi :
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalkondisiAkomodasi" value="1">
+																	Bisa
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalkondisiAkomodasi" value="2">
+																	Tidak Bisa
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-                                                    <strong>Kesimpulan : </strong>
-                                                </label>
-                                                <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" !important>
-                                                    <div class="m-radio-inline" style="margin-top: 8px;">
-                                                        <label class="m-radio">
-															<input type="radio" name="example_3" value="1">
-                                                                Bisa Dianalisis
-															<span></span>
-														</label>
-														<label class="m-radio">
-														    <input type="radio" name="example_3" value="2">
-                                                                Tidak Bisa Dianalisis
-															<span></span>
-														</label>
+												</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+														<strong>Kesimpulan : </strong>
+													</label>
+													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalKesimpulan" !important>
+														<div class="m-radio-inline" style="margin-top: 8px;">
+															<label class="m-radio">
+																<input type="radio" name="modalKesimpulan" value="1">
+																	Bisa Dianalisis
+																<span></span>
+															</label>
+															<label class="m-radio">
+																<input type="radio" name="modalKesimpulan" value="2">
+																	Tidak Bisa Dianalisis
+																<span></span>
+															</label>
+														</div>
 													</div>
-                                                </div>
-                                            </div>
+												</div>
+											</form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">

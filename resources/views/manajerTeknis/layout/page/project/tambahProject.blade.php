@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-
+@section('title', 'Halaman Tambah Proyek')
 @section('content')
 <div class="m-content">
     <div class="row">

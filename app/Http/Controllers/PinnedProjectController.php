@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\mstTugas;
+use App\mstProyek;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ControllersApi\ProyekControllerApi;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;
 
 class PinnedProjectController extends Controller
 {
     public function indexPinned($IDProyek)
     {
-        // $mstTugas = new mstTugas();
-        // $mstTugasList = TugasController::GetListTugas($IDProyek);
-        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject')->with('IDProyek', $IDProyek);
+        $mstProyek = new mstProyek();
+        $ProyekController = new proyekControllerApi();
+        $mstProyek = $ProyekController->GetProyek($IDProyek);
+        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject')->with('mstProyek', $mstProyek);
     }
     
     public function taskList($IDProyek)

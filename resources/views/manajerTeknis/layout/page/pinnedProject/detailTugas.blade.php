@@ -101,7 +101,7 @@
                                                     Pilih Analis <strong style="color:red" ;>*</strong> :
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12 m--align-left" !important style="padding-left: 0px;">
-                                                    <select class="form-control m-select2" id="slsUser">
+                                                    <select class="form-control m-select2" style="width: 568px;" id="slsUser">
                                                     </select>
                                                 </div>
                                             </div>
@@ -234,7 +234,7 @@
                                                     Pilih Penyelia <strong style="color:red" ;>*</strong> :
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12 m--align-left" !important style="padding-left: 0px;">
-                                                    <select class="form-control m-select2" id="slsUser">
+                                                    <select class="form-control m-select2" style="width: 568px;" id="slsUser">
                                                     </select>
                                                 </div>
                                             </div>
@@ -271,8 +271,8 @@
                                                 <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
                                                     Pilih Analis <strong style="color:red" ;>*</strong> :
                                                 </label>
-                                                <div class="col-lg-9 col-md-9 col-sm-12 m--align-left" !important style="padding-left: 0px;">
-                                                    <select class="form-control m-select2" id="slsUser">
+                                                <div class="col-lg-9 col-md-9 col-sm-12 m--align-left" !important style="padding-left: 0px; width: 568px;">
+                                                    <select class="form-control m-select2" style="width: 568px;" id="slsUser">
                                                     </select>
                                                 </div>
                                             </div>

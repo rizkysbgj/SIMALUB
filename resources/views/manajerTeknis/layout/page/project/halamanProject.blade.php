@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-
+@section('title', 'Halaman Proyek')
 @section('content')
 <div class="m-content">
     <div class="row">
@@ -164,8 +164,8 @@
                             </div>
 
                             <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <!-- <a href="{{ url('halamanProject/tambahProject') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
-                                <a href="#" data-toggle="modal" data-target="#tambahProyek" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <a href="{{ url('halamanProject/tambahProject') }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <!-- <a href="#" data-toggle="modal" data-target="#tambahProyek" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
                                     <span>
                                         <i class="fa fa-plus"></i>
                                         <span>

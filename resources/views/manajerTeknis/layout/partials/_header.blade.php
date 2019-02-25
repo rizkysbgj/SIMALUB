@@ -46,7 +46,7 @@
                                 <div class="mr-auto">
                                     <h3 class="m-subheader__title ">
                                     <!-- nama project : apa gitu -->
-                                    SISTEM INFORMASI MANAJEMEN LAB UJI BIOFARMAKA
+                                    @yield('title')
                                     </h3>
                                 </div>
                             </div>

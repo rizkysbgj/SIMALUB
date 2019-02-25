@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-
+@section('title', 'Dashboard Manajer Teknis')
 @section('content')
 <div class="m-subheader ">
     <div class="d-flex align-items-center">

@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-
+@section('title', 'Proyek : ' . $mstProyek['NamaProyek'])
 @section('content')
 <div class="m-content">
     <div class="row">
@@ -117,6 +117,6 @@
 
 </div>
 
-<input type="hidden" id="IDProyek" value="{{ $IDProyek }}" >
+<input type="hidden" id="IDProyek" value="{{ $mstProyek['IDProyek'] }}" >
 <script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
 @endsection
