@@ -134,14 +134,19 @@ class TugasControllerApi extends Controller
             //ubah milestone
             if($request->Kode == "SELESAI")
             {
-                $Attachment = $request->file('Attachment');
+                
 
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->firstorfail();
 
                 $oldTrxTugas->Catatan = $request->Remark;
-                $oldTrxTugas->Attachment = $Attachment->store('public/files');
-                $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
-                $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                
+                if($request->hasFile('Attachment'))
+                {
+                    $Attachment = $request->file('Attachment');
+                    $oldTrxTugas->Attachment = $Attachment->store('public/files');
+                    $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
+                    $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                }
                 $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
                 $oldTrxTugas->save();
             }
