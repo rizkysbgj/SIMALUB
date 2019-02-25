@@ -126,7 +126,7 @@ class TugasControllerApi extends Controller
             //set value trxTugas
             $trxTugas->IDTugas = $request->IDTugas;
             $trxTugas->PIC = $request->PIC;
-            $trxTugas->Catatan = $request->Catatan;
+            $trxTugas->Catatan = $request->Remark;
             $trxTugas->IDMilestoneTugas = $IDMilestoneNext;
             $trxTugas->CreatedBy = "Admin";
             $trxTugas->UpdatedBy = "Admin";
@@ -154,10 +154,6 @@ class TugasControllerApi extends Controller
                     if($request->Kode == "MULAI")
                     {
                         $oldTrxTugas->WaktuMulai = Carbon::now()->toDateString();
-                        $oldTrxTugas->Catatan = $request;
-                        $oldTrxTugas->Attachment = $request;
-                        $oldTrxTugas->ContentType = $request;
-                        $oldTrxTugas->FileName = $request;
                         $oldTrxTugas->save();
                     }
 
