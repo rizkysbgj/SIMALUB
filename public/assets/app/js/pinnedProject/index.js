@@ -74,7 +74,7 @@ var Button = {
 				IDTugas: $("#inptTaskID").val(),
 				IDMilestoneTugas: $("#inptMilestone").val(),
 				PIC: $("#inptPICID").val(),
-				Catatan: "",
+				Remark: "",
 				IDProyek: $("#inptProjectID").val(),
 				Kode: Kode
 			};
@@ -86,6 +86,7 @@ var Button = {
 			model.append("IDMilestoneTugas", params.IDMilestoneTugas);
 			model.append("IDProyek", params.IDProyek);
 			model.append("Kode", params.Kode);
+			model.append("Remark", params.Remark);
 
 			if (Kode == "MULAI") {
 				$(".btn-generate").addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
@@ -118,7 +119,7 @@ var Button = {
 							  });
 
 							model.append("PIC", params.PIC);
-							model.append("Remarks", Remark);
+							model.append("Remark", Remark);
 						}
 						else if (Kode == "PILIH") {
 
