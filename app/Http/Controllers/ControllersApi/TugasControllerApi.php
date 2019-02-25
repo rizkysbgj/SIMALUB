@@ -134,12 +134,14 @@ class TugasControllerApi extends Controller
             //ubah milestone
             if($request->Kode == "SELESAI")
             {
+                $Attachment = $request->file('Attachment');
+
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->firstorfail();
 
                 $oldTrxTugas->Catatan = $request->Catatan;
-                $oldTrxTugas->Attachment = $request->Attachment;
-                $oldTrxTugas->ContentType = $request->ContentType;
-                $oldTrxTugas->FileName = $request->FileName;
+                $oldTrxTugas->Attachment = $Attachment->store('public/files');
+                $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
+                $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
                 $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
                 $oldTrxTugas->save();
             }
@@ -247,5 +249,10 @@ class TugasControllerApi extends Controller
         $mstTugas->RealitaMulai = ($mstTugas->RealitaMulai != "") ? Carbon::parse($mstTugas->RealitaMulai)->format('Y-m-d') : $mstTugas->RealitaMulai;
         $mstTugas->RealitaSelesai = ($mstTugas->RealitaSelesai != "") ? Carbon::parse($mstTugas->RealitaSelesai)->format('Y-m-d') : $mstTugas->RealitaSelesai;
         return $mstTugas;
+    }
+
+    private function AttachmentUpload($Attachment) 
+    {
+        return true;
     }
 }

@@ -10,11 +10,13 @@ class ProjectController extends Controller
 {
     public function indexProject()
     {
+        xdebug_break();
         return view('manajerTeknis.layout.page.project.halamanProject');
     }
 
     public function createProject()
     {
+        xdebug_break();
         return view ('manajerTeknis.layout.page.project.tambahProject');
     }
 
