@@ -11,20 +11,7 @@
 var IDProyek = $("#IDProyek").val();
 //== Class Initialization
 jQuery(document).ready(function () {
-	// GetData.TaskList();
-	// GetData.TaskDetail(IDTugas);
 	Page.Init();
-	// $("#sidebarShow").hide();
-
-	// $("#minimizeTaskLeft").on('click', function (){
-	// 	$("#removeTaskList").hide();
-	// 	$("#sidebarShow").show();
-	// });
-
-	// $("#minimizeTaskRight").on('click', function (){
-	// 	$("#removeTaskList").show();
-	// 	$("#sidebarShow").hide();	
-	// });
 
 	$("#minimizeTaskRight").hide();
 
@@ -47,34 +34,8 @@ jQuery(document).ready(function () {
 		$("#minimizeTaskLeft").show();
 	});
 
-
-	// if (TaskID != -1) {
-	// 	Page.Init();
-	// }
 });
 
-var Ctrl = {
-	Select2: function () {
-		var milestone = $("#inptMilestone").val();
-		var role = 0;
-		if (milestone == 3 || milestone == 9 || milestone == 11 || milestone == 13)
-			role = 6;
-		else if (milestone == 6)
-			role = 5;
-		$.ajax({
-			url: "/api/user/list?roleID=" + role,
-			type: "GET"
-		}).done(function (data, textStatus, jqXHR) {
-			$("#slsUser").html("<option></option>");
-			$.each(data, function (i, item) {
-				$("#slsUser").append("<option value='" + item.UserID + "'>" + item.FullName + "</option>");
-			})
-			$("#slsUser").select2({ placeholder: "Select People" });
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			Common.Alert.Error(errorThrown);
-		})
-	}
-}
 
 var Button = {
 	Init: function () {
@@ -187,13 +148,6 @@ var Button = {
 var Page = {
 	Init: function () {
 		GetData.TaskList();
-		// GetData.TaskDetail(IDTugas);
-
-		//Event
-		// $(".TaskOrderBy").on("click", function () {
-		// 	var order = (this.id).replace("Order-", "");
-		// 	GetData.TaskList(order);
-		// });
 
 		$('#showTask').on('click', '.divShowDetail', function () {
 			var IDTugas = this.id;
@@ -311,163 +265,6 @@ var Summernote = {
 	}
 };
 
-var Table = {
-	Milestone: function (TaskID) {
-		t = $("#divMilestoneList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/task/ListTransactionTask/" + TaskID,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: true,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			columns: [
-				{
-					field: "trxTaskID", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
-						if(t.Attachment != null)
-							var strBuilder = '<a href="/PinnedProject/Download/ ' + t.trxTaskID + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Attachment"><i class="la la-download"></i></a>\t\t\t\t\t\t';
-						return strBuilder;
-					}
-				},
-				{ field: "TaskMilestone", title: "Milestone", textAlign: "center" },
-				{ field: "FullName", title: "Fullname", textAlign: "center" },
-				{ field: "ManHours", title: "Man Hours", textAlign: "center" },
-				{
-					field: "StartDate", title: "Start Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.StartDate != null ? Common.Format.Date(t.StartDate) : "-"
-					}
-				},
-				{
-					field: "EndDate", title: "End Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.EndDate != null ? Common.Format.Date(t.EndDate) : "-"
-					}
-				},
-				{ field: "Remarks", className: 'dt-head-center', title: "Remark", textAlign: "center", width: 500 },
-			]
-		})
-	},
-	Worklog: function (TaskID) {
-		t = $("#divWorkLogList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/task/ListWorkLog/" + TaskID,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: false,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			columns: [
-				{ field: "FullName", title: "Full Name", width: 100, textAlign: "center" },
-				{
-					field: "Date", title: "Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.Date != null ? Common.Format.Date(t.Date) : "-"
-					},
-				},
-				{ field: "Duration", title: "Duration", textAlign: "center" },
-			]
-		})
-	},
-	History: function (TaskID) {
-		t = $("#divHistoryList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/task/ListTransactionTaskLog/" + TaskID,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: false,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			columns: [
-				{ field: "Milestone", title: "Action", width: 100, textAlign: "center" },
-				{ field: "FullName", title: "Fullname", textAlign: "center" },
-				{
-					field: "CreatedDate", title: "Action Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.CreatedDate != null ? Common.Format.Date(t.CreatedDate) : "-"
-					},
-				},
-			]
-		})
-	}
-}
 
 var Function = {
 	ChangeFormatDate: function () {
