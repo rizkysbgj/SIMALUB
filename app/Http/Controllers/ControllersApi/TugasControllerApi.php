@@ -134,9 +134,7 @@ class TugasControllerApi extends Controller
             //ubah milestone
             if($request->Kode == "SELESAI")
             {
-                
-
-                $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->firstorfail();
+                $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->orderBy('IDTrxTugas', 'desc')->firstorfail();
 
                 $oldTrxTugas->Catatan = $request->Remark;
                 
@@ -152,18 +150,39 @@ class TugasControllerApi extends Controller
             }
             else
             {
+                if($request->Kode == "SALAH")
+                {
+                    $IDMilestoneNext = $IDMilestoneNow;
+                }
+
                 $count = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->count();
 
-                if($count>0 && $request->IDMilestoneTugas != 7)
+                if($count>0)
                 {
-                    $oldTrxTugas = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->firstorfail();
+                    $oldTrxTugas = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->orderBy('IDTrxTugas', 'desc')->firstorfail();
                     if($request->Kode == "MULAI")
                     {
                         $oldTrxTugas->WaktuMulai = Carbon::now()->toDateString();
                         $oldTrxTugas->save();
                     }
+                    else if($request->Kode == "SALAH")
+                    {
+                        $IDMilestoneNext = $flow->IDMilestoneLanjut;
 
-                    if($request->IDMilestoneTugas == 11)
+                        $oldTrxTugas->Catatan = $request->Remark;
+                        
+                        if($request->hasFile('Attachment'))
+                        {
+                            $Attachment = $request->file('Attachment');
+                            $oldTrxTugas->Attachment = $Attachment->store('public/files');
+                            $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
+                            $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                        }
+                        $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
+                        $oldTrxTugas->save();
+                    }
+                    
+                    if($request->IDMilestoneTugas == 8)
                     {
                         $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $flow->IDMilestoneLanjut)->firstorfail();
                         $trxTugas->IDMilestoneTugas = $flow->IDMilestoneLanjut;
