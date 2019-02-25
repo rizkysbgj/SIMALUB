@@ -16,6 +16,12 @@ class UserControllerApi extends Controller
     {
         try {
             $mstUser = new mstUser();
+            if(mstUser::where('IDUser', $request->IDUser)->orwhere('NIK', $request->NIK)->count() > 0)
+            {
+                $mstUser->ErrorType = 2;
+                $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
+                return response($mstUser->jsonSerialize());
+            }
             $mstUser->IDUser = $request->IDUser;
             $mstUser->NIK = $request->NIK;
             $mstUser->NamaLengkap = $request->NamaLengkap;
@@ -28,8 +34,10 @@ class UserControllerApi extends Controller
             $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstUser->ErrorType = 2;
+            $mstUser->ErrorMessage = $e->getMessage();
+            return response($mstUser->jsonSerialize());
         }
     }
 
@@ -62,6 +70,12 @@ class UserControllerApi extends Controller
     public function UpdateUser(Request $request)
     {
         try {
+            if(mstUser::where('IDUser', $request->IDUser)->orwhere('NIK', $request->NIK)->count() > 0)
+            {
+                $mstUser->ErrorType = 2;
+                $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
+                return response($mstUser->jsonSerialize());
+            }
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
@@ -73,8 +87,10 @@ class UserControllerApi extends Controller
             $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstUser->ErrorType = 2;
+            $mstUser->ErrorMessage = $e->getMessage();
+            return response($mstUser->jsonSerialize());
         }
     }
 }

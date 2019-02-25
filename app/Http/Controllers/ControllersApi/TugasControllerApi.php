@@ -138,7 +138,7 @@ class TugasControllerApi extends Controller
 
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->firstorfail();
 
-                $oldTrxTugas->Catatan = $request->Catatan;
+                $oldTrxTugas->Catatan = $request->Remark;
                 $oldTrxTugas->Attachment = $Attachment->store('public/files');
                 $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
                 $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
@@ -209,16 +209,19 @@ class TugasControllerApi extends Controller
             $tugas->PIC = $PIC;
             $tugas->UpdatedBy = "Admin";
             
-            /*tanggal mulai&selesai
-            ------
-            ------
-            */
-
+            if($IDMilestoneTugas == 2)
+            {
+                $tugas->RealitaMulai = Carbon::now()->toDateString();
+            }
+            else if($IDMilestoneTugas == 11)
+            {
+                $tugas->RealitaSelesai = Carbon::now()->toDateString();
+            }
             $tugas->save();
             return "Sukses";
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             return $e->getMessage();
         }
@@ -236,7 +239,7 @@ class TugasControllerApi extends Controller
             $trxTaskLog->save();
             return "Sukses";
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             return $e->getMessage();
         }

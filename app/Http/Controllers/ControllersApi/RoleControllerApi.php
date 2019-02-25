@@ -16,13 +16,21 @@ class RoleControllerApi extends Controller
     {
         try {
             $mstRole = new mstrole();
+            if(mstrole::where('Role', $request->Role)->count() > 0)
+            {
+                $mstRole->ErrorType = 2;
+                $mstRole->ErrorMessage = "Jabatan sudah ada!";
+                return response($mstRole->jsonSerialize());
+            }
             $mstRole->Role = $request->Role;
             $mstRole->save();
             $mstRole->ErrorType = 0;
             return response($mstRole->jsonSerialize(), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstRole->ErrorType = 2;
+            $mstRole->ErrorMessage = $e->getMessage();
+            return response($mstRole->jsonSerialize());
         }
     }
 
@@ -52,13 +60,20 @@ class RoleControllerApi extends Controller
     {
         try {
             $mstRole = mstrole::where('IDRole', $request->IDRole)->firstorfail();
+            if(mstrole::where('Role', $request->Role)->count() > 0)
+            {
+                $mstRole->ErrorType = 2;
+                $mstRole->ErrorMessage = "Jabatan sudah ada!";
+                return response($mstRole->jsonSerialize());
+            }
             $mstRole->Role = $request->Role;
             $mstRole->save();
             $mstRole->ErrorType = 0;
             return response($mstRole->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstRole->ErrorType = 2;
+            return response($mstRole->jsonSerialize());
         }
     }
 }

@@ -15,16 +15,27 @@ class ProyekControllerApi extends Controller
     public function CreateProyek(Request $request)
     {
         try {
-            $mstProyek = new mstProyek();
-            $mstProyek->fill($request->all());
-            $mstProyek->CreatedBy = "Admin";
-            $mstProyek = $this->ChangeDateFormat($mstProyek);
-            $mstProyek->save();
-            $mstProyek->ErrorType = 0;
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('', $request->InisialProyek)->count()==0)
+            {
+                $mstProyek = new mstProyek();
+                $mstProyek->fill($request->all());
+                $mstProyek->CreatedBy = "Admin";
+                $mstProyek = $this->ChangeDateFormat($mstProyek);
+                $mstProyek->save();
+                $mstProyek->ErrorType = 0;
+            }
+            else
+            {
+                $mstProyek->ErrorType = 2;
+                $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
+            }
+            
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstProyek->ErrorType = 2;
+            $mstProyek->ErrorMessage = $e->getMessage();
+            return response()->json($mstProyek->jsonSerialize());
         }
     }
 
@@ -34,8 +45,10 @@ class ProyekControllerApi extends Controller
             $mstProyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
             return $mstProyek;
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstProyek->ErrorType = 2;
+            $mstProyek->ErrorMessage = $e->getMessage();
+            return response()->json($mstProyek->jsonSerialize());
         }
     }
 
@@ -44,8 +57,10 @@ class ProyekControllerApi extends Controller
         try {
             return response(vwProyek::all()->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstProyek->ErrorType = 2;
+            $mstProyek->ErrorMessage = $e->getMessage();
+            return response()->json($mstProyek->jsonSerialize());
         }
     }
 
@@ -56,12 +71,20 @@ class ProyekControllerApi extends Controller
             $mstProyek->fill($request->all());
             $mstProyek->UpdatedBy = "Admin";
             $mstProyek = $this->ChangeDateFormat($mstProyek);
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->count()>0)
+            {
+                $mstProyek->ErrorType = 2;
+                $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
+                return response($mstProyek->jsonSerialize());
+            }
             $mstProyek->save();
             $mstProyek->ErrorType = 0;
             return response($mstProyek->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+        catch (\Exception $e) {
+            $mstProyek->ErrorType = 2;
+            $mstProyek->ErrorMessage = $e->getMessage();
+            return response()->json($mstProyek->jsonSerialize());
         }
     }
 
