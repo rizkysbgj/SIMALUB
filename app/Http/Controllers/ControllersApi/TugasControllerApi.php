@@ -147,10 +147,11 @@ class TugasControllerApi extends Controller
             }
             else
             {
-                $count = trxTugas::where('IDTugas', $request)->where('IDMilestoneTugas', $request)->count();
+                $count = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->count();
 
-                if($count>0 && $request != 7)
+                if($count>0 && $request->IDMilestoneTugas != 7)
                 {
+                    $oldTrxTugas = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->firstorfail();
                     if($request->Kode == "MULAI")
                     {
                         $oldTrxTugas->WaktuMulai = Carbon::now()->toDateString();
