@@ -9,12 +9,18 @@ jQuery(document).ready(function () {
         if (path2 == 'halamanpinnedProject') {
             if (this.id == path)
                 $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
+		}
+	
+		else if (this.id == path2)
+			if	(this.id == 'halamanProject' || this.id == 'halamanLaporan'){
+				$(this).addClass('m-menu__item--active m-menu__item--open');
+			}
+			else
+            	$(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active m-menu__item--open");
 
-        }
-        else if (this.id == path2)
-            $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
-
-    })
+	});
+	
+	
     //
 });
 

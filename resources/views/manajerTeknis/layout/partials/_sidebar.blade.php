@@ -37,18 +37,58 @@
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
             <!-- MODUL PROJECT -->
-            <li class="m-menu__item sidebarActive" aria-haspopup="true"
-                m-menu-submenu-toggle="hover" id="halamanProject">
+            <li class="m-menu__item m-menu__item--submenu sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover"
+                id="halamanProject">
+                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-folder-1"></i>
+                    <span class="m-menu__link-text">
+                        Proyek
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="m-menu__submenu ">
+                    <span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                            <span class="m-menu__link">
+                                <span class="m-menu__link-text">
+                                    Proyek
+                                </span>
+                            </span>
+                        </li>
+                        <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanProject">
+                            <a href="{{ url('halamanProject') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                    Daftar Proyek
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanLaporan">
+                            <a href="{{ url('halamanLaporan') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                    Laporan
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanProject">
                 <a href="{{ url('halamanProject') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-folder-1"></i>
                     <span class="m-menu__link-text">
                         Proyek
                     </span>
                 </a>
-            </li>
+            </li> -->
             <!-- MODUL STAFF -->
-            <li class="m-menu__item sidebarActive" aria-haspopup="true"
-                m-menu-submenu-toggle="hover" id="halamanStaff">
+            <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanStaff">
                 <a href="{{ url('halamanStaff') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-avatar"></i>
                     <span class="m-menu__link-text">
@@ -57,8 +97,7 @@
                 </a>
             </li>
             <!-- MODUL JABATAN -->
-            <li class="m-menu__item sidebarActive" aria-haspopup="true"
-                m-menu-submenu-toggle="hover" id="halamanJabatan">
+            <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanJabatan">
                 <!-- m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}} -->
                 <a href="{{ url('halamanJabatan') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-layers"></i>

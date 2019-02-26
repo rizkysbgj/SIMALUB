@@ -30,7 +30,9 @@
     Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
     Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
     Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
-   
+    // Route laporan dari proyek
+    Route::get('/halamanLaporan', 'ProjectController@indexLaporan') -> name('halamanLaporan');
+
     //Route tugas
     Route::get('/halamanTugas/{IDProyek}', 'TugasController@indexTugas') -> name('halamanTugas');
     Route::get('/halamanTugas/tambahTugas/{IDProyek}', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');

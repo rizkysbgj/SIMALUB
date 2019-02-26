@@ -26,4 +26,10 @@ class ProjectController extends Controller
         //return $mstRole;
         return view ('manajerTeknis.layout.page.project.editProject')->with('mstProyek', $mstProyek);
     }
+
+    // laporan
+    public function indexLaporan()
+    {
+        return view('manajerTeknis.layout.page.project.halamanLaporan');
+    }
 }
