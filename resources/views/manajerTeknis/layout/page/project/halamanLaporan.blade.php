@@ -71,6 +71,6 @@
     </div>
 </div>
 
-<!-- <script src="{{ asset('assets/app/js/project/laporan.js') }}" type="text/javascript"></script> -->
+<script src="{{ asset('assets/app/js/project/laporan.js') }}" type="text/javascript"></script>
 
 @endsection

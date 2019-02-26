@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 04:15 AM
+-- Generation Time: Feb 26, 2019 at 06:06 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -300,15 +300,23 @@ INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, 
 
 CREATE TABLE `trxlapor` (
   `IDTrxLapor` int(10) UNSIGNED NOT NULL,
+  `IDProyek` int(11) NOT NULL,
   `IDTugas` int(11) NOT NULL,
   `Pelapor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Attachment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ContentType` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ContentType` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trxlapor`
+--
+
+INSERT INTO `trxlapor` (`IDTrxLapor`, `IDProyek`, `IDTugas`, `Pelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `created_at`, `updated_at`) VALUES
+(1, 2, 6, 'Admin', NULL, NULL, NULL, 'woy', '2019-02-26 04:23:16', '2019-02-26 04:23:16');
 
 -- --------------------------------------------------------
 
@@ -373,6 +381,7 @@ CREATE TABLE `vwproyek` (
 ,`TanggalMulai` datetime
 ,`RencanaSelesai` datetime
 ,`RealitaSelesai` datetime
+,`TotalTugas` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -382,7 +391,9 @@ CREATE TABLE `vwproyek` (
 -- (See below for the actual view)
 --
 CREATE TABLE `vwtrxlapor` (
-`IDTugas` int(11)
+`IDTrxLapor` int(10) unsigned
+,`IDProyek` int(11)
+,`IDTugas` int(11)
 ,`InisialTugas` varchar(10)
 ,`NamaTugas` varchar(255)
 ,`Pelapor` varchar(255)
@@ -390,6 +401,7 @@ CREATE TABLE `vwtrxlapor` (
 ,`ContentType` varchar(255)
 ,`NamaFile` varchar(255)
 ,`Catatan` varchar(255)
+,`WaktuLapor` timestamp
 );
 
 -- --------------------------------------------------------
@@ -439,7 +451,7 @@ CREATE TABLE `vwuser` (
 --
 DROP TABLE IF EXISTS `vwproyek`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai`,(select count(`msttugas`.`IDTugas`) from `msttugas` where (`msttugas`.`IDProyek` = `mp`.`IDProyek`)) AS `TotalTugas` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -448,7 +460,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtrxlapor`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`tl`.`Pelapor` AS `Pelapor`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan` from (`trxlapor` `tl` left join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTrxLapor` AS `IDTrxLapor`,`tl`.`IDProyek` AS `IDProyek`,`tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`tl`.`Pelapor` AS `Pelapor`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan`,`tl`.`created_at` AS `WaktuLapor` from (`trxlapor` `tl` left join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) ;
 
 -- --------------------------------------------------------
 
@@ -622,7 +634,7 @@ ALTER TABLE `trxkajiulang`
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`

@@ -40,6 +40,8 @@ SQL;
         return <<<SQL
 CREATE VIEW `vwtrxlapor` AS
 SELECT 
+    tl.`IDTrxLapor`,
+    tl.`IDProyek`,
     tl.`IDTugas`,
     vt.`InisialTugas`,
     vt.`NamaTugas`,
@@ -47,7 +49,8 @@ SELECT
     tl.`Attachment`,
     tl.`ContentType`,
     tl.`NamaFile`,
-    tl.`Catatan`
+    tl.`Catatan`,
+    tl.`created_add` AS `WaktuLapor`
     FROM `trxlapor` as tl
     LEFT JOIN `vwtugas` as vt ON tl.`IDTugas` = vt.`IDTugas`
 SQL;

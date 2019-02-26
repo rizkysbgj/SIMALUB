@@ -225,6 +225,7 @@ class TugasControllerApi extends Controller
         {
             $trxLapor = new trxLapor();
             $trxLapor->IDTugas = $request->IDTugas;
+            $trxLapor->IDProyek = $request->IDProyek;
             if($request->hasFile('Attachment'))
                     {
                         $Attachment = $request->file('Attachment');
@@ -232,9 +233,11 @@ class TugasControllerApi extends Controller
                         $trxLapor->ContentType = $Attachment->getCLientMimeType();
                         $trxLapor->FileName = $Attachment->getClientOriginalName();
                     }
-            $trxLapor->Catatan = $request->remark;
-            $trxLapor->ErrorType = 0;
+            $trxLapor->Catatan = $request->Remark;
+            $trxLapor->Pelapor = "Admin";
             $trxLapor->save();
+            $trxLapor->ErrorType = 0;
+            return $trxLapor;
         }
         catch (\Exception $e)
         {
@@ -244,12 +247,11 @@ class TugasControllerApi extends Controller
         }
     }
 
-    public function GetListTrxLaporanTugas()
+    public function GetListTrxLaporanTugas($IDProyek)
     {
         try
         {
-            $trxLaporanList = new vwTrxLaporan();
-            $trxLaporanList = vwTrxLaporan::all();
+            $trxLaporanList = vwTrxLaporan::where('IDProyek', $IDProyek)->get();
 
             $trxLaporanList->ErrorType = 0;
             return $trxLaporanList;

@@ -94,6 +94,28 @@ var Button = {
 
 				TaskTransaction.Init(model, params);
 			}
+			else if(Kode == "LAPOR")
+			{
+				$("#btnSubmit-" + Kode).on("click", function () {
+					var Regex;
+					var Remark;
+					Remark = $("#tbxRemark-" + Kode).val();
+					Regex = /(<([^>]+)>)/gi;
+					Remark = Remark.replace(Regex, "");
+
+					$('input[type="file"]').each(function($i){
+						model.append("Attachment", $(this)[0].files[0]);
+						});
+
+					params.Remarks = Remark;
+					model.append("Remark", Remark);
+
+					$("#btnSubmit-" + Kode).addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+					TaskTransaction.Lapor(model, params);
+					
+					done = true;
+				});
+			}
 			else {
 				$("#btnSubmit-" + Kode).on("click", function () {
 					var fileInput;
@@ -196,6 +218,31 @@ var TaskTransaction = {
 
 		$.ajax({
 			url: "/api/pinned",
+			type: 'POST',
+			data: model,
+			dataType: "json",
+			contentType: false,
+			processData: false
+		}).done(function (data, textStatus, jqXHR) {
+			console.log(data);
+			var link = '/halamanpinnedProject/' + data.IDProyek;
+			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			if (Common.CheckError.Object(data) == true) {
+				Common.Alert.SuccessRoute("Success", link);
+			}
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		})
+	},
+	Lapor: function(model, data) {
+		var btn = $("#btnSubmit-" + data.Kode);
+
+		btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+
+		$.ajax({
+			url: "/api/lapor",
 			type: 'POST',
 			data: model,
 			dataType: "json",

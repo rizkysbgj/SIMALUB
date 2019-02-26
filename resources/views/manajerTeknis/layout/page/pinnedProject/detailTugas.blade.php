@@ -197,7 +197,7 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
                                                     <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" rows="4" required></textarea>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-LAPOR" rows="4" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                 Close
                                             </button>
-                                            <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
+                                            <button type="button" class="btn btn-success" id="btnSubmit-LAPOR">
                                                 Submit
                                             </button>
                                         </div>
@@ -346,7 +346,7 @@
                             @endif
 
                         @elseif($mstTugasDetail['tugas']['IDMilestone'] == 5)
-                            <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                            <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="LAPOR"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#laporkan">
                                 <span>
                                         <i class="la la-bullhorn"></i>

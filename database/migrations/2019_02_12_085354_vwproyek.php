@@ -46,7 +46,8 @@ SELECT
     mu.`NamaLengkap` as `PenanggungJawab`,
     mp.`TanggalMulai`,
     mp.`RencanaSelesai`,
-    mp.`RealitaSelesai`
+    mp.`RealitaSelesai`,
+    (SELECT COUNT(`IDTugas`) FROM `mstTugas` AS mt WHERE mt.`IDProyek` = mp.`IDProyek`) AS `TotalTugas`
     FROM `mstproyek` as mp
     LEFT JOIN `mstuser` as mu ON mp.`PenanggungJawab` = mu.`IDUser`;
 SQL;

@@ -37,8 +37,8 @@
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
             <!-- MODUL PROJECT -->
-            <li class="m-menu__item m-menu__item--submenu sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover"
-                id="halamanProject">
+            <li class="m-menu__item m-menu__item--submenu panah" aria-haspopup="true" m-menu-submenu-toggle="hover"
+                id="bukaMenu">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-folder-1"></i>
                     <span class="m-menu__link-text">

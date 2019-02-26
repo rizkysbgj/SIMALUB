@@ -16,10 +16,11 @@ class TrxLapor extends Migration
         Schema::create('trxlapor', function (Blueprint $table) {
             $table->increments('IDTrxLapor');
             $table->integer('IDTugas');
+            $table->integer('IDProyek');
             $table->string('Pelapor');
-            $table->string('Attachment');
-            $table->string('ContentType');
-            $table->string('NamaFile');
+            $table->string('Attachment')->nullable();
+            $table->string('ContentType')->nullable();
+            $table->string('NamaFile')->nullable();
             $table->string('Catatan');
             $table->timestamps();
         });

@@ -13,13 +13,14 @@ jQuery(document).ready(function () {
 	
 		else if (this.id == path2)
 			if	(this.id == 'halamanProject' || this.id == 'halamanLaporan'){
+				$('.panah').addClass('m-menu__item--active m-menu__item--open');
 				$(this).addClass('m-menu__item--active m-menu__item--open');
 			}
-			else
-            	$(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active m-menu__item--open");
+		
+		else
+        	$(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active m-menu__item--open");
 
 	});
-	
 	
     //
 });
