@@ -105,6 +105,7 @@ class UserControllerApi extends Controller
         {
             $user = mstUser::findorfail($IDUser);
             $user->delete();
+            $user->ErrorType = 0;
             return $user;
         }
         catch (\Exception $e)

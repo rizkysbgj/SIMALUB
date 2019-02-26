@@ -64,6 +64,7 @@ class SubKontrakControllerApi extends Controller
         {
             $subKontrak = mstSubKontrak::findorfail($IDSubKontrak);
             $subKontrak->delete();
+            $subKontrak->ErrorType = 0;
             return $subKontrak;
         }
         catch (\Exception $e)

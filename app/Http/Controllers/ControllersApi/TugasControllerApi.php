@@ -114,6 +114,7 @@ class TugasControllerApi extends Controller
         {
             $tugas = mstTugas::findorfail($IDTugas);
             $tugas->delete();
+            $tugas->ErrorType = 0;
             return $tugas;
         }
         catch (\Exception $e)
@@ -305,6 +306,7 @@ class TugasControllerApi extends Controller
         {
             $laporan = trxLapor::findorfail($IDTrxLapor);
             $laporan->delete();
+            $laporan->ErrorType = 0;
             return $laporan;
         }
         catch (\Exception $e)
@@ -368,6 +370,7 @@ class TugasControllerApi extends Controller
         {
             $kajiulang = trxKajiUlang::findorfail($IDTrxKajiUlang);
             $kajiulang->delete();
+            $kajiulang->ErrorType = 0;
             return $kajiulang;
         }
         catch (\Exception $e)

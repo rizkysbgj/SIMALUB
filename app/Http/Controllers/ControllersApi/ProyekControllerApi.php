@@ -94,6 +94,7 @@ class ProyekControllerApi extends Controller
         {
             $proyek = mstProyek::findorfail($IDProyek);
             $proyek->delete();
+            $proyek->ErrorType = 0;
             return $proyek;
         }
         catch (\Exception $e)

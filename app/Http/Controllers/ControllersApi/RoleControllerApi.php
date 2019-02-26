@@ -83,6 +83,7 @@ class RoleControllerApi extends Controller
         {
             $role = mstrole::findorfail($IDProyek);
             $role->delete();
+            $role->ErrorType = 0;
             return $role;
         }
         catch (\Exception $e)
