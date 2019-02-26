@@ -21,7 +21,7 @@
 							<div class="col-xl-4 order-2 order-xl-1">
 								<div class="form-group m-form__group row align-items-center">
 									<div class="col-md-5">
-										<div class="m-input-icon m-input-icon--left">
+										<div class="m-input-icon m-input-icon--left" style="width: 248px;">
 											<input type="text" class="form-control m-input" placeholder="Search..." id="tbxSearch">
 											<span class="m-input-icon__icon m-input-icon__icon--left">
 												<span>
@@ -280,8 +280,7 @@
 					</div>
 					<!--end: Search Form -->
 					<!--begin: Datatable -->
-					<div cla
-					ss="m_datatable" id="divStoryList"></div>
+					<div class="m_datatable" id="divStoryList"></div>
 					<!-- <table class="m-datatable" id="html_table" width="100%">
 						<thead>
 							<tr>

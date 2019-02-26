@@ -49,13 +49,14 @@ var Table = {
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-file"></i></a>\t\t\t\t\t\t';
+						strBuilder += '<button onclick="Button.deleteTugas('+ t.IDTugas +')" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-trash"></i></button>';
 						return strBuilder;
 					}
 				},
 				{
 					field: "KajiUlang", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						if(t.Status != null)
+						if(t.Status != "OK")
 							var strBuilder = '<button class="btn btn-success" style="width: 100px;"><span><small>Sudah Dikaji</small></span></button>';	
 						else
 							var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
@@ -128,9 +129,12 @@ var Modal = {
 				$("input[name='modalKesimpulan']").prop('checked', false);
 	
 				$("#modalkajiUlang").modal("toggle");
-	
-				Common.Alert.Success("New Story Added", '/halamanTugas/' + IDProyek);
 				
+				if (Common.CheckError.Object(data) == true)
+					Common.Alert.SuccessRoute("Kaji Ulang Berhasil", '/halamanTugas/' + IDProyek);
+				else
+					Common.Alert.Warning(data.ErrorMessage);
+
 				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				Common.Alert.Error(errorThrown);
@@ -146,6 +150,26 @@ var Modal = {
 			$("input[name='modalbahanKimia']").prop('checked', false);
 			$("input[name='modalkondisiAkomodasi']").prop('checked', false);
 			$("input[name='modalKesimpulan']").prop('checked', false);
+		})
+	}
+}
+
+var Button ={
+	deleteTugas:function(id){
+		$.ajax({
+			url: "/api/tugas/" + id,
+			type: "DELETE",
+			dataType: "json",
+			contentType: "application/json",
+		}).done(function (data, textStatus, jqXHR) {
+			
+			if (Common.CheckError.Object(data) == true)
+				Common.Alert.SuccessRoute("Tugas Berhasil Dihapus", '/halamanTugas/' + id);
+			else
+				Common.Alert.Warning(data.ErrorMessage);
+
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
 		})
 	}
 }
