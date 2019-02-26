@@ -26,7 +26,7 @@ class ProyekControllerApi extends Controller
             }
             else
             {
-                $mstProyek->ErrorType = 2;
+                $mstProyek->ErrorType = 1;
                 $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
             }
             
@@ -73,7 +73,7 @@ class ProyekControllerApi extends Controller
             $mstProyek = $this->ChangeDateFormat($mstProyek);
             if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->count()>0)
             {
-                $mstProyek->ErrorType = 2;
+                $mstProyek->ErrorType = 1;
                 $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
                 return response($mstProyek->jsonSerialize());
             }
@@ -92,7 +92,7 @@ class ProyekControllerApi extends Controller
     {
         try
         {
-            $proyek = mstProyek::findorfail($IDProyek);
+            $proyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
             $proyek->delete();
             $proyek->ErrorType = 0;
             return $proyek;

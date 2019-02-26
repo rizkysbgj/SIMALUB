@@ -62,7 +62,7 @@ class SubKontrakControllerApi extends Controller
     {
         try
         {
-            $subKontrak = mstSubKontrak::findorfail($IDSubKontrak);
+            $subKontrak = mstSubKontrak::where('IDSubKontrak', $IDSubKontrak)->firstorfail();
             $subKontrak->delete();
             $subKontrak->ErrorType = 0;
             return $subKontrak;

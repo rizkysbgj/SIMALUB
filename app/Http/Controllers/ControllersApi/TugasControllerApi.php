@@ -112,7 +112,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $tugas = mstTugas::findorfail($IDTugas);
+            $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
             $tugas->delete();
             $tugas->ErrorType = 0;
             return $tugas;
@@ -160,6 +160,7 @@ class TugasControllerApi extends Controller
                 
                 if($request->hasFile('Attachment'))
                 {
+                    if($Attachment->getCLientMimeType() == "")
                     $Attachment = $request->file('Attachment');
                     $oldTrxTugas->Attachment = $Attachment->store('public/files');
                     $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
@@ -304,7 +305,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $laporan = trxLapor::findorfail($IDTrxLapor);
+            $laporan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
             $laporan->delete();
             $laporan->ErrorType = 0;
             return $laporan;
@@ -368,7 +369,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $kajiulang = trxKajiUlang::findorfail($IDTrxKajiUlang);
+            $kajiulang = trxKajiUlang::where('IDTrxKajiUlang', $IDTrxKajiUlang)->firstorfail();
             $kajiulang->delete();
             $kajiulang->ErrorType = 0;
             return $kajiulang;

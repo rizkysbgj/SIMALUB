@@ -18,7 +18,7 @@ class UserControllerApi extends Controller
             $mstUser = new mstUser();
             if(mstUser::where('IDUser', $request->IDUser)->orwhere('NIK', $request->NIK)->count() > 0)
             {
-                $mstUser->ErrorType = 2;
+                $mstUser->ErrorType = 1;
                 $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
@@ -77,7 +77,7 @@ class UserControllerApi extends Controller
         try {
             if(mstUser::where('IDUser', $request->IDUser)->orwhere('NIK', $request->NIK)->count() > 0)
             {
-                $mstUser->ErrorType = 2;
+                $mstUser->ErrorType = 1;
                 $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
@@ -103,13 +103,15 @@ class UserControllerApi extends Controller
     {
         try
         {
-            $user = mstUser::findorfail($IDUser);
+            $user = mstUser::where('IDUser', $IDUser)->firstorfail();
+            // $user = mstUser::findordfail($IDUser);
             $user->delete();
             $user->ErrorType = 0;
             return $user;
         }
         catch (\Exception $e)
         {
+            $user = new mstUser();
             $user->ErrorType = 2;
             $user->ErrorMessage = $e->getMessage(); 
             return $user;

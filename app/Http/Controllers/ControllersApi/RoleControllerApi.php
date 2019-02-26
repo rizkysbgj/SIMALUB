@@ -18,7 +18,7 @@ class RoleControllerApi extends Controller
             $mstRole = new mstrole();
             if(mstrole::where('Role', $request->Role)->count() > 0)
             {
-                $mstRole->ErrorType = 2;
+                $mstRole->ErrorType = 1;
                 $mstRole->ErrorMessage = "Jabatan sudah ada!";
                 return response($mstRole->jsonSerialize());
             }
@@ -62,7 +62,7 @@ class RoleControllerApi extends Controller
             $mstRole = mstrole::where('IDRole', $request->IDRole)->firstorfail();
             if(mstrole::where('Role', $request->Role)->count() > 0)
             {
-                $mstRole->ErrorType = 2;
+                $mstRole->ErrorType = 1;
                 $mstRole->ErrorMessage = "Jabatan sudah ada!";
                 return response($mstRole->jsonSerialize());
             }
