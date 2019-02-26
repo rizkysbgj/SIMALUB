@@ -45,6 +45,6 @@
     </div>
 </div>
 
-<script src="{{ asset('assets/app/js/tugas/index.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/app/js/tugas/subkontrak.js') }}" type="text/javascript"></script>
 
 @endsection

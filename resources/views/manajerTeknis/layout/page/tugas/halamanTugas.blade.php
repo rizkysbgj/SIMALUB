@@ -32,9 +32,9 @@
 									</div>
 								</div>
 							</div>
+
 							<!-- modal untuk kaji ulang -->
-							<div class="modal hide fade" id="kajiulang" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal hide fade" id="modalkajiUlang" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -56,7 +56,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalMetode" value="1">
+																<input class="radiobtn" type="radio" name="modalMetode" value="1">
 																	Bisa
 																<span></span>
 															</label>
@@ -127,7 +127,7 @@
 												</div>
 												<div class="form-group m-form__group row">
 													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-														kondisi Akomodasi :
+														Kondisi Akomodasi :
 													</label>
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
@@ -166,10 +166,10 @@
 											</form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">
                                                 Close
                                             </button>
-                                            <button type="button" class="btn btn-success" id="#">
+                                            <button type="button" class="btn btn-success" id="submitKajiUlang">
                                                 Submit
                                             </button>
                                         </div>
@@ -265,7 +265,7 @@
 										</span>
 									</span>
 								</a>
-								<a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+								<a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
 								<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;"> -->
 									<span>
 										<i class="fa fa-plus"></i>
@@ -280,7 +280,66 @@
 					</div>
 					<!--end: Search Form -->
 					<!--begin: Datatable -->
-					<div class="m_datatable" id="divStoryList"></div>
+					<div cla
+					ss="m_datatable" id="divStoryList"></div>
+					<!-- <table class="m-datatable" id="html_table" width="100%">
+						<thead>
+							<tr>
+								<th title="Field #1">
+                                	Action
+                                </th>
+                                <th title="Field #2">
+                                	Kaji Ulang Analisis
+                                </th>
+                                <th title="Field #3">
+                                	Kode Tugas
+								</th>
+								<th title="Field #4">
+                                	Nama Tugas
+								</th>
+								<th title="Field #5">
+                                	Tanggal Penugasan
+								</th>
+								<th title="Field #6">
+									Tanggal Deadline
+								</th>
+								<th title="Field #7">
+                                	Realita Mulai
+								</th>
+								<th title="Field #8">
+                                	Realita Selesai
+                                </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	cHi
+								</td>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	ADA 2 ACTION
+								</td>
+								<td>
+                                	ADA 2 ACTION
+                                </td>
+							</tr>
+						</tbody>
+					</table> -->
 					<!--end: Datatable -->
 				</div>
 			</div>

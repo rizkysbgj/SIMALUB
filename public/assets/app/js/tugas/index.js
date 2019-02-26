@@ -1,8 +1,6 @@
 //== Class Initialization
 jQuery(document).ready(function () {
-	// Control.Init();
 	Table.Init();
-	Table.Subkontrak();
 });
 
 var Table = {
@@ -50,14 +48,14 @@ var Table = {
 				{
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-file"></i></a>';
+						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-file"></i></a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
 				},
 				{
-					field: "#", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
+					field: "KajiUlang", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						var strBuilder = '<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#kajiulang" style="width: 100px;"><span><small>Belum Dikaji</small></span></a>';
+						var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
 						return strBuilder;
 					}
 					
@@ -86,110 +84,65 @@ var Table = {
 				},
 			]
 		})
-	},
-	Subkontrak: function () {
-		var IDProyek = $("#ProjectID").val();
-		t = $("#divSubkontrakList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/tugas/list/" + IDProyek,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: true,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			search: {
-				input: $("#tbxSearch")
-			},
-			columns: [
-				{
-					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
-						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>';
-						return strBuilder;
-					}
-				},
-				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
-				{
-					field: "RencanaMulai", title: "Waktu Dikirim", sortable: false, textAlign: "center", template: function (t) {
-						return t.RencanaMulai != null ? Common.Format.Date(t.RencanaMulai) : "-"
-					}
-				},
-				{
-					field: "RencanaSelesai", title: "Waktu Diterima", sortable: false, textAlign: "center", template: function (t) {
-						return t.RencanaSelesai != null ? Common.Format.Date(t.RencanaSelesai) : "-"
-					}
-				},
-				{ field: "PenanggungJawab", title: "Penanggung Jawab", textAlign: "center" },
-				{
-					field: "#", title: "Status", sortable: false, textAlign: "center", template: function (t) {
-						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						var strBuilder = '<a href="#" class="btn btn-danger"  style="width: 100px;"><span><small>Belum Selesai</small></span></a>';
-						return strBuilder;
-					}
-					
-				},
-			]
-		})
 	}
-
 }
 
-// var Control = {
-// 	Init: function () {
-// 		if ($("#errorMsg").val() != "-") {
+var Modal = {
+	kajiUlang:function(id){
+		$("#modalkajiUlang").modal({
+			backdrop: "static"
+		});
+		var btn = $("#submitKajiUlang");
+		btn.on("click", function(){
+			var params = {
+				IDTugas: id,
+				Metode:$("input[name='modalMetode']:checked").val(),
+				Peralatan:$("input[name='modalPeralatan']:checked").val(),
+				Personil:$("input[name='modalPersonil']:checked").val(),
+				BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
+				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
+				Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
+			};
+			btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+			
+			console.log(params)
 
-// 			Common.Alert.ErrorRoute($("#errorMsg").val(), document.referrer);
-// 		}
-// 		$.ajax({
-// 			url: "/api/task/listcategory",
-// 			type: "GET",
-// 			dataType: "json",
-// 			contenType: "application/json",
-// 			success: function (data) {
-// 				var html = "<option value=''>All</option>";
-// 				var select = $("#slsTaskCategory");
-
-// 				$.each(data, function (i, item) {
-// 					html += '<option value="' + item.TaskCategory + '">' + item.TaskCategory + '</option>';
-// 				});
-
-// 				$("#slsTaskCategory").append(html);
-// 				$("#slsTaskCategory").selectpicker("refresh");
-// 			},
-// 			error: function (xhr) {
-// 				alert(xhr.responseText)
-// 			}
-// 		});
-
-// 		$("#slsTaskCategory").on("change", function () {
-// 			t.search($(this).val(), "TaskCategory")
-// 		})
-// 	}
-// }
+			$.ajax({
+				url: "/api/kajiUlang/",
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(params),
+				cache: false,
+			}).done(function (data, textStatus, jqXHR) {
+				$("#divStoryList").mDatatable("reload");
+				
+				$("input[name='modalMetode']").prop('checked', false);
+				$("input[name='modalPeralatan']").prop('checked', false);
+				$("input[name='modalPersonil']").prop('checked', false);
+				$("input[name='modalbahanKimia']").prop('checked', false);
+				$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+				$("input[name='modalKesimpulan']").prop('checked', false);
+	
+				$("#modalkajiUlang").modal("toggle");
+	
+				Common.Alert.Success("New Story Added", '/halamanTugas/' + IDProyek);
+				
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				Common.Alert.Error(errorThrown);
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			})
+		})
+		$("#btnClose").on("click", function(){
+			$("#divStoryList").mDatatable("reload");
+			
+			$("input[name='modalMetode']").prop('checked', false);
+			$("input[name='modalPeralatan']").prop('checked', false);
+			$("input[name='modalPersonil']").prop('checked', false);
+			$("input[name='modalbahanKimia']").prop('checked', false);
+			$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+			$("input[name='modalKesimpulan']").prop('checked', false);
+		})
+	}
+}
