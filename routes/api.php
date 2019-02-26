@@ -44,3 +44,10 @@ Route::get('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@
 Route::put('subkontrak', 'ControllersApi\SubKontrakControllerApi@UpdateSubKontrak');
 
 Route::post('pinned', 'ControllersApi\TugasControllerApi@TugasTransaction');
+
+Route::post('lapor', 'ControllersApi\TugasControllerApi@CreateLaporTugas');
+Route::get('lapor', 'ControllersApi\TugasControllerApi@GetListTrxLaporanTugas');
+Route::get('lapor/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@GetDetailTrxLaporanTugas');
+
+Route::put('kajiulang', 'ControllersApi\TugasControllerApi@KajiUlang');
+Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKajiUlang');

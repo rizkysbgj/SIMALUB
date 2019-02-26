@@ -12,7 +12,9 @@ use App\mstmilestoneflowtugas;
 use App\viewmodel\vmtugas;
 use App\trxTugasLog;
 use App\vwTugas;
-use App\trxTugas;
+use App\trxLapor;
+use App\vwTrxLaporan;
+use App\trxKajiUlang;
 
 
 class TugasControllerApi extends Controller
@@ -214,6 +216,114 @@ class TugasControllerApi extends Controller
         catch (Exception $e)
         {
             return $e->getMessage();
+        }
+    }
+
+    public function CreateLaporTugas(Request $request)
+    {
+        try
+        {
+            $trxLapor = new trxLapor();
+            $trxLapor->IDTugas = $request->IDTugas;
+            if($request->hasFile('Attachment'))
+                    {
+                        $Attachment = $request->file('Attachment');
+                        $trxLapor->Attachment = $Attachment->store('public/files');
+                        $trxLapor->ContentType = $Attachment->getCLientMimeType();
+                        $trxLapor->FileName = $Attachment->getClientOriginalName();
+                    }
+            $trxLapor->Catatan = $request->remark;
+            $trxLapor->ErrorType = 0;
+            $trxLapor->save();
+        }
+        catch (\Exception $e)
+        {
+            $trxLapor->ErrorType = 2;
+            $trxLapor->ErrorMessage = $e->getMessage();
+            return $trxLapor;
+        }
+    }
+
+    public function GetListTrxLaporanTugas()
+    {
+        try
+        {
+            $trxLaporanList = new vwTrxLaporan();
+            $trxLaporanList = vwTrxLaporan::all();
+
+            $trxLaporanList->ErrorType = 0;
+            return $trxLaporanList;
+        }
+        catch(\Exception $e)
+        {
+            $trxLaporanList->ErrorType = 2;
+            $trxLaporanList->ErrorMessage = $e->getMessage();
+            return $trxLaporanList;
+        }
+    }
+
+    public function GetDetailTrxLaporanTugas($IDTrxLapor)
+    {
+        try
+        {
+            $trxLaporanList = new vwTrxLaporan();
+            $trxLaporanList = vwTrxLaporan::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
+
+            $trxLaporanList->ErrorType = 0;
+            return $trxLaporanList;
+        }
+        catch(\Exception $e)
+        {
+            $trxLaporanList->ErrorType = 2;
+            $trxLaporanList->ErrorMessage = $e->getMessage();
+            return $trxLaporanList;
+        }
+    }
+
+    public function KajiUlang(Request $request)
+    {
+        try
+        {
+            $kajiulang = new trxKajiUlang();
+            $tugas = mstTugas::where('IDTugas', $request->IDTugas)->firstorfail();
+
+            //set value to kajiulang
+            $kajiulang->IDTugas = $request->IDTugas;
+            $kajiulang->Metode = $request->Metode;
+            $kajiulang->Peralatan = $request->Peralatan;
+            $kajiulang->Personil = $request->Personil;
+            $kajiulang->BahanKimia = $request->BahanKimia;
+            $kajiulang->KondisiAkomodasi = $request->KondisiAkomodasi;
+            $kajiulang->Kesimpulan = $request->Kesimpulan;
+            $kajiulang->save();
+
+            //update status tugas
+            $tugas->Status = $request->Kesimpulan;
+            $tugas->save();
+
+            $kajiulang->ErrorType = 0;
+            return $kajiulang;
+        }
+        catch(\Exception $e)
+        {
+            $kajiulang->ErrorType = 2;
+            $kajiulang->ErrorMessage = $e->getErrorMessage();
+            return $kajiulang;
+        }
+    }
+
+    public function GetListKajiUlang($IDProyek)
+    {
+        try {
+            if($IDProyek != 0)
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('Status', "Tidak")->get();
+            else
+                $tugasList = vwTugas::where('Status', "Tidak")->get();
+            return $tugasList;
+                //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
+        }
+        catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 

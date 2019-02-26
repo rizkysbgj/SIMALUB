@@ -58,7 +58,12 @@ class UserControllerApi extends Controller
     {
         try {
             if($IDRole != 0)
-                return response(vwUser::where('IDRole', $IDRole)->get(), Response::HTTP_OK);
+            {
+                if($IDRole == 4 || $IDRole == 5)
+                    return response(vwUser::where('IDRole', '4')->orwhere('IDRole', '5')->get(), Response::HTTP_OK);
+                else
+                    return response(vwUser::where('IDRole', $IDRole)->get(), Response::HTTP_OK);
+            }
             else
                 return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
         }

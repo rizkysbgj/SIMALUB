@@ -56,12 +56,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input class="radiobtn" type="radio" name="modalMetode" value="1">
+																<input class="radiobtn" type="radio" name="modalMetode" value="Bisa">
 																	Bisa
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalMetode" value="2">
+																<input type="radio" name="modalMetode" value="Tidak">
 																	Tidak Bisa
 																<span></span>
 															</label>
@@ -75,12 +75,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPeralatan" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalPeralatan" value="1">
+																<input type="radio" name="modalPeralatan" value="Bisa">
 																	Bisa
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalPeralatan" value="2">
+																<input type="radio" name="modalPeralatan" value="Tidak">
 																	Tidak Bisa
 																<span></span>
 															</label>
@@ -94,12 +94,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPersonil" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalPersonil" value="1">
+																<input type="radio" name="modalPersonil" value="Bisa">
 																	Bisa
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalPersonil" value="2">
+																<input type="radio" name="modalPersonil" value="Tidak">
 																	Tidak Bisa
 																<span></span>
 															</label>
@@ -113,12 +113,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalbahanKimia" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalbahanKimia" value="1">
+																<input type="radio" name="modalbahanKimia" value="Bisa">
 																	Bisa
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalbahanKimia" value="2">
+																<input type="radio" name="modalbahanKimia" value="Tidak">
 																	Tidak Bisa
 																<span></span>
 															</label>
@@ -132,12 +132,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalkondisiAkomodasi" value="1">
+																<input type="radio" name="modalkondisiAkomodasi" value="Bisa">
 																	Bisa
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalkondisiAkomodasi" value="2">
+																<input type="radio" name="modalkondisiAkomodasi" value="Tidak">
 																	Tidak Bisa
 																<span></span>
 															</label>
@@ -151,12 +151,12 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalKesimpulan" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalKesimpulan" value="1">
+																<input type="radio" name="modalKesimpulan" value="Bisa">
 																	Bisa Dianalisis
 																<span></span>
 															</label>
 															<label class="m-radio">
-																<input type="radio" name="modalKesimpulan" value="2">
+																<input type="radio" name="modalKesimpulan" value="Tidak">
 																	Tidak Bisa Dianalisis
 																<span></span>
 															</label>

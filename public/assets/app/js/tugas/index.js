@@ -55,7 +55,10 @@ var Table = {
 				{
 					field: "KajiUlang", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
+						if(t.Status != null)
+							var strBuilder = '<button class="btn btn-success" style="width: 100px;"><span><small>Sudah Dikaji</small></span></button>';	
+						else
+							var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
 						return strBuilder;
 					}
 					
@@ -108,8 +111,8 @@ var Modal = {
 			console.log(params)
 
 			$.ajax({
-				url: "/api/kajiUlang/",
-				type: "POST",
+				url: "/api/kajiulang/",
+				type: "PUT",
 				dataType: "json",
 				contentType: "application/json",
 				data: JSON.stringify(params),

@@ -11,7 +11,7 @@ var Table = {
 				type: "remote",
 				source: {
 					read: {
-						url: "/api/tugas/list/" + IDProyek,
+						url: "/api/kajiulang/" + IDProyek,
 						method: "GET",
 						map: function (r) {
 							var e = r;
