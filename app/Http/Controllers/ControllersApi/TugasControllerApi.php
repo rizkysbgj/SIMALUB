@@ -12,6 +12,7 @@ use App\mstmilestoneflowtugas;
 use App\viewmodel\vmtugas;
 use App\trxTugasLog;
 use App\vwTugas;
+use App\trxTugas;
 use App\trxLapor;
 use App\vwTrxLaporan;
 use App\trxKajiUlang;
@@ -104,6 +105,22 @@ class TugasControllerApi extends Controller
         catch (Exception $e)
         {
             return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function DeleteTugas($IDTugas)
+    {
+        try
+        {
+            $tugas = mstTugas::findorfail($IDTugas);
+            $tugas->delete();
+            return $tugas;
+        }
+        catch (\Exception $e)
+        {
+            $tugas->ErrorType = 2;
+            $tugas->ErrorMessage = $e->getMessage(); 
+            return $tugas;
         }
     }
 
@@ -282,6 +299,22 @@ class TugasControllerApi extends Controller
         }
     }
 
+    public function DeleteLaporan($IDTrxLapor)
+    {
+        try
+        {
+            $laporan = trxLapor::findorfail($IDTrxLapor);
+            $laporan->delete();
+            return $laporan;
+        }
+        catch (\Exception $e)
+        {
+            $laporan->ErrorType = 2;
+            $laporan->ErrorMessage = $e->getMessage(); 
+            return $laporan;
+        }
+    }
+
     public function KajiUlang(Request $request)
     {
         try
@@ -326,6 +359,22 @@ class TugasControllerApi extends Controller
         }
         catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function DeleteKajiUlang($IDTrxKajiUlang)
+    {
+        try
+        {
+            $kajiulang = trxKajiUlang::findorfail($IDTrxKajiUlang);
+            $kajiulang->delete();
+            return $kajiulang;
+        }
+        catch (\Exception $e)
+        {
+            $kajiulang->ErrorType = 2;
+            $kajiulang->ErrorMessage = $e->getMessage(); 
+            return $kajiulang;
         }
     }
 

@@ -88,6 +88,22 @@ class ProyekControllerApi extends Controller
         }
     }
 
+    public function DeleteProyek($IDProyek)
+    {
+        try
+        {
+            $proyek = mstProyek::findorfail($IDProyek);
+            $proyek->delete();
+            return $proyek;
+        }
+        catch (\Exception $e)
+        {
+            $proyek->ErrorType = 2;
+            $proyek->ErrorMessage = $e->getMessage(); 
+            return $proyek;
+        }
+    }
+
     private function ChangeDateFormat($mstProyek)
     {
         $mstProyek->TanggalMulai = ($mstProyek->TanggalMulai != "") ? Carbon::parse($mstProyek->TanggalMulai)->format('Y-m-d') : $mstProyek->TanggalMulai;

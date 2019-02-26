@@ -76,4 +76,20 @@ class RoleControllerApi extends Controller
             return response($mstRole->jsonSerialize());
         }
     }
+
+    public function DeleteRole($IDRole)
+    {
+        try
+        {
+            $role = mstrole::findorfail($IDProyek);
+            $role->delete();
+            return $role;
+        }
+        catch (\Exception $e)
+        {
+            $role->ErrorType = 2;
+            $role->ErrorMessage = $e->getMessage(); 
+            return $role;
+        }
+    }
 }

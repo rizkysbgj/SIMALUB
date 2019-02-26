@@ -98,4 +98,20 @@ class UserControllerApi extends Controller
             return response($mstUser->jsonSerialize());
         }
     }
+
+    public function DeleteUser($IDUser)
+    {
+        try
+        {
+            $user = mstUser::findorfail($IDUser);
+            $user->delete();
+            return $user;
+        }
+        catch (\Exception $e)
+        {
+            $user->ErrorType = 2;
+            $user->ErrorMessage = $e->getMessage(); 
+            return $user;
+        }
+    }
 }

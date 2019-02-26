@@ -57,4 +57,20 @@ class SubKontrakControllerApi extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+
+    public function DeleteSubKontrak($IDSubKontrak)
+    {
+        try
+        {
+            $subKontrak = mstSubKontrak::findorfail($IDSubKontrak);
+            $subKontrak->delete();
+            return $subKontrak;
+        }
+        catch (\Exception $e)
+        {
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return $subKontrak;
+        }
+    }
 }
