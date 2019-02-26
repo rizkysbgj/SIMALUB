@@ -163,8 +163,10 @@ var Button ={
 			contentType: "application/json",
 		}).done(function (data, textStatus, jqXHR) {
 			
-			if (Common.CheckError.Object(data) == true)
-				Common.Alert.SuccessRoute("Tugas Berhasil Dihapus", '/halamanTugas/' + id);
+			if (Common.CheckError.Object(data) == true){
+				Common.Alert.Success("Tugas Berhasil Dihapus", '/halamanTugas/' + id);
+				$("#divStoryList").mDatatable('reload');
+			}
 			else
 				Common.Alert.Warning(data.ErrorMessage);
 

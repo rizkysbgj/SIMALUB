@@ -49,8 +49,8 @@ var Table = {
                 {
                     field: "NIK", title: "Action", sortable: false, textAlign: "center", width: 100, template: function (t) {
                         var strBuilder = '<a href="/editStaff/' + t.IDUser + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-                        strBuilder += '<a href="/Role/Delete/' + t.IDUser + '" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-eraser"></i></a>';
-                        return strBuilder;
+						strBuilder += '<button onclick="Button.deleteStaff(\''+ t.IDUser  +'\')" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-trash"></i></button>';
+						return strBuilder;
                     }
                 },
                 { field: "IDUser", title: "User ID", textAlign: "center" },
@@ -92,4 +92,26 @@ var Control = {
             t.search($(this).val(), "ProjectManager")
         })
     }
+}
+
+var Button ={
+	deleteStaff:function($id){
+		$.ajax({
+			url: "/api/user/" + $id,
+			type: "DELETE",
+			dataType: "json",
+			contentType: "application/json",
+		}).done(function (data, textStatus, jqXHR) {
+			
+			if (Common.CheckError.Object(data) == true){
+				Common.Alert.Success("Staff Berhasil Dihapus", '/halamanStaff/' + $id);
+				$("#divUserList").mDatatable('reload');
+			}
+			else
+				Common.Alert.Warning(data.ErrorMessage);
+
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
+		})
+	}
 }
