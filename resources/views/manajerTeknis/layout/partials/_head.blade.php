@@ -25,7 +25,7 @@
     <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/logo_ipb.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/icon_simalub2.png') }}" />
     
 
 </head>

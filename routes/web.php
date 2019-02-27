@@ -17,12 +17,8 @@
     });
 
 //Route untuk manager teknis
-    //Route nyoba
-    Route::get('/', function () {
-        return view('manajerTeknis.layout.index');
-    });
     //Route dashboard manajer teknis
-    Route::get('/halamandashboardMT', function () {
+    Route::get('/', function () {
         return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
     });
 

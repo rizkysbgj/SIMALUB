@@ -25,20 +25,20 @@
     <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
 
-    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/logo_ipb.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/icon_simalub2.png') }}">
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
-        <div id="divLogin" class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" style="background-image: url(content/images/background/login-bg.jpg);">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-1" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-1.jpg);">
             <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
                 <div class="m-login__container">    
                     <div class="m-login__logo">
-                        <!-- <a href="#">
-                            <img src="{{ asset('assets/demo/default/media/img/logo/logo_ipb.png') }}" />
-                        </a> -->
+                        <a href="#">
+                            <img src="{{ asset('assets/app/media/img//logos/SIMALUB.png') }}">
+                        </a>
                     </div>
                     @yield('login_content')
                 </div>

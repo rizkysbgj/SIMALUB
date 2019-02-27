@@ -6,8 +6,8 @@ jQuery(document).ready(function () {
     path2 = path.split('/')[1];
 
     $('.sidebarActive').each(function () {
-        if (path2 == 'halamanpinnedProject') {
-            if (this.id == path)
+        if (this.id == path) {
+            if (this.id == 'halamanpinnedProject/' + IDProyek)
                 $(this).addClass('m-menu__item--active').siblings().removeClass("m-menu__item--active");
 		}
 	
