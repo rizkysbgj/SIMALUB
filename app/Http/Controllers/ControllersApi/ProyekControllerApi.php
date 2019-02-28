@@ -26,6 +26,7 @@ class ProyekControllerApi extends Controller
             }
             else
             {
+                $mstProyek = new mstProyek();
                 $mstProyek->ErrorType = 1;
                 $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
             }
@@ -33,6 +34,7 @@ class ProyekControllerApi extends Controller
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
+            $mstProyek = new mstProyek();
             $mstProyek->ErrorType = 2;
             $mstProyek->ErrorMessage = $e->getMessage();
             return response()->json($mstProyek->jsonSerialize());
@@ -46,6 +48,7 @@ class ProyekControllerApi extends Controller
             return $mstProyek;
         }
         catch (\Exception $e) {
+            $mstProyek = new mstProyek();
             $mstProyek->ErrorType = 2;
             $mstProyek->ErrorMessage = $e->getMessage();
             return response()->json($mstProyek->jsonSerialize());
@@ -58,6 +61,7 @@ class ProyekControllerApi extends Controller
             return response(vwProyek::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (\Exception $e) {
+            $mstProyek = new mstProyek();
             $mstProyek->ErrorType = 2;
             $mstProyek->ErrorMessage = $e->getMessage();
             return response()->json($mstProyek->jsonSerialize());
@@ -71,7 +75,7 @@ class ProyekControllerApi extends Controller
             $mstProyek->fill($request->all());
             $mstProyek->UpdatedBy = "Admin";
             $mstProyek = $this->ChangeDateFormat($mstProyek);
-            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->count()>0)
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->where('IDProyek', $mstProyek->IDProyek)->count()>0)
             {
                 $mstProyek->ErrorType = 1;
                 $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
@@ -82,6 +86,7 @@ class ProyekControllerApi extends Controller
             return response($mstProyek->jsonSerialize(), Response::HTTP_OK);
         }
         catch (\Exception $e) {
+            $mstProyek = new mstProyek();
             $mstProyek->ErrorType = 2;
             $mstProyek->ErrorMessage = $e->getMessage();
             return response()->json($mstProyek->jsonSerialize());
@@ -99,6 +104,7 @@ class ProyekControllerApi extends Controller
         }
         catch (\Exception $e)
         {
+            $mstProyek = new mstProyek();
             $proyek->ErrorType = 2;
             $proyek->ErrorMessage = $e->getMessage(); 
             return $proyek;

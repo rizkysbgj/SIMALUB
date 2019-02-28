@@ -28,6 +28,7 @@ class RoleControllerApi extends Controller
             return response($mstRole->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
+            $mstRole = new mstrole();
             $mstRole->ErrorType = 2;
             $mstRole->ErrorMessage = $e->getMessage();
             return response($mstRole->jsonSerialize());
@@ -40,7 +41,11 @@ class RoleControllerApi extends Controller
             return response(mstrole::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $mstRole = new mstrole();
+            $mstRole->ErrorType = 2;
+            $mstRole->ErrorMessage = $e->getMessage();
+            return response($mstRole->jsonSerialize());
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -52,7 +57,11 @@ class RoleControllerApi extends Controller
             //return response($mstRole->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $mstRole = new mstrole();
+            $mstRole->ErrorType = 2;
+            $mstRole->ErrorMessage = $e->getMessage();
+            return response($mstRole->jsonSerialize());
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -73,7 +82,11 @@ class RoleControllerApi extends Controller
         }
         catch (\Exception $e) {
             $mstRole->ErrorType = 2;
+            $mstRole = new mstrole();
+            $mstRole->ErrorType = 2;
+            $mstRole->ErrorMessage = $e->getMessage();
             return response($mstRole->jsonSerialize());
+            // return response($mstRole->jsonSerialize());
         }
     }
 
@@ -88,9 +101,10 @@ class RoleControllerApi extends Controller
         }
         catch (\Exception $e)
         {
-            $role->ErrorType = 2;
-            $role->ErrorMessage = $e->getMessage(); 
-            return $role;
+            $mstRole = new mstrole();
+            $mstRole->ErrorType = 2;
+            $mstRole->ErrorMessage = $e->getMessage();
+            return response($mstRole->jsonSerialize());
         }
     }
 }

@@ -18,7 +18,11 @@ class SubKontrakControllerApi extends Controller
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return response($mstSubKontrak->jsonSerialize());
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -29,7 +33,11 @@ class SubKontrakControllerApi extends Controller
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return response($mstSubKontrak->jsonSerialize());
+            //return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -40,7 +48,11 @@ class SubKontrakControllerApi extends Controller
             return response($mstSubKontrakList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return response($mstSubKontrak->jsonSerialize());
+            //return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -54,7 +66,10 @@ class SubKontrakControllerApi extends Controller
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return response($mstSubKontrak->jsonSerialize());
         }
     }
 
@@ -69,6 +84,7 @@ class SubKontrakControllerApi extends Controller
         }
         catch (\Exception $e)
         {
+            $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
             return $subKontrak;

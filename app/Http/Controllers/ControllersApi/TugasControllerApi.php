@@ -43,7 +43,10 @@ class TugasControllerApi extends Controller
             return response($mstTugas->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $tugas->ErrorType = 2;
+            $tugas->ErrorMessage = $e->getMessage(); 
+            return $tugas;
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -54,7 +57,10 @@ class TugasControllerApi extends Controller
             return $mstTugas;
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $tugas->ErrorType = 2;
+            $tugas->ErrorMessage = $e->getMessage(); 
+            return $tugas;
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -69,7 +75,11 @@ class TugasControllerApi extends Controller
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $tugasList = new vwTugas();
+            $tugasList->ErrorType = 2;
+            $tugasList->ErrorMessage = $e->getMessage(); 
+            return $tugasList;
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -87,7 +97,11 @@ class TugasControllerApi extends Controller
             //return response($mstTugas->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $tugasList = new mstTugas();
+            $tugasList->ErrorType = 2;
+            $tugasList->ErrorMessage = $e->getMessage(); 
+            return $tugasList;
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -104,7 +118,11 @@ class TugasControllerApi extends Controller
         }
         catch (Exception $e)
         {
-            return response()->json(['error' => $e->getMessage()]);
+            $model = new vmtugas();
+            $model->ErrorType = 2;
+            $model->ErrorMessage = $e->getMessage(); 
+            return $model;
+            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -119,9 +137,10 @@ class TugasControllerApi extends Controller
         }
         catch (\Exception $e)
         {
-            $tugas->ErrorType = 2;
-            $tugas->ErrorMessage = $e->getMessage(); 
-            return $tugas;
+            $tugasList = new mstTugas();
+            $tugasList->ErrorType = 2;
+            $tugasList->ErrorMessage = $e->getMessage(); 
+            return $tugasList;
         }
     }
 
@@ -234,7 +253,11 @@ class TugasControllerApi extends Controller
         }
         catch (Exception $e)
         {
-            return $e->getMessage();
+            $trxTugas = new trxTugas();
+            $trxTugas->ErrorType = 2;
+            $trxTugas->ErrorMessage = $e->getMessage(); 
+            return $trxTugas;
+            // return $e->getMessage();
         }
     }
 
@@ -260,6 +283,7 @@ class TugasControllerApi extends Controller
         }
         catch (\Exception $e)
         {
+            $trxLapor = new trxLapor();
             $trxLapor->ErrorType = 2;
             $trxLapor->ErrorMessage = $e->getMessage();
             return $trxLapor;
@@ -277,6 +301,7 @@ class TugasControllerApi extends Controller
         }
         catch(\Exception $e)
         {
+            $trxLaporanList = new vwTrxLaporan();  
             $trxLaporanList->ErrorType = 2;
             $trxLaporanList->ErrorMessage = $e->getMessage();
             return $trxLaporanList;
@@ -295,6 +320,7 @@ class TugasControllerApi extends Controller
         }
         catch(\Exception $e)
         {
+            $trxLaporanList = new vwTrxLaporan();
             $trxLaporanList->ErrorType = 2;
             $trxLaporanList->ErrorMessage = $e->getMessage();
             return $trxLaporanList;
@@ -312,6 +338,7 @@ class TugasControllerApi extends Controller
         }
         catch (\Exception $e)
         {
+            $laporan = new trxLapor();
             $laporan->ErrorType = 2;
             $laporan->ErrorMessage = $e->getMessage(); 
             return $laporan;
@@ -332,11 +359,17 @@ class TugasControllerApi extends Controller
             $kajiulang->Personil = $request->Personil;
             $kajiulang->BahanKimia = $request->BahanKimia;
             $kajiulang->KondisiAkomodasi = $request->KondisiAkomodasi;
-            $kajiulang->Kesimpulan = $request->Kesimpulan;
+            if($kajiulang->Metode == "Tidak" || $kajiulang->Peralatan == "Tidak" || $kajiulang->Personil == "Tidak" || $kajiulang->BahanKimia == "Tidak" || $kajiulang->KondisiAkomodasi == "Tidak")
+            {
+                $kajiulang->Kesimpulan = "Tidak";
+                $tugas->Status = "Tidak";
+            }
+            else
+            {
+                $kajiulang->Kesimpulan = "Bisa";
+                $tugas->Status = "Bisa";
+            }
             $kajiulang->save();
-
-            //update status tugas
-            $tugas->Status = $request->Kesimpulan;
             $tugas->save();
 
             $kajiulang->ErrorType = 0;
@@ -344,6 +377,7 @@ class TugasControllerApi extends Controller
         }
         catch(\Exception $e)
         {
+            $kajiulang = new trxKajiUlang();
             $kajiulang->ErrorType = 2;
             $kajiulang->ErrorMessage = $e->getErrorMessage();
             return $kajiulang;
@@ -361,6 +395,10 @@ class TugasControllerApi extends Controller
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
+            $kajiulang = new trxKajiUlang();
+            $kajiulang->ErrorType = 2;
+            $kajiulang->ErrorMessage = $e->getErrorMessage();
+            return $kajiulang;
             return response()->json(['error' => $e->getMessage()]);
         }
     }
@@ -376,6 +414,7 @@ class TugasControllerApi extends Controller
         }
         catch (\Exception $e)
         {
+            $kajiulang = new trxKajiUlang();
             $kajiulang->ErrorType = 2;
             $kajiulang->ErrorMessage = $e->getMessage(); 
             return $kajiulang;
@@ -410,7 +449,11 @@ class TugasControllerApi extends Controller
         }
         catch (\Exception $e)
         {
-            return $e->getMessage();
+            $tugas = new mstTugas();
+            $tugas->ErrorType = 2;
+            $tugas->ErrorMessage = $e->getMessage();
+            return $tugas;
+            // return $e->getMessage();
         }
     }
 

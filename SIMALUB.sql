@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 06:06 AM
+-- Generation Time: Feb 28, 2019 at 11:15 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -230,7 +230,7 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDKategori`, `IDProyek`, `PIC`, `IDMilestone`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `Status`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(6, 'CHI-1', 'Pengujian Kadar H20', 'Pengujian kadar H20 dalam larutan', 0, 2, 'salinah', 5, '2019-02-25', '2019-03-11', '2019-02-25', NULL, 'Bisa', 'Admin', 'Admin', '2019-02-25 07:01:46', '2019-02-26 02:48:14');
+(7, 'CHI-2', 'test', 'test', 0, 2, 'nunuk', 2, '2019-02-27', '2019-02-28', '2019-02-26', NULL, 'OK', 'Admin', 'Admin', '2019-02-26 06:26:09', '2019-02-26 06:29:52');
 
 -- --------------------------------------------------------
 
@@ -263,8 +263,7 @@ INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, 
 (2, 'rudi_heryanto', 'SIMALUB002', 'Rudi Heryanto', 3, 'rudi@gmail.com', '$2y$10$cqSwetILHYiKiVfE./xle.FKJj5bGecCwsx66/mORkbuHb.3epcoO', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:54:13', '2019-02-18 04:54:13'),
 (3, 'salinah', 'SIMALUB003', 'Salinah', 4, 'salinah@gmail.com', '$2y$10$rPrYbMexydkuTulNQW1x8uiBjT683eQplVPjrpyCMQV4HplmDFyCy', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:55:50', '2019-02-18 04:55:50'),
 (4, 'nunuk', 'SIMALUB004', 'Nunuk', 5, 'nunuk@gmail.com', '$2y$10$Qmy1qLfzyYEX2fj.d0nqMeAI8nhrW163Jnf0agwFMZ93AdiRZ.nNG', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:56:40', '2019-02-18 04:56:40'),
-(5, 'wiwik', 'SIMALUB005', 'Wiwik', 6, 'wiwik@gmail.com', '$2y$10$JcuZ3l2lWrX4QZ09CXVk1O3yIN/BeHOQHj6W.wlsE..DqCU1Tlh0K', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:57:11', '2019-02-18 04:57:11'),
-(6, 'rizkyipb', 'rizkyipb', 'Rizky Subagja', 1, 'rizky_sbgj@ipb.ac.id', '$2y$10$rjdQseYONjTaHAR3G1Ihye2b1TbYoLzYMpJHilFcVo9.HoEOuXO7O', 'Aktif', 'Admin', NULL, NULL, '2019-02-24 12:25:13', '2019-02-24 12:25:13');
+(5, 'wiwik', 'SIMALUB005', 'Wiwik', 6, 'wiwik@gmail.com', '$2y$10$JcuZ3l2lWrX4QZ09CXVk1O3yIN/BeHOQHj6W.wlsE..DqCU1Tlh0K', 'Aktif', 'Admin', NULL, NULL, '2019-02-18 04:57:11', '2019-02-18 04:57:11');
 
 -- --------------------------------------------------------
 
@@ -350,7 +349,8 @@ INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `PIC`, `Wak
 (24, 6, 5, 'salinah', '2019-02-25 00:00:00', '2019-02-25 00:00:00', 'done analisis', NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-25 07:03:11', '2019-02-25 07:04:12'),
 (25, 6, 8, 'salinah', '2019-02-25 00:00:00', '2019-02-25 00:00:00', NULL, NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-25 07:05:11', '2019-02-25 07:06:00'),
 (26, 6, 5, 'salinah', '2019-02-25 00:00:00', '2019-02-25 00:00:00', 'done feedback', NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-25 07:06:00', '2019-02-25 07:08:57'),
-(27, 6, 8, 'salinah', '2019-02-25 00:00:00', '2019-02-25 00:00:00', 'done koreksi', NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-25 07:09:25', '2019-02-25 07:09:59');
+(27, 6, 8, 'salinah', '2019-02-25 00:00:00', '2019-02-25 00:00:00', 'done koreksi', NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-25 07:09:25', '2019-02-25 07:09:59'),
+(28, 7, 2, 'Admin', '2019-02-26 00:00:00', NULL, NULL, NULL, NULL, NULL, 'Admin', 'Admin', '2019-02-26 06:29:52', '2019-02-26 06:29:52');
 
 -- --------------------------------------------------------
 
@@ -442,6 +442,7 @@ CREATE TABLE `vwuser` (
 ,`IDRole` int(11)
 ,`Role` varchar(25)
 ,`Status` enum('Aktif','Tidak Aktif')
+,`TotalPekerjaan` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -451,7 +452,7 @@ CREATE TABLE `vwuser` (
 --
 DROP TABLE IF EXISTS `vwproyek`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai`,(select count(`msttugas`.`IDTugas`) from `msttugas` where (`msttugas`.`IDProyek` = `mp`.`IDProyek`)) AS `TotalTugas` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai`,(select count(`msttugas`.`IDTugas`) from `msttugas` where ((`msttugas`.`IDProyek` = `mp`.`IDProyek`) and (`msttugas`.`Status` = 'Bisa'))) AS `TotalTugas` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -460,7 +461,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtrxlapor`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTrxLapor` AS `IDTrxLapor`,`tl`.`IDProyek` AS `IDProyek`,`tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`tl`.`Pelapor` AS `Pelapor`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan`,`tl`.`created_at` AS `WaktuLapor` from (`trxlapor` `tl` left join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTrxLapor` AS `IDTrxLapor`,`tl`.`IDProyek` AS `IDProyek`,`tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`tl`.`Pelapor` AS `Pelapor`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan`,`tl`.`created_at` AS `WaktuLapor` from (`trxlapor` `tl` join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) ;
 
 -- --------------------------------------------------------
 
@@ -478,7 +479,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwuser`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwuser`  AS  select `mu`.`id` AS `id`,`mu`.`IDUser` AS `IDUser`,`mu`.`NamaLengkap` AS `NamaLengkap`,`mu`.`IDRole` AS `IDRole`,`mr`.`Role` AS `Role`,`mu`.`Status` AS `Status` from (`mstuser` `mu` left join `mstrole` `mr` on((`mu`.`IDRole` = `mr`.`IDRole`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwuser`  AS  select `mu`.`id` AS `id`,`mu`.`IDUser` AS `IDUser`,`mu`.`NamaLengkap` AS `NamaLengkap`,`mu`.`IDRole` AS `IDRole`,`mr`.`Role` AS `Role`,`mu`.`Status` AS `Status`,(select count(`msttugas`.`IDTugas`) from `msttugas` where (`msttugas`.`PIC` = `mu`.`IDUser`)) AS `TotalPekerjaan` from (`mstuser` `mu` left join `mstrole` `mr` on((`mu`.`IDRole` = `mr`.`IDRole`))) ;
 
 --
 -- Indexes for dumped tables
@@ -616,13 +617,13 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mstuser`
 --
 ALTER TABLE `mstuser`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trxkajiulang`
@@ -640,7 +641,7 @@ ALTER TABLE `trxlapor`
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`

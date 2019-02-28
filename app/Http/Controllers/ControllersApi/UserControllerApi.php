@@ -35,6 +35,7 @@ class UserControllerApi extends Controller
             return response($mstUser->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
+            $mstUser = new mstUser();
             $mstUser->ErrorType = 2;
             $mstUser->ErrorMessage = $e->getMessage();
             return response($mstUser->jsonSerialize());
@@ -49,7 +50,10 @@ class UserControllerApi extends Controller
             // return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $mstUser = new mstUser();
+            $mstUser->ErrorType = 2;
+            $mstUser->ErrorMessage = $e->getMessage();
+            return response($mstUser->jsonSerialize());
         }
         
     }
@@ -68,7 +72,10 @@ class UserControllerApi extends Controller
                 return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $mstUser = new vwUser();
+            $mstUser->ErrorType = 2;
+            $mstUser->ErrorMessage = $e->getMessage();
+            return response($mstUser->jsonSerialize());
         }
     }
 
@@ -93,6 +100,7 @@ class UserControllerApi extends Controller
             return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
         catch (\Exception $e) {
+            $mstUser = new mstUser();
             $mstUser->ErrorType = 2;
             $mstUser->ErrorMessage = $e->getMessage();
             return response($mstUser->jsonSerialize());
