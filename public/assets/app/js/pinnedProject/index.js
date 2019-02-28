@@ -9,8 +9,11 @@
 // 		$("#containerMyTask").html("<div class='m-content' style='padding-top:10px'><div class='alert alert-success m-alert--default m--align-center' role='alert' style='padding:20px;'><strong>Yay, </strong>you don't have any task right now! </div></div>");
 // }
 var IDProyek = $("#IDProyek").val();
+var IDTugas = $("#IDTugas").val();
+
 //== Class Initialization
 jQuery(document).ready(function () {
+	// console.log(IDTugas);
 	// GetData.TaskList();
 	// GetData.TaskDetail(IDTugas);
 	Page.Init();
@@ -186,7 +189,8 @@ var Button = {
 var Page = {
 	Init: function () {
 		GetData.TaskList();
-		// GetData.TaskDetail(IDTugas);
+		if(IDTugas != 0)
+			GetData.TaskDetail(IDTugas);
 
 		//Event
 		// $(".TaskOrderBy").on("click", function () {

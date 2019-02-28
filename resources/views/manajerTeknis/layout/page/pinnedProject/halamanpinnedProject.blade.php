@@ -118,5 +118,6 @@
 </div>
 
 <input type="hidden" id="IDProyek" value="{{ $vwProyek['IDProyek'] }}" >
+<input type="hidden" id="IDTugas" value="{{ $IDTugas }}" >
 <script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
 @endsection

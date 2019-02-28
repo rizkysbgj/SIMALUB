@@ -15,7 +15,7 @@ class ProyekControllerApi extends Controller
     public function CreateProyek(Request $request)
     {
         try {
-            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('', $request->InisialProyek)->count()==0)
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->count()==0)
             {
                 $mstProyek = new mstProyek();
                 $mstProyek->fill($request->all());

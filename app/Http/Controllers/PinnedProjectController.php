@@ -13,7 +13,12 @@ class PinnedProjectController extends Controller
     public function indexPinned($IDProyek)
     {
         $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
-        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject')->with('vwProyek', $vwProyek);
+        $TugasControllerApi = new TugasControllerApi();
+        $ListTugas = $TugasControllerApi->GetListTugas($IDProyek);
+        $IDTugas = 0;
+        if(count($ListTugas) > 0)
+            $IDTugas = $ListTugas[0]->IDTugas;
+        return view('manajerTeknis.layout.page.pinnedProject.halamanpinnedProject', compact('vwProyek', 'IDTugas'));
     }
     
     public function taskList($IDProyek)

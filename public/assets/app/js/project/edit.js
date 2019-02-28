@@ -40,7 +40,7 @@ var Control = {
     Select2: function () {
         var IDUser = $("#inptProjectManager").val();
 		$.ajax({
-			url: "/api/user/list/1",
+			url: "/api/user/list/3",
 			type: "GET"
 		}).done(function (data, textStatus, jqXHR) {
 			$("#slsProjectManager").html("<option></option>");
@@ -50,7 +50,7 @@ var Control = {
                 else
                     $("#slsProjectManager").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
 			})
-			$("#slsProjectManager").select2({ placeholder: "Select Project Manager" });
+			$("#slsProjectManager").select2({ placeholder: "Pilih Penanggung Jawab" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);
 		})
