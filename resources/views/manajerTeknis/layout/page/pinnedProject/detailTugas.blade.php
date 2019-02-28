@@ -70,10 +70,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -108,10 +108,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -156,10 +156,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -203,10 +203,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-LAPOR">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -241,10 +241,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -298,10 +298,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
@@ -441,7 +441,7 @@
 
         <div class="m-portlet__head-title ">
             <h3 class="m-portlet__head-text" style="margin-bottom: 0px;margin-top: 20px;">
-                Description :
+                Deskripsi :
             </h3>
         </div>
 

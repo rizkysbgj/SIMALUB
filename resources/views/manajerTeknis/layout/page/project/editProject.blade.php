@@ -50,7 +50,7 @@
                                 Inisial Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value="{{$mstProyek['InisialProyek']}}"/>
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxprojectinitial" id="tbxProjectInitial" required value="{{$mstProyek['InisialProyek']}}" disabled />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -143,7 +143,7 @@
                             <div class="row">
                                 <div class="col-lg-9 ml-lg-auto">
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
-                                        Cancel
+                                        Batal
                                     </button>
                                     <button id="btnEdit" class="btn btn-primary">
                                         Edit

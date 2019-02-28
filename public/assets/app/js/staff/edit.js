@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
         if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) {
             $('#message').html('');
         } else
-            $('#message').html('Password Not Match').css('color', 'red');
+            $('#message').html('Password Tidak Sama').css('color', 'red');
     });
 });
 
@@ -50,11 +50,11 @@ var Control = {
                 else
                     $("#slsRole").append("<option value='" + item.IDRole + "'>" + item.Role + "</option>");
             })
-            $("#slsRole").select2({ placeholder: "Select Role" });
+            $("#slsRole").select2({ placeholder: "Pilih Jabatan" });
         }).fail(function (jqXHR, textStatus, errorThrown) {
             Common.Alert.Error(errorThrown);
         });
-        $("#slsRole").select2({ placeholder: "Select Role", minimumResultsForSearch: 1 / 0 });
+        $("#slsRole").select2({ placeholder: "Pilih Jabatan", minimumResultsForSearch: 1 / 0 });
     }
 }
 
@@ -91,7 +91,7 @@ var Transaction = function () {
         data: JSON.stringify(params),
     }).done(function (data, textStatus, jqXHR) {
         if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Edit User Success", '/halamanStaff');
+            Common.Alert.SuccessRoute("Pengguna Berhasil diedit", '/halamanStaff');
         else
             Common.Alert.Error(data.ErrorMessage);
         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

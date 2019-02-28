@@ -61,7 +61,7 @@ var Ctrl = {
 			$.each(data, function (i, item) {
 				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
 			})
-			$("#slsUser").select2({ placeholder: "Select People" });
+			$("#slsUser").select2({ placeholder: "Pilih Analis" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);
 		})
@@ -232,7 +232,7 @@ var TaskTransaction = {
 			var link = '/halamanpinnedProject/' + data.IDProyek;
 			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
 			if (Common.CheckError.Object(data) == true) {
-				Common.Alert.SuccessRoute("Success", link);
+				Common.Alert.SuccessRoute("Berhasil", link);
 			}
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -257,7 +257,7 @@ var TaskTransaction = {
 			var link = '/halamanpinnedProject/' + data.IDProyek;
 			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
 			if (Common.CheckError.Object(data) == true) {
-				Common.Alert.SuccessRoute("Success", link);
+				Common.Alert.SuccessRoute("Berhasil Melaporkan", link);
 			}
 			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 		}).fail(function (jqXHR, textStatus, errorThrown) {

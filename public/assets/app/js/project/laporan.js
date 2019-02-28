@@ -6,6 +6,7 @@ jQuery(document).ready(function () {
 
 var Table = {
     Init: function (IDProyek) {
+        $("#divLaporanList").html("");
         t = $("#divLaporanList").mDatatable({
             data: {
                 type: "remote",
@@ -52,6 +53,7 @@ var Table = {
                         return strBuilder;
                     }
                 },
+                { field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
                 { field: "InisialTugas", title: "Inisial Tugas", textAlign: "center" },
                 { field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
                 { field: "Pelapor", title: "Pelapor", textAlign: "center" },

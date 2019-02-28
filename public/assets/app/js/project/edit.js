@@ -112,7 +112,7 @@ var Transaction = function () {
 		cache: false,
 	}).done(function (data, textStatus, jqXHR) {
 		if (Common.CheckError.Object(data) == true)
-			Common.Alert.SuccessRoute("Project Edited", '/halamanProject');
+			Common.Alert.SuccessRoute("Proyek Berhasil diedit", '/halamanProject');
 		btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		Common.Alert.Error(errorThrown);

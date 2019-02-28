@@ -10,7 +10,7 @@ jQuery(document).ready(function () {
         if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) {
             $('#message').html('');
         } else
-            $('#message').html('Password Not Match').css('color', 'red');
+            $('#message').html('Password Tidak Sama').css('color', 'red');
     });
 }); 
 
@@ -109,11 +109,11 @@ var Control = {
                 else
                     $("#slsRole").append("<option value='" + item.IDRole + "'>" + item.Role + "</option>");
             })
-            $("#slsRole").select2({ placeholder: "Select Role" });
+            $("#slsRole").select2({ placeholder: "Pilih Jabatan" });
         }).fail(function (jqXHR, textStatus, errorThrown) {
             Common.Alert.Error(errorThrown);
         });
-        $("#slsRole").select2({ placeholder: "Select Role", minimumResultsForSearch: 1 / 0 });
+        $("#slsRole").select2({ placeholder: "Pilih Jabatan", minimumResultsForSearch: 1 / 0 });
     }
 }
 
@@ -125,7 +125,7 @@ var Form = {
                 i.removeClass("m--hide").show(), mApp.scrollTo(i, -200)
             },
             submitHandler: function (e) {
-                if ($('#message').html() != 'Password Not Match')
+                if ($('#message').html() != 'Password Tidak Sama')
                     Transaction();
             }
         })
@@ -181,7 +181,7 @@ var Transaction = function () {
         cache: false,
     }).done(function (data, textStatus, jqXHR) {
         if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Add User Success", '/halamanStaff');
+            Common.Alert.SuccessRoute("Pengguna Berhasil ditambah", '/halamanStaff');
         else
             Common.Alert.Warning(data.ErrorMessage);
         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

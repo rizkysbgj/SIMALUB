@@ -49,15 +49,19 @@ var Table = {
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						strBuilder += '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-file"></i></a>\t\t\t\t\t\t';
-						strBuilder += '<button onclick="Button.deleteTugas('+ t.IDTugas +')" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-trash"></i></button>';
+						// strBuilder += '<button onclick="Button.deleteTugas('+ t.IDTugas +')" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Hapus"><i class="la la-trash"></i></button>';
 						return strBuilder;
 					}
 				},
 				{
 					field: "KajiUlang", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						if(t.Status != "OK")
-							var strBuilder = '<button class="btn btn-success" style="width: 100px;"><span><small>Sudah Dikaji</small></span></button>';	
+						if(t.Status != "OK"){
+							if(t.Status == 'Bisa')
+								var strBuilder = '<button class="btn btn-success" style="width: 100px;"><span><small>Sudah Dikaji</small></span></button>';
+							else
+							var strBuilder = '<button class="btn btn-primary" style="width: 100px;"><span><small>Subkontrak</small></span></button>';	
+						}
 						else
 							var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
 						return strBuilder;

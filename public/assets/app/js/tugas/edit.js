@@ -67,7 +67,7 @@ var Transaction = function () {
 		cache: false,
 	}).done(function (data, textStatus, jqXHR) {
 		if (Common.CheckError.Object(data) == true)
-			Common.Alert.SuccessRoute("Project Edited", '/halamanTugas/' + IDProyek);
+			Common.Alert.SuccessRoute("Tugas Berhasil diedit", '/halamanTugas/' + IDProyek);
 		else
 			Common.Alert.Error(data.ErrorMessage);
 		btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

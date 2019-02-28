@@ -102,7 +102,7 @@
                             <div class="row">
                                 <div class="col-lg-9 ml-lg-auto">
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
-                                        Cancel
+                                        Batal
                                     </button>
                                     <button id="btnEditStaff" class="btn btn-primary">
                                         Edit

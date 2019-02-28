@@ -75,7 +75,7 @@ var Transaction = function () {
 	}).done(function (data, textStatus, jqXHR) {
 		console.log(data);
 		if (Common.CheckError.Object(data) == true)
-			Common.Alert.SuccessRoute("New Project Added", '/halamanProject');
+			Common.Alert.SuccessRoute("Proyek Berhasil dibuat", '/halamanProject');
 		btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		Common.Alert.Error(errorThrown);

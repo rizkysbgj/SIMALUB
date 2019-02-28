@@ -144,33 +144,14 @@
 														</div>
 													</div>
 												</div>
-												<div class="form-group m-form__group row">
-													<label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
-														<strong>Kesimpulan : </strong>
-													</label>
-													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalKesimpulan" !important>
-														<div class="m-radio-inline" style="margin-top: 8px;">
-															<label class="m-radio">
-																<input type="radio" name="modalKesimpulan" value="Bisa">
-																	Bisa Dianalisis
-																<span></span>
-															</label>
-															<label class="m-radio">
-																<input type="radio" name="modalKesimpulan" value="Tidak">
-																	Tidak Bisa Dianalisis
-																<span></span>
-															</label>
-														</div>
-													</div>
-												</div>
 											</form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">
-                                                Close
+                                                Batal
                                             </button>
                                             <button type="button" class="btn btn-success" id="submitKajiUlang">
-                                                Submit
+                                                Kirim
                                             </button>
                                         </div>
                                     </div>
