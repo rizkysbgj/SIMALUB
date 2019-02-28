@@ -75,7 +75,7 @@ class ProyekControllerApi extends Controller
             $mstProyek->fill($request->all());
             $mstProyek->UpdatedBy = "Admin";
             $mstProyek = $this->ChangeDateFormat($mstProyek);
-            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->where('IDProyek', '!=' , $mstProyek->IDProyek)->count()>0)
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->where('IDProyek', '!=' , $mstProyek->IDProyek)->count()>0)
             {
                 $mstProyek->ErrorType = 1;
                 $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
