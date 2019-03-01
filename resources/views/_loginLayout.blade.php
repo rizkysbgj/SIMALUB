@@ -37,7 +37,7 @@
                 <div class="m-login__container">    
                     <div class="m-login__logo">
                         <a href="#">
-                            <img src="{{ asset('assets/app/media/img//logos/SIMALUB.png') }}">
+                            <img src="{{ asset('assets/app/media/img//logos/SIMALUB3.png') }}">
                         </a>
                     </div>
                     @yield('login_content')
