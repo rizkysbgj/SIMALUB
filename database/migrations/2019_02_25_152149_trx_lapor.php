@@ -17,7 +17,7 @@ class TrxLapor extends Migration
             $table->increments('IDTrxLapor');
             $table->integer('IDTugas');
             $table->integer('IDProyek');
-            $table->string('Pelapor');
+            $table->string('IDPelapor');
             $table->string('Attachment')->nullable();
             $table->string('ContentType')->nullable();
             $table->string('NamaFile')->nullable();

@@ -45,14 +45,15 @@ SELECT
     tl.`IDTugas`,
     vt.`InisialTugas`,
     vt.`NamaTugas`,
-    tl.`Pelapor`,
+    vu.`NamaLengkap`,
     tl.`Attachment`,
     tl.`ContentType`,
     tl.`NamaFile`,
     tl.`Catatan`,
-    tl.`created_add` AS `WaktuLapor`
+    tl.`created_at` AS `WaktuLapor`
     FROM `trxlapor` as tl
     LEFT JOIN `vwtugas` as vt ON tl.`IDTugas` = vt.`IDTugas`
+    LEFT JOIN `vwuser` as vu ON tl.`IDPelapor` = vu.`IDUser`
 SQL;
     }
 }

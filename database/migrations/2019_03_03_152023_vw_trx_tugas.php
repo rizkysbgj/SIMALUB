@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VwUser extends Migration
+class VwTrxTugas extends Migration
 {
     /**
      * Run the migrations.
@@ -18,37 +18,29 @@ class VwUser extends Migration
         DB::statement($this->createView());
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    // public function down()
-    // {
-        
-    // }
-
     private function dropView(): string
     {
         return <<<SQL
-DROP VIEW IF EXISTS `vwuser`;
+DROP VIEW IF EXISTS `vwtrxtugas`;
 SQL;
     }
 
     private function createView(): string
     {
         return <<<SQL
-CREATE VIEW `vwuser` AS
+CREATE VIEW `vwtrxtugas` AS
 SELECT 
-    mu.`id`,
-    mu.`IDUser`,
+    tt.`IDTrxTugas`,
+    tt.`IDTugas`,
     mu.`NamaLengkap`,
-    mu.`IDRole`,
-    mr.`Role`,
-    mu.`Status`,
-    (SELECT COUNT(*) FROM `msttugas` as mt WHERE mt.`IDPenanggungJawab` = mu.`IDUser`) as `TotalPekerjaan`
-    FROM `mstuser` as mu
-    LEFT JOIN `mstrole` as mr ON mu.`IDRole` = mr.`IDRole`;
+    mmt.`MilestoneTugas`,
+    tt.`WaktuMulai`,
+    tt.`WaktuSelesai`,
+    tt.`Catatan`,
+    tt.`Attachment`
+    FROM `trxtugas` as tt
+    LEFT JOIN `mstuser` as mu ON tt.`IDPenanggungJawab` = mu.`IDUser`
+    LEFT JOIN `mstmilestonetugas` as mmt ON tt.`IDMilestoneTugas` = mmt.`IDMilestoneTugas`
 SQL;
     }
 }

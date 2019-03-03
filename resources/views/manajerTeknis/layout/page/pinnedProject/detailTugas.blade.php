@@ -31,8 +31,8 @@
                     <!-- disini -->
                     @foreach ($mstTugasDetail['flow'] as $flow)
                     <!-- modal -->
-                        @if ( $mstTugasDetail['tugas']['IDMilestone'] == 2
-                        || ($mstTugasDetail['tugas']['IDMilestone'] == 8 && $flow['Kode'] == "SELESAI") )
+                        @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 2
+                        || ($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI") )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         
-                        @elseif ( $mstTugasDetail['tugas']['IDMilestone'] == 3 )
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 3 )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
 
-                        @elseif( $mstTugasDetail['tugas']['IDMilestone'] == 5 )
+                        @elseif( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 5 )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -213,7 +213,7 @@
                                 </div>
                             </div>
 
-                        @elseif ( $mstTugasDetail['tugas']['IDMilestone'] == 6 )
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 6 )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -251,7 +251,7 @@
                                 </div>
                             </div>
 
-                        @elseif ( $mstTugasDetail['tugas']['IDMilestone'] == 8 && $flow['Kode'] == "SALAH" )
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SALAH" )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -311,7 +311,7 @@
                         @endif
 
                         <!-- button -->
-                        @if( $mstTugasDetail['tugas']['IDMilestone'] != 5 && $mstTugasDetail['tugas']['IDMilestone'] != 8 )
+                        @if( $mstTugasDetail['tugas']['IDMilestoneTugas'] != 5 && $mstTugasDetail['tugas']['IDMilestoneTugas'] != 8 )
                             <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
                                 <span>
@@ -322,7 +322,7 @@
                                 </span>
                             </a>
                         
-                        @elseif($mstTugasDetail['tugas']['IDMilestone'] == 8)
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8)
                             @if ( $flow['Kode'] == 'SALAH')
                                 <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
@@ -345,7 +345,7 @@
                                 </a>
                             @endif
 
-                        @elseif($mstTugasDetail['tugas']['IDMilestone'] == 5)
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 5)
                             <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="LAPOR"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#laporkan">
                                 <span>
@@ -488,6 +488,6 @@
     
 <input type="hidden" id="inptTaskID" value="{{ $mstTugasDetail['tugas']['IDTugas'] }}" />
 <input type="hidden" id="inptProjectID" value="{{ $mstTugasDetail['tugas']['IDProyek'] }}" />
-<input type="hidden" id="inptMilestone" value="{{ $mstTugasDetail['tugas']['IDMilestone'] }}" />
-<input type="hidden" id="inptPICID" value="{{ $mstTugasDetail['tugas']['IDPIC'] }}" />
+<input type="hidden" id="inptMilestone" value="{{ $mstTugasDetail['tugas']['IDMilestoneTugas'] }}" />
+<input type="hidden" id="inptPICID" value="{{ $mstTugasDetail['tugas']['IDPenanggungJawab'] }}" />
 </div>

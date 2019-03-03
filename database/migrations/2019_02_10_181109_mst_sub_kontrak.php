@@ -16,11 +16,11 @@ class MstSubKontrak extends Migration
         Schema::create('mstsubkontrak', function (Blueprint $table) {
             $table->increments('IDSubKontrak');
             $table->integer('IDTugas');
-            $table->date('WaktuDikirim');
-            $table->date('WaktuDiterima');
+            $table->date('WaktuDikirim')->nullable();
+            $table->date('WaktuDiterima')->nullable();
             // $table->enum('Status');
             $table->string('CreatedBy');
-            $table->string('UpdatedBy');
+            $table->string('UpdatedBy')->nullable();
             $table->timestamps();
         });
     }

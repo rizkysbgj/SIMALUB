@@ -17,43 +17,49 @@
     });
 
 //Route untuk manager teknis
-    //Route dashboard manajer teknis
-    Route::get('/', function () {
-        return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
+    
+    Route::group(['middleware' => ['auth']], function(){
+        //Route dashboard manajer teknis
+        Route::get('/', function () {
+            return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
+        });
+        
+        //Route proyek 
+        Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
+        Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
+        Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
+        // Route laporan dari proyek
+        Route::get('/halamanLaporan', 'ProjectController@indexLaporan') -> name('halamanLaporan');
+
+        //Route tugas
+        Route::get('/halamanTugas/{IDProyek}', 'TugasController@indexTugas') -> name('halamanTugas');
+        Route::get('/halamanTugas/tambahTugas/{IDProyek}', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
+        Route::get('/editTugas/{IDTugas}', 'TugasController@editTugas');
+
+        Route::get('/halamanSubkontrak/{IDProyek}', 'TugasController@indexSubkontrak') -> name('halamanSubkontrak');
+
+        //Route staff
+        Route::get('/halamanStaff', 'StaffController@indexStaff') -> name('halamanStaff');
+        Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
+        Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
+
+
+        //Route Jabatan
+        Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
+        Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
+        Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
+    
+
+        //Route Pinned Project
+        Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
+        Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
+        Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
+        
+        // Route::get('/detailTugas', function () {
+        //     return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
+        // });
     });
 
-    //Route proyek 
-    Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
-    Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
-    Route::get('/editProject/{IDProyek}', 'ProjectController@editProject');
-    // Route laporan dari proyek
-    Route::get('/halamanLaporan', 'ProjectController@indexLaporan') -> name('halamanLaporan');
+Auth::routes();
 
-    //Route tugas
-    Route::get('/halamanTugas/{IDProyek}', 'TugasController@indexTugas') -> name('halamanTugas');
-    Route::get('/halamanTugas/tambahTugas/{IDProyek}', 'TugasController@createTugas') -> name('halamanTugas.tambahTugas');
-    Route::get('/editTugas/{IDTugas}', 'TugasController@editTugas');
-
-    Route::get('/halamanSubkontrak/{IDProyek}', 'TugasController@indexSubkontrak') -> name('halamanSubkontrak');
-
-    //Route staff
-    Route::get('/halamanStaff', 'StaffController@indexStaff') -> name('halamanStaff');
-    Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
-    Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
-
-
-    //Route Jabatan
-    Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
-    Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
-    Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
-   
-
-    //Route Pinned Project
-    Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
-    Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
-    Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
-    
-    // Route::get('/detailTugas', function () {
-    //     return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
-    // });
-
+Route::get('/home', 'HomeController@index')->name('home');

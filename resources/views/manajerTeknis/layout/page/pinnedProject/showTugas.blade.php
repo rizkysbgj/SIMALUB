@@ -4,13 +4,13 @@
 @foreach ($mstTugasList as $mstTugas)
 	@if ($mstTugas['Status'] != "Tidak")
 		@php ($color = "")
-		@if ($mstTugas['IDMilestone'] == "1" || $mstTugas['IDMilestone'] == "2" || $mstTugas['IDMilestone'] == "3")
+		@if ($mstTugas['IDMilestoneTugas'] == "1" || $mstTugas['IDMilestoneTugas'] == "2" || $mstTugas['IDMilestoneTugas'] == "3")
 			@php ($color = "warning")
-		@elseif ($mstTugas['IDMilestone'] == "4" || $mstTugas['IDMilestone'] == "5" || $mstTugas['IDMilestone'] == "6")
+		@elseif ($mstTugas['IDMilestoneTugas'] == "4" || $mstTugas['IDMilestoneTugas'] == "5" || $mstTugas['IDMilestoneTugas'] == "6")
 			@php ($color = "danger")
-		@elseif ($mstTugas['IDMilestone'] == "7" || $mstTugas['IDMilestone'] == "8" || $mstTugas['IDMilestone'] == "9")
+		@elseif ($mstTugas['IDMilestoneTugas'] == "7" || $mstTugas['IDMilestoneTugas'] == "8" || $mstTugas['IDMilestoneTugas'] == "9")
 			@php ($color = "primary")
-		@elseif ($mstTugas['IDMilestone'] == "10" || $mstTugas['IDMilestone'] == "11")
+		@elseif ($mstTugas['IDMilestoneTugas'] == "10" || $mstTugas['IDMilestoneTugas'] == "11")
 			@php ($color = "success")
 		@endif
 		<div class="tab-content divShowDetail" id="{{ $mstTugas['IDTugas'] }}">

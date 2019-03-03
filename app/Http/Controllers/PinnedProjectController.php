@@ -14,7 +14,7 @@ class PinnedProjectController extends Controller
     {
         $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
         $TugasControllerApi = new TugasControllerApi();
-        $ListTugas = $TugasControllerApi->GetListTugas($IDProyek);
+        $ListTugas = $TugasControllerApi->GetListDetailTugas($IDProyek);
         $IDTugas = 0;
         if(count($ListTugas) > 0)
             $IDTugas = $ListTugas[0]->IDTugas;
@@ -24,7 +24,7 @@ class PinnedProjectController extends Controller
     public function taskList($IDProyek)
     {
         $TugasControllerApi = new TugasControllerApi();
-        $mstTugasList = $TugasControllerApi->GetListTugas($IDProyek);
+        $mstTugasList = $TugasControllerApi->GetListDetailTugas($IDProyek);
         return view('manajerTeknis.layout.page.pinnedProject.showTugas')->with('mstTugasList', $mstTugasList);
     }
 

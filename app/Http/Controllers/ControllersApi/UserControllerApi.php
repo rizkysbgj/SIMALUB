@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use App\mstUser;
 use App\vwUser;
+use Auth;
 
 class UserControllerApi extends Controller
 {
@@ -29,7 +30,12 @@ class UserControllerApi extends Controller
             $mstUser->Email = $request->Email;
             $mstUser->Password = bcrypt($request->Password);
             $mstUser->Status = $request->Status;
-            $mstUser->CreatedBy = "Admin";
+            /*upload avatar
+             *
+             * code di sini
+             * 
+             */
+            $mstUser->CreatedBy = Auth::user()->IDUser;
             $mstUser->save();
             $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_CREATED);
@@ -49,7 +55,7 @@ class UserControllerApi extends Controller
             return $mstUser;
             // return response($mstUser->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $mstUser = new mstUser();
             $mstUser->ErrorType = 2;
             $mstUser->ErrorMessage = $e->getMessage();
@@ -64,14 +70,18 @@ class UserControllerApi extends Controller
             if($IDRole != 0)
             {
                 if($IDRole == 4 || $IDRole == 5)
-                    return response(vwUser::where('IDRole', '4')->orwhere('IDRole', '5')->get(), Response::HTTP_OK);
+                {
+                    $userList = vwUser::where('IDRole', '4')->orwhere('IDRole', '5')
+                        ->where('IDUser', '!=', Auth::user()->IDUser)->get();
+                    return response($userList, Response::HTTP_OK);
+                }
                 else
                     return response(vwUser::where('IDRole', $IDRole)->get(), Response::HTTP_OK);
             }
             else
                 return response(vwUser::all()->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $mstUser = new vwUser();
             $mstUser->ErrorType = 2;
             $mstUser->ErrorMessage = $e->getMessage();
@@ -82,10 +92,11 @@ class UserControllerApi extends Controller
     public function UpdateUser(Request $request)
     {
         try {
-            if(mstUser::where('IDUser', $request->IDUser)->orwhere('NIK', $request->NIK)->count() > 0)
+            if(mstUser::where('NIK', $request->NIK)->where('IDUser', '!=', $request->IDUser)
+                ->count() > 0)
             {
                 $mstUser->ErrorType = 1;
-                $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
+                $mstUser->ErrorMessage = "NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
@@ -94,7 +105,12 @@ class UserControllerApi extends Controller
             $mstUser->Email = $request->Email;
             $mstUser->Password = bcrypt($request->Password);
             $mstUser->Status = $request->Status;
-            $mstUser->UpdatedBy = "Admin";
+            $mstUser->UpdatedBy = Auth::user()->IDUser;
+            /*Update Avatar
+             *
+             * Code di sini 
+             * 
+             */
             $mstUser->save();
             $mstUser->ErrorType = 0;
             return response($mstUser->jsonSerialize(), Response::HTTP_OK);

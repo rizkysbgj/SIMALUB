@@ -16,7 +16,7 @@ use App\trxTugas;
 use App\trxLapor;
 use App\vwTrxLaporan;
 use App\trxKajiUlang;
-
+use Auth;
 
 class TugasControllerApi extends Controller
 {
@@ -28,21 +28,21 @@ class TugasControllerApi extends Controller
             $mstTugas = $this->ChangeDateFormat($mstTugas);
             $mstProyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
             // //set default value
-            $mstTugas->IDKategori = 0;
-            $mstTugas->PIC = "Admin";
             $mstTugas->Status = "OK";
+            $mstTugas->IDPenanggungJawab = Auth::user()->IDUser;
             
             $count = mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1;
             
             $mstTugas->InisialTugas = $mstProyek->InisialProyek.'-'.(string)$count; 
-            $mstTugas->CreatedBy = "Admin";
-            $mstTugas->UpdatedBy = "Admin";
+            $mstTugas->CreatedBy = Auth::user()->IDUser;
+            $mstTugas->UpdatedBy = Auth::user()->IDUser;
 
             $mstTugas->save();
             $mstTugas->ErrorType = 0;
             return response($mstTugas->jsonSerialize(), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
+            $tugas = new mstTugas();
             $tugas->ErrorType = 2;
             $tugas->ErrorMessage = $e->getMessage(); 
             return $tugas;
@@ -56,7 +56,7 @@ class TugasControllerApi extends Controller
             $mstTugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
             return $mstTugas;
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $tugas->ErrorType = 2;
             $tugas->ErrorMessage = $e->getMessage(); 
             return $tugas;
@@ -74,7 +74,26 @@ class TugasControllerApi extends Controller
             return $tugasList;
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
+            $tugasList = new vwTugas();
+            $tugasList->ErrorType = 2;
+            $tugasList->ErrorMessage = $e->getMessage(); 
+            return $tugasList;
+            // return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function GetListDetailTugas($IDProyek)
+    {
+        try {
+            if($IDProyek != 0)
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('Status', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
+            else
+                $tugasList = vwTugas::where('Status', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
+            return $tugasList;
+                //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
+        }
+        catch (\Exception $e) {
             $tugasList = new vwTugas();
             $tugasList->ErrorType = 2;
             $tugasList->ErrorMessage = $e->getMessage(); 
@@ -88,7 +107,7 @@ class TugasControllerApi extends Controller
         try {
             $mstTugas = mstTugas::where('IDTugas', $request->IDTugas)->firstorfail();
             $mstTugas->fill($request->all());
-            $mstTugas->UpdatedBy = "Admin";
+            $mstTugas->UpdatedBy = Auth::user()->IDUser;
             $mstTugas = $this->ChangeDateFormat($mstTugas);
             $mstTugas->save();
             $mstTugas->ErrorType = 0;
@@ -96,7 +115,7 @@ class TugasControllerApi extends Controller
             return $mstTugas;
             //return response($mstTugas->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $tugasList = new mstTugas();
             $tugasList->ErrorType = 2;
             $tugasList->ErrorMessage = $e->getMessage(); 
@@ -110,13 +129,13 @@ class TugasControllerApi extends Controller
         try
         {
             $tugas = vwTugas::where('IDTugas', $IDTugas)->firstorfail();
-            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestone)->get();
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $tugas->IDMilestoneTugas)->get();
             $model = new vmtugas();
             $model->tugas = $tugas;
             $model->flow = $flow;
             return $model;
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             $model = new vmtugas();
             $model->ErrorType = 2;
@@ -164,11 +183,11 @@ class TugasControllerApi extends Controller
 
             //set value trxTugas
             $trxTugas->IDTugas = $request->IDTugas;
-            $trxTugas->PIC = $request->PIC;
+            $trxTugas->IDPenanggungJawab = $request->PIC;
             $trxTugas->Catatan = $request->Remark;
             $trxTugas->IDMilestoneTugas = $IDMilestoneNext;
-            $trxTugas->CreatedBy = "Admin";
-            $trxTugas->UpdatedBy = "Admin";
+            $trxTugas->CreatedBy = Auth::user()->IDUser;
+            $trxTugas->UpdatedBy = Auth::user()->IDUser;
             
             //ubah milestone
             if($request->Kode == "SELESAI")
@@ -179,7 +198,7 @@ class TugasControllerApi extends Controller
                 
                 if($request->hasFile('Attachment'))
                 {
-                    if($Attachment->getCLientMimeType() == "")
+                    // if($Attachment->getCLientMimeType() == "")
                     $Attachment = $request->file('Attachment');
                     $oldTrxTugas->Attachment = $Attachment->store('public/files');
                     $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
@@ -251,7 +270,7 @@ class TugasControllerApi extends Controller
             $trxTugas->ErrorType = 0;
             return response($trxTugas->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             $trxTugas = new trxTugas();
             $trxTugas->ErrorType = 2;
@@ -273,10 +292,10 @@ class TugasControllerApi extends Controller
                         $Attachment = $request->file('Attachment');
                         $trxLapor->Attachment = $Attachment->store('public/files');
                         $trxLapor->ContentType = $Attachment->getCLientMimeType();
-                        $trxLapor->FileName = $Attachment->getClientOriginalName();
+                        $trxLapor->NamaFile = $Attachment->getClientOriginalName();
                     }
             $trxLapor->Catatan = $request->Remark;
-            $trxLapor->Pelapor = "Admin";
+            $trxLapor->IDPelapor = Auth::user()->IDUser;
             $trxLapor->save();
             $trxLapor->ErrorType = 0;
             return $trxLapor;
@@ -431,9 +450,9 @@ class TugasControllerApi extends Controller
             //Update mstTugas
             $tugas = new mstTugas();
             $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
-            $tugas->IDMilestone = $IDMilestoneTugas;
-            $tugas->PIC = $PIC;
-            $tugas->UpdatedBy = "Admin";
+            $tugas->IDMilestoneTugas = $IDMilestoneTugas;
+            $tugas->IDPenanggungJawab = $PIC;
+            $tugas->UpdatedBy = Auth::user()->IDUser;
             
             if($IDMilestoneTugas == 2)
             {

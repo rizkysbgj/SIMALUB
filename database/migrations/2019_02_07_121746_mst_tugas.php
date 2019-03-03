@@ -18,17 +18,17 @@ class MstTugas extends Migration
             $table->string('InisialTugas',10)->unique();
             $table->string('NamaTugas');
             $table->string('DeskripsiTugas');
-            $table->integer('IDKategori');
+            // $table->integer('IDKategori');
             $table->integer('IDProyek');
-            $table->string('PIC');
-            $table->integer('IDMilestone');
+            $table->string('IDPenanggungJawab');
+            $table->integer('IDMilestoneTugas');
             $table->date('RencanaMulai');
             $table->date('RencanaSelesai');
             $table->date('RealitaMulai')->nullable();
             $table->date('RealitaSelesai')->nullable();
-            $table->string('Status');
+            $table->string('Status')->nullable();
             $table->string('CreatedBy');
-            $table->string('UpdatedBy');
+            $table->string('UpdatedBy')->nullable();
             $table->timestamps();
         });
     }

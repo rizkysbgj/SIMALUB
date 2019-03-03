@@ -9,17 +9,18 @@ use Carbon\Carbon;
 use Exception;
 use App\mstProyek;
 use App\vwProyek;
+use Auth;
 
 class ProyekControllerApi extends Controller
 {
     public function CreateProyek(Request $request)
     {
         try {
-            if(mstProyek::where('NamaProyek', $request->NamaProyek)->orwhere('InisialProyek', $request->InisialProyek)->count()==0)
+            if(mstProyek::where('NamaProyek', $request->NamaProyek)->where('IDProyek', '!=', $request->IDProyek)->count()==0)
             {
                 $mstProyek = new mstProyek();
                 $mstProyek->fill($request->all());
-                $mstProyek->CreatedBy = "Admin";
+                $mstProyek->CreatedBy = Auth::user()->IDUser;
                 $mstProyek = $this->ChangeDateFormat($mstProyek);
                 $mstProyek->save();
                 $mstProyek->ErrorType = 0;
@@ -28,7 +29,7 @@ class ProyekControllerApi extends Controller
             {
                 $mstProyek = new mstProyek();
                 $mstProyek->ErrorType = 1;
-                $mstProyek->ErrorMessage = "Nama atau inisial proyek sudah ada!";
+                $mstProyek->ErrorMessage = "Nama proyek sudah ada!";
             }
             
             return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
@@ -73,7 +74,7 @@ class ProyekControllerApi extends Controller
         try {
             $mstProyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
             $mstProyek->fill($request->all());
-            $mstProyek->UpdatedBy = "Admin";
+            $mstProyek->UpdatedBy = Auth::user()->IDUser;
             $mstProyek = $this->ChangeDateFormat($mstProyek);
             if(mstProyek::where('NamaProyek', $request->NamaProyek)->where('IDProyek', '!=' , $mstProyek->IDProyek)->count()>0)
             {

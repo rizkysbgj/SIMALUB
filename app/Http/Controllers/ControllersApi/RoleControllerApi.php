@@ -40,7 +40,7 @@ class RoleControllerApi extends Controller
         try {
             return response(mstrole::all()->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $mstRole = new mstrole();
             $mstRole->ErrorType = 2;
             $mstRole->ErrorMessage = $e->getMessage();
@@ -56,7 +56,7 @@ class RoleControllerApi extends Controller
             return $mstRole;
             //return response($mstRole->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $mstRole = new mstrole();
             $mstRole->ErrorType = 2;
             $mstRole->ErrorMessage = $e->getMessage();

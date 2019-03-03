@@ -13,11 +13,11 @@ class SubKontrakControllerApi extends Controller
         try {
             $mstSubKontrak = new mstSubKontrak();
             $mstSubKontrak->fill($request->all());
-            $mstSubKontrak->CreatedBy = "Admin";
+            $mstSubKontrak->CreatedBy = Auth::user()->IDUser;
             $mstSubKontrak->save();
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
@@ -32,7 +32,7 @@ class SubKontrakControllerApi extends Controller
             $mstSubKontrak = mstSubKontrak::where('IDSubKontrak', $IDSubKontrak)->firstorfail();
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
@@ -47,7 +47,7 @@ class SubKontrakControllerApi extends Controller
             $mstSubKontrakList = mstSubKontrak::all();
             return response($mstSubKontrakList->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
@@ -61,11 +61,11 @@ class SubKontrakControllerApi extends Controller
         try {
             $mstSubKontrak = mstSubKontrak::where('IDSubKontrak', $request->IDSubKontrak)->firstorfail();
             $mstSubKontrak->fill($request->all());
-            $mstSubKontrak->UpdatedBy = "Admin";
+            $mstSubKontrak->UpdatedBy = Auth::user()->IDUser;
             $mstSubKontrak->save();
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 

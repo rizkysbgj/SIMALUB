@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\mstRole;
 use App\Http\Controllers\ControllersApi\RoleControllerApi;
 use Illuminate\Http\Request;
+use Auth;
 
 class JabatanController extends Controller
 {

@@ -17,7 +17,7 @@ class TrxTugas extends Migration
             $table->increments('IDTrxTugas');
             $table->integer('IDTugas');
             $table->integer('IDMilestoneTugas');
-            $table->string('PIC');
+            $table->string('IDPenanggungJawab');
             $table->datetime('WaktuMulai')->nullable();
             $table->datetime('WaktuSelesai')->nullable();
             $table->string('Catatan')->nullable();
@@ -25,7 +25,7 @@ class TrxTugas extends Migration
             $table->string('ContentType')->nullable();
             $table->string('FileName')->nullable();
             $table->string('CreatedBy');
-            $table->string('UpdatedBy');
+            $table->string('UpdatedBy')->nullable();
             $table->timestamps();
         });
     }
