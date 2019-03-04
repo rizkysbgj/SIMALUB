@@ -106,6 +106,16 @@
                     </span>
                 </a>
             </li>
+            <!-- MODUL PinnedProject Administrasi -->
+            <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanpinnedProjectAdministrasi">
+                <!-- m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}} -->
+                <a href="{{ url('halamanpinnedProjectAdministrasi') }}" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-file"></i>
+                    <span class="m-menu__link-text">
+                        Pembuatan Sertifikat
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- END: Aside Menu -->

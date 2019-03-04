@@ -38,11 +38,6 @@ jQuery(document).ready(function () {
 		$("#sidebarShow").hide();
 		$("#minimizeTaskLeft").show();
 	});
-
-
-	// if (TaskID != -1) {
-	// 	Page.Init();
-	// }
 });
 
 var Ctrl = {
@@ -119,6 +114,13 @@ var Button = {
 					done = true;
 				});
 			}
+			else if(Kode == "KAJIULANG")
+			{
+				var IDTugas = $("#inptTaskID").val()
+				$("#submitKajiUlang").on("click", function () {
+					Modal.kajiUlang(IDTugas);
+				});
+			}
 			else {
 				$("#btnSubmit-" + Kode).on("click", function () {
 					var fileInput;
@@ -182,6 +184,70 @@ var Button = {
 					}
 				});
 			}
+		})
+	}
+}
+
+var Modal = {
+	kajiUlang:function(id){
+		$("#modalkajiUlang").modal({
+			backdrop: "static"
+		});
+		var btn = $("#submitKajiUlang");
+		btn.on("click", function(){
+			var params = {
+				IDTugas: id,
+				Metode:$("input[name='modalMetode']:checked").val(),
+				Peralatan:$("input[name='modalPeralatan']:checked").val(),
+				Personil:$("input[name='modalPersonil']:checked").val(),
+				BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
+				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
+				Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
+			};
+			btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+			
+			console.log(params)
+
+			$.ajax({
+				url: "/api/kajiulang/",
+				type: "PUT",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(params),
+				cache: false,
+			}).done(function (data, textStatus, jqXHR) {
+				$("#divStoryList").mDatatable("reload");
+				
+				$("input[name='modalMetode']").prop('checked', false);
+				$("input[name='modalPeralatan']").prop('checked', false);
+				$("input[name='modalPersonil']").prop('checked', false);
+				$("input[name='modalbahanKimia']").prop('checked', false);
+				$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+				$("input[name='modalKesimpulan']").prop('checked', false);
+	
+				$("#modalkajiUlang").modal("toggle");
+				var link = '/halamanpinnedProject/' + IDProyek;
+				
+				if (Common.CheckError.Object(data) == true)
+					Common.Alert.SuccessRoute("Kaji Ulang Berhasil", link);
+				else
+					Common.Alert.Warning(data.ErrorMessage);
+
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				Common.Alert.Error(errorThrown);
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			})
+		})
+		$("#btnClose").on("click", function(){
+			$("#divStoryList").mDatatable("reload");
+			
+			$("input[name='modalMetode']").prop('checked', false);
+			$("input[name='modalPeralatan']").prop('checked', false);
+			$("input[name='modalPersonil']").prop('checked', false);
+			$("input[name='modalbahanKimia']").prop('checked', false);
+			$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+			$("input[name='modalKesimpulan']").prop('checked', false);
 		})
 	}
 }
@@ -295,7 +361,7 @@ var GetData = {
 				Button.Init();
 				Ctrl.Select2();
 				// Summernote.Init();
-				// Table.Milestone(TaskID);
+				Table.Milestone(IDTugas);
 				// Table.Worklog(TaskID);
 				// Table.History(TaskID);
 
@@ -338,13 +404,13 @@ var Summernote = {
 };
 
 var Table = {
-	Milestone: function (TaskID) {
-		t = $("#divMilestoneList").mDatatable({
+	Milestone: function (IDTugas) {
+		t = $("#tabelmemoAnalisis").mDatatable({
 			data: {
 				type: "remote",
 				source: {
 					read: {
-						url: "/api/task/ListTransactionTask/" + TaskID,
+						url: "/api/memo/" + IDTugas,
 						method: "GET",
 						map: function (r) {
 							var e = r;
@@ -376,120 +442,25 @@ var Table = {
 			},
 			columns: [
 				{
-					field: "trxTaskID", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
+					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
 						if(t.Attachment != null)
-							var strBuilder = '<a href="/PinnedProject/Download/ ' + t.trxTaskID + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Attachment"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+							var strBuilder = '<a href="/PinnedProject/Download/ ' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
 				},
-				{ field: "TaskMilestone", title: "Milestone", textAlign: "center" },
-				{ field: "FullName", title: "Fullname", textAlign: "center" },
-				{ field: "ManHours", title: "Man Hours", textAlign: "center" },
+				{ field: "MilestoneTugas", title: "Milestone", textAlign: "center" },
+				{ field: "NamaLengkap", title: "Nama Lengkap", textAlign: "center" },
 				{
-					field: "StartDate", title: "Start Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.StartDate != null ? Common.Format.Date(t.StartDate) : "-"
+					field: "WaktuMulai", title: "Waktu Mulai", sortable: false, textAlign: "center", template: function (t) {
+						return t.WaktuMulai != null ? Common.Format.Date(t.WaktuMulai) : "-"
 					}
 				},
 				{
-					field: "EndDate", title: "End Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.EndDate != null ? Common.Format.Date(t.EndDate) : "-"
+					field: "WaktuSelesai", title: "Waktu Selesai", sortable: false, textAlign: "center", template: function (t) {
+						return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
 					}
 				},
-				{ field: "Remarks", className: 'dt-head-center', title: "Remark", textAlign: "center", width: 500 },
-			]
-		})
-	},
-	Worklog: function (TaskID) {
-		t = $("#divWorkLogList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/task/ListWorkLog/" + TaskID,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: false,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			columns: [
-				{ field: "FullName", title: "Full Name", width: 100, textAlign: "center" },
-				{
-					field: "Date", title: "Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.Date != null ? Common.Format.Date(t.Date) : "-"
-					},
-				},
-				{ field: "Duration", title: "Duration", textAlign: "center" },
-			]
-		})
-	},
-	History: function (TaskID) {
-		t = $("#divHistoryList").mDatatable({
-			data: {
-				type: "remote",
-				source: {
-					read: {
-						url: "/api/task/ListTransactionTaskLog/" + TaskID,
-						method: "GET",
-						map: function (r) {
-							var e = r;
-							return void 0 !== r.data && (e = r.data), e;
-						}
-					}
-				},
-				pageSize: 10,
-				saveState: {
-					cookie: false,
-					webstorage: true
-				},
-				serverPaging: false,
-				serverFiltering: false,
-				serverSorting: false
-			},
-			layout: {
-				scroll: false,
-				footer: false
-			},
-			sortable: true,
-			pagination: true,
-			toolbar: {
-				items: {
-					pagination: {
-						pageSizeSelect: [10, 20, 30, 50, 100]
-					}
-				}
-			},
-			columns: [
-				{ field: "Milestone", title: "Action", width: 100, textAlign: "center" },
-				{ field: "FullName", title: "Fullname", textAlign: "center" },
-				{
-					field: "CreatedDate", title: "Action Date", sortable: false, textAlign: "center", template: function (t) {
-						return t.CreatedDate != null ? Common.Format.Date(t.CreatedDate) : "-"
-					},
-				},
+				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 500 },
 			]
 		})
 	}

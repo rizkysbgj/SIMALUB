@@ -6,10 +6,17 @@ jQuery(document).ready(function () {
 
 
     $('#tbxConfirmNewPassword').on('keyup', function () {
-        if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) {
+        if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) 
+        {
+            var elemen = document.getElementById("btnEditStaff")
+            elemen.removeAttribute("disabled");
             $('#message').html('');
         } else
+        {
             $('#message').html('Password Tidak Sama').css('color', 'red');
+            var elemen = document.getElementById("btnEditStaff")
+            elemen.setAttribute("disabled", "disabled");
+        }
     });
 });
 

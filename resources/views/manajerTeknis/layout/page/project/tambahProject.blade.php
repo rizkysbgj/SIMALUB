@@ -106,21 +106,6 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Realita Selesai:
-                            </label>
-                            <div class="col-lg-4 col-md-9 col-sm-12">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxRealitaSelesai" readonly id="tbxRealitaSelesai" />
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="la la-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group m-form__group row">
-                            <label class="col-form-label col-lg-3 col-sm-12">
                                 Deskripsi Proyek:
                             </label>
                             <div class="col-lg-6">

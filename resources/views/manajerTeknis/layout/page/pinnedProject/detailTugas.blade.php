@@ -31,8 +31,7 @@
                     <!-- disini -->
                     @foreach ($mstTugasDetail['flow'] as $flow)
                     <!-- modal -->
-                        @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 2
-                        || ($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI") )
+                        @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI" )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -54,7 +53,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,7 +64,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
                                                     <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" rows="4" required></textarea>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}"
+                                                        rows="4" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,7 +80,182 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 2 )
+                            <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                {{ $flow['Aksi'] }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                    Lampirkan File :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                    Catatan <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
+                                                    <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}"
+                                                        rows="4" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Batal
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="btnSubmit-{{ $flow['Kode'] }}">
+                                                Kirim
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal hide fade" id="modalkajiUlang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Kaji Ulang
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-form">
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+                                                        Metode :
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
+                                                        <div class="m-radio-inline" style="margin-top: 8px;">
+                                                            <label class="m-radio">
+                                                                <input class="radiobtn" type="radio" name="modalMetode" value="Bisa">
+                                                                    Bisa
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalMetode" value="Tidak">
+                                                                    Tidak Bisa
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+                                                        Peralatan :
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPeralatan" !important>
+                                                        <div class="m-radio-inline" style="margin-top: 8px;">
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalPeralatan" value="Bisa">
+                                                                    Bisa
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalPeralatan" value="Tidak">
+                                                                    Tidak Bisa
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+                                                        Personil :
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPersonil" !important>
+                                                        <div class="m-radio-inline" style="margin-top: 8px;">
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalPersonil" value="Bisa">
+                                                                    Bisa
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalPersonil" value="Tidak">
+                                                                    Tidak Bisa
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+                                                        Bahan Kimia :
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalbahanKimia" !important>
+                                                        <div class="m-radio-inline" style="margin-top: 8px;">
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalbahanKimia" value="Bisa">
+                                                                    Bisa
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalbahanKimia" value="Tidak">
+                                                                    Tidak Bisa
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-form-label col-lg-5 col-sm-12 m--align-right" !important>
+                                                        Kondisi Akomodasi :
+                                                    </label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
+                                                        <div class="m-radio-inline" style="margin-top: 8px;">
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalkondisiAkomodasi" value="Bisa">
+                                                                    Bisa
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="modalkondisiAkomodasi" value="Tidak">
+                                                                    Tidak Bisa
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">
+                                                Batal
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="submitKajiUlang">
+                                                Kirim
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 3 )
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,7 +316,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,7 +327,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
                                                     <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" rows="4" required></textarea>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}"
+                                                        rows="4" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,8 +344,8 @@
                                 </div>
                             </div>
 
-                            <div class="modal hide fade" id="laporkan" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal hide fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -187,7 +365,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,7 +376,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
                                                     <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-LAPOR" rows="4" required></textarea>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-LAPOR"
+                                                        rows="4" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -282,7 +462,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile" style="margin-top: 5px">
+                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,7 +473,8 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
                                                     <!-- <textarea type="text" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" required></textarea> -->
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}" rows="4" required></textarea>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-{{ $flow['Kode'] }}"
+                                                        rows="4" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -310,8 +492,9 @@
 
                         @endif
 
-                        <!-- button -->
-                        @if( $mstTugasDetail['tugas']['IDMilestoneTugas'] != 5 && $mstTugasDetail['tugas']['IDMilestoneTugas'] != 8 )
+                    <!-- button -->
+                        @if( $mstTugasDetail['tugas']['IDMilestoneTugas'] != 2 &&
+                        $mstTugasDetail['tugas']['IDMilestoneTugas'] != 5 && $mstTugasDetail['tugas']['IDMilestoneTugas'] != 8 )
                             <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
                                 <span>
@@ -321,21 +504,32 @@
                                     </span>
                                 </span>
                             </a>
-                        
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8)
-                            @if ( $flow['Kode'] == 'SALAH')
-                                <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
-                                    style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2)
+                            @if($mstTugasDetail['tugas']['Status'] == "OK")
+                                <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="KAJIULANG"
+                                    style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#modalkajiUlang" disabled>
                                     <span>
-                                        <i class="la la-undo"></i>
+                                        <i class="la la-file-text"></i>
                                         <span>
-                                            {{ $flow['Aksi'] }}
+                                            Kaji Ulang
                                         </span>
                                     </span>
                                 </a>
                             @else
-                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
-                                    style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                                <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="KAJIULANG"
+                                    style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                                    <span>
+                                        <i class="la la-file-text"></i>
+                                        <span>
+                                            Sudah Dikaji Ulang
+                                        </span>
+                                    </span>
+                                </a>
+                            @endif
+                            @if($mstTugasDetail['tugas']['Status'] == "OK") 
+                                <a href="#" class="btn btn-outline-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                                    style="margin-left:10px; margin-right:10px" data-toggle="modal" disabled>
                                     <span>
                                         <i class="la la-info"></i>
                                         <span>
@@ -343,18 +537,7 @@
                                         </span>
                                     </span>
                                 </a>
-                            @endif
-
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 5)
-                            <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="LAPOR"
-                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#laporkan">
-                                <span>
-                                        <i class="la la-bullhorn"></i>
-                                        <span>
-                                            Laporkan
-                                        </span>
-                                    </span>
-                                </a>
+                            @else
                                 <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
                                     <span>
@@ -364,6 +547,49 @@
                                         </span>
                                     </span>
                                 </a>
+                            @endif
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8)
+                            @if ( $flow['Kode'] == 'SALAH')
+                            <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                                <span>
+                                    <i class="la la-undo"></i>
+                                    <span>
+                                        {{ $flow['Aksi'] }}
+                                    </span>
+                                </span>
+                            </a>
+                            @else
+                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                                <span>
+                                    <i class="la la-info"></i>
+                                    <span>
+                                        {{ $flow['Aksi'] }}
+                                    </span>
+                                </span>
+                            </a>
+                            @endif
+
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 5)
+                            <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="LAPOR"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#laporkan">
+                                <span>
+                                    <i class="la la-bullhorn"></i>
+                                    <span>
+                                        Laporkan
+                                    </span>
+                                </span>
+                            </a>
+                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                                <span>
+                                    <i class="la la-info"></i>
+                                    <span>
+                                        {{ $flow['Aksi'] }}
+                                    </span>
+                                </span>
+                            </a>
                         @endif
 
                     @endforeach
@@ -453,41 +679,21 @@
         <ul class="nav nav-pills nav-fill nav-pills--warning" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#m_tabs_5_1">
-                    Milestones
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#m_tabs_5_2">
-                    Work Log
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#m_tabs_5_3">
-                    History
+                    Memo Analisis
                 </a>
             </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
-                <div class="m_datatable" id="divMilestoneList">
+                <div class="m_datatable" id="tabelmemoAnalisis">
                     <!-- @include('manajerTeknis.layout.page.pinnedProject.detailTab') -->
-                </div>
-            </div>
-            <div class="tab-pane" id="m_tabs_5_2" role="tabpanel">
-                <div class="m_datatable" id="divWorkLogList">
-                    <!-- @*Tab Content*@ -->
-                </div>
-            </div>
-            <div class="tab-pane" id="m_tabs_5_3" role="tabpanel">
-                <div class="m_datatable" id="divHistoryList">
-                    <!-- @*Tab Content*@ -->
                 </div>
             </div>
         </div>
     </div>
-    
-<input type="hidden" id="inptTaskID" value="{{ $mstTugasDetail['tugas']['IDTugas'] }}" />
-<input type="hidden" id="inptProjectID" value="{{ $mstTugasDetail['tugas']['IDProyek'] }}" />
-<input type="hidden" id="inptMilestone" value="{{ $mstTugasDetail['tugas']['IDMilestoneTugas'] }}" />
-<input type="hidden" id="inptPICID" value="{{ $mstTugasDetail['tugas']['IDPenanggungJawab'] }}" />
+
+    <input type="hidden" id="inptTaskID" value="{{ $mstTugasDetail['tugas']['IDTugas'] }}" />
+    <input type="hidden" id="inptProjectID" value="{{ $mstTugasDetail['tugas']['IDProyek'] }}" />
+    <input type="hidden" id="inptMilestone" value="{{ $mstTugasDetail['tugas']['IDMilestoneTugas'] }}" />
+    <input type="hidden" id="inptPICID" value="{{ $mstTugasDetail['tugas']['IDPenanggungJawab'] }}" />
 </div>

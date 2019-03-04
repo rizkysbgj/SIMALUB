@@ -7,10 +7,17 @@ jQuery(document).ready(function () {
     // FileValidation.Init();
 
     $('#tbxConfirmNewPassword').on('keyup', function () {
-        if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) {
+        if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) 
+        {
+            var elemen = document.getElementById("btnAddUser")
+            elemen.removeAttribute("disabled");
             $('#message').html('');
         } else
+        {
             $('#message').html('Password Tidak Sama').css('color', 'red');
+            var elemen = document.getElementById("btnAddUser")
+            elemen.setAttribute("disabled", "disabled");
+        }
     });
 }); 
 

@@ -71,15 +71,15 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Password <strong style="color:red" ;>*</strong>:
+                                Password :
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" id="tbxNewPassword" name="tbxNewPassword" />
+                                <input type="password" class="form-control" id="tbxNewPassword" name="tbxNewPassword"/>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Konfirmasi Password <strong style="color:red" ;>*</strong>:
+                                Konfirmasi Password :
                             </label>
                             <div class="col-lg-6">
                                 <input type="password" class="form-control" id="tbxConfirmNewPassword" name="tbxConfirmNewPassword" />
@@ -104,7 +104,7 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Batal
                                     </button>
-                                    <button id="btnEditStaff" class="btn btn-primary">
+                                    <button id="btnEditStaff" class="btn btn-primary" >
                                         Edit
                                     </button>
                                 </div>

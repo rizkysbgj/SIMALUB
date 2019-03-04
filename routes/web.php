@@ -55,6 +55,12 @@
         Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
         Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
         
+        //Route Pinned Project
+        Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanPinnedProjectAdministrasi');
+        Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanPinnedProjectAdministrasi.proyekList');
+        Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanPinnedProjectAdministrasi.detailProyek');
+        
+
         // Route::get('/detailTugas', function () {
         //     return view('manajerTeknis.layout.page.pinnedProject.detailTugas');
         // });
