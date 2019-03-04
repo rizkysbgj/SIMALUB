@@ -17,6 +17,7 @@ use App\trxLapor;
 use App\vwTrxLaporan;
 use App\trxKajiUlang;
 use App\viewmodel\vmTugasAdministrasi;
+use App\vwTrxTugas;
 use Auth;
 use Storage;
 
@@ -310,11 +311,22 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            
+            $flow = new mstmilestoneflowtugas();
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
+            $IDMilestoneNext = $flow->IDMilestoneLanjut;
+
+            $listTugas = mstTugas::where('IDProyek', $IDProyek);
+            $listTugas->IDMilestoneTugas = $IDMilestoneNext;
+            $listTugas->save();
+            $listTugas->ErrorType = 0;
+            return $listTugas;
         }
         catch (\Exception $e)
         {
-
+            $listTugas = new mstTugas();
+            $listTugas->ErrorType = 2;
+            $listTugas->ErrorMessage = $e->getMessage();
+            return $listTugas;
         }
     }
 
@@ -338,13 +350,13 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $listTrxTugas = trxTugas::where('IDTugas', $IDTugas)->get();
+            $listTrxTugas = vwTrxTugas::where('IDTugas', $IDTugas)->get();
             $listTrxTugas->ErrorType = 0;
             return $listTrxTugas;
         }
         catch (\Exception $e)
         {
-            $listTrxTugas = new trxTugas();
+            $listTrxTugas = new vwTrxTugas();
             $listTrxTugas->ErrorType = 0;
             $listTrxTugas->ErrorMessage = $e->getMessage();
             return $listTrxTugas;
