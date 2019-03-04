@@ -292,14 +292,17 @@ class TugasControllerApi extends Controller
             $listTugas = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '9')->get();
             $vwTugas = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
             $tugasAdministrasi = new vmTugasAdministrasi();
-            $listTugas->ErrorType = 0;
-            return $listTugas;
+            $tugasAdministrasi->listTugas = $listTugas;
+            $tugasAdministrasi->detailProyek = $vwProyek;
+            $tugasAdministrasi->ErrorType = 0;
+            return $tugasAdministrasi;
         }
         catch (\Exception $e)
         {
-            $listTugas->ErrorType = 0;
-            $listTugas->ErrorMessage = $e->getMessage();
-            return $listTugas;
+            $tugasAdministrasi = new vmTugasAdministrasi();
+            $tugasAdministrasi->ErrorType = 0;
+            $tugasAdministrasi->ErrorMessage = $e->getMessage();
+            return $tugasAdministrasi;
         }
     }
 
@@ -307,16 +310,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $count = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '9')->count();
-            $vwProyek = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
-            if($vwProyek->TotalTugas == $count)
-            {
-                //bisa mulai admin
-            }
-            else
-            {
-                //tidak bisa
-            }
+            
         }
         catch (\Exception $e)
         {
@@ -337,6 +331,23 @@ class TugasControllerApi extends Controller
             $trxTugas->ErrorType = 2;
             $trxTugas->ErrorMessage = $e->getMessage();
             return $trxTugas;
+        }
+    }
+
+    public function GetListTrxTugas($IDTugas)
+    {
+        try
+        {
+            $listTrxTugas = trxTugas::where('IDTugas', $IDTugas)->get();
+            $listTrxTugas->ErrorType = 0;
+            return $listTrxTugas;
+        }
+        catch (\Exception $e)
+        {
+            $listTrxTugas = new trxTugas();
+            $listTrxTugas->ErrorType = 0;
+            $listTrxTugas->ErrorMessage = $e->getMessage();
+            return $listTrxTugas;
         }
     }
     #endregion
