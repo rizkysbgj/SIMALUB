@@ -25,6 +25,7 @@ use Storage;
 class TugasControllerApi extends Controller
 {
     #region Tugas
+    //Fungsi create tugas baru
     public function CreateTugas(Request $request)
     {
         try {
@@ -55,6 +56,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read tugas by IDTugas
     public function GetTugas($IDTugas)
     {
         try {
@@ -69,6 +71,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read tugas list by IDProyek
     public function GetListTugas($IDProyek)
     {
         try {
@@ -88,6 +91,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read detail tugas list by IDProyek
     public function GetListDetailTugas($IDProyek)
     {
         try {
@@ -107,6 +111,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi update tugas
     public function UpdateTugas(Request $request)
     {
         try {
@@ -129,6 +134,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read detail tugas by IDTugas
     public function GetDetailTugas($IDTugas)
     {
         try
@@ -150,6 +156,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi delete tugas by IDTugas
     public function DeleteTugas($IDTugas)
     {
         try
@@ -168,6 +175,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read tugas by Auth::user()->IDUser
     public function GetTugasSaya()
     {
         try {
@@ -186,6 +194,7 @@ class TugasControllerApi extends Controller
     #endregion
 
     #region Transaksi Tugas
+    //Fungsi flow tugas
     public function TugasTransaction(Request $request)
     {
         try
@@ -213,6 +222,13 @@ class TugasControllerApi extends Controller
             $trxTugas->UpdatedBy = Auth::user()->IDUser;
             
             //ubah milestone
+            if($IDMilestoneNow == 9)
+            {
+                $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
+                $trxTugas->ErrorType = 0;
+                return $trxTugas;
+            }
+
             if($request->Kode == "SELESAI")
             {
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->orderBy('IDTrxTugas', 'desc')->firstorfail();
@@ -303,15 +319,25 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read list tugas untuk administrasi by IDProyek
     public function AdministrasiGetListTugas($IDProyek)
     {
         try
-        {
-            $listTugas = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '9')->get();
+        {   
+            $listTugas = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '10')->get();
+            if($listTugas->count() > 0)
+            {
+                $flag = 'ok';
+            }
+            else
+            {
+                $flag = 'not';
+            }
             $vwTugas = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
             $tugasAdministrasi = new vmTugasAdministrasi();
             $tugasAdministrasi->listTugas = $listTugas;
             $tugasAdministrasi->detailProyek = $vwTugas;
+            $tugasAdministrasi->flag = $flag;
             $tugasAdministrasi->ErrorType = 0;
             return $tugasAdministrasi;
         }
@@ -324,6 +350,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi multiple flow tugas untuk administrasi by IDProyek
     public function AdministrasiTransaction($IDProyek)
     {
         try
@@ -347,6 +374,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read trx tugas list untuk administrasi by IDProyek
     public function AdministrasiGetListTrxTugas($IDProyek)
     {
         try
@@ -365,6 +393,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi download attachment by IDTrxTugas
     public function DownloadAttachment($IDTrxTugas)
     {
         try
@@ -381,6 +410,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read trx tugas list by IDTugas
     public function GetListTrxTugas($IDTugas)
     {
         try
@@ -400,6 +430,7 @@ class TugasControllerApi extends Controller
     #endregion
 
     #region Lapor Tugas
+    //Fungsi create laporan kendala tugas
     public function CreateLaporTugas(Request $request)
     {
         try
@@ -429,6 +460,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read trx laporan kendala tugas by IDProyek
     public function GetListTrxLaporanTugas($IDProyek)
     {
         try
@@ -447,6 +479,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read detail trx laporan kendala tugas by IDTrxLapor
     public function GetDetailTrxLaporanTugas($IDTrxLapor)
     {
         try
@@ -466,6 +499,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi delete laporan kendala tugas by IDTrxLapor
     public function DeleteLaporan($IDTrxLapor)
     {
         try
@@ -486,6 +520,7 @@ class TugasControllerApi extends Controller
     #endregion
 
     #region Kaji Ulang
+    //Fungsi create kaji ulang
     public function KajiUlang(Request $request)
     {
         try
@@ -525,6 +560,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi read kaji ulang list by IDProyek
     public function GetListKajiUlang($IDProyek)
     {
         try {
@@ -544,6 +580,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi delete kaji ulang by IDTrxKajiUlang
     public function DeleteKajiUlang($IDTrxKajiUlang)
     {
         try
@@ -564,6 +601,7 @@ class TugasControllerApi extends Controller
     #endregion
 
     #region private
+    //Fungsi update milestone tugas
     private function AddTransaction($IDTugas, $IDMilestoneTugas, $MilestoneAksi, $IDUser, $PIC)
     {
         try
@@ -600,6 +638,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi create trx tugas log
     private function CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser)
     {
         $trxTaskLog = new trxTugasLog();
@@ -618,6 +657,7 @@ class TugasControllerApi extends Controller
         }
     }
 
+    //Fungsi merubah format tanggal
     private function ChangeDateFormat($mstTugas)
     {
         $mstTugas->RencanaMulai = ($mstTugas->RencanaMulai != "") ? Carbon::parse($mstTugas->RencanaMulai)->format('Y-m-d') : $mstTugas->RencanaMulai;
@@ -627,6 +667,7 @@ class TugasControllerApi extends Controller
         return $mstTugas;
     }
 
+    //Fungsi upload file
     private function AttachmentUpload($Attachment) 
     {
         return true;

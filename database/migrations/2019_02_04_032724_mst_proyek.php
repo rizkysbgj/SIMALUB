@@ -25,6 +25,7 @@ class MstProyek extends Migration
             $table->dateTime('RealitaSelesai')->nullable();
             $table->string('DeskripsiProyek');
             $table->string('SponsorProyek');
+            $table->integer('SiapBuatSertifikat')->nullable();
             $table->string('CreatedBy');
             $table->string('UpdatedBy')->nullable();
             $table->timestamps();

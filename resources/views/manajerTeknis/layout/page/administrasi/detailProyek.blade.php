@@ -6,13 +6,13 @@
                 <h3 class="m-portlet__head-text">
                     {{ $mstProyekDetail['detailProyek']['NamaProyek'] }}
                     <small>
-                        {{ $mstProyekDetail['detailProyek']['InisialProyek'] }}
+                        {{$mstProyekDetail['detailProyek']['InisialProyek']}}
+                        <!-- {{ $mstProyekDetail['detailProyek']['InisialProyek'] }} -->
                     </small>
                 </h3>
             </div>
         </div>
     </div>
-
 
     <div class="m-portlet__body" style="padding-top: 0px;">
         <div class="form-group m-form__group">
@@ -29,16 +29,37 @@
                     </a>
                     <!-- looping dan kondisi untuk modal dan button -->
                     <!-- disini -->
-                    <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
-                        style="margin-left:10px; margin-right:10px" data-toggle="modal">
-                        <span>
-                            <i class="la la-info"></i>
+                    @if($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 1)
+                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
                             <span>
-                                Mulai Buat Sertifikat
+                                <i class="la la-info"></i>
+                                <span>
+                                    Mulai Buat Sertifikat
+                                </span>
                             </span>
-                        </span>
-                    </a>
-                
+                        </a>
+                    @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() == $mstProyekDetail['detailProyek']['TotalTugas'])
+                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                            <span>
+                                <i class="la la-info"></i>
+                                <span>
+                                    Selesai Buat Sertifikat
+                                </span>
+                            </span>
+                        </a>
+                    @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() != $mstProyekDetail['detailProyek']['TotalTugas'])
+                        <a href="#" class="btn btn-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                            <span>
+                                <i class="la la-info"></i>
+                                <span>
+                                    Selesai Buat Sertifikat
+                                </span>
+                            </span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
