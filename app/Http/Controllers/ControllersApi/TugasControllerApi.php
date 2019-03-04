@@ -18,6 +18,7 @@ use App\vwTrxLaporan;
 use App\trxKajiUlang;
 use App\viewmodel\vmTugasAdministrasi;
 use App\vwTrxTugas;
+use App\vwProyek;
 use Auth;
 use Storage;
 
@@ -166,6 +167,22 @@ class TugasControllerApi extends Controller
             return $tugasList;
         }
     }
+
+    public function GetTugasSaya()
+    {
+        try {
+            $tugasList = vwTugas::where('IDPenanggungJawab', Auth::user()->IDUser);
+            $tugasList->ErrorType = 0;
+            return $tugasList;
+        }
+        catch (\Exception $e) {
+            $tugasList = new vwTugas();
+            $tugasList->ErrorType = 2;
+            $tugasList->ErrorMessage = $e->getMessage(); 
+            return $tugasList;
+            // return response()->json(['error' => $e->getMessage()]);
+        }
+    }
     #endregion
 
     #region Transaksi Tugas
@@ -294,7 +311,7 @@ class TugasControllerApi extends Controller
             $vwTugas = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
             $tugasAdministrasi = new vmTugasAdministrasi();
             $tugasAdministrasi->listTugas = $listTugas;
-            $tugasAdministrasi->detailProyek = $vwProyek;
+            $tugasAdministrasi->detailProyek = $vwTugas;
             $tugasAdministrasi->ErrorType = 0;
             return $tugasAdministrasi;
         }
@@ -327,6 +344,24 @@ class TugasControllerApi extends Controller
             $listTugas->ErrorType = 2;
             $listTugas->ErrorMessage = $e->getMessage();
             return $listTugas;
+        }
+    }
+
+    public function AdministrasiGetListTrxTugas($IDProyek)
+    {
+        try
+        {
+            $listTrxTugas = vwTrxTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', "8")
+                ->orderBy('IDTrxTugas', 'asc')->get();
+            $listTrxTugas->ErrorType = 0;
+            return $listTrxTugas;
+        }
+        catch (\Exception $e)
+        {
+            $listTrxTugas = new vwTrxTugas();
+            $listTrxTugas->ErrorType = 0;
+            $listTrxTugas->ErrorMessage = $e->getMessage();
+            return $listTrxTugas;
         }
     }
 

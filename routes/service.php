@@ -42,6 +42,9 @@ Route::delete('tugas/{IDTugas}', 'ControllersApi\TugasControllerApi@DeleteTugas'
 
 Route::get('memo/{IDTugas}', 'ControllersApi\TugasControllerApi@GetListTrxTugas');
 
+Route::get('tugas/administrasi/list/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiGetListTugas');
+Route::put('tugas/administrasi/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiTransaction');
+
 Route::post('subkontrak', 'ControllersApi\SubKontrakControllerApi@CreateSubKontrak');
 Route::get('subkontrak', 'ControllersApi\SubKontrakControllerApi@GetListSubKontrak');
 Route::get('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@GetSubKontrak');

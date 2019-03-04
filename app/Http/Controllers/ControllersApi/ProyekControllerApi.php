@@ -59,7 +59,10 @@ class ProyekControllerApi extends Controller
     public function GetListProyek()
     {
         try {
-            return response(vwProyek::all()->jsonSerialize(), Response::HTTP_OK);
+            $listProyek = vwProyek::all();
+            $listProyek->ErrorType = 0;
+            return $listProyek;
+            // return response(vwProyek::all()->jsonSerialize(), Response::HTTP_OK);
         }
         catch (\Exception $e) {
             $mstProyek = new mstProyek();
