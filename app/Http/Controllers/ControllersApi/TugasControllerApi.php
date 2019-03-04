@@ -16,10 +16,13 @@ use App\trxTugas;
 use App\trxLapor;
 use App\vwTrxLaporan;
 use App\trxKajiUlang;
+use App\viewmodel\vmTugasAdministrasi;
 use Auth;
+use Storage;
 
 class TugasControllerApi extends Controller
 {
+    #region Tugas
     public function CreateTugas(Request $request)
     {
         try {
@@ -162,7 +165,9 @@ class TugasControllerApi extends Controller
             return $tugasList;
         }
     }
+    #endregion
 
+    #region Transaksi Tugas
     public function TugasTransaction(Request $request)
     {
         try
@@ -280,6 +285,63 @@ class TugasControllerApi extends Controller
         }
     }
 
+    public function AdministrasiGetListTugas($IDProyek)
+    {
+        try
+        {
+            $listTugas = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '9')->get();
+            $vwTugas = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
+            $tugasAdministrasi = new vmTugasAdministrasi();
+            $listTugas->ErrorType = 0;
+            return $listTugas;
+        }
+        catch (\Exception $e)
+        {
+            $listTugas->ErrorType = 0;
+            $listTugas->ErrorMessage = $e->getMessage();
+            return $listTugas;
+        }
+    }
+
+    public function AdministrasiTransaction($IDProyek)
+    {
+        try
+        {
+            $count = vwTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', '9')->count();
+            $vwProyek = vwProyek::where('IDProyek', $IDProyek)->firstorfail();
+            if($vwProyek->TotalTugas == $count)
+            {
+                //bisa mulai admin
+            }
+            else
+            {
+                //tidak bisa
+            }
+        }
+        catch (\Exception $e)
+        {
+
+        }
+    }
+
+    public function DownloadAttachment($IDTrxTugas)
+    {
+        try
+        {
+            $trxTugas = trxTugas::where('IDTrxTugas', $IDTrxTugas)->firstorfail();
+            return Storage::download($trxTugas->Attachment, $trxTugas->NamaFile);
+        }
+        catch(\Exception $e)
+        {
+            $trxTugas = new trxTugas();
+            $trxTugas->ErrorType = 2;
+            $trxTugas->ErrorMessage = $e->getMessage();
+            return $trxTugas;
+        }
+    }
+    #endregion
+
+    #region Lapor Tugas
     public function CreateLaporTugas(Request $request)
     {
         try
@@ -363,7 +425,9 @@ class TugasControllerApi extends Controller
             return $laporan;
         }
     }
+    #endregion
 
+    #region Kaji Ulang
     public function KajiUlang(Request $request)
     {
         try
@@ -439,7 +503,9 @@ class TugasControllerApi extends Controller
             return $kajiulang;
         }
     }
+    #endregion
 
+    #region private
     private function AddTransaction($IDTugas, $IDMilestoneTugas, $MilestoneAksi, $IDUser, $PIC)
     {
         try
@@ -507,4 +573,5 @@ class TugasControllerApi extends Controller
     {
         return true;
     }
+    #endregion
 }
