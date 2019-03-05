@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 02:39 AM
+-- Generation Time: Mar 05, 2019 at 03:15 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -55,7 +55,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2019_02_25_152149_trx_lapor', 3),
 (15, '2019_02_25_152256_vw_trx_lapor', 4),
 (16, '2019_02_26_084412_trx_kaji_ulang', 4),
-(17, '2019_03_03_152023_vw_trx_tugas', 5);
+(17, '2019_03_03_152023_vw_trx_tugas', 5),
+(18, '2019_02_12_085354_vw_proyek', 6),
+(19, '2019_02_12_085355_vw_proyek', 7),
+(20, '2019_03_03_152024_vw_trx_tugas', 8),
+(21, '2019_02_12_112260_vw_tugas', 9);
 
 -- --------------------------------------------------------
 
@@ -146,6 +150,7 @@ CREATE TABLE `mstproyek` (
   `RealitaSelesai` datetime DEFAULT NULL,
   `DeskripsiProyek` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `SponsorProyek` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SiapBuatSertifikat` int(11) DEFAULT NULL,
   `CreatedBy` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `UpdatedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -156,8 +161,8 @@ CREATE TABLE `mstproyek` (
 -- Dumping data for table `mstproyek`
 --
 
-INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'pengujian sistem simalub tahap 1', 'sim', 'rudi_heryanto', 'Aktif', 1, '2019-03-03 00:00:00', '2019-03-04 00:00:00', NULL, 'pengujian simalub oleh dev', 'biofarmaka ipb', 'admin', 'admin', '2019-03-03 09:31:41', '2019-03-03 09:33:19');
+INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
+(1, 'pengujian sistem simalub tahap 1', 'sim', 'rudi_heryanto', 'Aktif', 1, '2019-03-03 00:00:00', '2019-03-04 00:00:00', NULL, 'pengujian simalub oleh dev', 'biofarmaka ipb', 1, 'admin', 'admin', '2019-03-03 09:31:41', '2019-03-03 09:33:19');
 
 -- --------------------------------------------------------
 
@@ -229,8 +234,9 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `Status`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'sim-1', 'pengujian fungsi crud iterasi 1', 'pengujian fungsi crud tiap modul pada sistem simalub', 1, 'salinah_biofarmaka', 9, '2019-03-03', '2019-03-04', '2019-03-03', NULL, 'Bisa', 'admin', 'admin', '2019-03-03 09:52:05', '2019-03-03 11:23:10'),
-(2, 'sim-2', 'Pengujian CRUD Iterasi 2', 'pengujian fungsionalitas sistem iterasi 2', 1, 'admin', 2, '2019-03-05', '2019-03-05', '2019-03-03', NULL, 'Tidak', 'admin', 'admin', '2019-03-03 11:24:07', '2019-03-03 11:25:20');
+(1, 'sim-1', 'pengujian fungsi crud iterasi 1', 'pengujian fungsi crud tiap modul pada sistem simalub', 1, 'salinah_biofarmaka', 10, '2019-03-03', '2019-03-04', '2019-03-03', NULL, 'Bisa', 'admin', 'admin', '2019-03-03 09:52:05', '2019-03-03 11:23:10'),
+(2, 'sim-2', 'Pengujian CRUD Iterasi 2', 'pengujian fungsionalitas sistem iterasi 2', 1, 'admin', 2, '2019-03-05', '2019-03-05', '2019-03-03', NULL, 'Tidak', 'admin', 'admin', '2019-03-03 11:24:07', '2019-03-03 11:25:20'),
+(3, 'sim-3', 'Test', 'test', 1, 'admin', 1, '2019-03-04', '2019-03-05', NULL, NULL, 'OK', 'admin', 'admin', '2019-03-04 07:58:11', '2019-03-04 07:58:11');
 
 -- --------------------------------------------------------
 
@@ -263,7 +269,7 @@ INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, 
 (2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', NULL, '2019-03-03 09:12:22', '2019-03-03 09:15:53'),
 (3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', NULL, NULL, '2019-03-03 09:25:26', '2019-03-03 09:25:26'),
 (4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, NULL, '2019-03-03 11:10:41', '2019-03-03 11:10:41'),
-(5, 'salinah_biofarmaka', 'SBI', 'Salinah', 5, 'salinah@ipb.ac.id', '$2y$10$vCwwrFCkZXCglB2zn9ds5.mUy2U4ouL5ujILCbp/XZYG/i3t6l/Z.', 'Aktif', 'admin', NULL, NULL, '2019-03-03 11:19:13', '2019-03-03 11:19:13');
+(5, 'salinah_biofarmaka', 'SBI', 'Salinah', 5, 'salinah@ipb.ac.id', '$2y$10$NdSrH7ws/Y6hp.PZUi8wPeQ3XhZ6Eo37I4h976ejXK0rl.ao2kgBi', 'Aktif', 'admin', 'admin', NULL, '2019-03-03 11:19:13', '2019-03-04 04:06:00');
 
 -- --------------------------------------------------------
 
@@ -383,6 +389,7 @@ CREATE TABLE `vwproyek` (
 ,`RencanaSelesai` datetime
 ,`RealitaSelesai` datetime
 ,`TotalTugas` bigint(21)
+,`SiapBuatSertifikat` int(11)
 );
 
 -- --------------------------------------------------------
@@ -414,6 +421,7 @@ CREATE TABLE `vwtrxlapor` (
 CREATE TABLE `vwtrxtugas` (
 `IDTrxTugas` int(10) unsigned
 ,`IDTugas` int(11)
+,`NamaTugas` varchar(255)
 ,`NamaLengkap` varchar(255)
 ,`MilestoneTugas` varchar(255)
 ,`WaktuMulai` datetime
@@ -469,7 +477,7 @@ CREATE TABLE `vwuser` (
 --
 DROP TABLE IF EXISTS `vwproyek`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai`,(select count(`mt`.`IDTugas`) from `msttugas` `mt` where ((`mt`.`IDProyek` = `mp`.`IDProyek`) and (`mt`.`Status` <> 'Tidak'))) AS `TotalTugas` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwproyek`  AS  select `mp`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mp`.`InisialProyek` AS `InisialProyek`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mp`.`TanggalMulai` AS `TanggalMulai`,`mp`.`RencanaSelesai` AS `RencanaSelesai`,`mp`.`RealitaSelesai` AS `RealitaSelesai`,(select count(`mt`.`IDTugas`) from `msttugas` `mt` where ((`mt`.`IDProyek` = `mp`.`IDProyek`) and (`mt`.`Status` <> 'Tidak'))) AS `TotalTugas`,`mp`.`SiapBuatSertifikat` AS `SiapBuatSertifikat` from (`mstproyek` `mp` left join `mstuser` `mu` on((`mp`.`PenanggungJawab` = `mu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -487,7 +495,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtrxtugas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxtugas`  AS  select `tt`.`IDTrxTugas` AS `IDTrxTugas`,`tt`.`IDTugas` AS `IDTugas`,`mu`.`NamaLengkap` AS `NamaLengkap`,`mmt`.`MilestoneTugas` AS `MilestoneTugas`,`tt`.`WaktuMulai` AS `WaktuMulai`,`tt`.`WaktuSelesai` AS `WaktuSelesai`,`tt`.`Catatan` AS `Catatan`,`tt`.`Attachment` AS `Attachment` from ((`trxtugas` `tt` left join `mstuser` `mu` on((`tt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`tt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxtugas`  AS  select `tt`.`IDTrxTugas` AS `IDTrxTugas`,`tt`.`IDTugas` AS `IDTugas`,`mt`.`NamaTugas` AS `NamaTugas`,`mu`.`NamaLengkap` AS `NamaLengkap`,`mmt`.`MilestoneTugas` AS `MilestoneTugas`,`tt`.`WaktuMulai` AS `WaktuMulai`,`tt`.`WaktuSelesai` AS `WaktuSelesai`,`tt`.`Catatan` AS `Catatan`,`tt`.`Attachment` AS `Attachment` from (((`trxtugas` `tt` left join `mstuser` `mu` on((`tt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`tt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) left join `msttugas` `mt` on((`tt`.`IDTugas` = `mt`.`IDTugas`))) ;
 
 -- --------------------------------------------------------
 
@@ -601,7 +609,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -643,7 +651,7 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mstuser`

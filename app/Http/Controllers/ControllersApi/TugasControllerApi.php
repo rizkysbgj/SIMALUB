@@ -355,6 +355,19 @@ class TugasControllerApi extends Controller
     {
         try
         {
+            $proyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
+            if($proyek->SiapBuatSertifikat == '1')
+            {
+                $proyek->SiapBuatSertifikat == '2';
+                $proyek->save();
+                $proyek->ErrorType = 0;
+                return $proyek;
+            }
+            else if($proyek->SiapBuatSertifikat == '2')
+            {
+                $proyek->SiapBuatSertifikat = '3';
+                $proyek->save();
+            }
             $flow = new mstmilestoneflowtugas();
             $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
             $IDMilestoneNext = $flow->IDMilestoneLanjut;
