@@ -204,8 +204,10 @@ class TugasControllerApi extends Controller
             $trxTugas = new trxTugas();
 
             //get flow milestone
-            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
-            
+            if($request->IDMilestoneTugas != 9)
+                $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
+            else
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->firstorfail();
             //set current & next milestone
             $IDMilestoneNow = $request->IDMilestoneTugas;
             $IDMilestoneNext = $flow->IDMilestoneLanjut;
@@ -226,6 +228,7 @@ class TugasControllerApi extends Controller
             {
                 $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
                 $trxTugas->ErrorType = 0;
+                $trxTugas->IDProyek = $request->IDProyek;
                 return $trxTugas;
             }
 
@@ -358,7 +361,7 @@ class TugasControllerApi extends Controller
             $proyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
             if($proyek->SiapBuatSertifikat == '1')
             {
-                $proyek->SiapBuatSertifikat == '2';
+                $proyek->SiapBuatSertifikat = '2';
                 $proyek->save();
                 $proyek->ErrorType = 0;
                 return $proyek;
@@ -636,6 +639,15 @@ class TugasControllerApi extends Controller
             else if($IDMilestoneTugas == 11)
             {
                 $tugas->RealitaSelesai = Carbon::now()->toDateString();
+            }
+            else if($IDMilestoneTugas == 10)
+            {
+                $proyek = mstProyek::where('IDProyek', $tugas->IDProyek)->firstorfail();
+                if($proyek->SiapBuatSertifikat == null)
+                {
+                    $proyek->SiapBuatSertifikat = 1;
+                    $proyek->save();
+                }
             }
             $tugas->save();
             return "Sukses";

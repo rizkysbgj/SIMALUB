@@ -30,7 +30,7 @@
                     <!-- looping dan kondisi untuk modal dan button -->
                     <!-- disini -->
                     @if($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 1)
-                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="MULAI"
                             style="margin-left:10px; margin-right:10px" data-toggle="modal">
                             <span>
                                 <i class="la la-info"></i>
@@ -177,4 +177,6 @@
         </div>
     </div>
 
+    <input type="hidden" id="inptProjectID" value="{{ $mstProyekDetail['detailProyek']['IDProyek'] }}" />
+    
 </div>
