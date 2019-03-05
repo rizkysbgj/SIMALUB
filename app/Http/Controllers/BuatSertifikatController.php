@@ -13,11 +13,11 @@ class BuatSertifikatController extends Controller
     Public function indexPinnedProjectAdministrasi()
     {
         // $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
-        // $TugasControllerApi = new TugasControllerApi();
-        // $ListTugas = $TugasControllerApi->GetListDetailTugas($IDProyek);
+        // $ProyekControllerApi = new ProyekControllerApi();
+        // $ListProyek = $ProyekControllerApi->GetListDetailTugas($IDProyek);
         // $IDTugas = 0;
-        // if(count($ListTugas) > 0)
-        //     $IDTugas = $ListTugas[0]->IDTugas;
+        // if(count($ListProyek) > 0)
+        //     $IDTugas = $ListProyek[0]->IDTugas;
         return view('manajerTeknis.layout.page.administrasi.halamanpinnedProjectAdministrasi');
     }
     
