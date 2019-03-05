@@ -34,12 +34,15 @@
 								</span>
 							</div>
 						</div>
-						<span class="m-widget2__user-name">
-							<a class="m-widget2__link" style="padding-left: 35px;">
-								<!-- @Html.DisplayFor(model => task.TaskName) -->
+						<span></span>
+						<div class="m-widget2__checkbox">
+							<!-- @*UNTUK JARAK ANTARA WARNA DAN TULISAN*@ -->
+						</div>
+						<div class="m-widget2__desc">
+							<span class="m-widget2__user-name">
 								{{ $mstTugas['NamaTugas'] }} 
-							</a>
-						</span>
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>

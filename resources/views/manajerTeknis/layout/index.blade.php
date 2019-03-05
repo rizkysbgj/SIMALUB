@@ -3,7 +3,6 @@
 <!-- begin::Head -->
 @include('manajerTeknis.layout.partials._head')
 
-@include('manajerTeknis.layout.partials._scripts')
 <!-- end::Head -->
 
 <!-- begin::body -->

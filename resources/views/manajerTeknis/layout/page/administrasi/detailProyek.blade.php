@@ -40,6 +40,15 @@
                             </span>
                         </a>
                     @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() == $mstProyekDetail['detailProyek']['TotalTugas'])
+                        <a href="#" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                            <span>
+                                <i class="la la-download"></i>
+                                <span>
+                                    Download Borang
+                                </span>
+                            </span>
+                        </a>
                         <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
                             style="margin-left:10px; margin-right:10px" data-toggle="modal">
                             <span>
@@ -50,6 +59,15 @@
                             </span>
                         </a>
                     @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() != $mstProyekDetail['detailProyek']['TotalTugas'])
+                        <a href="#" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                            <span>
+                                <i class="la la-download"></i>
+                                <span>
+                                    Download Borang
+                                </span>
+                            </span>
+                        </a>
                         <a href="#" class="btn btn-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
                             style="margin-left:10px; margin-right:10px" data-toggle="modal">
                             <span>

@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Penanggung Jawab <strong style="color:red" ;>*</strong>:
+                                Penanggung Jawab<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
                                 <select class="form-control  m-select2" id="slsProjectManager" required></select>
