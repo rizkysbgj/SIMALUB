@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Vwproyek extends Migration
+class VwProyek extends Migration
 {
     /**
      * Run the migrations.
@@ -47,7 +47,8 @@ SELECT
     mp.`TanggalMulai`,
     mp.`RencanaSelesai`,
     mp.`RealitaSelesai`,
-    (SELECT COUNT(`IDTugas`) FROM `mstTugas` AS mt WHERE mt.`IDProyek` = mp.`IDProyek` AND mt.`Status` <> 'Tidak' ) AS `TotalTugas`
+    (SELECT COUNT(`IDTugas`) FROM `mstTugas` AS mt WHERE mt.`IDProyek` = mp.`IDProyek` AND mt.`Status` <> 'Tidak' ) AS `TotalTugas`,
+    mp.`SiapBuatSertifikat`
     FROM `mstproyek` as mp
     LEFT JOIN `mstuser` as mu ON mp.`PenanggungJawab` = mu.`IDUser`;
 SQL;

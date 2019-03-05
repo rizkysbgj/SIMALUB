@@ -72,6 +72,23 @@ class ProyekControllerApi extends Controller
         }
     }
 
+    public function GetListProyekAdministrasi()
+    {
+        try
+        {
+            $listProyek = vwProyek::where('SiapBuatSertifikat', 1)->get();
+            $listProyek->ErrorType = 0;
+            return $listProyek;
+        }
+        catch (\Exception $e)
+        {
+            $listProyek = new vwProyek();
+            $listProyek->ErrorType = 2;
+            $listProyek->ErrorMessage = $e->getMessage();
+            return $listProyek;
+        }
+    }
+
     public function UpdateProyek(Request $request)
     {
         try {

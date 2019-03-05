@@ -24,7 +24,7 @@ class BuatSertifikatController extends Controller
     public function proyekList()
     {
         $ProyekControllerApi = new ProyekControllerApi();
-        $mstProyekList = $ProyekControllerApi->GetListProyek();
+        $mstProyekList = $ProyekControllerApi->GetListProyekAdministrasi();
         return view('manajerTeknis.layout.page.administrasi.showProyek')->with('mstProyekList', $mstProyekList);
     }
 
