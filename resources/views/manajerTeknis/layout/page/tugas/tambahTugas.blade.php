@@ -47,6 +47,14 @@
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                Inisial Tugas<strong style="color:red" ;>*</strong>:
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control m-input" maxlength="5" name="tbxTaskInitial" id="tbxTaskInitial" required />
+                            </div>
+                        </div>
+						<div class="form-group m-form__group row">
 							<label class="col-form-label col-lg-3 col-sm-12">
 								Deskripsi Tugas <strong style="color:red" ;>*</strong>:
 							</label>

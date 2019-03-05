@@ -56,9 +56,9 @@
         Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
         
         //Route Pinned Project Administrasi
-        Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanPinnedProjectAdministrasi');
-        Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanPinnedProjectAdministrasi.proyekList');
-        Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanPinnedProjectAdministrasi.detailProyek');
+        Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanpinnedProjectAdministrasi');
+        Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanpinnedProjectAdministrasi.proyekList');
+        Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanpinnedProjectAdministrasi.detailProyek');
         
 
         // Route::get('/detailTugas', function () {

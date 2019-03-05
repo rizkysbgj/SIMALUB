@@ -54,7 +54,7 @@ var Ctrl = {
 		}).done(function (data, textStatus, jqXHR) {
 			$("#slsUser").html("<option></option>");
 			$.each(data, function (i, item) {
-				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
+				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + ", Total Pekerjaan : " + item.TotalPekerjaan +"</option>");
 			})
 			$("#slsUser").select2({ placeholder: "Pilih Analis/Penyelia" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
