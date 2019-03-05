@@ -63,3 +63,6 @@ Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKaj
 Route::delete('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@DeleteKajiUlang');
 
 Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadAttachment');
+Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
+
+Route::get('export-docx', 'HelpersController@exportdocx');

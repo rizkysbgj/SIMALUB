@@ -39,4 +39,12 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new MBence\OpenTBSBundle\OpenTBSBundle(),
+        );
+    }
 }

@@ -254,6 +254,7 @@ class TugasControllerApi extends Controller
                 if($request->Kode == "SALAH")
                 {
                     $IDMilestoneNext = $IDMilestoneNow;
+                    $trxTugas->Catatan = "";
                 }
 
                 $count = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->count();
