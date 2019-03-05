@@ -489,23 +489,47 @@
                                     </div>
                                 </div>
                             </div>
-
+                        @elseif ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 9 )
+                            <div class="modal hide fade" id="pilihadministrasi" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Serahkan ke Administrasi
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                    Pilih Administrasi <strong style="color:red" ;>*</strong> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12 m--align-left" !important style="padding-left: 0px;">
+                                                    <select class="form-control m-select2" style="width: 568px;" id="slsAdministrasi">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Batal
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="btnSubmit-PILIHADMINISTRASI">
+                                                Kirim
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
 
                     <!-- button -->
-                        @if( $mstTugasDetail['tugas']['IDMilestoneTugas'] != 2 &&
-                        $mstTugasDetail['tugas']['IDMilestoneTugas'] != 5 && $mstTugasDetail['tugas']['IDMilestoneTugas'] != 8 )
-                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
-                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
-                                <span>
-                                    <i class="la la-info"></i>
-                                    <span>
-                                        {{ $flow['Aksi'] }}
-                                    </span>
-                                </span>
-                            </a>
-
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2)
+                        @if($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2)
                             @if($mstTugasDetail['tugas']['Status'] == "OK")
                                 <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="KAJIULANG"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#modalkajiUlang" disabled>
@@ -581,6 +605,36 @@
                                     </span>
                                 </span>
                             </a>
+                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
+                                <span>
+                                    <i class="la la-info"></i>
+                                    <span>
+                                        {{ $flow['Aksi'] }}
+                                    </span>
+                                </span>
+                            </a>
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 9)
+                            <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="PILIHADMINISTRASI"
+                                style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#pilihadministrasi">
+                                <span>
+                                    <i class="la la-info"></i>
+                                    <span>
+                                        Serahkan ke Administrasi
+                                    </span>
+                                </span>
+                            </a>
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 10 || $mstTugasDetail['tugas']['IDMilestoneTugas'] == 11)
+                            <a href="#" class="btn btn-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="disable"
+                                style="margin-left:10px; margin-right:10px">
+                                <span>
+                                    <i class="la la-info"></i>
+                                    <span>
+                                        {{ $flow['Aksi'] }}
+                                    </span>
+                                </span>
+                            </a>
+                        @else
                             <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
                                 <span>

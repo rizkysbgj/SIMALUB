@@ -56,7 +56,26 @@ var Ctrl = {
 			$.each(data, function (i, item) {
 				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
 			})
-			$("#slsUser").select2({ placeholder: "Pilih Analis" });
+			$("#slsUser").select2({ placeholder: "Pilih Analis/Penyelia" });
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
+		})
+	},
+	SelectAdmin: function () {
+		var role = 6;
+		// if (milestone == 3 || milestone == 9 || milestone == 11 || milestone == 13)
+		// 	role = 6;
+		// else if (milestone == 6)
+		// 	role = 5;
+		$.ajax({
+			url: "/api/user/list/" + role,
+			type: "GET"
+		}).done(function (data, textStatus, jqXHR) {
+			$("#slsAdministrasi").html("<option></option>");
+			$.each(data, function (i, item) {
+				$("#slsAdministrasi").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
+			})
+			$("#slsAdministrasi").select2({ placeholder: "Pilih Administrasi" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);
 		})
@@ -147,6 +166,11 @@ var Button = {
 
 							model.append("PIC", params.PIC);
 							model.append("Remark", Remark);
+						}
+						else if(Kode == "PILIHADMINISTRASI")
+						{
+							params.PIC = $("#slsAdministrasi").val();
+							model.append("PIC", params.PIC);
 						}
 						else if (Kode == "PILIH") {
 
@@ -360,6 +384,7 @@ var GetData = {
 				Function.ChangeFormatDate();
 				Button.Init();
 				Ctrl.Select2();
+				Ctrl.SelectAdmin();
 				// Summernote.Init();
 				Table.Milestone(IDTugas);
 				// Table.Worklog(TaskID);

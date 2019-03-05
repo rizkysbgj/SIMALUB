@@ -27,6 +27,45 @@ jQuery(document).ready(function () {
 
 });
 
+var Button = {
+	Init: function() {
+		$(".btn-generate").on("click", function (){
+			var Kode = this.id;
+			if (Kode == "MULAI") {
+				$(".btn-generate").addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+				var IDProyek = $("#inptProjectID").val();
+				TaskTransaction.Init(IDProyek);
+			}
+		});
+	}
+}
+
+var TaskTransaction = {
+	Init: function(IDProyek){
+		var btn = $(".btn-generate");
+		btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+
+		$.ajax({
+			url: "/api/tugas/administrasi/" + IDProyek,
+			type: 'PUT',
+			dataType: "json",
+			contentType: 'application/json'
+		}).done(function (data, textStatus, jqXHR) {
+			console.log(data);
+			var link = '/halamanPinnedProjectAdministrasi';
+			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			if (Common.CheckError.Object(data) == true) {
+				Common.Alert.SuccessRoute("Berhasil", link);
+			}
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		})
+
+	}
+}
+
 var Page = {
 	Init: function () {
 		GetData.ProyekList();
@@ -77,7 +116,7 @@ var GetData = {
 			success: function (data) {
 				$("#detailProyek").html(data);
 				Function.ChangeFormatDate();
-				// Button.Init();
+				Button.Init();
 				// Ctrl.Select2();
 				// Summernote.Init();
 				// Table.Milestone(IDTugas);

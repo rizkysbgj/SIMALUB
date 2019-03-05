@@ -76,7 +76,7 @@ class ProyekControllerApi extends Controller
     {
         try
         {
-            $listProyek = vwProyek::where('SiapBuatSertifikat', 1)->get();
+            $listProyek = vwProyek::where('SiapBuatSertifikat', '!=' , null)->get();
             $listProyek->ErrorType = 0;
             return $listProyek;
         }
