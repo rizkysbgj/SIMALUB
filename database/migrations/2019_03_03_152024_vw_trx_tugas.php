@@ -32,6 +32,7 @@ CREATE VIEW `vwtrxtugas` AS
 SELECT 
     tt.`IDTrxTugas`,
     tt.`IDTugas`,
+    mt.`NamaTugas`,
     mu.`NamaLengkap`,
     mmt.`MilestoneTugas`,
     tt.`WaktuMulai`,
@@ -41,6 +42,7 @@ SELECT
     FROM `trxtugas` as tt
     LEFT JOIN `mstuser` as mu ON tt.`IDPenanggungJawab` = mu.`IDUser`
     LEFT JOIN `mstmilestonetugas` as mmt ON tt.`IDMilestoneTugas` = mmt.`IDMilestoneTugas`
+    LEFT JOIN `msttugas` as mt ON tt.`IDTugas` = mt.`IDTugas`
 SQL;
     }
 }
