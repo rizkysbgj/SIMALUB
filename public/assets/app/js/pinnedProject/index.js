@@ -56,7 +56,7 @@ var Ctrl = {
 			$.each(data, function (i, item) {
 				$("#slsUser").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + ", Total Pekerjaan : " + item.TotalPekerjaan +"</option>");
 			})
-			$("#slsUser").select2({ placeholder: "Pilih Analis/Penyelia" });
+			$("#slsUser").select2({ placeholder: "Pilih Satu Nama" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			Common.Alert.Error(errorThrown);
 		})
@@ -73,7 +73,7 @@ var Ctrl = {
 		}).done(function (data, textStatus, jqXHR) {
 			$("#slsAdministrasi").html("<option></option>");
 			$.each(data, function (i, item) {
-				$("#slsAdministrasi").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + "</option>");
+				$("#slsAdministrasi").append("<option value='" + item.IDUser + "'>" + item.NamaLengkap + ", Total Pekerjaan : " + item.TotalPekerjaan + "</option>");
 			})
 			$("#slsAdministrasi").select2({ placeholder: "Pilih Administrasi" });
 		}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -198,7 +198,7 @@ var Button = {
 							params.PIC = $("#slsUser").val();
 
 							model.append("PIC", params.PIC);
-							model.append("Remarks", Remark);
+							model.append("Remark", Remark);
 						}
 						console.log(params.Remarks);
 

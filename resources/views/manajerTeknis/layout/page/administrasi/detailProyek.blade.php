@@ -164,7 +164,7 @@
         <ul class="nav nav-pills nav-fill nav-pills--warning" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#m_tabs_5_1">
-                    Memo Analisis
+                    Hasil Seluruh Analisis dan Pengujian
                 </a>
             </li>
         </ul>

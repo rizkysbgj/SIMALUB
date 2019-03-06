@@ -1,3 +1,5 @@
+var IDProyek = null;
+
 jQuery(document).ready(function () {
 	// console.log(IDTugas);
 	// GetData.ProyekList();
@@ -69,8 +71,6 @@ var TaskTransaction = {
 var Page = {
 	Init: function () {
 		GetData.ProyekList();
-		// if(IDTugas != 0)
-		// 	GetData.TaskDetail(IDTugas);
 
 		//Event
 		// $(".TaskOrderBy").on("click", function () {
@@ -100,6 +100,8 @@ var GetData = {
 			type: 'GET',
 			success: function (data) {
 				$("#showProyek").html(data);
+				IDProyek = $("#IDProyek").val();
+				GetData.ProyekDetail(IDProyek);
 			},
 			error: function () {
 				alert("error");

@@ -12,12 +12,6 @@ class BuatSertifikatController extends Controller
 {
     Public function indexPinnedProjectAdministrasi()
     {
-        // $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
-        // $ProyekControllerApi = new ProyekControllerApi();
-        // $ListProyek = $ProyekControllerApi->GetListDetailTugas($IDProyek);
-        // $IDTugas = 0;
-        // if(count($ListProyek) > 0)
-        //     $IDTugas = $ListProyek[0]->IDTugas;
         return view('manajerTeknis.layout.page.administrasi.halamanpinnedProjectAdministrasi');
     }
     
@@ -25,7 +19,8 @@ class BuatSertifikatController extends Controller
     {
         $ProyekControllerApi = new ProyekControllerApi();
         $mstProyekList = $ProyekControllerApi->GetListProyekAdministrasi();
-        return view('manajerTeknis.layout.page.administrasi.showProyek')->with('mstProyekList', $mstProyekList);
+        $IDProyek = $mstProyekList[0]->IDProyek;
+        return view('manajerTeknis.layout.page.administrasi.showProyek', compact('IDProyek', 'mstProyekList'));
     }
 
     public function detailProyek($IDProyek)

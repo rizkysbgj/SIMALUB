@@ -36,3 +36,5 @@
 		<div class="tab-pane" id="m_widget2_tab3_content"></div>
 	</div>
 @endforeach
+
+<input type="hidden" id="IDProyek" value="{{ $IDProyek }}" />

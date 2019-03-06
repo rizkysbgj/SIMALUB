@@ -51,7 +51,7 @@
                                 Inisial Tugas<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" maxlength="5" name="tbxTaskInitial" id="tbxTaskInitial" required />
+                                <input type="text" class="form-control m-input" name="tbxTaskInitial" id="tbxTaskInitial" required />
                             </div>
                         </div>
 						<div class="form-group m-form__group row">
