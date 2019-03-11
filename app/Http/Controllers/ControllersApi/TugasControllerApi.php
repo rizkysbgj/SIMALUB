@@ -21,6 +21,7 @@ use App\vwTrxTugas;
 use App\vwProyek;
 use Auth;
 use Storage;
+use App\Http\Controllers\HelpersController;
 
 class TugasControllerApi extends Controller
 {
@@ -196,6 +197,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
+            $helper = new HelpersController();
             //declare
             $flow = new mstmilestoneflowtugas();
             $trxTugas = new trxTugas();
@@ -239,9 +241,19 @@ class TugasControllerApi extends Controller
                 {
                     // if($Attachment->getCLientMimeType() == "")
                     $Attachment = $request->file('Attachment');
-                    $oldTrxTugas->Attachment = $Attachment->store('public/files');
-                    $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
-                    $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                    if($helper->cekFiles($Attachment))
+                    {
+                        $oldTrxTugas->Attachment = $Attachment->store('public/files');
+                        $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
+                        $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                    }
+                    else
+                    {
+                        $trxTugas = new trxTugas();
+                        $trxTugas->ErrorType = 2;
+                        $trxTugas->ErrorMessage = "Format File Tidak Valid"; 
+                        return $trxTugas;
+                    }
                 }
                 $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
                 $oldTrxTugas->save();
@@ -273,9 +285,19 @@ class TugasControllerApi extends Controller
                         if($request->hasFile('Attachment'))
                         {
                             $Attachment = $request->file('Attachment');
-                            $oldTrxTugas->Attachment = $Attachment->store('public/files');
-                            $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
-                            $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                            if($helper->cekFiles($Attachment))
+                            {
+                                $oldTrxTugas->Attachment = $Attachment->store('public/files');
+                                $oldTrxTugas->ContentType = $Attachment->getCLientMimeType();
+                                $oldTrxTugas->FileName = $Attachment->getClientOriginalName();
+                            }
+                            else
+                            {
+                                $trxTugas = new trxTugas();
+                                $trxTugas->ErrorType = 2;
+                                $trxTugas->ErrorMessage = "Format File Tidak Valid"; 
+                                return $trxTugas;
+                            }
                         }
                         $oldTrxTugas->WaktuSelesai = Carbon::now()->toDateString();
                         $oldTrxTugas->save();
@@ -413,7 +435,7 @@ class TugasControllerApi extends Controller
         try
         {
             $trxTugas = trxTugas::where('IDTrxTugas', $IDTrxTugas)->firstorfail();
-            return Storage::download($trxTugas->Attachment, $trxTugas->NamaFile);
+            return Storage::download($trxTugas->Attachment, $trxTugas->FileName);
         }
         catch(\Exception $e)
         {
@@ -453,12 +475,22 @@ class TugasControllerApi extends Controller
             $trxLapor->IDTugas = $request->IDTugas;
             $trxLapor->IDProyek = $request->IDProyek;
             if($request->hasFile('Attachment'))
-                    {
-                        $Attachment = $request->file('Attachment');
-                        $trxLapor->Attachment = $Attachment->store('public/files');
-                        $trxLapor->ContentType = $Attachment->getCLientMimeType();
-                        $trxLapor->NamaFile = $Attachment->getClientOriginalName();
-                    }
+            {
+                $Attachment = $request->file('Attachment');
+                if($helper->cekFiles($Attachment))
+                {
+                    $trxLapor->Attachment = $Attachment->store('public/files');
+                    $trxLapor->ContentType = $Attachment->getCLientMimeType();
+                    $trxLapor->NamaFile = $Attachment->getClientOriginalName();
+                }
+                else
+                {
+                    $trxTugas = new trxTugas();
+                    $trxTugas->ErrorType = 2;
+                    $trxTugas->ErrorMessage = "Format File Tidak Valid"; 
+                    return $trxTugas;
+                }
+            }
             $trxLapor->Catatan = $request->Remark;
             $trxLapor->IDPelapor = Auth::user()->IDUser;
             $trxLapor->save();

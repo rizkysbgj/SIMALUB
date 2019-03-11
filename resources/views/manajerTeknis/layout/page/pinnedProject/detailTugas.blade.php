@@ -316,7 +316,7 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                        <input type="file" class="custom-file test" id="inputFile" name="inputFile"
                                                             style="margin-top: 5px">
                                                     </div>
                                                 </div>

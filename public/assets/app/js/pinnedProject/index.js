@@ -469,7 +469,7 @@ var Table = {
 				{
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
 						if(t.Attachment != null)
-							var strBuilder = '<a href="/PinnedProject/Download/ ' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+							var strBuilder = '<a href="/api/download/ ' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
 				},
