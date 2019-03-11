@@ -94,10 +94,10 @@
                                             </div>
                                             <div class="m--space-10"></div>
                                             <span class="m-widget1__desc">
-                                                Target Selesai :
+                                                <small>Target Selesai : </small>
                                             </span>
                                             <span class="m-widget1__desc" id="goLiveUsed">
-                                                14 Januari 2019
+                                                <strong>14 Januari 2019</strong>
                                             </span>
                                         </div>
                                     </div>
@@ -122,11 +122,10 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="m--space-10">
-                                                <span class="m-widget1__desc">
-                                                    Jumlah Tugas Selesai / Total Tugas
-                                                </span>
-                                            </div>
+                                            <div class="m--space-10"></div>
+                                            <span class="m-widget1__desc">
+                                                <small>Jumlah Tugas Selesai / Total Tugas</small>
+                                            </span>
                                         </div>
                                     </div>
                                     <!--end::Total Resource-->
@@ -148,6 +147,9 @@
                                                 </div>
                                             </div>
                                             <div class="m--space-10"></div>
+                                            <span class="m-widget1__desc">
+                                                <small>Dikerjakan di Lab luar</small>
+                                            </span>
                                         </div>
                                     </div>
                                     <!--end::Completed Backlog-->

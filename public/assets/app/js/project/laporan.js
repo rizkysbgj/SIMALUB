@@ -1,7 +1,7 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Control.Init();
-    // Table.Init();
+    // Table.Init(IDProyek);
 });
 
 var Table = {
@@ -46,17 +46,16 @@ var Table = {
                 input: $("#tbxSearch")
             },
             columns: [
-
                 {
                     field: "IDTugas", title: "Action", sortable: false, textAlign: "center", template: function (t) {
                         var strBuilder = '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
                         return strBuilder;
                     }
                 },
-                { field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
+                { field: "NamaProyek", title: "Nama Proyek", textAlign: "center" },
                 { field: "InisialTugas", title: "Inisial Tugas", textAlign: "center" },
                 { field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
-                { field: "Pelapor", title: "Pelapor", textAlign: "center" },
+                { field: "NamaLengkap", title: "Pelapor", textAlign: "center" },
                 { field: "Catatan", title: "Catatan", textAlign: "center" },
                 {
 					field: "WaktuLapor", title: "Waktu Pelaporan", sortable: false, textAlign: "center", template: function (t) {
@@ -66,13 +65,12 @@ var Table = {
             ]
         })
 
-
+        
     }
 }
 
 var Control = {
     Init: function () {
-
         $.ajax({
             url: "/api/proyek",
             type: "GET",
@@ -89,6 +87,7 @@ var Control = {
                 $("#slsNamaProyek").select2({placeholder: "Pilih Proyek"});
                 $("#slsNamaProyek").append(html);
                 $("#slsNamaProyek").selectpicker("refresh");
+                
             },
             error: function (xhr) {
                 alert(xhr.responseText)
@@ -98,6 +97,7 @@ var Control = {
         $("#slsNamaProyek").on("change", function () {
             var IDProyek = $("#slsNamaProyek").val();
             Table.Init(IDProyek);
+            
         })
     }
 }
