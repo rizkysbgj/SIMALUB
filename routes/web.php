@@ -20,10 +20,9 @@
     
     Route::group(['middleware' => ['auth']], function(){
         //Route dashboard manajer teknis
-        Route::get('/', function () {
-            return view('manajerTeknis.layout.page.dashboardMT.halamandashboardMT');
-        });
-        
+        Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
+        Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
+
         //Route proyek 
         Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
         Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');

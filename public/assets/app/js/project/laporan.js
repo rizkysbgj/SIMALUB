@@ -1,11 +1,17 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Control.Init();
-    // Table.Init(IDProyek);
+    
+    $("#slsNamaProyek").on("change", function () {
+        var IDProyek = $("#slsNamaProyek").val();
+        $("#divLaporanList").mDatatable("destroy");
+        console.log(IDProyek);
+        Table.test(IDProyek);
+    })
 });
 
 var Table = {
-    Init: function (IDProyek) {
+    test: function (IDProyek) {
         $("#divLaporanList").html("");
         t = $("#divLaporanList").mDatatable({
             data: {
@@ -94,10 +100,5 @@ var Control = {
             }
         });
         
-        $("#slsNamaProyek").on("change", function () {
-            var IDProyek = $("#slsNamaProyek").val();
-            Table.Init(IDProyek);
-            
-        })
     }
 }
