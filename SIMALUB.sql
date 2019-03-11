@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2019 at 03:15 AM
+-- Generation Time: Mar 11, 2019 at 04:12 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -59,7 +59,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2019_02_12_085354_vw_proyek', 6),
 (19, '2019_02_12_085355_vw_proyek', 7),
 (20, '2019_03_03_152024_vw_trx_tugas', 8),
-(21, '2019_02_12_112260_vw_tugas', 9);
+(21, '2019_02_12_112260_vw_tugas', 9),
+(22, '2019_03_11_085153_vw_sub_kontrak', 10),
+(23, '2019_03_11_085805_vw_dashboard_manajer_teknis', 11),
+(24, '2019_03_11_085806_vw_dashboard_manajer_teknis', 12),
+(25, '2019_02_25_152257_vw_trx_lapor', 13);
 
 -- --------------------------------------------------------
 
@@ -162,7 +166,7 @@ CREATE TABLE `mstproyek` (
 --
 
 INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'pengujian sistem simalub tahap 1', 'sim', 'rudi_heryanto', 'Aktif', 1, '2019-03-03 00:00:00', '2019-03-04 00:00:00', NULL, 'pengujian simalub oleh dev', 'biofarmaka ipb', 1, 'admin', 'admin', '2019-03-03 09:31:41', '2019-03-03 09:33:19');
+(2, 'Pengujian Sistem SIMALUB Iterasi 1', 'SIM', 'rudi_heryanto', 'Aktif', 1, '2019-03-05 00:00:00', '2019-03-19 00:00:00', NULL, 'Pengujian sistem pada iterasi 1', 'IPB', 2, 'admin', NULL, '2019-03-05 02:27:18', '2019-03-05 03:57:31');
 
 -- --------------------------------------------------------
 
@@ -234,9 +238,9 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `Status`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'sim-1', 'pengujian fungsi crud iterasi 1', 'pengujian fungsi crud tiap modul pada sistem simalub', 1, 'salinah_biofarmaka', 10, '2019-03-03', '2019-03-04', '2019-03-03', NULL, 'Bisa', 'admin', 'admin', '2019-03-03 09:52:05', '2019-03-03 11:23:10'),
-(2, 'sim-2', 'Pengujian CRUD Iterasi 2', 'pengujian fungsionalitas sistem iterasi 2', 1, 'admin', 2, '2019-03-05', '2019-03-05', '2019-03-03', NULL, 'Tidak', 'admin', 'admin', '2019-03-03 11:24:07', '2019-03-03 11:25:20'),
-(3, 'sim-3', 'Test', 'test', 1, 'admin', 1, '2019-03-04', '2019-03-05', NULL, NULL, 'OK', 'admin', 'admin', '2019-03-04 07:58:11', '2019-03-04 07:58:11');
+(4, 'SIM-1', 'Pengujian Modul Proyek Iterasi 1', 'Lakukan pengujian fungsi crud pada modul proyek', 2, 'wiwik_biofarmaka', 10, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Bisa', 'admin', 'admin', '2019-03-05 02:28:42', '2019-03-05 03:35:56'),
+(5, 'SIM-2', 'Pengujian Modul Staff Iterasi 1', 'Lakukan pengujian crud modul staff', 2, 'admin', 2, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Tidak', 'admin', 'admin', '2019-03-05 02:29:30', '2019-03-05 02:33:32'),
+(6, 'SIM-3', 'Pengujian Modul Analisis Pengujian Iterasi 1', 'Lakukan pengujian flow modul analisis', 2, 'wiwik_biofarmaka', 11, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Bisa', 'admin', 'admin', '2019-03-05 02:30:11', '2019-03-05 04:02:46');
 
 -- --------------------------------------------------------
 
@@ -269,7 +273,8 @@ INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, 
 (2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', NULL, '2019-03-03 09:12:22', '2019-03-03 09:15:53'),
 (3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', NULL, NULL, '2019-03-03 09:25:26', '2019-03-03 09:25:26'),
 (4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, NULL, '2019-03-03 11:10:41', '2019-03-03 11:10:41'),
-(5, 'salinah_biofarmaka', 'SBI', 'Salinah', 5, 'salinah@ipb.ac.id', '$2y$10$NdSrH7ws/Y6hp.PZUi8wPeQ3XhZ6Eo37I4h976ejXK0rl.ao2kgBi', 'Aktif', 'admin', 'admin', NULL, '2019-03-03 11:19:13', '2019-03-04 04:06:00');
+(5, 'salinah_biofarmaka', 'SBI', 'Salinah', 5, 'salinah@ipb.ac.id', '$2y$10$NdSrH7ws/Y6hp.PZUi8wPeQ3XhZ6Eo37I4h976ejXK0rl.ao2kgBi', 'Aktif', 'admin', 'admin', NULL, '2019-03-03 11:19:13', '2019-03-04 04:06:00'),
+(6, 'wiwik_biofarmaka', 'WBI', 'Wiwik', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', NULL, NULL, '2019-03-05 03:11:59', '2019-03-05 03:11:59');
 
 -- --------------------------------------------------------
 
@@ -295,8 +300,9 @@ CREATE TABLE `trxkajiulang` (
 --
 
 INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, `Personil`, `BahanKimia`, `KondisiAkomodasi`, `Kesimpulan`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-03 11:05:52', '2019-03-03 11:05:52'),
-(2, 2, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Tidak', 'Tidak', '2019-03-03 11:25:20', '2019-03-03 11:25:20');
+(3, 4, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-05 02:33:08', '2019-03-05 02:33:08'),
+(4, 5, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Tidak', 'Tidak', '2019-03-05 02:33:32', '2019-03-05 02:33:32'),
+(5, 6, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-05 02:34:15', '2019-03-05 02:34:15');
 
 -- --------------------------------------------------------
 
@@ -322,7 +328,7 @@ CREATE TABLE `trxlapor` (
 --
 
 INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `created_at`, `updated_at`) VALUES
-(4, 1, 1, 'admin', 'public/files/cxANsZx3dtFrUINwbNeAi7aY2ZbJEVFYydeh535Y.jpeg', 'image/jpeg', 'Picture1.jpg', 'kurang bahan', '2019-03-03 11:17:54', '2019-03-03 11:17:54');
+(5, 4, 2, 'admin', NULL, NULL, NULL, 'Kurang bahan', '2019-03-05 02:37:37', '2019-03-05 02:37:37');
 
 -- --------------------------------------------------------
 
@@ -352,12 +358,13 @@ CREATE TABLE `trxtugas` (
 --
 
 INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggungJawab`, `WaktuMulai`, `WaktuSelesai`, `Catatan`, `Attachment`, `ContentType`, `FileName`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(2, 1, 2, 'admin', '2019-03-03 00:00:00', '2019-03-03 00:00:00', 'Selesai', 'public/files/WwQCF3yfxvcoqGVTRqmBso9MnFSveF7AEccwF3tk.jpeg', 'image/jpeg', 'download.jpg', 'admin', 'admin', '2019-03-03 11:02:01', '2019-03-03 11:09:32'),
-(3, 1, 5, 'nunuk_biofarmaka', '2019-03-03 00:00:00', '2019-03-03 00:00:00', 'done', 'public/files/FqIaVCvIXL5Bw1fEalULGg02wBZ5bblikAeMGE1a.jpeg', 'image/jpeg', 'Picture1.jpg', 'admin', 'admin', '2019-03-03 11:11:37', '2019-03-03 11:18:20'),
-(4, 1, 8, 'salinah_biofarmaka', '2019-03-03 00:00:00', '2019-03-03 00:00:00', NULL, 'public/files/kVpyssyOtVEYSne8KPbmFL8bj2UKapdtEjKGVhZK.jpeg', 'image/jpeg', 'Picture1.jpg', 'admin', 'admin', '2019-03-03 11:19:40', '2019-03-03 11:20:31'),
-(5, 1, 5, 'nunuk_biofarmaka', '2019-03-03 00:00:00', '2019-03-03 00:00:00', 'sudah direvisi', NULL, NULL, NULL, 'admin', 'admin', '2019-03-03 11:20:31', '2019-03-03 11:21:14'),
-(6, 1, 8, 'salinah_biofarmaka', '2019-03-03 00:00:00', '2019-03-03 00:00:00', 'tugas selesai', 'public/files/2YWwCezmvA6HqIzIdgM4FcIi7tTiyZE5sWXLfbOU.jpeg', 'image/jpeg', 'Picture1.jpg', 'admin', 'admin', '2019-03-03 11:21:34', '2019-03-03 11:23:09'),
-(7, 2, 2, 'admin', '2019-03-03 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-03 11:24:50', '2019-03-03 11:24:50');
+(8, 4, 2, 'admin', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'Tolong kerjakan pengujian ini', 'public/files/dmyWnsS8au2Tej3on3yWaAarlFzG9KWtMaIfIYcw.jpeg', 'image/jpeg', 'ttd.jpg', 'admin', 'admin', '2019-03-05 02:30:59', '2019-03-05 02:35:41'),
+(9, 5, 2, 'admin', '2019-03-05 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-05 02:31:24', '2019-03-05 02:31:24'),
+(10, 6, 2, 'admin', '2019-03-05 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-05 02:31:46', '2019-03-05 02:31:46'),
+(11, 4, 5, 'nunuk_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'pengujian OK', 'public/files/nlTn2C0iWPACwVx4d2ZvwSlSyimIYxJYzdZtGxI6.pdf', 'application/pdf', 'BidangKajian_RizkySubagja.pdf', 'admin', 'admin', '2019-03-05 02:36:09', '2019-03-05 02:39:36'),
+(12, 4, 8, 'salinah_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', NULL, 'public/files/TZE4k4TefBuc4ED4U4gbJo8bzXQILKELIu8rbZ6x.jpeg', 'image/jpeg', 'Picture1.jpg', 'admin', 'admin', '2019-03-05 02:41:59', '2019-03-05 02:43:15'),
+(13, 4, 5, 'nunuk_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'ralat pengujian ok', 'public/files/nW2h8B0jJDV0BnQ8HUjFwyRQIBhNs58pHF0Lx9gd.pdf', 'application/pdf', 'doc.pdf', 'admin', 'admin', '2019-03-05 02:43:15', '2019-03-05 02:44:37'),
+(14, 4, 8, 'salinah_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'Pengoreksian OK', 'public/files/vDG5fpsWHMIpR8Rx1VkEUmo2nrxBBOB9E08BoaaP.pdf', 'application/pdf', 'doc.pdf', 'admin', 'admin', '2019-03-05 02:45:22', '2019-03-05 02:46:26');
 
 -- --------------------------------------------------------
 
@@ -373,6 +380,25 @@ CREATE TABLE `trxtugaslog` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vwdashboardmanajerteknis`
+-- (See below for the actual view)
+--
+CREATE TABLE `vwdashboardmanajerteknis` (
+`IDProyek` int(10) unsigned
+,`NamaProyek` varchar(100)
+,`InisialProyek` varchar(10)
+,`PenanggungJawab` varchar(255)
+,`TanggalMulai` datetime
+,`RencanaSelesai` datetime
+,`RealitaSelesai` datetime
+,`TotalTugas` bigint(21)
+,`TugasSelesai` bigint(21)
+,`TotalSubKontrak` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -395,6 +421,20 @@ CREATE TABLE `vwproyek` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `vwsubkontrak`
+-- (See below for the actual view)
+--
+CREATE TABLE `vwsubkontrak` (
+`IDSubKontrak` int(10) unsigned
+,`IDTugas` int(10) unsigned
+,`InisialTugas` varchar(10)
+,`IDProyek` int(11)
+,`NamaTugas` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vwtrxlapor`
 -- (See below for the actual view)
 --
@@ -404,6 +444,7 @@ CREATE TABLE `vwtrxlapor` (
 ,`IDTugas` int(11)
 ,`InisialTugas` varchar(10)
 ,`NamaTugas` varchar(255)
+,`NamaProyek` varchar(100)
 ,`NamaLengkap` varchar(255)
 ,`Attachment` varchar(255)
 ,`ContentType` varchar(255)
@@ -473,6 +514,15 @@ CREATE TABLE `vwuser` (
 -- --------------------------------------------------------
 
 --
+-- Structure for view `vwdashboardmanajerteknis`
+--
+DROP TABLE IF EXISTS `vwdashboardmanajerteknis`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwdashboardmanajerteknis`  AS  select `vp`.`IDProyek` AS `IDProyek`,`vp`.`NamaProyek` AS `NamaProyek`,`vp`.`InisialProyek` AS `InisialProyek`,`vp`.`PenanggungJawab` AS `PenanggungJawab`,`vp`.`TanggalMulai` AS `TanggalMulai`,`vp`.`RencanaSelesai` AS `RencanaSelesai`,`vp`.`RealitaSelesai` AS `RealitaSelesai`,`vp`.`TotalTugas` AS `TotalTugas`,(select count(`vt`.`IDTugas`) from `vwtugas` `vt` where ((`vt`.`IDProyek` = `vp`.`IDProyek`) and (`vt`.`IDMilestoneTugas` = 11))) AS `TugasSelesai`,(select count(`vsk`.`IDTugas`) from `vwsubkontrak` `vsk` where (`vsk`.`IDProyek` = `vp`.`IDProyek`)) AS `TotalSubKontrak` from `vwproyek` `vp` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `vwproyek`
 --
 DROP TABLE IF EXISTS `vwproyek`;
@@ -482,11 +532,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `vwsubkontrak`
+--
+DROP TABLE IF EXISTS `vwsubkontrak`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwsubkontrak`  AS  select `msk`.`IDSubKontrak` AS `IDSubKontrak`,`vt`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`IDProyek` AS `IDProyek`,`vt`.`NamaTugas` AS `NamaTugas` from (`mstsubkontrak` `msk` left join `vwtugas` `vt` on((`msk`.`IDTugas` = `vt`.`IDTugas`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `vwtrxlapor`
 --
 DROP TABLE IF EXISTS `vwtrxlapor`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTrxLapor` AS `IDTrxLapor`,`tl`.`IDProyek` AS `IDProyek`,`tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`vu`.`NamaLengkap` AS `NamaLengkap`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan`,`tl`.`created_at` AS `WaktuLapor` from ((`trxlapor` `tl` left join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) left join `vwuser` `vu` on((`tl`.`IDPelapor` = `vu`.`IDUser`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxlapor`  AS  select `tl`.`IDTrxLapor` AS `IDTrxLapor`,`tl`.`IDProyek` AS `IDProyek`,`tl`.`IDTugas` AS `IDTugas`,`vt`.`InisialTugas` AS `InisialTugas`,`vt`.`NamaTugas` AS `NamaTugas`,`vt`.`NamaProyek` AS `NamaProyek`,`vu`.`NamaLengkap` AS `NamaLengkap`,`tl`.`Attachment` AS `Attachment`,`tl`.`ContentType` AS `ContentType`,`tl`.`NamaFile` AS `NamaFile`,`tl`.`Catatan` AS `Catatan`,`tl`.`created_at` AS `WaktuLapor` from ((`trxlapor` `tl` left join `vwtugas` `vt` on((`tl`.`IDTugas` = `vt`.`IDTugas`))) left join `vwuser` `vu` on((`tl`.`IDPelapor` = `vu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -609,7 +668,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -633,7 +692,7 @@ ALTER TABLE `mstmilestonetugas`
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
@@ -651,31 +710,31 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mstuser`
 --
 ALTER TABLE `mstuser`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`

@@ -45,6 +45,7 @@ SELECT
     tl.`IDTugas`,
     vt.`InisialTugas`,
     vt.`NamaTugas`,
+    vt.`NamaProyek`,
     vu.`NamaLengkap`,
     tl.`Attachment`,
     tl.`ContentType`,

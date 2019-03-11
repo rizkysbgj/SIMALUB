@@ -38,9 +38,10 @@ var Transaction = function () {
 	var IDProyek = $("#ProjectID").val();
 	var params = {
 
-        NamaTugas:$("#tbxTaskName").val(),
+		NamaTugas:$("#tbxTaskName").val(),
+		InisialTugas:$("#tbxTaskInitial").val(),
         DeskripsiTugas: $("#tbxTaskDescription").val(),
-        IDProyek: $('#ProjectID').val(),
+		IDProyek: $('#ProjectID').val(),
         IDMilestoneTugas: "1",
         RencanaMulai: $("#tbxStartPlan").val(),
         RencanaSelesai:$("#tbxEndPlan").val()

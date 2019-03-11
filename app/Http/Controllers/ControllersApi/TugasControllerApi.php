@@ -37,9 +37,6 @@ class TugasControllerApi extends Controller
             $mstTugas->Status = "OK";
             $mstTugas->IDPenanggungJawab = Auth::user()->IDUser;
             
-            $count = mstTugas::where('IDProyek', $mstTugas->IDProyek)->count()+1;
-            
-            $mstTugas->InisialTugas = $mstProyek->InisialProyek.'-'.(string)$count; 
             $mstTugas->CreatedBy = Auth::user()->IDUser;
             $mstTugas->UpdatedBy = Auth::user()->IDUser;
 
@@ -432,7 +429,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $listTrxTugas = vwTrxTugas::where('IDTugas', $IDTugas)->get();
+            $listTrxTugas = vwTrxTugas::where('IDTugas', $IDTugas)->orderBy('IDTrxTugas', 'asc')->get();
             $listTrxTugas->ErrorType = 0;
             return $listTrxTugas;
         }

@@ -62,7 +62,9 @@ Route::put('kajiulang', 'ControllersApi\TugasControllerApi@KajiUlang');
 Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKajiUlang');
 Route::delete('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@DeleteKajiUlang');
 
+Route::get('dashboardmanajerteknis/{IDProyek}', 'ControllersApi\DashboardControllerApi@DashboardManajerTeknis');
+
 Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadAttachment');
 Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 
-Route::get('export-docx', 'HelpersController@exportdocx');
+Route::get('export-docx/{templateName}', 'HelpersController@exportdocx');
