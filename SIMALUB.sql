@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2019 at 04:12 AM
+-- Generation Time: Mar 12, 2019 at 12:57 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -63,7 +63,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2019_03_11_085153_vw_sub_kontrak', 10),
 (23, '2019_03_11_085805_vw_dashboard_manajer_teknis', 11),
 (24, '2019_03_11_085806_vw_dashboard_manajer_teknis', 12),
-(25, '2019_02_25_152257_vw_trx_lapor', 13);
+(25, '2019_02_25_152257_vw_trx_lapor', 13),
+(26, '2019_03_12_145244_mst_sertifikat', 14);
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,8 @@ CREATE TABLE `mstproyek` (
 --
 
 INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(2, 'Pengujian Sistem SIMALUB Iterasi 1', 'SIM', 'rudi_heryanto', 'Aktif', 1, '2019-03-05 00:00:00', '2019-03-19 00:00:00', NULL, 'Pengujian sistem pada iterasi 1', 'IPB', 2, 'admin', NULL, '2019-03-05 02:27:18', '2019-03-05 03:57:31');
+(2, 'Pengujian Sistem SIMALUB Iterasi 1', 'SIM', 'rudi_heryanto', 'Aktif', 1, '2019-03-05 00:00:00', '2019-03-19 00:00:00', NULL, 'Pengujian sistem pada iterasi 1', 'IPB', 2, 'admin', NULL, '2019-03-05 02:27:18', '2019-03-05 03:57:31'),
+(3, 'Analisis X', 'AX', 'rudi_heryanto', 'Aktif', 1, '2019-03-12 00:00:00', '2019-08-09 00:00:00', '2019-03-12 00:00:00', 'Analisis sample dari perusahaan Y', 'PT. Y', 3, 'admin', NULL, '2019-03-12 02:58:45', '2019-03-12 08:02:45');
 
 -- --------------------------------------------------------
 
@@ -190,6 +192,29 @@ INSERT INTO `mstrole` (`IDRole`, `Role`) VALUES
 (2, 'Manajer Puncak'),
 (3, 'Manajer Teknis'),
 (5, 'Penyelia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mstsertifikat`
+--
+
+CREATE TABLE `mstsertifikat` (
+  `IDSertifikat` int(10) UNSIGNED NOT NULL,
+  `IDProyek` int(11) NOT NULL,
+  `Attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ContentType` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mstsertifikat`
+--
+
+INSERT INTO `mstsertifikat` (`IDSertifikat`, `IDProyek`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`) VALUES
+(3, 3, 'public/files/58a8cZStVViM8LZkGkSYzje9FjI05MEWPpaMxEez.txt', 'text/plain', 'History.txt', 'selesai'),
+(4, 3, 'public/files/SQGA1NCM78c4Ojmvg7eXtpXUHEnWS313Kr4Widw5.txt', 'text/plain', 'History.txt', 'selesai');
 
 -- --------------------------------------------------------
 
@@ -238,9 +263,7 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `Status`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(4, 'SIM-1', 'Pengujian Modul Proyek Iterasi 1', 'Lakukan pengujian fungsi crud pada modul proyek', 2, 'wiwik_biofarmaka', 10, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Bisa', 'admin', 'admin', '2019-03-05 02:28:42', '2019-03-05 03:35:56'),
-(5, 'SIM-2', 'Pengujian Modul Staff Iterasi 1', 'Lakukan pengujian crud modul staff', 2, 'admin', 2, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Tidak', 'admin', 'admin', '2019-03-05 02:29:30', '2019-03-05 02:33:32'),
-(6, 'SIM-3', 'Pengujian Modul Analisis Pengujian Iterasi 1', 'Lakukan pengujian flow modul analisis', 2, 'wiwik_biofarmaka', 11, '2019-03-05', '2019-03-08', '2019-03-05', NULL, 'Bisa', 'admin', 'admin', '2019-03-05 02:30:11', '2019-03-05 04:02:46');
+(9, 'AX', 'Analisis X', 'analisis sample X dengan etanol', 3, 'wiwik_biofarmaka', 11, '2019-03-13', '2019-03-20', '2019-03-12', '2019-03-12', 'Bisa', 'admin', 'admin', '2019-03-12 06:25:31', '2019-03-12 08:10:54');
 
 -- --------------------------------------------------------
 
@@ -302,7 +325,10 @@ CREATE TABLE `trxkajiulang` (
 INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, `Personil`, `BahanKimia`, `KondisiAkomodasi`, `Kesimpulan`, `created_at`, `updated_at`) VALUES
 (3, 4, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-05 02:33:08', '2019-03-05 02:33:08'),
 (4, 5, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Tidak', 'Tidak', '2019-03-05 02:33:32', '2019-03-05 02:33:32'),
-(5, 6, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-05 02:34:15', '2019-03-05 02:34:15');
+(5, 6, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-05 02:34:15', '2019-03-05 02:34:15'),
+(6, 7, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-11 04:35:16', '2019-03-11 04:35:16'),
+(7, 8, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-12 03:04:03', '2019-03-12 03:04:03'),
+(8, 9, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-12 06:26:31', '2019-03-12 06:26:31');
 
 -- --------------------------------------------------------
 
@@ -328,7 +354,8 @@ CREATE TABLE `trxlapor` (
 --
 
 INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `created_at`, `updated_at`) VALUES
-(5, 4, 2, 'admin', NULL, NULL, NULL, 'Kurang bahan', '2019-03-05 02:37:37', '2019-03-05 02:37:37');
+(5, 4, 2, 'admin', NULL, NULL, NULL, 'Kurang bahan', '2019-03-05 02:37:37', '2019-03-05 02:37:37'),
+(6, 8, 3, 'admin', NULL, NULL, NULL, 'etanol habis', '2019-03-12 03:07:01', '2019-03-12 03:07:01');
 
 -- --------------------------------------------------------
 
@@ -358,13 +385,10 @@ CREATE TABLE `trxtugas` (
 --
 
 INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggungJawab`, `WaktuMulai`, `WaktuSelesai`, `Catatan`, `Attachment`, `ContentType`, `FileName`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(8, 4, 2, 'admin', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'Tolong kerjakan pengujian ini', 'public/files/dmyWnsS8au2Tej3on3yWaAarlFzG9KWtMaIfIYcw.jpeg', 'image/jpeg', 'ttd.jpg', 'admin', 'admin', '2019-03-05 02:30:59', '2019-03-05 02:35:41'),
-(9, 5, 2, 'admin', '2019-03-05 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-05 02:31:24', '2019-03-05 02:31:24'),
-(10, 6, 2, 'admin', '2019-03-05 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-05 02:31:46', '2019-03-05 02:31:46'),
-(11, 4, 5, 'nunuk_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'pengujian OK', 'public/files/nlTn2C0iWPACwVx4d2ZvwSlSyimIYxJYzdZtGxI6.pdf', 'application/pdf', 'BidangKajian_RizkySubagja.pdf', 'admin', 'admin', '2019-03-05 02:36:09', '2019-03-05 02:39:36'),
-(12, 4, 8, 'salinah_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', NULL, 'public/files/TZE4k4TefBuc4ED4U4gbJo8bzXQILKELIu8rbZ6x.jpeg', 'image/jpeg', 'Picture1.jpg', 'admin', 'admin', '2019-03-05 02:41:59', '2019-03-05 02:43:15'),
-(13, 4, 5, 'nunuk_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'ralat pengujian ok', 'public/files/nW2h8B0jJDV0BnQ8HUjFwyRQIBhNs58pHF0Lx9gd.pdf', 'application/pdf', 'doc.pdf', 'admin', 'admin', '2019-03-05 02:43:15', '2019-03-05 02:44:37'),
-(14, 4, 8, 'salinah_biofarmaka', '2019-03-05 00:00:00', '2019-03-05 00:00:00', 'Pengoreksian OK', 'public/files/vDG5fpsWHMIpR8Rx1VkEUmo2nrxBBOB9E08BoaaP.pdf', 'application/pdf', 'doc.pdf', 'admin', 'admin', '2019-03-05 02:45:22', '2019-03-05 02:46:26');
+(22, 9, 2, 'admin', '2019-03-12 00:00:00', '2019-03-12 00:00:00', 'tolong kerjakan dalam waktu 2x24 jam', NULL, NULL, NULL, 'admin', 'admin', '2019-03-12 06:26:10', '2019-03-12 06:27:00'),
+(23, 9, 5, 'nunuk_biofarmaka', '2019-03-12 00:00:00', '2019-03-12 00:00:00', 'sudah dikerjakan', NULL, NULL, NULL, 'admin', 'admin', '2019-03-12 06:27:18', '2019-03-12 06:27:53'),
+(24, 9, 8, 'salinah_biofarmaka', '2019-03-12 00:00:00', '2019-03-12 00:00:00', 'sudah oke', NULL, NULL, NULL, 'admin', 'admin', '2019-03-12 06:28:30', '2019-03-12 06:31:49'),
+(25, 9, 10, 'wiwik_biofarmaka', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-12 06:46:01', '2019-03-12 06:46:01');
 
 -- --------------------------------------------------------
 
@@ -618,6 +642,12 @@ ALTER TABLE `mstrole`
   ADD UNIQUE KEY `mstrole_role_unique` (`Role`);
 
 --
+-- Indexes for table `mstsertifikat`
+--
+ALTER TABLE `mstsertifikat`
+  ADD PRIMARY KEY (`IDSertifikat`);
+
+--
 -- Indexes for table `mstsubkontrak`
 --
 ALTER TABLE `mstsubkontrak`
@@ -668,7 +698,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -692,13 +722,19 @@ ALTER TABLE `mstmilestonetugas`
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
 --
 ALTER TABLE `mstrole`
   MODIFY `IDRole` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `mstsertifikat`
+--
+ALTER TABLE `mstsertifikat`
+  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mstsubkontrak`
@@ -710,7 +746,7 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mstuser`
@@ -722,19 +758,19 @@ ALTER TABLE `mstuser`
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`
