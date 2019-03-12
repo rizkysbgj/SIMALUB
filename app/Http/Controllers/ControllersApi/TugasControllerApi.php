@@ -19,6 +19,7 @@ use App\trxKajiUlang;
 use App\viewmodel\vmTugasAdministrasi;
 use App\vwTrxTugas;
 use App\vwProyek;
+use App\mstSertifikat;
 use Auth;
 use Storage;
 use App\Http\Controllers\HelpersController;
@@ -374,11 +375,11 @@ class TugasControllerApi extends Controller
     }
 
     //Fungsi multiple flow tugas untuk administrasi by IDProyek
-    public function AdministrasiTransaction($IDProyek)
+    public function AdministrasiTransaction(Request $request)
     {
         try
         {
-            $proyek = mstProyek::where('IDProyek', $IDProyek)->firstorfail();
+            $proyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
             if($proyek->SiapBuatSertifikat == '1')
             {
                 $proyek->SiapBuatSertifikat = '2';
@@ -389,17 +390,45 @@ class TugasControllerApi extends Controller
             else if($proyek->SiapBuatSertifikat == '2')
             {
                 $proyek->SiapBuatSertifikat = '3';
-                $proyek->save();
+                $proyek->RealitaSelesai = Carbon::now()->toDateString();
             }
             $flow = new mstmilestoneflowtugas();
-            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $request->IDMilestoneTugas)->where('Kode', $request->Kode)->firstorfail();
+            $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', 10)->firstorfail();
             $IDMilestoneNext = $flow->IDMilestoneLanjut;
 
-            $listTugas = mstTugas::where('IDProyek', $IDProyek);
-            $listTugas->IDMilestoneTugas = $IDMilestoneNext;
-            $listTugas->save();
-            $listTugas->ErrorType = 0;
-            return $listTugas;
+            $updateValue = array('IDMilestoneTugas' => $IDMilestoneNext, 'RealitaSelesai' => Carbon::now()->toDateString());
+
+            $listTugas = mstTugas::where('IDProyek', $request->IDProyek)->update($updateValue);
+            // $listTugas->IDMilestoneTugas = $IDMilestoneNext;
+            // $listTugas->RealitaSelesai = Carbon::now()->toDateString();
+
+            //upload sertifikat
+            if($request->hasFile('Attachment'))
+            {
+                $sertifikat = new mstSertifikat();
+                $Attachment = $request->file('Attachment');
+                $helper = new HelpersController();
+                if($helper->cekFiles($Attachment))
+                {
+                    $sertifikat->IDProyek = $request->IDProyek;
+                    $sertifikat->Attachment = $Attachment->store('public/files');
+                    $sertifikat->ContentType = $Attachment->getCLientMimeType();
+                    $sertifikat->NamaFile = $Attachment->getClientOriginalName();
+                }
+                else
+                {
+                    $sertifikat->ErrorType = 2;
+                    $sertifikat->ErrorMessage = "Format File Tidak Valid"; 
+                    return $sertifikat;
+                }
+                $sertifikat->Catatan = $request->Remark;
+            }
+
+            $sertifikat->save();
+            $proyek->save();
+            // $listTugas->save();
+            $proyek->ErrorType = 0;
+            return $proyek;
         }
         catch (\Exception $e)
         {
