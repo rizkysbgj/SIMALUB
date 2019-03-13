@@ -33,25 +33,69 @@ var Button = {
 	Init: function() {
 		$(".btn-generate").on("click", function (){
 			var Kode = this.id;
+			var params = {
+				IDProyek: $("#inptProjectID").val(),
+				Remark: "",
+				Kode: Kode
+			};
+
+			var model = new FormData();
+			model.append("IDProyek", params.IDProyek);
+			model.append("Remark", params.Remark);
+
 			if (Kode == "MULAI") {
 				$(".btn-generate").addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-				var IDProyek = $("#inptProjectID").val();
-				TaskTransaction.Init(IDProyek);
+				// console.log(params);
+				TaskTransaction.Init(model, params);
+			}
+			else {
+				$("#btnSubmit-" + Kode).on("click", function () {
+					var Regex;
+					var Remark;
+					if (Kode == "SELESAI") {
+
+						Remark = $("#tbxRemark-" + Kode).val();
+						Regex = /(<([^>]+)>)/gi;
+						Remark = Remark.replace(Regex, "");
+
+						params.Remarks = Remark;
+
+						if ($("#tbxRemark-" + Kode).val() == "") {
+							Common.Alert.Warning("Please Input Remarks!");
+							return false;
+						}
+
+						$('input[type="file"]').each(function($i){
+							model.append("Attachment", $(this)[0].files[0]);
+						  });
+						model.append("Remark", Remark);
+					}
+
+					$("#btnSubmit-" + Kode).addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+					TaskTransaction.Init(model, params);
+				});
 			}
 		});
 	}
 }
 
 var TaskTransaction = {
-	Init: function(IDProyek){
-		var btn = $(".btn-generate");
+	Init: function(model, data){
+		var btn = $("#btnSubmit-" + data.Kode);
+
 		btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
+		if (data.Kode == "MULAI" ) {
+			btn = $(".btn-generate");
+		}
+
 		$.ajax({
-			url: "/api/tugas/administrasi/" + IDProyek,
-			type: 'PUT',
+			url: "/api/tugas/administrasi",
+			type: 'POST',
+			data: model,
 			dataType: "json",
-			contentType: 'application/json'
+			contentType: false,
+			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
 			var link = '/halamanpinnedProjectAdministrasi';

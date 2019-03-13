@@ -28,6 +28,54 @@
                         </span>
                     </a>
                     <!-- looping dan kondisi untuk modal dan button -->
+                    <div class="modal hide fade" id="modal-SELESAI" tabindex="-1"
+                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                        Proyek Selesai
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            &times;
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                            Lampirkan File :
+                                        </label>
+                                        <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                    style="margin-top: 5px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                            Catatan <span style="color:red">*</span> :
+                                        </label>
+                                        <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
+                                            <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark-SELESAI"
+                                                rows="4" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Batal
+                                    </button>
+                                    <button type="button" class="btn btn-success" id="btnSubmit-SELESAI">
+                                        Kirim
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- disini -->
                     @if($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 1)
                         <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="MULAI"
@@ -49,8 +97,8 @@
                                 </span>
                             </span>
                         </a>
-                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
-                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                        <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="SELESAI"
+                            style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#modal-SELESAI">
                             <span>
                                 <i class="la la-info"></i>
                                 <span>
@@ -68,7 +116,7 @@
                                 </span>
                             </span>
                         </a>
-                        <a href="#" class="btn btn-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
+                        <a href="#" class="btn btn-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" 
                             style="margin-left:10px; margin-right:10px" data-toggle="modal">
                             <span>
                                 <i class="la la-info"></i>
