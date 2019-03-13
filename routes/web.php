@@ -45,13 +45,11 @@
         Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
         Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
 
-
         //Route Jabatan
         Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
         Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
         Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
     
-
         //Route Pinned Project
         Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
         Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');

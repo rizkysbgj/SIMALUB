@@ -1,3 +1,62 @@
+jQuery(document).ready(function () {
+  //Control.Init();
+  Table.Init();
+});
+
+var Table = {
+  Init: function () {
+      t = $("#divUserPerformance").mDatatable({
+          data: {
+              type: "remote",
+              source: {
+                  read: {
+                      url: "/api/role",
+                      method: "GET",
+                      map: function (r) {
+                          var e = r;
+                          return void 0 !== r.data && (e = r.data), e;
+                      }
+                  }
+              },
+              pageSize: 10,
+              saveState: {
+                  cookie: true,
+                  webstorage: true
+              },
+              serverPaging: false,
+              serverFiltering: false,
+              serverSorting: false
+          },
+          layout: {
+              scroll: false,
+              footer: false
+          },
+          sortable: true,
+          pagination: true,
+          toolbar: {
+              items: {
+                  pagination: {
+                      pageSizeSelect: [10, 20, 30, 50, 100]
+                  }
+              }
+          },
+          search: {
+              input: $("#tbxSearch")
+          },
+          columns: [
+              { field: "#", title: "Nama Staff", textAlign: "center", width: 200 },
+              { field: "#", title: "Total Proyek", textAlign: "center", width: 200 },
+              { field: "#", title: "Total Tugas", textAlign: "center", width: 200 },
+              { field: "#", title: "Total Kesalahan Analisis", textAlign: "center", width: 200 },
+              { field: "#", title: "Total Keterlambatan", textAlign: "center", width: 200 },
+          ]
+      })
+
+
+  }
+}
+
+
 // Themes begin
 am4core.useTheme(am4themes_animated);
 // Themes end
