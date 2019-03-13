@@ -18,6 +18,7 @@ class TrxTugas extends Migration
             $table->integer('IDTugas');
             $table->integer('IDMilestoneTugas');
             $table->string('IDPenanggungJawab');
+            $table->string('StatusTugas')->nullable();
             $table->datetime('WaktuMulai')->nullable();
             $table->datetime('WaktuSelesai')->nullable();
             $table->string('Catatan')->nullable();

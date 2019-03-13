@@ -15,12 +15,12 @@ class DashboardControllerApi extends Controller
         try
         {
             $dashboard = vwDashboardManajerTeknis::where('IDProyek', $IDProyek)->firstorfail();
-            $dashboard->Persentase = $dashboard->TugasSelesai / $dashboard->TotalTugas * 100;
+            $dashboard->Persentase = (int)($dashboard->TugasSelesai / $dashboard->TotalTugas * 100);
             $tanggalMulai = new DateTime($dashboard->TanggalMulai);
             $rencanaSelesai = new DateTime($dashboard->RencanaSelesai);
             $dashboard->TotalHari = date_diff($tanggalMulai, $rencanaSelesai)->days;
 
-            $dashboard->posisiTugasList = vwTugas::where('IDProyek', $IDProyek)->where('Status', 'Bisa')->get();
+            $dashboard->posisiTugasList = vwTugas::where('IDProyek', $IDProyek)->where('StatusKajiUlang', '!=' ,'Tidak')->orderBy('IDTugas', 'asc')->get();
             
             $dashboard->ErrorType = 0;
             return $dashboard;

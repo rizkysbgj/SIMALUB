@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ControllersApi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mstSubKontrak;
+use App\vwSubKontrak;
 
 class SubKontrakControllerApi extends Controller
 {
@@ -36,22 +37,22 @@ class SubKontrakControllerApi extends Controller
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
-            return response($mstSubKontrak->jsonSerialize());
+            return response($subKontrak->jsonSerialize());
             //return response()->json(['error' => $e->getMessage()]);
         }
     }
 
-    public function GetListSubKontrak()
+    public function GetListSubKontrak($IDProyek)
     {
         try {
-            $mstSubKontrakList = mstSubKontrak::all();
-            return response($mstSubKontrakList->jsonSerialize(), Response::HTTP_OK);
+            $subKontrakList = vwSubKontrak::where('IDProyek', $IDProyek)->get();
+            return $subKontrakList;
         }
         catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
-            return response($mstSubKontrak->jsonSerialize());
+            return $subKontrak;
             //return response()->json(['error' => $e->getMessage()]);
         }
     }

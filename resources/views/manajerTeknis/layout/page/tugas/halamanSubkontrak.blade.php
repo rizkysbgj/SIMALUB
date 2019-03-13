@@ -95,6 +95,7 @@
     </div>
 </div>
 
+<input type="hidden" id="IDProyek" value={{$IDProyek}}>
 <script src="{{ asset('assets/app/js/tugas/subkontrak.js') }}" type="text/javascript"></script>
 
 @endsection

@@ -530,7 +530,7 @@
 
                     <!-- button -->
                         @if($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2)
-                            @if($mstTugasDetail['tugas']['Status'] == "OK")
+                            @if($mstTugasDetail['tugas']['StatusKajiUlang'] == "SIAP")
                                 <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="KAJIULANG"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#modalkajiUlang" disabled>
                                     <span>
@@ -551,7 +551,7 @@
                                     </span>
                                 </a>
                             @endif
-                            @if($mstTugasDetail['tugas']['Status'] == "OK") 
+                            @if($mstTugasDetail['tugas']['StatusKajiUlang'] == "SIAP") 
                                 <a href="#" class="btn btn-outline-metal active btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" disabled>
                                     <span>

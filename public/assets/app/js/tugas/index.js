@@ -56,8 +56,8 @@ var Table = {
 				{
 					field: "KajiUlang", title: "Kaji Ulang Analisis", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						if(t.Status != "OK"){
-							if(t.Status == 'Bisa')
+						if(t.StatusKajiUlang != "SIAP"){
+							if(t.StatusKajiUlang == 'Bisa')
 								var strBuilder = '<button class="btn btn-success" style="width: 100px;"><span><small>Sudah Dikaji</small></span></button>';
 							else
 							var strBuilder = '<button class="btn btn-primary" style="width: 100px;"><span><small>Subkontrak</small></span></button>';	

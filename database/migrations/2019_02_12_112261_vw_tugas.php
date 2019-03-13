@@ -51,7 +51,7 @@ SELECT
     mt.`RealitaMulai`,
     mt.`RealitaSelesai`,
     mt.`IDPenanggungJawab`,
-    mt.`Status`,
+    mt.`StatusKajiUlang`,
     mu.`NamaLengkap` as `PenanggungJawab`,
     mt.`IDMilestoneTugas`,
     mmt.`MilestoneTugas` as `Milestone`

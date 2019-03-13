@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VwProyek extends Migration
+class VwSubKontrak extends Migration
 {
     /**
      * Run the migrations.
@@ -31,26 +31,23 @@ class VwProyek extends Migration
     private function dropView(): string
     {
         return <<<SQL
-DROP VIEW IF EXISTS `vwproyek`;
+DROP VIEW IF EXISTS `vwsubkontrak`;
 SQL;
     }
 
     private function createView(): string
     {
         return <<<SQL
-CREATE VIEW `vwproyek` AS
+CREATE VIEW `vwsubkontrak` AS
 SELECT 
-    mp.`IDProyek`,
-    mp.`NamaProyek`,
-    mp.`InisialProyek`,
-    mu.`NamaLengkap` as `PenanggungJawab`,
-    mp.`TanggalMulai`,
-    mp.`RencanaSelesai`,
-    mp.`RealitaSelesai`,
-    (SELECT COUNT(`IDTugas`) FROM `mstTugas` AS mt WHERE mt.`IDProyek` = mp.`IDProyek` AND mt.`Status` <> 'Tidak' ) AS `TotalTugas`,
-    mp.`SiapBuatSertifikat`
-    FROM `mstproyek` as mp
-    LEFT JOIN `mstuser` as mu ON mp.`PenanggungJawab` = mu.`IDUser`;
+    msk.`IDSubKontrak`,
+    vt.`IDTugas`,
+    vt.`IDProyek`,
+    vt.`NamaTugas`,
+    msk.`WaktuDikirim`,
+    msk.`WaktuDiterima`
+    FROM `mstsubkontrak` as msk
+    LEFT JOIN `vwtugas` as vt ON msk.`IDTugas` = vt.`IDTugas`
 SQL;
     }
 }

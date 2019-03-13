@@ -20,6 +20,7 @@ use App\viewmodel\vmTugasAdministrasi;
 use App\vwTrxTugas;
 use App\vwProyek;
 use App\mstSertifikat;
+use App\mstSubKontrak;
 use Auth;
 use Storage;
 use App\Http\Controllers\HelpersController;
@@ -36,7 +37,7 @@ class TugasControllerApi extends Controller
             $mstTugas = $this->ChangeDateFormat($mstTugas);
             $mstProyek = mstProyek::where('IDProyek', $request->IDProyek)->firstorfail();
             // //set default value
-            $mstTugas->Status = "OK";
+            $mstTugas->StatusKajiUlang = "SIAP";
             $mstTugas->IDPenanggungJawab = Auth::user()->IDUser;
             
             $mstTugas->CreatedBy = Auth::user()->IDUser;
@@ -75,7 +76,7 @@ class TugasControllerApi extends Controller
     {
         try {
             if($IDProyek != 0)
-                $tugasList = vwTugas::where('IDProyek', $IDProyek)->get();
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->orderBy('IDTugas', 'asc')->get();
             else
                 $tugasList = vwTugas::all();
             return $tugasList;
@@ -95,9 +96,9 @@ class TugasControllerApi extends Controller
     {
         try {
             if($IDProyek != 0)
-                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('Status', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('StatusKajiUlang', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
             else
-                $tugasList = vwTugas::where('Status', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
+                $tugasList = vwTugas::where('StatusKajiUlang', '!=', 'Tidak')->orderBy('IDTugas', 'asc')->get();
             return $tugasList;
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }
@@ -235,6 +236,11 @@ class TugasControllerApi extends Controller
             if($request->Kode == "SELESAI")
             {
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->orderBy('IDTrxTugas', 'desc')->firstorfail();
+
+                if($IDMilestoneNow == 8)
+                {
+                    $oldTrxTugas->StatusTugas = "SELESAI";
+                }
 
                 $oldTrxTugas->Catatan = $request->Remark;
                 
@@ -444,8 +450,7 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $listTrxTugas = vwTrxTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', "8")
-                ->orderBy('IDTrxTugas', 'asc')->get();
+            $listTrxTugas = vwTrxTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', "8")->where('StatusTugas', 'SELESAI')->orderBy('IDTrxTugas', 'asc')->get();
             $listTrxTugas->ErrorType = 0;
             return $listTrxTugas;
         }
@@ -592,6 +597,29 @@ class TugasControllerApi extends Controller
             return $laporan;
         }
     }
+
+    public function TindakLaporan(Request $request)
+    {
+        try
+        {
+            $laporan = new trxLapor();
+            $laporan = trxLapor::where('IDTrxLapor', $request->IDTrxLapor)->firstorfail();
+
+            $laporan->Tindakan = "sudah";
+            $laporan->Catatan = $request->Catatan;
+
+            $laporan->save();
+            $laporan->ErrorType = 0;
+            return $laporan;
+        }
+        catch(\Exception $e)
+        {
+            $laporan = new trxLapor();
+            $laporan->ErrorType = 2;
+            $laporan->ErrorMessage = $e->getMessage();
+            return $laporan;
+        }
+    }
     #endregion
 
     #region Kaji Ulang
@@ -613,12 +641,17 @@ class TugasControllerApi extends Controller
             if($kajiulang->Metode == "Tidak" || $kajiulang->Peralatan == "Tidak" || $kajiulang->Personil == "Tidak" || $kajiulang->BahanKimia == "Tidak" || $kajiulang->KondisiAkomodasi == "Tidak")
             {
                 $kajiulang->Kesimpulan = "Tidak";
-                $tugas->Status = "Tidak";
+                $tugas->StatusKajiUlang = "Tidak";
+
+                $subkontrak = new mstSubKontrak();
+                $subkontrak->IDTugas = $request->IDTugas;
+                $subkontrak->CreatedBy = Auth::user()->IDUser;
+                $subkontrak->save();
             }
             else
             {
                 $kajiulang->Kesimpulan = "Bisa";
-                $tugas->Status = "Bisa";
+                $tugas->StatusKajiUlang = "Bisa";
             }
             $kajiulang->save();
             $tugas->save();
@@ -640,9 +673,9 @@ class TugasControllerApi extends Controller
     {
         try {
             if($IDProyek != 0)
-                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('Status', "Tidak")->get();
+                $tugasList = vwTugas::where('IDProyek', $IDProyek)->where('StatusKajiUlang', "Tidak")->get();
             else
-                $tugasList = vwTugas::where('Status', "Tidak")->get();
+                $tugasList = vwTugas::where('StatusKajiUlang', "Tidak")->get();
             return $tugasList;
                 //return response($mstTugasList->jsonSerialize(), Response::HTTP_OK);
         }

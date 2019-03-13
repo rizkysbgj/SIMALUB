@@ -2,7 +2,7 @@
 <!-- <div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide" data-scrollbar-shown="true" data-scrollable="true" data-max-height="380" style="overflow: visible; height: 380px; max-height: 380px; position: relative;"> -->
 
 @foreach ($mstTugasList as $mstTugas)
-	@if ($mstTugas['Status'] != "Tidak")
+	@if ($mstTugas['StatusKajiUlang'] != "Tidak")
 		@php ($color = "")
 		@if ($mstTugas['IDMilestoneTugas'] == "1" || $mstTugas['IDMilestoneTugas'] == "2" || $mstTugas['IDMilestoneTugas'] == "3")
 			@php ($color = "warning")

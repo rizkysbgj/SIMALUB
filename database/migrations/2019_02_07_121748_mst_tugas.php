@@ -15,10 +15,9 @@ class MstTugas extends Migration
     {
         Schema::create('msttugas', function (Blueprint $table) {
             $table->increments('IDTugas');
-            $table->string('InisialTugas',10)->unique();
+            $table->string('InisialTugas');
             $table->string('NamaTugas');
             $table->string('DeskripsiTugas');
-            // $table->integer('IDKategori');
             $table->integer('IDProyek');
             $table->string('IDPenanggungJawab');
             $table->integer('IDMilestoneTugas');
@@ -26,7 +25,7 @@ class MstTugas extends Migration
             $table->date('RencanaSelesai');
             $table->date('RealitaMulai')->nullable();
             $table->date('RealitaSelesai')->nullable();
-            $table->string('Status')->nullable();
+            $table->string('StatusKajiUlang')->nullable();
             $table->string('CreatedBy');
             $table->string('UpdatedBy')->nullable();
             $table->timestamps();

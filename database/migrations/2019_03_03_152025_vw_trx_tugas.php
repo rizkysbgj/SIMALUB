@@ -32,9 +32,12 @@ CREATE VIEW `vwtrxtugas` AS
 SELECT 
     tt.`IDTrxTugas`,
     tt.`IDTugas`,
+    mt.`IDProyek`,
     mt.`NamaTugas`,
     mu.`NamaLengkap`,
+    tt.`IDMilestoneTugas`,
     mmt.`MilestoneTugas`,
+    tt.`StatusTugas`,
     tt.`WaktuMulai`,
     tt.`WaktuSelesai`,
     tt.`Catatan`,

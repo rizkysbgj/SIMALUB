@@ -5,13 +5,13 @@ jQuery(document).ready(function () {
 
 var Table = {
 	Subkontrak: function () {
-		var IDProyek = $("#ProjectID").val();
+		var IDProyek = $("#IDProyek").val();
 		t = $("#divSubkontrakList").mDatatable({
 			data: {
 				type: "remote",
 				source: {
 					read: {
-						url: "/api/kajiulang/" + IDProyek,
+						url: "/api/subkontrak/" + IDProyek,
 						method: "GET",
 						map: function (r) {
 							var e = r;
