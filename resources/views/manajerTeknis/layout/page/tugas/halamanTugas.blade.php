@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-@section('title', 'Halaman Tugas')
+@section('title', 'Proyek : ' . $vwProyek['NamaProyek'])
 @section('content')
 <div class="m-content">
 	<div class="row">
@@ -262,64 +262,6 @@
 					<!--end: Search Form -->
 					<!--begin: Datatable -->
 					<div class="m_datatable" id="divStoryList"></div>
-					<!-- <table class="m-datatable" id="html_table" width="100%">
-						<thead>
-							<tr>
-								<th title="Field #1">
-                                	Action
-                                </th>
-                                <th title="Field #2">
-                                	Kaji Ulang Analisis
-                                </th>
-                                <th title="Field #3">
-                                	Kode Tugas
-								</th>
-								<th title="Field #4">
-                                	Nama Tugas
-								</th>
-								<th title="Field #5">
-                                	Tanggal Penugasan
-								</th>
-								<th title="Field #6">
-									Tanggal Deadline
-								</th>
-								<th title="Field #7">
-                                	Realita Mulai
-								</th>
-								<th title="Field #8">
-                                	Realita Selesai
-                                </th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	cHi
-								</td>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	ADA 2 ACTION
-								</td>
-								<td>
-                                	ADA 2 ACTION
-                                </td>
-							</tr>
-						</tbody>
-					</table> -->
 					<!--end: Datatable -->
 				</div>
 			</div>

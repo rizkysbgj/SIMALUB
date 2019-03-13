@@ -66,7 +66,6 @@ var Table = {
 							var strBuilder = '<button onclick="Modal.kajiUlang('+t.IDTugas+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum Dikaji</small></span></button>';
 						return strBuilder;
 					}
-					
 				},
 				{ field: "InisialTugas", title: "Kode Tugas", textAlign: "center" },
 				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },

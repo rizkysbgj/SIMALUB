@@ -46,6 +46,14 @@ var Table = {
 			},
 			columns: [
 				{
+					field: "#", title: "Status Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
+						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+						var strBuilder = '<button onclick="Modal.statussubkontrak()" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
+                        return strBuilder;
+					}
+					
+				},
+				{
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
 						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
 						var strBuilder = '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
@@ -64,15 +72,14 @@ var Table = {
 					}
 				},
 				{ field: "PenanggungJawab", title: "Penanggung Jawab", textAlign: "center" },
-				{
-					field: "#", title: "Status", sortable: false, textAlign: "center", template: function (t) {
-						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						var strBuilder = '<a href="#" class="btn btn-danger"  style="width: 100px;"><span><small>Belum Selesai</small></span></a>';
-						return strBuilder;
-					}
-					
-				},
 			]
 		})
+	}
+}
+var Modal = {
+	statussubkontrak:function(){
+		$("#modalstatussubkontrak").modal({
+			backdrop: "static"
+		});
 	}
 }

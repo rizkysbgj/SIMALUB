@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\mstTugas;
+use App\vwProyek;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;
 
 class TugasController extends Controller
 {
     public function indexTugas($IDProyek){
-        return view('manajerTeknis.layout.page.tugas.halamanTugas')->with('IDProyek', $IDProyek);
+        $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
+        return view('manajerTeknis.layout.page.tugas.halamanTugas', compact('vwProyek', 'IDProyek'));
     }
 
     public function indexSubkontrak($IDProyek){

@@ -33,6 +33,56 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal Status Subkontrak -->
+                            <div class="modal hide fade" id="modalstatussubkontrak" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Status Analisis Subkontrak
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                    Lampirkan File :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file test" id="inputFile" name="inputFile"
+                                                            style="margin-top: 5px">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row" style="padding-top: 0px;">
+                                                <label class="col-form-label col-lg-3 col-sm-12 m--align-right" !important>
+                                                    Catatan <span style="color:red">*</span> :
+                                                </label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="#"
+                                                        rows="4" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Batal
+                                            </button>
+                                            <button type="button" class="btn btn-success" id="submitStatusSubkontrak">
+                                                Kirim
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!--end: Search Form -->

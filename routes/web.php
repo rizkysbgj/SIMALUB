@@ -23,6 +23,9 @@
         Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
         Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
 
+        //Route dashboard manajer teknis
+        Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
+
         //Route proyek 
         Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
         Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');

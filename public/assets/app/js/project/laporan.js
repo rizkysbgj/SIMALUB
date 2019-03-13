@@ -12,7 +12,7 @@ jQuery(document).ready(function () {
 
 var Table = {
     test: function (IDProyek) {
-        $("#divLaporanList").html("");
+        // $("#divLaporanList").html("");
         t = $("#divLaporanList").mDatatable({
             data: {
                 type: "remote",
@@ -53,6 +53,12 @@ var Table = {
             },
             columns: [
                 {
+					field: "#", title: "Status Pemrosesan", sortable: false, textAlign: "center", template: function (t) {
+						var strBuilder = '<button onclick="Modal.statuslaporan()" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
+                        return strBuilder;
+					}
+				},
+                {
                     field: "IDTugas", title: "Action", sortable: false, textAlign: "center", template: function (t) {
                         var strBuilder = '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
                         return strBuilder;
@@ -67,7 +73,7 @@ var Table = {
 					field: "WaktuLapor", title: "Waktu Pelaporan", sortable: false, textAlign: "center", template: function (t) {
 						return t.WaktuLapor != null ? Common.Format.Date(t.WaktuLapor) : "-"
 					}
-				},
+                },
             ]
         })
 
@@ -101,4 +107,51 @@ var Control = {
         });
         
     }
+}
+
+var Modal = {
+	statuslaporan:function(){
+		$("#modalstatusproseslaporan").modal({
+			backdrop: "static"
+		});
+		// var btn = $("#submitStatusProsesLaporan");
+		// btn.on("click", function(){
+		// 	var params = {
+		// 		IDTugas: id,
+		// 		Metode:$("input[name='modalMetode']:checked").val(),
+		// 		Peralatan:$("input[name='modalPeralatan']:checked").val(),
+		// 		Personil:$("input[name='modalPersonil']:checked").val(),
+		// 		BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
+		// 		KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
+		// 		Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
+		// 	};
+		// 	btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+			
+		// 	console.log(params)
+
+		// 	$.ajax({
+        //         url: "/api/lapor",
+        //         type: 'POST',
+        //         data: model,
+        //         dataType: "json",
+        //         contentType: false,
+        //         processData: false
+        //     }).done(function (data, textStatus, jqXHR) {
+        //         console.log(data);
+        //         var link = '/halamanpinnedProject/' + data.IDProyek;
+        //         // Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+        //         if (Common.CheckError.Object(data) == true) {
+        //             Common.Alert.SuccessRoute("Berhasil Melaporkan", link);
+        //         }
+        //         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        //     }).fail(function (jqXHR, textStatus, errorThrown) {
+        //         Common.Alert.Error(errorThrown);
+        //         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        //     })
+		// })
+		// $("#btnClose").on("click", function(){
+		// 	$("#divLaporanList").mDatatable("reload");
+			
+		// })
+	}
 }
