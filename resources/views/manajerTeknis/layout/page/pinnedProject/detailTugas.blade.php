@@ -2,7 +2,11 @@
     <div class="m-portlet__head">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-
+                <div class="m-portlet__head-text" id="buttonBack" style="display:none;">
+                    <button onclick="Control.BackDetail('{{ $mstTugasDetail['tugas']['IDProyek'] }}')" class="btn m-btn--pill m-btn--air btn-primary" style="margin-right: 10px;">
+                        <div class="fa fa-arrow-left"></div>
+                    </button>
+                </div>
                 <h3 class="m-portlet__head-text">
                     {{ $mstTugasDetail['tugas']['NamaTugas'] }}
                     <small>
@@ -16,7 +20,7 @@
 
     <div class="m-portlet__body" style="padding-top: 0px;">
         <div class="form-group m-form__group">
-            <div class="alert m-alert m-alert--default" role="alert" style="margin-bottom: 20px;">
+            <div class="alert m-alert m-alert--default" role="alert" style="margin-bottom: 20px;" id="buttonHide">
                 <div class="col-lg-12 m--align-center" id="btnGenerate">
                     <a href="{{ url('/editTugas/'.$mstTugasDetail['tugas']['IDTugas']) }}" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
                         style="margin-right: 10px;">

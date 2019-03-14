@@ -163,11 +163,7 @@ var GetData = {
 				$("#detailProyek").html(data);
 				Function.ChangeFormatDate();
 				Button.Init();
-				// Ctrl.Select2();
-				// Summernote.Init();
-				// Table.Milestone(IDTugas);
-				// Table.Worklog(TaskID);
-				// Table.History(TaskID);
+				Table.HasilAnalisis(IDProyek);
 
 				$("#minimizeTaskRight").hide();
 
@@ -202,5 +198,64 @@ var Function = {
 	ChangeFormatDate: function () {
 		document.getElementById("txtStartPlan").innerHTML = Common.Format.Date(document.getElementById("txtStartPlan").innerHTML);
 		document.getElementById("txtEndPlan").innerHTML = Common.Format.Date(document.getElementById("txtEndPlan").innerHTML);
+	}
+}
+
+var Table = {
+	HasilAnalisis: function (IDProyek) {
+		t = $("#tabelmemoAnalisis").mDatatable({
+			data: {
+				type: "remote",
+				source: {
+					read: { 
+						url: "/api/tugas/administrasi/hasil/" + IDProyek,
+						method: "GET",
+						map: function (r) {
+							var e = r;
+							return void 0 !== r.data && (e = r.data), e;
+						}
+					}
+				},
+				pageSize: 10,
+				saveState: {
+					cookie: true,
+					webstorage: true
+				},
+				serverPaging: false,
+				serverFiltering: false,
+				serverSorting: false
+			},
+			layout: {
+				scroll: false,
+				footer: false
+			},
+			sortable: true,
+			pagination: true,
+			toolbar: {
+				items: {
+					pagination: {
+						pageSizeSelect: [10, 20, 30, 50, 100]
+					}
+				}
+			},
+			columns: [
+				{
+					field: "Attachment", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
+						if(t.Attachment != null)
+							var strBuilder = '<a href="/api/download/ ' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+						return strBuilder;
+					}
+				},
+				{ field: "InisialTugas", title: "Inisial Tugas", textAlign: "center" },
+				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
+				{ field: "NamaLengkap", title: "Nama Pengunggah", textAlign: "center" },
+				{
+					field: "WaktuSelesai", title: "Waktu Diberikan", sortable: false, textAlign: "center", template: function (t) {
+						return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
+					}
+				},
+				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 300 },
+			]
+		})
 	}
 }

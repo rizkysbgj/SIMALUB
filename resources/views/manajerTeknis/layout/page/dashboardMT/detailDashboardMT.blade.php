@@ -163,7 +163,7 @@
                                         <span>
                                             Tugas berada di: <h3>{{ $listTugas['PenanggungJawab'] }}</h3>
                                         </span>
-                                        <button type="button" href="#" class="btn m-btn--pill m-btn--air btn-secondary m-btn m-btn--custom m-btn--label-accent m-btn--bolder m-btn--uppercase">
+                                        <button type="button" id="detailTugasProyek" onclick="Control.TaskDetail('{{ $listTugas['IDTugas'] }}')" class="btn m-btn--pill m-btn--air btn-secondary m-btn m-btn--custom m-btn--label-accent m-btn--bolder m-btn--uppercase">
                                             Detail
                                         </button>
                                     </div>
