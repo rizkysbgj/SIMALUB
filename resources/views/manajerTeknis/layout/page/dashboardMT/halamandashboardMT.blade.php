@@ -8,7 +8,7 @@
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <a class="m-subheader__title m-subheader__title--separator">
-                        <h5>
+                        <h5 style="margin-bottom: 0px;">
                         Nama Proyek
                         </h5>
                     </a>

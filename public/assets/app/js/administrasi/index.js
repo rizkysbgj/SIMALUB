@@ -143,7 +143,7 @@ var GetData = {
 			url: link,
 			type: 'GET',
 			success: function (data) {
-				$("#showProyek").html(data);
+				$("#removeTaskList").html(data);
 				IDProyek = $("#IDProyek").val();
 				GetData.ProyekDetail(IDProyek);
 			},

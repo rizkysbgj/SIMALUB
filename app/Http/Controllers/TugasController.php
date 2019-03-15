@@ -20,7 +20,8 @@ class TugasController extends Controller
 
     public function createTugas($IDProyek)
     {
-        return view ('manajerTeknis.layout.page.tugas.tambahTugas')->with('IDProyek', $IDProyek);
+        $vwProyek = vwProyek::where('IDProyek', $IDProyek)->first();
+        return view ('manajerTeknis.layout.page.tugas.tambahTugas', compact('vwProyek', 'IDProyek'));
     }
 
     public function editTugas($IDTugas)

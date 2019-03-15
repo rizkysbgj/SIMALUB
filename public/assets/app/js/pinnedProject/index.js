@@ -470,6 +470,8 @@ var Table = {
 					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", width: 100, template: function (t) {
 						if(t.Attachment != null)
 							var strBuilder = '<a href="/api/download/ ' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+						else
+							var strBuilder = '<a>-</a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
 				},
@@ -485,7 +487,7 @@ var Table = {
 						return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
 					}
 				},
-				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 500 },
+				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 300 },
 			]
 		})
 	}

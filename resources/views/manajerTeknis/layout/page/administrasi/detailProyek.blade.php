@@ -225,6 +225,6 @@
         </div>
     </div>
 
-    <input type="hidden" id="inptProjectID" value="{{ $mstProyekDetail['detailProyek']['IDProyek'] }}" />
+<input type="hidden" id="inptProjectID" value="{{ $mstProyekDetail['detailProyek']['IDProyek'] }}" />
     
 </div>
