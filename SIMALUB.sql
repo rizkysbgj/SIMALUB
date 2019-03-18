@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2019 at 02:25 PM
+-- Generation Time: Mar 18, 2019 at 02:26 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -71,7 +71,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2019_03_03_152025_vw_trx_tugas', 15),
 (31, '2019_02_12_085356_vw_proyek', 16),
 (32, '2019_02_07_121748_mst_tugas', 17),
-(33, '2019_03_11_085154_vw_sub_kontrak', 18);
+(33, '2019_03_11_085154_vw_sub_kontrak', 18),
+(34, '2019_02_25_152150_trx_lapor', 19);
 
 -- --------------------------------------------------------
 
@@ -350,6 +351,11 @@ CREATE TABLE `trxlapor` (
   `ContentType` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `StatusTidakan` int(11) NOT NULL DEFAULT '0',
+  `AttachmentTindakan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ContentTypeTindakan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NamaFileTindakan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CatatanTindakan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -702,7 +708,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -744,7 +750,7 @@ ALTER TABLE `mstsertifikat`
 -- AUTO_INCREMENT for table `mstsubkontrak`
 --
 ALTER TABLE `mstsubkontrak`
-  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `msttugas`
