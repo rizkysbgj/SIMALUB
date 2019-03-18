@@ -59,13 +59,14 @@ Route::post('lapor', 'ControllersApi\TugasControllerApi@CreateLaporTugas');
 Route::get('lapor/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListTrxLaporanTugas');
 Route::get('lapor/detail/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@GetDetailTrxLaporanTugas');
 Route::delete('lapor/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@DeleteLaporan');
+Route::put('lapor', 'ControllersApi\TugasControllerApi@TindakLaporan');
 
 Route::put('kajiulang', 'ControllersApi\TugasControllerApi@KajiUlang');
 Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKajiUlang');
 Route::delete('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@DeleteKajiUlang');
 
 Route::get('dashboardmanajerteknis/{IDProyek}', 'ControllersApi\DashboardControllerApi@DashboardManajerTeknis');
-
+Route::get('dashboardmanajerpuncak/{tahun}', 'ControllersApi\DashboardControllerApi@DashboardManajerPuncak');
 Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadAttachment');
 Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 

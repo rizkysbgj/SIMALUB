@@ -4,6 +4,8 @@ namespace App\Http\Controllers\ControllersApi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Carbon\Carbon;
 use App\mstSubKontrak;
 use App\vwSubKontrak;
 
@@ -14,6 +16,7 @@ class SubKontrakControllerApi extends Controller
         try {
             $mstSubKontrak = new mstSubKontrak();
             $mstSubKontrak->fill($request->all());
+            $mstSubKontrak->WaktuDikirim = Carbon::now()->toDateString();
             $mstSubKontrak->CreatedBy = Auth::user()->IDUser;
             $mstSubKontrak->save();
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_CREATED);
@@ -23,7 +26,6 @@ class SubKontrakControllerApi extends Controller
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
             return response($mstSubKontrak->jsonSerialize());
-            // return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -38,7 +40,6 @@ class SubKontrakControllerApi extends Controller
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
             return response($subKontrak->jsonSerialize());
-            //return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -53,7 +54,6 @@ class SubKontrakControllerApi extends Controller
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
             return $subKontrak;
-            //return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -61,10 +61,44 @@ class SubKontrakControllerApi extends Controller
     {
         try {
             $mstSubKontrak = mstSubKontrak::where('IDSubKontrak', $request->IDSubKontrak)->firstorfail();
-            $mstSubKontrak->fill($request->all());
             $mstSubKontrak->UpdatedBy = Auth::user()->IDUser;
             $mstSubKontrak->save();
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_OK);
+        }
+        catch (\Exception $e) {
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage(); 
+            return response($mstSubKontrak->jsonSerialize());
+        }
+    }
+
+    public function UploadHasil(Request $request)
+    {
+        try {
+            $mstSubKontrak = mstSubKontrak::where('IDSubKontrak', $request->IDSubKontrak)->firstorfail();
+            if($request->hasFile('Attachment'))
+            {
+                $helper = new HelpersController();
+                $Attachment = $request->file('Attachment');
+                if($helper->cekFiles($Attachment))
+                {
+                    $mstSubKontrak->Attachment = $Attachment->store('public/files');
+                    $mstSubKontrak->ContentType = $Attachment->getCLientMimeType();
+                    $mstSubKontrak->NamaFile = $Attachment->getClientOriginalName();
+                }
+                else
+                {
+                    $subKontrak = new mstSubKontrak();
+                    $subKontrak->ErrorType = 2;
+                    $trxTugas->ErrorMessage = "Format File Tidak Valid"; 
+                    return $subKontrak;
+                }
+            }
+            $mstSubKontrak->WaktuDiterima = Carbon::now()->toDateString();
+            $mstSubKontrak->UpdatedBy = Auth::user()->IDUser;
+            $mstSubKontrak->save();
+            return response($mstSubKontrak->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
             $subKontrak = new mstSubKontrak();
