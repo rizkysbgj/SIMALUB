@@ -510,6 +510,7 @@ class TugasControllerApi extends Controller
             $trxLapor->IDProyek = $request->IDProyek;
             if($request->hasFile('Attachment'))
             {
+                $helper = new HelpersController();
                 $Attachment = $request->file('Attachment');
                 if($helper->cekFiles($Attachment))
                 {
@@ -608,6 +609,7 @@ class TugasControllerApi extends Controller
             if($request->hasFile('Attachment'))
             {
                 $Attachment = $request->file('Attachment');
+                $helper = new HelpersController();
                 if($helper->cekFiles($Attachment))
                 {
                     $laporan->AttachmentTindakan = $Attachment->store('public/files');

@@ -42,15 +42,16 @@ Route::delete('tugas/{IDTugas}', 'ControllersApi\TugasControllerApi@DeleteTugas'
 
 Route::get('memo/{IDTugas}', 'ControllersApi\TugasControllerApi@GetListTrxTugas');
 
-Route::get('tugas/administrasi/list/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiGetListTugas');
-Route::post('tugas/administrasi', 'ControllersApi\TugasControllerApi@AdministrasiTransaction');
-Route::get('tugas/administrasi/hasil/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiGetListTrxTugas');
+Route::get('tugas/administrasi/list/{IDProyek}', 'ControllersApi\AdministrasiControllerApi@AdministrasiGetListTugas');
+Route::post('tugas/administrasi', 'ControllersApi\AdministrasiControllerApi@AdministrasiTransaction');
+Route::get('tugas/administrasi/hasil/{IDProyek}', 'ControllersApi\AdministrasiControllerApi@AdministrasiGetListTrxTugas');
 
 Route::post('subkontrak', 'ControllersApi\SubKontrakControllerApi@CreateSubKontrak');
 Route::get('subkontrak/{IDProyek}', 'ControllersApi\SubKontrakControllerApi@GetListSubKontrak');
 Route::get('subkontrak/detail/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@GetSubKontrak');
 Route::put('subkontrak', 'ControllersApi\SubKontrakControllerApi@UpdateSubKontrak');
 Route::delete('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@DeleteSubKontrak');
+Route::put('subkontrak/hasil', 'ControllersApi\SubKontrakControllerApi@UploadHasil');
 
 Route::post('pinned', 'ControllersApi\TugasControllerApi@TugasTransaction');
 
