@@ -74,7 +74,7 @@ var Table = {
                     sortable: false,
                     textAlign: "center",
                     template: function (t) {
-                        if(t.StatusTindakan != "0")
+                        if(t.StatusTindakan != 0)
                             var strBuilder = '<button onclick="Modal.statuslaporan('+t.IDTrxLapor+')" class="btn btn-success" style="width: 100px;"><span><small>Sudah</small></span></button>';
                         else
                             var strBuilder = '<button onclick="Modal.statuslaporan('+t.IDTrxLapor+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
@@ -87,7 +87,7 @@ var Table = {
                     sortable: false,
                     textAlign: "center",
                     template: function (t) {
-                        var strBuilder = '<a href="/api/download/ ' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        var strBuilder = '<a href="/api/download/laporan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
                         return strBuilder;
                     }
                 },
@@ -178,9 +178,6 @@ var Modal = {
             });
             
         	btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-
-        	console.log(model.get("IDTrxLapor"))
-
         	$.ajax({
                 url: "/api/lapor/tindakan",
                 type: 'POST',

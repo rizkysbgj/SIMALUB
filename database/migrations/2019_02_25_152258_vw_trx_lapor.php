@@ -48,9 +48,10 @@ SELECT
     vt.`NamaProyek`,
     vu.`NamaLengkap`,
     tl.`Attachment`,
-    tl.`ContentType`,
-    tl.`NamaFile`,
     tl.`Catatan`,
+    tl.`StatusTindakan`,
+    tl.`AttachmentTindakan`,
+    tl.`CatatanTindakan`,
     tl.`created_at` AS `WaktuLapor`
     FROM `trxlapor` as tl
     LEFT JOIN `vwtugas` as vt ON tl.`IDTugas` = vt.`IDTugas`

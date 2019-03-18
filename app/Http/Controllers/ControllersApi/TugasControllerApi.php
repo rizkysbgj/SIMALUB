@@ -645,15 +645,15 @@ class TugasControllerApi extends Controller
     {
         try
         {
-            $tindakan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
-            return Storage::download($tindakan->Attachment, $tindakan->FileName);
+            $laporan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
+            return Storage::download($laporan->Attachment, $laporan->NamaFile);
         }
         catch(\Exception $e)
         {
-            $tindakan = new trxLapor();
-            $tindakan->ErrorType = 2;
-            $tindakan->ErrorMessage = $e->getMessage();
-            return $tindakan;
+            $laporan = new trxLapor();
+            $laporan->ErrorType = 2;
+            $laporan->ErrorMessage = $e->getMessage();
+            return $laporan;
         }
     }
 
@@ -662,7 +662,7 @@ class TugasControllerApi extends Controller
         try
         {
             $tindakan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
-            return Storage::download($tindakan->AttachmentTindakan, $tindakan->FileNameTindakan);
+            return Storage::download($tindakan->AttachmentTindakan, $tindakan->NamaFileTindakan);
         }
         catch(\Exception $e)
         {
