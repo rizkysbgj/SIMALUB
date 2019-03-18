@@ -605,8 +605,26 @@ class TugasControllerApi extends Controller
             $laporan = new trxLapor();
             $laporan = trxLapor::where('IDTrxLapor', $request->IDTrxLapor)->firstorfail();
 
-            $laporan->Tindakan = "sudah";
-            $laporan->Catatan = $request->Catatan;
+            if($request->hasFile('Attachment'))
+            {
+                $Attachment = $request->file('Attachment');
+                if($helper->cekFiles($Attachment))
+                {
+                    $laporan->AttachmentTindakan = $Attachment->store('public/files');
+                    $laporan->ContentTypeTindakan = $Attachment->getCLientMimeType();
+                    $laporan->NamaFileTindakan = $Attachment->getClientOriginalName();
+                }
+                else
+                {
+                    $laporan = new trxTugas();
+                    $laporan->ErrorType = 2;
+                    $laporan->ErrorMessage = "Format File Tidak Valid"; 
+                    return $laporan;
+                }
+            }
+
+            $laporan->StatusTindakan = 1;
+            $laporan->CatatanTindakan = $request->Catatan;
 
             $laporan->save();
             $laporan->ErrorType = 0;
