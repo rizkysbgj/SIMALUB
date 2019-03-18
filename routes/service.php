@@ -59,7 +59,7 @@ Route::post('lapor', 'ControllersApi\TugasControllerApi@CreateLaporTugas');
 Route::get('lapor/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListTrxLaporanTugas');
 Route::get('lapor/detail/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@GetDetailTrxLaporanTugas');
 Route::delete('lapor/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@DeleteLaporan');
-Route::put('lapor', 'ControllersApi\TugasControllerApi@TindakLaporan');
+Route::post('lapor/tindakan', 'ControllersApi\TugasControllerApi@TindakLaporan');
 
 Route::put('kajiulang', 'ControllersApi\TugasControllerApi@KajiUlang');
 Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKajiUlang');

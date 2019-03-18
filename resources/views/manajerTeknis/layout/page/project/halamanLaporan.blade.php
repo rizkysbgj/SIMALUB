@@ -4,7 +4,7 @@
 <div class="m-content">
     <div class="row">
         <div class="col-lg-12">
-            <div class="m-portlet">
+            <div class="m-portlet">            
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
@@ -16,6 +16,14 @@
                 </div>
 
                 <div class="m-portlet__body">
+                    <div class="m-content" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;" id="alertPilihProyekLaporan">
+                        <div class="alert alert-warning m-alert--default m--align-center" role="alert" style="padding:20px;">
+                            <strong>
+                                Silahkan,
+                            </strong>
+                            pilih proyek yang ingin dilihat laporannya
+                        </div>
+                    </div>
                     <!--begin: Search Form -->
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
@@ -81,7 +89,7 @@
                                                     Catatan <span style="color:red">*</span> :
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="#"
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark"
                                                         rows="4" required></textarea>
                                                 </div>
                                             </div>

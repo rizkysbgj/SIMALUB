@@ -30,6 +30,11 @@ class ProjectController extends Controller
     // laporan
     public function indexLaporan()
     {
+        // $trxLapor = new trxLapor();
+        // $TugasController = new TugasControllerApi();
+        // $trxLapor = $TugasController->TindakLaporan($IDLapor);
         return view('manajerTeknis.layout.page.project.halamanLaporan');
     }
+
+    
 }
