@@ -59,7 +59,7 @@ var Table = {
                     sortable: false,
                     textAlign: "center",
                     template: function (t) {
-                        var strBuilder = '<a href="/download/laporan/' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        var strBuilder = '<a href="/api/download/tindakan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
                         return strBuilder;
                     }
                 },
@@ -187,9 +187,14 @@ var Modal = {
                 processData: false
             }).done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                var link = '/halamanLaporan/' + data.IDProyek;
+                // var link = '/halamanLaporan/' + data.IDProyek;
                 if (Common.CheckError.Object(data) == true) {
-                    Common.Alert.SuccessRoute("Berhasil Menindaklanjuti", link);
+                    Common.Alert.Success("Berhasil Menindaklanjuti");
+                    $("#divLaporanList").mDatatable("reload");        
+                    $("#tbxRemark").val('');
+                    $("#inputFile").val('');
+                    $('#modalstatusproseslaporan').modal("toggle");
+                    
                 }
                 btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
             }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -198,8 +203,10 @@ var Modal = {
             })
         })
         $("#btnClose").on("click", function(){
-        	$("#divLaporanList").mDatatable("reload");
-
-        })
+			$("#divLaporanList").mDatatable("reload");
+			
+            $("#tbxRemark").val('');
+			$("#inputFile").val('');
+		})
     }
 }
