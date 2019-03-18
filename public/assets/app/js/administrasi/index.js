@@ -1,10 +1,11 @@
-var IDProyek = null;
+var IDProyek = $("#IDProyek").val();
 
 jQuery(document).ready(function () {
-	// console.log(IDTugas);
-	// GetData.ProyekList();
-	// GetData.TaskDetail(IDTugas);
-	Page.Init();
+
+	if(IDProyek != 0)
+		Page.Init();
+	else
+		$("#proyekbelumsiap").show();
 
 	$("#minimizeTaskRight").hide();
 

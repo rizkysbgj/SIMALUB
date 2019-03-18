@@ -1,7 +1,9 @@
 @extends('manajerTeknis.layout.index')
 @section('title', 'Halaman Pembuatan Sertifikat' )
 @section('content')
-<div class="m-content">
+
+@if($IDProyek != 0)
+<div class="m-content" id="proyeksiap">
     <div class="row">
 
         <div class="col-lg-1" id="sidebarShow" style="display:none">
@@ -39,5 +41,17 @@
 
 </div>
 
+@else
+<div class="m-content" id="proyekbelumsiap">
+    <div class="alert alert-warning m-alert--default m--align-center" role="alert" style="padding:20px;">
+        <strong>
+            Maaf,
+        </strong>
+        saat ini belum ada proyek yang siap dibuatkan sertifikat
+    </div>
+</div>
+@endif
+
 <script src="{{ asset('assets/app/js/administrasi/index.js') }}" type="text/javascript"></script>
+<input type="hidden" id="IDProyek" value="{{ $IDProyek }}">
 @endsection

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\mstTugas;
-use App\vwProyek;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllersApi\ProyekControllerApi;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;
@@ -12,7 +11,12 @@ class BuatSertifikatController extends Controller
 {
     Public function indexPinnedProjectAdministrasi()
     {
-        return view('manajerTeknis.layout.page.administrasi.halamanpinnedProjectAdministrasi');
+        $ProyekControllerApi = new ProyekControllerApi();
+        $mstProyekList = $ProyekControllerApi->GetListProyekAdministrasi();
+        $IDProyek = 0;
+        if(count($mstProyekList) > 0)
+            $IDProyek = $mstProyekList[0]->IDProyek;
+        return view('manajerTeknis.layout.page.administrasi.halamanpinnedProjectAdministrasi', compact('IDProyek', 'mstProyekList'));
     }
     
     public function proyekList()
