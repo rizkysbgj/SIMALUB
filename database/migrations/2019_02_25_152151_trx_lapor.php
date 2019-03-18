@@ -22,7 +22,7 @@ class TrxLapor extends Migration
             $table->string('ContentType')->nullable();
             $table->string('NamaFile')->nullable();
             $table->string('Catatan');
-            $table->integer('StatusTidakan')->default('0');
+            $table->integer('StatusTindakan')->default('0');
             $table->string('AttachmentTindakan')->nullable();
             $table->string('ContentTypeTindakan')->nullable();
             $table->string('NamaFileTindakan')->nullable();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VwDashboardManajerPuncak extends Migration
+class VwStatistikProyek extends Migration
 {
     /**
      * Run the migrations.
@@ -31,20 +31,20 @@ class VwDashboardManajerPuncak extends Migration
     private function dropView(): string
     {
         return <<<SQL
-DROP VIEW IF EXISTS `vwdashboardmanajerpuncak`;
+DROP VIEW IF EXISTS `vwStatistikProyek`;
 SQL;
     }
 
     private function createView(): string
     {
         return <<<SQL
-CREATE VIEW `vwdashboardmanajerpuncak` AS
+CREATE VIEW `vwStatistikProyek` AS
 SELECT 
     MONTH(vp.`TanggalMulai`) as `Bulan`,
     YEAR(vp.`TanggalMulai`) as `Tahun`,
     COUNT(vp.`IDProyek`) as `TotalProyek`,
-    (SELECT COUNT(`IDProyek`) FROM `mstproyek` as mp WHERE mp.`TanggalSelesai` <> NULL) as `TotalProyekSelesai`,
-    (SELECT COUNT(`IDProyek`) FROM `mstproyek` as mp WHERE mp.`TanggalSelesai` = NULL) as `TotalProyekBerlangsung`,
+    (SELECT COUNT(vp.`IDProyek`) FROM `vwproyek` as vp WHERE vp.`RealitaSelesai` IS NOT NULL AND (MONTH(vp.`TanggalMulai`) = `Bulan` AND YEAR(vp.`TanggalMulai`) = `Tahun`)) AS `TotalSelesai`,
+    (SELECT COUNT(vp.`IDProyek`) FROM `vwproyek` as vp WHERE vp.`RealitaSelesai` IS NULL AND (MONTH(vp.`TanggalMulai`) = `Bulan` AND YEAR(vp.`TanggalMulai`) = `Tahun`)) AS `TotalBerlangsung`
     FROM `vwproyek` as vp
     GROUP BY MONTH(vp.`TanggalMulai`), YEAR(vp.`TanggalMulai`)
 SQL;
