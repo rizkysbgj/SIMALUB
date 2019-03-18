@@ -60,8 +60,8 @@ Route::get('lapor/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListTrxLapo
 Route::get('lapor/detail/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@GetDetailTrxLaporanTugas');
 Route::delete('lapor/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@DeleteLaporan');
 Route::post('lapor/tindakan', 'ControllersApi\TugasControllerApi@TindakLaporan');
-Route::get('download/laporan', 'ControllersApi\TugasControllerApi@DownloadAttachmentLaporan');
-Route::get('download/tindakan', 'ControllersApi\TugasControllerApi@DownloadAttachmentTindakan');
+Route::get('download/laporan/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@DownloadAttachmentLaporan');
+Route::get('download/tindakan/{IDTrxLapor}', 'ControllersApi\TugasControllerApi@DownloadAttachmentTindakan');
 
 Route::put('kajiulang', 'ControllersApi\TugasControllerApi@KajiUlang');
 Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKajiUlang');
