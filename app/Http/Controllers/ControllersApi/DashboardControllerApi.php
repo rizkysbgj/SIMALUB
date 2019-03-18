@@ -5,8 +5,9 @@ namespace App\Http\Controllers\ControllersApi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\vwDashboardManajerTeknis;
-use App\vwDashboardManajerPuncak;
+use App\vwStatistikProyek;
 use App\vwTugas;
+use App\viewmodel\vmDashboardManajerPuncak;
 use DateTime;
 
 class DashboardControllerApi extends Controller
@@ -39,24 +40,21 @@ class DashboardControllerApi extends Controller
     {
         try
         {
-            $proyekList = vwDashboardManajerPuncak::where('Tahun', $tahun)->get();
-            $dashboard->totalProyek = $proyekList->count();
-            $dashboard->totalProyekSelesai = $proyekList->where('RealitaSelesai', '!=', null)->count();
-            $dashboard->totalProyekBerlangsung = $proyekList->where('RealitaSelesai', null)->count();
+            $dashboard = new vmDashboardManajerPuncak();
+            $statistikProyek = vwStatistikProyek::where('Tahun', $tahun)->get();
+            $dashboard->statistikBulanan = $statistikProyek;
+            $dashboard->totalProyek = $statistikProyek->sum('TotalProyek');
+            $dashboard->totalProyekSelesai = $statistikProyek->sum('TotalSelesai');
+            $dashboard->totalProyekBerlangsung = $statistikProyek->sum('TotalBerlangsung');
             $dashboard->persentaseSelesai = (int)($dashboard->totalProyekSelesai/$dashboard->totalProyek * 100);
             $dashboard->persentaseBelumSelesai = (int)($dashboard->totalProyekBerlangsung/$dashboard->totalProyek * 100);
-            $dashboard->$proyekPerBulan = array();
-            for($i=1; $i<=12; $i++)
-            {
-                $dashboard->$proyekPerBulan[$i] = $proyekList->where('Bulan', $i)->count();
-            }
 
             $dashboard->ErrorType = 0;
             return $dashboard;
         }
         catch (\Exception $e)
         {
-            $dashboard = new vwDashboardManajerPuncak();
+            $dashboard = new vmDashboardManajerPuncak();
             $dashboard->ErrorType = 2;
             $dashboard->ErrorMessage = $e->getMessage();
             return $dashboard;

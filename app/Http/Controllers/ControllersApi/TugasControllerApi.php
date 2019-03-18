@@ -640,6 +640,38 @@ class TugasControllerApi extends Controller
             return $laporan;
         }
     }
+
+    public function DownloadAttachmentLaporan($IDTrxLapor)
+    {
+        try
+        {
+            $tindakan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
+            return Storage::download($tindakan->Attachment, $tindakan->FileName);
+        }
+        catch(\Exception $e)
+        {
+            $tindakan = new trxLapor();
+            $tindakan->ErrorType = 2;
+            $tindakan->ErrorMessage = $e->getMessage();
+            return $tindakan;
+        }
+    }
+
+    public function DownloadAttachmentTindakan($IDTrxLapor)
+    {
+        try
+        {
+            $tindakan = trxLapor::where('IDTrxLapor', $IDTrxLapor)->firstorfail();
+            return Storage::download($tindakan->AttachmentTindakan, $tindakan->FileNameTindakan);
+        }
+        catch(\Exception $e)
+        {
+            $tindakan = new trxLapor();
+            $tindakan->ErrorType = 2;
+            $tindakan->ErrorMessage = $e->getMessage();
+            return $tindakan;
+        }
+    }
     #endregion
 
     #region Kaji Ulang
