@@ -117,6 +117,15 @@
 
 </div>
 
+<div class="m-content" style="padding-top:10px" id="alertTugasBelumAda">
+    <div class="alert alert-danger m-alert--default m--align-center" role="alert" style="padding:20px;">
+        <strong>
+            Maaf,
+        </strong>
+        proyek ini belum memiliki tugas. Silahkan klik tombol disamping untuk membuat tugas terlebih dahulu
+    </div>
+</div>
+
 <input type="hidden" id="IDProyek" value="{{ $vwProyek['IDProyek'] }}" >
 <input type="hidden" id="IDTugas" value="{{ $IDTugas }}" >
 <script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>

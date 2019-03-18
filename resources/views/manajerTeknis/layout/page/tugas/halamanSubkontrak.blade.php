@@ -66,7 +66,7 @@
                                                     Catatan <span style="color:red">*</span> :
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;" !important>
-                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="#"
+                                                    <textarea type="text" class="form-control m-input" name="tbxRemark" id="tbxRemark"
                                                         rows="4" required></textarea>
                                                 </div>
                                             </div>

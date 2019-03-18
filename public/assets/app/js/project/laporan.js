@@ -52,7 +52,23 @@ var Table = {
             search: {
                 input: $("#tbxSearch")
             },
-            columns: [{
+            columns: [
+                {
+                    field: "LampiranPenindak",
+                    title: "Lampiran Penindak",
+                    sortable: false,
+                    textAlign: "center",
+                    template: function (t) {
+                        var strBuilder = '<a href="/download/laporan/' + t.IDTrxTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        return strBuilder;
+                    }
+                },
+                {
+                    field: "CatatanTindakan",
+                    title: "Catatan Penindak",
+                    textAlign: "center"
+                },
+                {
                     field: "StatusPemrosesan",
                     title: "Status Pemrosesan",
                     sortable: false,
@@ -155,7 +171,7 @@ var Modal = {
         btn.on("click", function(){
             var model = new FormData();
 			model.append("IDTrxLapor", id);
-            model.append("Catatan", $("tbxRemark").val());
+            model.append("Catatan", $("#tbxRemark").val());
             
             $('input[type="file"]').each(function($i){
                 model.append("Attachment", $(this)[0].files[0]);
