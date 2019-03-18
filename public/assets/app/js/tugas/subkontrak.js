@@ -47,15 +47,16 @@ var Table = {
 			columns: [
 				{
 					field: "#", title: "Status Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
-						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Story"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
-						var strBuilder = '<button onclick="Modal.statussubkontrak()" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
+						if(t.StatusSubkontrakDitindaklanjuti != 0)
+							var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDTrxSubkontrak+')" class="btn btn-success" style="width: 100px;"><span><small>Sudah</small></span></button>';
+                        else
+						var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDTrxSubkontrak+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
                         return strBuilder;
 					}
 					
 				},
 				{
-					field: "TaskID", title: "Actions", sortable: false, textAlign: "center", template: function (t) {
-						// var strBuilder = '<a href="/editTugas/' + t.IDTugas + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Edit Tugas"><i class="la la-edit"></i></a>\t\t\t\t\t\t';
+					field: "TaskID", title: "Download Hasil Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
 						var strBuilder = '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
@@ -72,6 +73,7 @@ var Table = {
 					}
 				},
 				{ field: "PenanggungJawab", title: "Penanggung Jawab", textAlign: "center" },
+				{ field: "Catatan", title: "Catatan", textAlign: "center" },
 			]
 		})
 	}
@@ -81,20 +83,17 @@ var Modal = {
 		$("#modalstatussubkontrak").modal({
 			backdrop: "static"
 		});
-		var btn = $("#submitStatusSubkontrak");
+		var btn = $("#submitStatusProsesLaporan");
         btn.on("click", function(){
             var model = new FormData();
 			model.append("IDTrxLapor", id);
-            model.append("Catatan", $("tbxRemark").val());
+            model.append("Catatan", $("#tbxRemark").val());
             
             $('input[type="file"]').each(function($i){
                 model.append("Attachment", $(this)[0].files[0]);
             });
             
         	btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-
-        	console.log(model.get("IDTrxLapor"))
-
         	$.ajax({
                 url: "/api/lapor/tindakan",
                 type: 'POST',
@@ -104,9 +103,14 @@ var Modal = {
                 processData: false
             }).done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                var link = '/halamanLaporan/' + data.IDProyek;
+                // var link = '/halamanLaporan/' + data.IDProyek;
                 if (Common.CheckError.Object(data) == true) {
-                    Common.Alert.SuccessRoute("Berhasil Menindaklanjuti", link);
+                    Common.Alert.Success("Berhasil Menindaklanjuti");
+                    $("#divLaporanList").mDatatable("reload");        
+                    $("#tbxRemark").val('');
+                    $("#inputFile").val('');
+                    $('#modalstatusproseslaporan').modal("toggle");
+                    
                 }
                 btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
             }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -115,8 +119,10 @@ var Modal = {
             })
         })
         $("#btnClose").on("click", function(){
-        	$("#divLaporanList").mDatatable("reload");
-
-        })
+			$("#divLaporanList").mDatatable("reload");
+			
+            $("#tbxRemark").val('');
+			$("#inputFile").val('');
+		})
 	}
 }
