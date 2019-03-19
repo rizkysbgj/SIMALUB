@@ -68,7 +68,11 @@ Route::get('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListKaj
 Route::delete('kajiulang/{IDProyek}', 'ControllersApi\TugasControllerApi@DeleteKajiUlang');
 
 Route::get('dashboardmanajerteknis/{IDProyek}', 'ControllersApi\DashboardControllerApi@DashboardManajerTeknis');
+Route::get('dashboardmanajerteknis/kesalahan/{IDProyek}', 'ControllersApi\DashboardControllerApi@GetKesalahanAnalisis');
+Route::get('dashboardmanajerteknis/telat/{IDProyek}', 'ControllersApi\DashboardControllerApi@GetWaktuTerbuang');
+
 Route::get('dashboardmanajerpuncak/{tahun}', 'ControllersApi\DashboardControllerApi@DashboardManajerPuncak');
+
 Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadAttachment');
 Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 

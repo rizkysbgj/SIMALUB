@@ -186,13 +186,11 @@
                 <div class="m-widget14" style="height: 370px;">
                     <div class="m-widget14__header m--margin-bottom-10">
                         <h3 class="m-widget14__title">
-                            Total Kesalahan Analisis : <strong>5 Analisis</strong>
+                            Total Kesalahan Analisis : <strong id="totalSalah"></strong><strong> Analisis</strong>
                         </h3>
                     </div>
-                    <div class="m-widget14__chart" id="totalWaktuSalahAnalisis" style="width: 100%;height: 250px;"></div>
-                    <!-- <div class="m-widget14__chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="m_chart_daily_sales" class="chartjs-render-monitor" style="display: block; width: 516px; height: 250px;"></canvas>
-                    </div> -->
+                    <div class="m-widget14__chart" id="totalSalahAnalisis" style="width: 100%;height: 250px;"></div>
+                    
                 </div>
             </div>
             <!--end:: Widgets/Tasks -->
@@ -204,37 +202,11 @@
                 <div class="m-widget14" style="height: 370px;">
                     <div class="m-widget14__header m--margin-bottom-10">
                         <h3 class="m-widget14__title">
-                            Total Waktu Terbuang : <strong>24 Jam</strong>
+                            Total Waktu Terbuang : <strong id="waktuTelat"></strong><strong> Hari</strong>
                         </h3>
                     </div>
-                    <div class="m-widget14__chart" id="totalSalahAnalisis" style="width: 100%;height: 250px;"></div>
-                    <!-- <div class="m-widget14__chart">
-                        <div class="row  align-items-center">
-                            <div class="col">
-                                <div id="m_chart_profit_share" class="m-widget14__chart">
-                                    <div class="m-widget14__stat">
-                                        45
-                                    </div>
-                                <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-donut" style="width: 100%; height: 100%;"><g class="ct-series custom"><path d="M108.31,101.192A49.773,49.773,0,0,0,63.273,30.227" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#716aca&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="100.07612609863281px 100.07612609863281px" stroke-dashoffset="-100.07612609863281px" stroke="#716aca"><animate attributeName="stroke-dashoffset" id="anim0" dur="1000ms" from="-100.07612609863281px" to="0px" fill="freeze" stroke="#716aca" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M24.922,111.727A49.773,49.773,0,0,0,108.383,101.035" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#00c5dc&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="100.25057983398438px 100.25057983398438px" stroke-dashoffset="-100.25057983398438px" stroke="#00c5dc"><animate attributeName="stroke-dashoffset" id="anim1" dur="1000ms" from="-100.25057983398438px" to="0px" fill="freeze" stroke="#00c5dc" begin="anim0.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M63.273,30.227A49.773,49.773,0,0,0,25.033,111.86" class="ct-slice-donut" ct:value="36" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#ffb822&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="112.75973510742188px 112.75973510742188px" stroke-dashoffset="-112.75973510742188px" stroke="#ffb822"><animate attributeName="stroke-dashoffset" id="anim2" dur="1000ms" from="-112.75973510742188px" to="0px" fill="freeze" stroke="#ffb822" begin="anim1.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g></svg></div>
-                            </div>
-                            <div class="col">
-                                <div class="m-widget14__legends">
-                                    <div class="m-widget14__legend">
-                                        <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                        <span class="m-widget14__legend-text">
-                                            66,67% Telah Selesai
-                                        </span>
-                                    </div>
-                                    <div class="m-widget14__legend">
-                                        <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                        <span class="m-widget14__legend-text">
-                                            33,33% Belum Selesai
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  -->
+                    <div class="m-widget14__chart" id="totalWaktuSalahAnalisis" style="width: 100%;height: 250px;"></div>
+                    
                 </div>
             </div>
             <!--end:: Widgets/Support Tickets -->

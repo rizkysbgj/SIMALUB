@@ -3,6 +3,40 @@ jQuery(document).ready(function () {
     Control.Init();
 });
 
+var GetData = {
+    Kesalahan: function(IDProyek) {
+        $.ajax({
+            url: "/api/dashboardmanajerteknis/kesalahan/" + IDProyek,
+            type: 'GET',
+            success: function (data) {
+                var total = 0;
+                $.each(data, function(index, item){
+                    total += item.TotalKesalahanAnalisis;
+                })
+                total = total;
+                $("#totalSalah").html(total);
+                Control.GraphTotalSalahAnalisis(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    },
+    Telat: function(IDProyek){
+        $.ajax({
+            url: "/api/dashboardmanajerteknis/telat/" + IDProyek,
+            type: 'GET',
+            success: function (data) {
+                $("#waktuTelat").html(data.SelisihMax);
+                Control.GraphTotalWaktuSalahAnalisis(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+}
+
 var Control = {
     Init: function () {
         $.ajax({
@@ -40,8 +74,8 @@ var Control = {
                     $("#filter").show()
                     // Graph.Init(IDProyek);
                     Control.DateFormat();
-                    Control.GraphTotalSalahAnalisis();
-                    Control.GraphTotalWaktuSalahAnalisis();
+                    GetData.Kesalahan(IDProyek);
+                    GetData.Telat(IDProyek);
                     // GetData.Init(null, null);
                     // Control.Filter();
                 },
@@ -172,114 +206,28 @@ var Control = {
 			]
 		})
     },
-    GraphTotalSalahAnalisis: function() {
+    GraphTotalSalahAnalisis: function(data) {
+        
         // Themes begin
         am4core.useTheme(am4themes_animated);
         // Themes end
 
         // Create chart instance
-        var chart = am4core.create("totalSalahAnalisis", am4charts.PieChart);
-
+        var chart = am4core.create("totalSalahAnalisis", am4charts.XYChart);
+        chart.data = [];
+        
         // Add data
-        chart.data = [ {
-        "country": "Lithuania",
-        "litres": 501.9
-        }, {
-        "country": "Czech Republic",
-        "litres": 301.9
-        }, {
-        "country": "Ireland",
-        "litres": 201.1
-        }, {
-        "country": "Germany",
-        "litres": 165.8
-        }, {
-        "country": "Australia",
-        "litres": 139.9
-        }, {
-        "country": "Austria",
-        "litres": 128.3
-        }, {
-        "country": "UK",
-        "litres": 99
-        }, {
-        "country": "Belgium",
-        "litres": 60
-        }, {
-        "country": "The Netherlands",
-        "litres": 50
-        } ];
+        $.each(data, function(index, item){
+            var params = {
+                NamaTugas: item.NamaTugas,
+                Kesalahan: item.TotalKesalahanAnalisis
+            }
+            chart.data.push(params);
+        })
 
-        // Set inner radius
-        chart.innerRadius = am4core.percent(50);
-
-        // Add and configure Series
-        var pieSeries = chart.series.push(new am4charts.PieSeries());
-        pieSeries.dataFields.value = "litres";
-        pieSeries.dataFields.category = "country";
-        pieSeries.slices.template.stroke = am4core.color("#fff");
-        pieSeries.slices.template.strokeWidth = 2;
-        pieSeries.slices.template.strokeOpacity = 1;
-
-        // This creates initial animation
-        pieSeries.hiddenState.properties.opacity = 1;
-        pieSeries.hiddenState.properties.endAngle = -90;
-        pieSeries.hiddenState.properties.startAngle = -90;
-    },
-    GraphTotalWaktuSalahAnalisis: function(){
-        // Themes begin
-        am4core.useTheme(am4themes_animated);
-        // Themes end
-
-        // Create chart instance
-        var chart = am4core.create("totalWaktuSalahAnalisis", am4charts.XYChart);
-
-        // Add data
-        chart.data = [{
-        "country": "USA",
-        "visits": 2025
-        }, {
-        "country": "China",
-        "visits": 1882
-        }, {
-        "country": "Japan",
-        "visits": 1809
-        }, {
-        "country": "Germany",
-        "visits": 1322
-        }, {
-        "country": "UK",
-        "visits": 1122
-        }, {
-        "country": "France",
-        "visits": 1114
-        }, {
-        "country": "India",
-        "visits": 984
-        }, {
-        "country": "Spain",
-        "visits": 711
-        }, {
-        "country": "Netherlands",
-        "visits": 665
-        }, {
-        "country": "Russia",
-        "visits": 580
-        }, {
-        "country": "South Korea",
-        "visits": 443
-        }, {
-        "country": "Canada",
-        "visits": 441
-        }, {
-        "country": "Brazil",
-        "visits": 395
-        }];
-
-        // Create axes
-
+        // Create axess
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "country";
+        categoryAxis.dataFields.category = "NamaTugas";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.minGridDistance = 30;
 
@@ -294,15 +242,52 @@ var Control = {
 
         // Create series
         var series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.valueY = "visits";
-        series.dataFields.categoryX = "country";
-        series.name = "Visits";
+        series.dataFields.valueY = "Kesalahan";
+        series.dataFields.categoryX = "NamaTugas";
+        series.name = "Kesalahan";
         series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
         series.columns.template.fillOpacity = .8;
 
         var columnTemplate = series.columns.template;
         columnTemplate.strokeWidth = 2;
-        columnTemplate.strokeOpacity = 1;    
+        columnTemplate.strokeOpacity = 1;
+    },
+    GraphTotalWaktuSalahAnalisis: function(data){
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("totalWaktuSalahAnalisis", am4charts.PieChart);
+        chart.data = [];
+
+        // Add data
+        $.each(data, function(index, item){
+            var params = {
+                NamaTugas: item.NamaTugas,
+                Telat: item.Selisih
+            }
+            chart.data.push(params);
+        })
+
+        // Set inner radius
+        chart.innerRadius = am4core.percent(50);
+
+        // Add and configure Series
+        var pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.dataFields.value = "Telat";
+        pieSeries.dataFields.category = "NamaTugas";
+        pieSeries.slices.template.stroke = am4core.color("#fff");
+        pieSeries.slices.template.strokeWidth = 2;
+        pieSeries.slices.template.strokeOpacity = 1;
+        pieSeries.slices.template.tooltipText = "{category}: {value}[/] hari";
+        pieSeries.labels.template.text = "{category}: {value}[/] hari";
+        // pieSeries.ticks.template.tooltipText = "{category}: [bold]{value} hari[/]";
+
+        // This creates initial animation
+        pieSeries.hiddenState.properties.opacity = 1;
+        pieSeries.hiddenState.properties.endAngle = -90;
+        pieSeries.hiddenState.properties.startAngle = -90;    
     }
 }
 

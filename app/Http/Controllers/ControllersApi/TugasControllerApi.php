@@ -271,6 +271,8 @@ class TugasControllerApi extends Controller
                 {
                     $IDMilestoneNext = $IDMilestoneNow;
                     $trxTugas->Catatan = "";
+                    $countAnalisis = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', 5)->count();
+                    $trxTugas->StatusTugas = "Ulangan ke-" . $countAnalisis;
                 }
 
                 $count = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $IDMilestoneNext)->count();

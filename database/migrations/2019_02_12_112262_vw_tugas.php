@@ -54,7 +54,8 @@ SELECT
     mt.`StatusKajiUlang`,
     mu.`NamaLengkap` as `PenanggungJawab`,
     mt.`IDMilestoneTugas`,
-    mmt.`MilestoneTugas` as `Milestone`
+    mmt.`MilestoneTugas` as `Milestone`,
+    (SELECT COUNT(`IDTrxTugas`) FROM `trxtugas` as tt WHERE tt.`IDTugas` = mt.`IDTugas` AND tt.`IDMilestoneTugas` = 5 AND tt.`StatusTugas` IS NOT NULL) as `TotalKesalahanAnalisis`
     FROM `msttugas` as mt
     LEFT JOIN `mstproyek` as mp ON mt.`IDProyek` = mp.`IDProyek`
     LEFT JOIN `mstuser` as mu ON mt.`IDPenanggungJawab` = mu.`IDUser`
