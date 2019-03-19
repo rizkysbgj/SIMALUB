@@ -133,8 +133,17 @@ var Page = {
 
 		
 	},
+	
 }
 
+var Function = {
+	ChangeFormatDate: function () {
+		if((document.getElementById("txtStartPlan" && "txtEndPlan") ) != null ){
+			document.getElementById("txtStartPlan").innerHTML = Common.Format.Date(document.getElementById("txtStartPlan").innerHTML);
+			document.getElementById("txtEndPlan").innerHTML = Common.Format.Date(document.getElementById("txtEndPlan").innerHTML);
+		}
+	}
+}
 
 var GetData = {
 	ProyekList: function () {
@@ -195,12 +204,7 @@ var GetData = {
 	},
 }
 
-var Function = {
-	ChangeFormatDate: function () {
-		document.getElementById("txtStartPlan").innerHTML = Common.Format.Date(document.getElementById("txtStartPlan").innerHTML);
-		document.getElementById("txtEndPlan").innerHTML = Common.Format.Date(document.getElementById("txtEndPlan").innerHTML);
-	}
-}
+
 
 var Table = {
 	HasilAnalisis: function (IDProyek) {

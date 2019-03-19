@@ -206,7 +206,8 @@
                             Total Waktu Terbuang : <strong>24 Jam</strong>
                         </h3>
                     </div>
-                    <div class="m-widget14__chart">
+                    <div class="m-widget14__chart" id="testChart" style="width: 100%;height: 250px;"></div>
+                    <!-- <div class="m-widget14__chart">
                         <div class="row  align-items-center">
                             <div class="col">
                                 <div id="m_chart_profit_share" class="m-widget14__chart">
@@ -232,13 +233,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>  -->
                 </div>
             </div>
             <!--end:: Widgets/Support Tickets -->
         </div>
     </div>
 
-
-
 <script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
+

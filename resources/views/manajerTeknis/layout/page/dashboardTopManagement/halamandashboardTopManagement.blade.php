@@ -104,31 +104,8 @@
                                         Persentase keselesaian proyek
                                     </span>
                                 </div>
-                                <div class="row  align-items-center">
-                                    <div class="col">
-                                        <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
-                                            <div class="m-widget14__stat">
-                                                45
-                                            </div>
-                                        <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-donut" style="width: 100%; height: 100%;"><g class="ct-series custom"><path d="M108.31,101.192A49.773,49.773,0,0,0,63.273,30.227" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#716aca&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="100.07612609863281px 100.07612609863281px" stroke-dashoffset="-100.07612609863281px" stroke="#716aca"><animate attributeName="stroke-dashoffset" id="anim0" dur="1000ms" from="-100.07612609863281px" to="0px" fill="freeze" stroke="#716aca" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M24.922,111.727A49.773,49.773,0,0,0,108.383,101.035" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#00c5dc&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="100.25057983398438px 100.25057983398438px" stroke-dashoffset="-100.25057983398438px" stroke="#00c5dc"><animate attributeName="stroke-dashoffset" id="anim1" dur="1000ms" from="-100.25057983398438px" to="0px" fill="freeze" stroke="#00c5dc" begin="anim0.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M63.273,30.227A49.773,49.773,0,0,0,25.033,111.86" class="ct-slice-donut" ct:value="36" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#ffb822&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="112.75973510742188px 112.75973510742188px" stroke-dashoffset="-112.75973510742188px" stroke="#ffb822"><animate attributeName="stroke-dashoffset" id="anim2" dur="1000ms" from="-112.75973510742188px" to="0px" fill="freeze" stroke="#ffb822" begin="anim1.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g></svg></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="m-widget14__legends">
-                                            <div class="m-widget14__legend">
-                                                <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                                <span class="m-widget14__legend-text">
-                                                    66,67% Telah Selesai
-                                                </span>
-                                            </div>
-                                            <div class="m-widget14__legend">
-                                                <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                                <span class="m-widget14__legend-text">
-                                                    33,33% Belum Selesai
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id="testChart" style="width: 100%;height: 150px;"></div>
+                                
                             </div>
                             <!--end:: Widgets/Profit Share-->
                         </div>
@@ -212,13 +189,15 @@
 </div>
 
 <!-- Resources -->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
 <script src="{{ asset('assets/app/js/dashboard/dashboardTopManagement.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('assets/app/js/dashboard/dashboardMT.js') }}" type="text/javascript"></script>
+
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 @endsection
