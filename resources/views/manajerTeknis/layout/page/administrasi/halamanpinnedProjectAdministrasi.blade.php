@@ -2,8 +2,8 @@
 @section('title', 'Halaman Pembuatan Sertifikat' )
 @section('content')
 
-@if($IDProyek != 0)
-<div class="m-content" id="proyeksiap">
+@if($IDProyek != null)
+<div class="m-content">
     <div class="row">
 
         <div class="col-lg-1" id="sidebarShow" style="display:none">
@@ -42,7 +42,7 @@
 </div>
 
 @else
-<div class="m-content" id="proyekbelumsiap">
+<div class="m-content">
     <div class="alert alert-warning m-alert--default m--align-center" role="alert" style="padding:20px;">
         <strong>
             Maaf,

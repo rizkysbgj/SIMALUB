@@ -1,6 +1,8 @@
 @extends('manajerTeknis.layout.index')
 @section('title', 'Proyek : ' . $vwProyek['NamaProyek'])
 @section('content')
+
+@if($IDTugas != null)
 <div class="m-content">
     <div class="row">
 
@@ -117,14 +119,24 @@
 
 </div>
 
-<div class="m-content" style="padding-top:10px" id="alertTugasBelumAda">
-    <div class="alert alert-danger m-alert--default m--align-center" role="alert" style="padding:20px;">
+@else
+<div class="m-content">
+    <div class="alert alert-warning m-alert--default m--align-center" role="alert" style="padding:20px;">
         <strong>
             Maaf,
         </strong>
         proyek ini belum memiliki tugas. Silahkan klik tombol disamping untuk membuat tugas terlebih dahulu
+        <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
+		    <span>
+                <i class="fa fa-plus"></i>
+                <span>
+                    Tambah Tugas
+                </span>
+            </span>
+        </a>
     </div>
 </div>
+@endif
 
 <input type="hidden" id="IDProyek" value="{{ $vwProyek['IDProyek'] }}" >
 <input type="hidden" id="IDTugas" value="{{ $IDTugas }}" >

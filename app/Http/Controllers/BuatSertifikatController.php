@@ -23,7 +23,9 @@ class BuatSertifikatController extends Controller
     {
         $ProyekControllerApi = new ProyekControllerApi();
         $mstProyekList = $ProyekControllerApi->GetListProyekAdministrasi();
-        $IDProyek = $mstProyekList[0]->IDProyek;
+        $IDProyek = 0;
+        if(count($mstProyekList) > 0)
+            $IDProyek = $mstProyekList[0]->IDProyek;
         return view('manajerTeknis.layout.page.administrasi.showProyek', compact('IDProyek', 'mstProyekList'));
     }
 
