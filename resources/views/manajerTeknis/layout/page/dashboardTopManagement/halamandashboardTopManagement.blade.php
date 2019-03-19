@@ -12,7 +12,13 @@
                                 <strong>Tahun : </strong>
                             </h3>
                             <div class="m-portlet__head-text" style="padding-left: 10px;">
-                                <select class="m-select2" id="slsNamaProyek" style="width: 100px;"></select>
+                                <input type="text" class="form-control m-input" name="tbxTahun" id="tbxTahun" />
+                            </div>
+                            <div class="m-portlet__head-text" style="padding-left: 10px;">
+                                <a href="javascript:void(0)" id="btnSearch" class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+                                    <i class="la la-search">
+                                    </i>
+                                </a>    
                             </div>
                         </div>
                     </div>
@@ -34,7 +40,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-brand">
-                                                <h3>300</h3>
+                                                <h3 id="totalProyek"></h3>
                                             </span>
                                         </div>
                                     </div>
@@ -51,7 +57,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-success">
-                                                <h3>200</h3>
+                                                <h3 id="totalProyekSelesai"></h3>
                                             </span>
                                         </div>
                                     </div>
@@ -68,7 +74,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-danger">
-                                                <h3>100</h3>
+                                                <h3 id="totalProyekBerlangsung"></h3>
                                             </span>
                                         </div>
                                     </div>
@@ -104,7 +110,7 @@
                                         Persentase keselesaian proyek
                                     </span>
                                 </div>
-                                <div id="testChart" style="width: 100%;height: 150px;"></div>
+                                <div id="persentaseTotalProyekSelesai" style="width: 100%;height: 200px;"></div>
                                 
                             </div>
                             <!--end:: Widgets/Profit Share-->
@@ -188,13 +194,7 @@
     </div>
 </div>
 
-<!-- Resources -->
-
-
 <script src="{{ asset('assets/app/js/dashboard/dashboardTopManagement.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('assets/app/js/dashboard/dashboardMT.js') }}" type="text/javascript"></script>
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>

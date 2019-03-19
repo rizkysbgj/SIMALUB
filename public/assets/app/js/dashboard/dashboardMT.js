@@ -282,7 +282,6 @@ var Control = {
         pieSeries.slices.template.strokeOpacity = 1;
         pieSeries.slices.template.tooltipText = "{category}: {value}[/] hari";
         pieSeries.labels.template.text = "{category}: {value}[/] hari";
-        // pieSeries.ticks.template.tooltipText = "{category}: [bold]{value} hari[/]";
 
         // This creates initial animation
         pieSeries.hiddenState.properties.opacity = 1;

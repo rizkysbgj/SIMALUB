@@ -126,7 +126,7 @@
             Maaf,
         </strong>
         proyek ini belum memiliki tugas. Silahkan klik tombol disamping untuk membuat tugas terlebih dahulu
-        <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
+        <a href="{{ url('halamanTugas/tambahTugas/' .$vwProyek['IDProyek']) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
 		    <span>
                 <i class="fa fa-plus"></i>
                 <span>
