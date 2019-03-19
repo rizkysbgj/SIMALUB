@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2019 at 07:47 AM
+-- Generation Time: Mar 19, 2019 at 07:05 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -63,7 +63,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2019_02_12_085357_vw_proyek', 2),
 (23, '2019_02_07_121749_mst_tugas', 3),
 (24, '2019_02_12_085358_vw_proyek', 3),
-(25, '2019_02_25_152258_vw_trx_lapor', 4);
+(25, '2019_02_25_152258_vw_trx_lapor', 4),
+(26, '2019_02_10_18111_mst_sub_kontrak', 5),
+(27, '2019_03_11_085155_vw_sub_kontrak', 5),
+(28, '2019_02_12_112262_vw_tugas', 6);
 
 -- --------------------------------------------------------
 
@@ -217,22 +220,17 @@ CREATE TABLE `mstsubkontrak` (
   `IDTugas` int(11) NOT NULL,
   `WaktuDikirim` date DEFAULT NULL,
   `WaktuDiterima` date DEFAULT NULL,
+  `StatusSubKontrak` int(11) NOT NULL DEFAULT '0',
   `Attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ContentType` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IDPenanggungJawab` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `CreatedBy` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `UpdatedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mstsubkontrak`
---
-
-INSERT INTO `mstsubkontrak` (`IDSubKontrak`, `IDTugas`, `WaktuDikirim`, `WaktuDiterima`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, '2019-03-18 06:45:34', '2019-03-18 06:45:34');
 
 -- --------------------------------------------------------
 
@@ -264,8 +262,7 @@ CREATE TABLE `msttugas` (
 --
 
 INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `StatusKajiUlang`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, '14032019001', 'Ekstraksi sampel 14032019001', 'Ekstraksi sample 1:5 dengan etanol 70%', 1, 'nunuk_biofarmaka', 5, '2019-03-19', '2019-03-22', '2019-03-18', NULL, 'Bisa', 'admin', 'admin', '2019-03-18 04:54:05', '2019-03-18 04:55:55'),
-(2, 'test', 'test', 'test', 1, 'admin', 1, '2019-03-19', '2019-03-21', NULL, NULL, 'Tidak', 'admin', 'admin', '2019-03-18 06:45:20', '2019-03-18 06:45:34');
+(1, 'test', 'test', 'test', 1, 'nunuk_biofarmaka', 4, '2019-03-20', '2019-03-22', '2019-03-19', '2019-04-02', 'Bisa', 'admin', 'admin', '2019-03-19 02:09:04', '2019-03-19 02:19:41');
 
 -- --------------------------------------------------------
 
@@ -325,8 +322,7 @@ CREATE TABLE `trxkajiulang` (
 --
 
 INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, `Personil`, `BahanKimia`, `KondisiAkomodasi`, `Kesimpulan`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-18 04:54:49', '2019-03-18 04:54:49'),
-(2, 2, 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '2019-03-18 06:45:34', '2019-03-18 06:45:34');
+(1, 1, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-19 02:10:13', '2019-03-19 02:10:13');
 
 -- --------------------------------------------------------
 
@@ -351,13 +347,6 @@ CREATE TABLE `trxlapor` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `trxlapor`
---
-
-INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `StatusTindakan`, `AttachmentTindakan`, `ContentTypeTindakan`, `NamaFileTindakan`, `CatatanTindakan`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'admin', 'public/files/KujnMenmplB47qyNee9Ctg2Bz1NvYqObn84cPNvV.jpeg', 'image/jpeg', 'spongebob.jpg', 'ada kendala', 1, 'public/files/CPU2bqUSSmVth3bJkux4IlrE5IEzDC0pTFR6gjHF.jpeg', 'image/jpeg', 'ttd.jpg', 'test', '2019-03-18 04:56:18', '2019-03-18 06:43:02');
 
 -- --------------------------------------------------------
 
@@ -388,8 +377,12 @@ CREATE TABLE `trxtugas` (
 --
 
 INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggungJawab`, `StatusTugas`, `WaktuMulai`, `WaktuSelesai`, `Catatan`, `Attachment`, `ContentType`, `FileName`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'admin', NULL, '2019-03-18 00:00:00', '2019-03-18 00:00:00', 'tolong kerjakan secepatnya', NULL, NULL, NULL, 'admin', 'admin', '2019-03-18 04:54:30', '2019-03-18 04:55:19'),
-(2, 1, 5, 'nunuk_biofarmaka', NULL, '2019-03-18 00:00:00', NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', '2019-03-18 04:55:36', '2019-03-18 04:55:55');
+(1, 1, 2, 'admin', NULL, '2019-03-19 00:00:00', '2019-03-19 00:00:00', 'test', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:09:24', '2019-03-19 02:10:40'),
+(2, 1, 5, 'nunuk_biofarmaka', NULL, '2019-03-19 00:00:00', '2019-03-19 00:00:00', 'test', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:10:57', '2019-03-19 02:11:25'),
+(3, 1, 8, 'salinah_biofarmaka', NULL, '2019-03-19 00:00:00', '2019-03-19 00:00:00', 'test', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:11:38', '2019-03-19 02:13:56'),
+(4, 1, 5, 'nunuk_biofarmaka', 'Ulangan ke-1', '2019-03-19 00:00:00', '2019-03-19 00:00:00', 'test', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:13:56', '2019-03-19 02:18:16'),
+(5, 1, 8, 'salinah_biofarmaka', NULL, '2019-03-19 00:00:00', '2019-03-19 00:00:00', 'test', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:18:49', '2019-03-19 02:19:41'),
+(6, 1, 5, 'nunuk_biofarmaka', 'Ulangan ke-2', NULL, NULL, '', NULL, NULL, NULL, 'admin', 'admin', '2019-03-19 02:19:41', '2019-03-19 02:19:41');
 
 -- --------------------------------------------------------
 
@@ -470,6 +463,9 @@ CREATE TABLE `vwsubkontrak` (
 ,`NamaTugas` varchar(255)
 ,`WaktuDikirim` date
 ,`WaktuDiterima` date
+,`StatusSubKontrak` int(11)
+,`Catatan` varchar(255)
+,`NamaLengkap` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -537,6 +533,7 @@ CREATE TABLE `vwtugas` (
 ,`PenanggungJawab` varchar(255)
 ,`IDMilestoneTugas` int(11)
 ,`Milestone` varchar(255)
+,`TotalKesalahanAnalisis` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -589,7 +586,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwsubkontrak`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwsubkontrak`  AS  select `msk`.`IDSubKontrak` AS `IDSubKontrak`,`vt`.`IDTugas` AS `IDTugas`,`vt`.`IDProyek` AS `IDProyek`,`vt`.`NamaTugas` AS `NamaTugas`,`msk`.`WaktuDikirim` AS `WaktuDikirim`,`msk`.`WaktuDiterima` AS `WaktuDiterima` from (`mstsubkontrak` `msk` left join `vwtugas` `vt` on((`msk`.`IDTugas` = `vt`.`IDTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwsubkontrak`  AS  select `msk`.`IDSubKontrak` AS `IDSubKontrak`,`vt`.`IDTugas` AS `IDTugas`,`vt`.`IDProyek` AS `IDProyek`,`vt`.`NamaTugas` AS `NamaTugas`,`msk`.`WaktuDikirim` AS `WaktuDikirim`,`msk`.`WaktuDiterima` AS `WaktuDiterima`,`msk`.`StatusSubKontrak` AS `StatusSubKontrak`,`msk`.`Catatan` AS `Catatan`,`mu`.`NamaLengkap` AS `NamaLengkap` from ((`mstsubkontrak` `msk` left join `vwtugas` `vt` on((`msk`.`IDTugas` = `vt`.`IDTugas`))) left join `mstuser` `mu` on((`msk`.`IDPenanggungJawab` = `mu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -616,7 +613,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtugas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtugas`  AS  select `mt`.`IDTugas` AS `IDTugas`,`mt`.`InisialTugas` AS `InisialTugas`,`mt`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mt`.`NamaTugas` AS `NamaTugas`,`mt`.`DeskripsiTugas` AS `DeskripsiTugas`,`mt`.`RencanaMulai` AS `RencanaMulai`,`mt`.`RencanaSelesai` AS `RencanaSelesai`,`mt`.`RealitaMulai` AS `RealitaMulai`,`mt`.`RealitaSelesai` AS `RealitaSelesai`,`mt`.`IDPenanggungJawab` AS `IDPenanggungJawab`,`mt`.`StatusKajiUlang` AS `StatusKajiUlang`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mt`.`IDMilestoneTugas` AS `IDMilestoneTugas`,`mmt`.`MilestoneTugas` AS `Milestone` from (((`msttugas` `mt` left join `mstproyek` `mp` on((`mt`.`IDProyek` = `mp`.`IDProyek`))) left join `mstuser` `mu` on((`mt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`mt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtugas`  AS  select `mt`.`IDTugas` AS `IDTugas`,`mt`.`InisialTugas` AS `InisialTugas`,`mt`.`IDProyek` AS `IDProyek`,`mp`.`NamaProyek` AS `NamaProyek`,`mt`.`NamaTugas` AS `NamaTugas`,`mt`.`DeskripsiTugas` AS `DeskripsiTugas`,`mt`.`RencanaMulai` AS `RencanaMulai`,`mt`.`RencanaSelesai` AS `RencanaSelesai`,`mt`.`RealitaMulai` AS `RealitaMulai`,`mt`.`RealitaSelesai` AS `RealitaSelesai`,`mt`.`IDPenanggungJawab` AS `IDPenanggungJawab`,`mt`.`StatusKajiUlang` AS `StatusKajiUlang`,`mu`.`NamaLengkap` AS `PenanggungJawab`,`mt`.`IDMilestoneTugas` AS `IDMilestoneTugas`,`mmt`.`MilestoneTugas` AS `Milestone`,(select count(`tt`.`IDTrxTugas`) from `trxtugas` `tt` where ((`tt`.`IDTugas` = `mt`.`IDTugas`) and (`tt`.`IDMilestoneTugas` = 5) and (`tt`.`StatusTugas` is not null))) AS `TotalKesalahanAnalisis` from (((`msttugas` `mt` left join `mstproyek` `mp` on((`mt`.`IDProyek` = `mp`.`IDProyek`))) left join `mstuser` `mu` on((`mt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`mt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) ;
 
 -- --------------------------------------------------------
 
@@ -726,7 +723,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -768,13 +765,13 @@ ALTER TABLE `mstsertifikat`
 -- AUTO_INCREMENT for table `mstsubkontrak`
 --
 ALTER TABLE `mstsubkontrak`
-  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mstuser`
@@ -786,19 +783,19 @@ ALTER TABLE `mstuser`
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`
