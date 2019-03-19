@@ -47,46 +47,49 @@ var Table = {
 			columns: [
 				{
 					field: "#", title: "Status Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
-						if(t.StatusSubkontrakDitindaklanjuti != 0)
-							var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDTrxSubkontrak+')" class="btn btn-success" style="width: 100px;"><span><small>Sudah</small></span></button>';
+						if(t.StatusSubKontrak != 0)
+							var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDSubKontrak+')" class="btn btn-success" style="width: 100px;"><span><small>Sudah</small></span></button>';
                         else
-						var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDTrxSubkontrak+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
+						var strBuilder = '<button onclick="Modal.statussubkontrak('+t.IDSubKontrak+')" class="btn btn-danger" style="width: 100px;"><span><small>Belum</small></span></button>';
                         return strBuilder;
 					}
 					
 				},
 				{
 					field: "TaskID", title: "Download Hasil Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
-						var strBuilder = '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+						if(t.Attachment != "")
+							var strBuilder = '<a href="/api/subkontrak/download/ '+ t.IDSubKontrak +'" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+						else
+							var strBuilder = '<a>-</a>\t\t\t\t\t\t';
 						return strBuilder;
 					}
 				},
 				{ field: "NamaTugas", title: "Nama Tugas", textAlign: "center" },
 				{
 					field: "RencanaMulai", title: "Waktu Dikirim", sortable: false, textAlign: "center", template: function (t) {
-						return t.RencanaMulai != null ? Common.Format.Date(t.RencanaMulai) : "-"
+						return t.WaktuDikirim != null ? Common.Format.Date(t.WaktuDikirim) : "-"
 					}
 				},
 				{
 					field: "RencanaSelesai", title: "Waktu Diterima", sortable: false, textAlign: "center", template: function (t) {
-						return t.RencanaSelesai != null ? Common.Format.Date(t.RencanaSelesai) : "-"
+						return t.WaktuDiterima != null ? Common.Format.Date(t.WaktuDiterima) : "-"
 					}
 				},
-				{ field: "PenanggungJawab", title: "Penanggung Jawab", textAlign: "center" },
+				{ field: "NamaLengkap", title: "Penanggung Jawab", textAlign: "center" },
 				{ field: "Catatan", title: "Catatan", textAlign: "center" },
 			]
 		})
 	}
 }
 var Modal = {
-	statussubkontrak:function(){
+	statussubkontrak:function(id){
 		$("#modalstatussubkontrak").modal({
 			backdrop: "static"
 		});
-		var btn = $("#submitStatusProsesLaporan");
+		var btn = $("#submitStatusSubkontrak");
         btn.on("click", function(){
             var model = new FormData();
-			model.append("IDTrxLapor", id);
+			model.append("IDSubKontrak", id);
             model.append("Catatan", $("#tbxRemark").val());
             
             $('input[type="file"]').each(function($i){
@@ -95,7 +98,7 @@ var Modal = {
             
         	btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
         	$.ajax({
-                url: "/api/lapor/tindakan",
+                url: "/api/subkontrak/upload",
                 type: 'POST',
                 data: model,
                 dataType: "json",
@@ -105,11 +108,11 @@ var Modal = {
                 console.log(data);
                 // var link = '/halamanLaporan/' + data.IDProyek;
                 if (Common.CheckError.Object(data) == true) {
-                    Common.Alert.Success("Berhasil Menindaklanjuti");
-                    $("#divLaporanList").mDatatable("reload");        
+                    Common.Alert.Success("Berhasil, Tugas Subkontrak Telah Selesai");
+                    $("#divSubkontrakList").mDatatable("reload");        
                     $("#tbxRemark").val('');
                     $("#inputFile").val('');
-                    $('#modalstatusproseslaporan').modal("toggle");
+                    $('#modalstatussubkontrak').modal("toggle");
                     
                 }
                 btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
@@ -119,7 +122,7 @@ var Modal = {
             })
         })
         $("#btnClose").on("click", function(){
-			$("#divLaporanList").mDatatable("reload");
+			$("#divSubkontrakList").mDatatable("reload");
 			
             $("#tbxRemark").val('');
 			$("#inputFile").val('');

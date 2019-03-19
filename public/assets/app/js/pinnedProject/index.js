@@ -17,8 +17,8 @@ jQuery(document).ready(function () {
 	// GetData.TaskList();
 	// GetData.TaskDetail(IDTugas);
 	
-	
-	Page.Init();
+	if(IDTugas != 0)
+		Page.Init();
 
 	$("#minimizeTaskRight").hide();
 

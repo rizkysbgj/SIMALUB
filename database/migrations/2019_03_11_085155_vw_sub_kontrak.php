@@ -45,9 +45,13 @@ SELECT
     vt.`IDProyek`,
     vt.`NamaTugas`,
     msk.`WaktuDikirim`,
-    msk.`WaktuDiterima`
+    msk.`WaktuDiterima`,
+    msk.`StatusSubKontrak`,
+    msk.`Catatan`,
+    mu.`NamaLengkap`
     FROM `mstsubkontrak` as msk
     LEFT JOIN `vwtugas` as vt ON msk.`IDTugas` = vt.`IDTugas`
+    LEFT JOIN `mstuser` as mu ON msk.`IDPenanggungJawab` = mu.`IDUser`
 SQL;
     }
 }

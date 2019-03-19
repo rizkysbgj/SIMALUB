@@ -8,6 +8,9 @@ use Illuminate\Http\Response;
 use Carbon\Carbon;
 use App\mstSubKontrak;
 use App\vwSubKontrak;
+use Auth;
+use Storage;
+use App\Http\Controllers\HelpersController;
 
 class SubKontrakControllerApi extends Controller
 {
@@ -96,8 +99,12 @@ class SubKontrakControllerApi extends Controller
                 }
             }
             $mstSubKontrak->WaktuDiterima = Carbon::now()->toDateString();
+            $mstSubKontrak->Catatan = $request->Catatan;
+            $mstSubKontrak->StatusSubKontrak = 1;
             $mstSubKontrak->UpdatedBy = Auth::user()->IDUser;
+            
             $mstSubKontrak->save();
+            $mstSubKontrak->ErrorType = 0;
             return response($mstSubKontrak->jsonSerialize(), Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
@@ -105,6 +112,22 @@ class SubKontrakControllerApi extends Controller
             $subKontrak->ErrorType = 2;
             $subKontrak->ErrorMessage = $e->getMessage(); 
             return response($mstSubKontrak->jsonSerialize());
+        }
+    }
+
+    public function DownloadHasil($IDSubKontrak)
+    {
+        try
+        {
+            $subKontrak = mstSubKontrak::where('IDSubKontrak', $IDSubKontrak)->firstorfail();
+            return Storage::download($subKontrak->Attachment, $subKontrak->NamaFile);
+        }
+        catch(\Exception $e)
+        {
+            $subKontrak = new mstSubKontrak();
+            $subKontrak->ErrorType = 2;
+            $subKontrak->ErrorMessage = $e->getMessage();
+            return $subKontrak;
         }
     }
 

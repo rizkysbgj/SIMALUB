@@ -697,6 +697,8 @@ class TugasControllerApi extends Controller
 
                 $subkontrak = new mstSubKontrak();
                 $subkontrak->IDTugas = $request->IDTugas;
+                $subkontrak->WaktuDikirim = Carbon::now()->toDateString();
+                $subkontrak->IDPenanggungJawab = Auth::user()->IDUser;
                 $subkontrak->CreatedBy = Auth::user()->IDUser;
                 $subkontrak->save();
             }
