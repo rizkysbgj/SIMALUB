@@ -48,7 +48,7 @@ SELECT
     vp.`RencanaSelesai`,
     vp.`RealitaSelesai`,
     vp.`TotalTugas`,
-    (SELECT COUNT(`IDTugas`) FROM `vwTugas` AS vt WHERE vt.`IDProyek` = vp.`IDProyek` AND vt.`IDMilestoneTugas` = 9) AS `TugasSelesai`,
+    (SELECT COUNT(`IDTugas`) FROM `vwTugas` AS vt WHERE vt.`IDProyek` = vp.`IDProyek` AND vt.`RealitaSelesai` IS NOT NULL) AS `TugasSelesai`,
     (SELECT COUNT(`IDTugas`) FROM `vwsubkontrak` AS vsk WHERE vsk.`IDProyek` = vp.`IDProyek`) AS `TotalSubKontrak`
     FROM `vwproyek` as vp
 SQL;

@@ -38,18 +38,7 @@ var DashboardBulan=function() {
                 var e=$("#m_chart_daily_sales");
                 if(0!=e.length) {
                     var t= {
-                        labels:["Januari",
-                        "Februari",
-                        "Maret",
-                        "April",
-                        "Mei",
-                        "Juni",
-                        "Juli",
-                        "Agustus",
-                        "September",
-                        "Oktober",
-                        "November",
-                        "Desember"],
+                        labels:["Januari"],
                         datasets:[ {
                             backgroundColor: mApp.getColor("success"), data: [15, 20, 25, 30, 25, 20, 15, 20, 25, 30, 25, 20]
                         }

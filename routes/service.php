@@ -51,8 +51,8 @@ Route::get('subkontrak/{IDProyek}', 'ControllersApi\SubKontrakControllerApi@GetL
 Route::get('subkontrak/detail/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@GetSubKontrak');
 Route::put('subkontrak', 'ControllersApi\SubKontrakControllerApi@UpdateSubKontrak');
 Route::delete('subkontrak/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@DeleteSubKontrak');
-Route::put('subkontrak/hasil', 'ControllersApi\SubKontrakControllerApi@UploadHasil');
-
+Route::post('subkontrak/upload', 'ControllersApi\SubKontrakControllerApi@UploadHasil');
+Route::get('subkontrak/download/{IDSubKontrak}', 'ControllersApi\SubKontrakControllerApi@DownloadHasil');
 Route::post('pinned', 'ControllersApi\TugasControllerApi@TugasTransaction');
 
 Route::post('lapor', 'ControllersApi\TugasControllerApi@CreateLaporTugas');

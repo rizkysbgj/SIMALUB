@@ -784,12 +784,9 @@ class TugasControllerApi extends Controller
             {
                 $tugas->RealitaMulai = Carbon::now()->toDateString();
             }
-            else if($IDMilestoneTugas == 11)
-            {
-                $tugas->RealitaSelesai = Carbon::now()->toDateString();
-            }
             else if($IDMilestoneTugas == 10)
             {
+                $tugas->RealitaSelesai = Carbon::now()->toDateString();
                 $proyek = mstProyek::where('IDProyek', $tugas->IDProyek)->firstorfail();
                 if($proyek->SiapBuatSertifikat == null)
                 {
