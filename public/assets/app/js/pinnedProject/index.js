@@ -489,7 +489,14 @@ var Table = {
 						return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
 					}
 				},
-				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 300 },
+				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 300, sortable: false, template: function (t) {
+					if(t.Catatan != null)
+						var strBuilder = t.Catatan;
+					else
+						var strBuilder = '<a>-</a>\t\t\t\t\t\t';
+					return strBuilder;
+					}
+				},
 			]
 		})
 	}

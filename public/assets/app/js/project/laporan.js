@@ -59,14 +59,25 @@ var Table = {
                     sortable: false,
                     textAlign: "center",
                     template: function (t) {
-                        var strBuilder = '<a href="/api/download/tindakan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        if(t.AttachmentTindakan != null)
+                            var strBuilder = '<a href="/api/download/tindakan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        else
+                            var strBuilder = '<a>-</a>\t\t\t\t\t\t';
                         return strBuilder;
                     }
                 },
                 {
                     field: "CatatanTindakan",
                     title: "Catatan Penindak",
-                    textAlign: "center"
+                    sortable: false,
+                    textAlign: "center",
+                    template: function (t) {
+                        if(t.CatatanTindakan != null)
+                            var strBuilder = t.CatatanTindakan;
+                        else
+                            var strBuilder = '<a>-</a>\t\t\t\t\t\t';
+                        return strBuilder;
+                    }
                 },
                 {
                     field: "StatusPemrosesan",
@@ -187,13 +198,12 @@ var Modal = {
                 processData: false
             }).done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                // var link = '/halamanLaporan/' + data.IDProyek;
                 if (Common.CheckError.Object(data) == true) {
                     Common.Alert.Success("Berhasil Menindaklanjuti");
+                    $('#modalstatusproseslaporan').modal("toggle");
                     $("#divLaporanList").mDatatable("reload");        
                     $("#tbxRemark").val('');
                     $("#inputFile").val('');
-                    $('#modalstatusproseslaporan').modal("toggle");
                     
                 }
                 btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
