@@ -56,9 +56,9 @@ var Table = {
 					
 				},
 				{
-					field: "TaskID", title: "Download Hasil Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
+					field: "Attachment", title: "Download Hasil Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
 						if(t.Attachment != "")
-							var strBuilder = '<a href="/api/subkontrak/download/ '+ t.IDSubKontrak +'" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+							var strBuilder = '<a href="/api/subkontrak/download/'+ t.IDSubKontrak +'" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
 						else
 							var strBuilder = '<a>-</a>\t\t\t\t\t\t';
 						return strBuilder;
@@ -76,7 +76,14 @@ var Table = {
 					}
 				},
 				{ field: "NamaLengkap", title: "Penanggung Jawab", textAlign: "center" },
-				{ field: "Catatan", title: "Catatan", textAlign: "center" },
+				{ field: "Catatan", title: "Catatan", textAlign: "center", sortable: false, template: function (t) {
+						if(t.Catatan != null)
+							var strBuilder = t.Catatan;
+						else
+							var strBuilder = '<a>-</a>\t\t\t\t\t\t';
+						return strBuilder;
+					}	
+				},
 			]
 		})
 	}
