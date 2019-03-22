@@ -57,7 +57,7 @@ var Table = {
 				},
 				{
 					field: "Attachment", title: "Download Hasil Tugas Subkontrak", sortable: false, textAlign: "center", template: function (t) {
-						if(t.Attachment != "")
+						if(t.Attachment != null)
 							var strBuilder = '<a href="/api/subkontrak/download/'+ t.IDSubKontrak +'" class="m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Download Dokumen"><i class="la la-download"></i></a>\t\t\t\t\t\t';
 						else
 							var strBuilder = '<a>-</a>\t\t\t\t\t\t';

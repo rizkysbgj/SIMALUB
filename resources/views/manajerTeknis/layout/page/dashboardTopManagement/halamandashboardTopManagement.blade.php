@@ -23,7 +23,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-portlet__body  m-portlet__body--no-padding">
+                <div class="m-portlet__body" id="alertTidakAdaProyekTahun" style="display:none;">
+                    <div class="m-content" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        <div class="alert alert-danger m-alert--default m--align-center" role="alert" style="padding:20px;">
+                            <strong>
+                                Maaf,
+                            </strong>
+                            tidak ada proyek yang dilakukan pada tahun tersebut. Silahkan ketik tahun lainnya.
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body  m-portlet__body--no-padding" id="alertAdaProyek">
                     <div class="row m-row--no-padding m-row--col-separator-xl">
                         <div class="col-xl-4">
                             <!--begin:: Widgets/Stats2-1 -->
@@ -120,77 +130,22 @@
             </div>
         </div>
 
-        <!-- <div class="col-xl-6">
-            <div class="m-portlet">
-                <div class="m-widget14">
-                    <div class="m-widget14__header" style="padding-bottom:0px">
-                        <div class="row align-items-center">
-                            <h3 class="m-widget14__title col-lg-6">
-                                Keuangan
-                            </h3>
-                            <div class="col-lg-6 form-group m-form__group row" style="margin-bottom:0px">
-                                <div class="col-lg-9">
-                                    <div class="m-form__group m-form__group row">
-                                        <div class="m-form__label" style="padding-top:7px">
-                                            <label class="m-label m-label--single">
-                                                Tahun:
-                                            </label>
-                                        </div>
-                                        <div class="m-form__control col-lg-8" style="padding-left:10px; padding-right:10px">
-                                            <input class="form-control m-input" id="tbxTahunKeu" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
-                                    id="btnFilterKeuangan" style="padding-left:15px; padding-right:15px">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-portlet__foot" style="padding-bottom: 0px"></div>
-                    <div class="m-widget14__chart">
-                        <div id="proyek" style="width: auto; height: 400px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="col-xl-12">
             <div class="m-portlet">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Performa Staff
+                                Ulasan Proyek dari Customer
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-                        <div class="row align-items-center">
-                            <div class="col-xl-8 order-2 order-xl-1">
-                                <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-5">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..." id="tbxSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span>
-                                                    <i class="la la-search"></i>
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m_datatable" id="divUserPerformance"></div>
+                    <div id="chartReviewCustomer" style="width: 100%;height: 500px;"></div>
                 </div>
-            </div>  
-        </div>
+            </div>
+        </div> 
     </div>
 </div>
 

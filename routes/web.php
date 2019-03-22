@@ -23,8 +23,11 @@
         Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
         Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
 
-        //Route dashboard manajer teknis
+        //Route dashboard top management
         Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
+
+        //Route dashboard top management
+        Route::get('/halamandashboardPerformaAnalis', 'DashboardPerformaAnalisController@indexDashboardPerformaAnalis') -> name('halamandashboardPerformaAnalis');
 
         //Route proyek 
         Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');

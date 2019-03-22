@@ -202,7 +202,7 @@
                 <div class="m-widget14" style="height: 370px;">
                     <div class="m-widget14__header m--margin-bottom-10">
                         <h3 class="m-widget14__title">
-                            Total Waktu Terbuang : <strong id="waktuTelat"></strong><strong> Hari</strong>
+                            Waktu Terbuang <small>(Lama Paling Telat)</small>: <strong id="waktuTelat"></strong><strong> Hari</strong>
                         </h3>
                     </div>
                     <div class="m-widget14__chart" id="totalWaktuSalahAnalisis" style="width: 100%;height: 250px;"></div>
@@ -212,6 +212,7 @@
             <!--end:: Widgets/Support Tickets -->
         </div>
     </div>
+
 
 <script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 
