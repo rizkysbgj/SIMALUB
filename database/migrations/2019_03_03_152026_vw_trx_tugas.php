@@ -34,10 +34,12 @@ SELECT
     tt.`IDTugas`,
     mt.`IDProyek`,
     mt.`NamaTugas`,
+    tt.`IDPenanggungJawab`,
     mu.`NamaLengkap`,
     tt.`IDMilestoneTugas`,
     mmt.`MilestoneTugas`,
     tt.`StatusTugas`,
+    mp.`Percepatan`,
     tt.`WaktuMulai`,
     tt.`WaktuSelesai`,
     tt.`Catatan`,
@@ -46,6 +48,7 @@ SELECT
     LEFT JOIN `mstuser` as mu ON tt.`IDPenanggungJawab` = mu.`IDUser`
     LEFT JOIN `mstmilestonetugas` as mmt ON tt.`IDMilestoneTugas` = mmt.`IDMilestoneTugas`
     LEFT JOIN `msttugas` as mt ON tt.`IDTugas` = mt.`IDTugas`
+    LEFT JOIN `mstproyek` as mp ON mt.`IDProyek` = mp.`IDProyek`
 SQL;
     }
 }

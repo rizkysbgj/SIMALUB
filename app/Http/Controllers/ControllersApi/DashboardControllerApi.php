@@ -8,7 +8,10 @@ use App\vwDashboardManajerTeknis;
 use App\vwStatistikProyek;
 use App\vwTugas;
 use App\vwProyek;
+use App\vwDashboardPerformaBulanan;
+use App\vwDashboardPerformaTahunan;
 use App\viewmodel\vmDashboardManajerPuncak;
+use App\vwUser;
 use DateTime;
 
 class DashboardControllerApi extends Controller
@@ -122,6 +125,92 @@ class DashboardControllerApi extends Controller
             $dashboard->ErrorType = 2;
             $dashboard->ErrorMessage = $e->getMessage();
             return $dashboard;
+        }
+    }
+
+    public function DashboardPerformaBulanan($bulan, $tahun)
+    {
+        try
+        {
+            $arr_data = array();
+            $analisList = vwUser::where('IDRole', 4)->orwhere('IDRole', 5)->get();
+            $performaList = vwDashboardPerformaBulanan::where('Bulan', $bulan)->where('Tahun', $tahun)->get();
+
+            foreach($analisList as $analis)
+            {
+                $performa = new vwDashboardPerformaBulanan;
+                $data = $performaList->firstwhere('IDUser', $analis->IDUser);
+                if($data != null)
+                {
+                    $performa->IDUser = $analis->IDUser;
+                    $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisis = $data->TotalAnalisis;
+                    $performa->TotalSelia = $data->TotalSelia;
+                }
+                else
+                {
+                    $performa->IDUser = $analis->IDUser;
+                    $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisis = 0;
+                    $performa->TotalSelia = 0;
+                }
+                $arr_data[] = $performa;
+            }
+
+            $result = new vwDashboardPerformaBulanan();
+            $result->performaList = $arr_data;
+            $result->ErrorCode = 0;
+            return $result;
+        }
+        catch(\Exception $e)
+        {
+            $performa = new vwDashboardPerformaBulanan();
+            $performa->ErrorCode = 2;
+            $performa->ErrorMessage = $e->getMessage();
+            return $performa;   
+        }
+    }
+
+    public function DashboardPerformaTahunan($tahun)
+    {
+        try
+        {
+            $arr_data = array();
+            $analisList = vwUser::where('IDRole', 4)->orwhere('IDRole', 5)->get();
+            $performaList = vwDashboardPerformaTahunan::where('Tahun', $tahun)->get();
+
+            foreach($analisList as $analis)
+            {
+                $performa = new vwDashboardPerformaTahunan;
+                $data = $performaList->firstwhere('IDUser', $analis->IDUser);
+                if($data != null)
+                {
+                    $performa->IDUser = $analis->IDUser;
+                    $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisis = $data->TotalAnalisis;
+                    $performa->TotalSelia = $data->TotalSelia;
+                }
+                else
+                {
+                    $performa->IDUser = $analis->IDUser;
+                    $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisis = 0;
+                    $performa->TotalSelia = 0;
+                }
+                $arr_data[] = $performa;
+            }
+
+            $result = new vwDashboardPerformaTahunan();
+            $result->performaList = $arr_data;
+            $result->ErrorCode = 0;
+            return $result;
+        }
+        catch(\Exception $e)
+        {
+            $performa = new vwDashboardPerformaTahunan();
+            $performa->ErrorCode = 2;
+            $performa->ErrorMessage = $e->getMessage();
+            return $performa;   
         }
     }
 }

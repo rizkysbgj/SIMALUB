@@ -224,7 +224,7 @@ class TugasControllerApi extends Controller
             $trxTugas->CreatedBy = Auth::user()->IDUser;
             $trxTugas->UpdatedBy = Auth::user()->IDUser;
             
-            //ubah milestone
+            //tugas selesai, serahkan ke administrasi
             if($IDMilestoneNow == 9)
             {
                 $this->AddTransaction($request->IDTugas, $IDMilestoneNext, $MilestoneAksi, $request->IDUser, $request->PIC);
@@ -233,7 +233,8 @@ class TugasControllerApi extends Controller
                 return $trxTugas;
             }
 
-            if($request->Kode == "SELESAI")
+
+            if($request->Kode == "SELESAI") 
             {
                 $oldTrxTugas = trxTugas::where("IDTugas", $request->IDTugas)->where("IDMilestoneTugas", $IDMilestoneNow)->orderBy('IDTrxTugas', 'desc')->firstorfail();
 
@@ -267,7 +268,7 @@ class TugasControllerApi extends Controller
             }
             else
             {
-                if($request->Kode == "SALAH")
+                if($request->Kode == "SALAH") 
                 {
                     $IDMilestoneNext = $IDMilestoneNow;
                     $trxTugas->Catatan = "";
@@ -324,6 +325,11 @@ class TugasControllerApi extends Controller
                     if($request->Kode == "PILIH")
                     {
                         $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', $flow->IDMilestoneLanjut)->firstorfail();
+                        $count = trxTugas::where('IDTugas', $request->IDTugas)->where('IDMilestoneTugas', $flow->IDMilestoneLanjut)->count();
+                        if($count > 0)
+                        {
+                            $trxTugas->StatusTugas = "Ulangan ke-" . $count;
+                        }
                         $trxTugas->IDMilestoneTugas = $flow->IDMilestoneLanjut;
                     }
                     else if($request->Kode == "MULAI")
@@ -540,6 +546,25 @@ class TugasControllerApi extends Controller
             $trxLapor->ErrorType = 2;
             $trxLapor->ErrorMessage = $e->getMessage();
             return $trxLapor;
+        }
+    }
+
+    public function GetTotalLaporan()
+    {
+        try
+        {
+            $laporan = new trxLapor();
+            $laporan->totalLaporan = trxLapor::where('StatusTindakan', 0)->count();
+
+            $laporan->ErrorType = 0;
+            return $laporan;
+        }
+        catch(\Exception $e)
+        {
+            $totalLaporan = new trxLapor();
+            $totalLaporan->ErrorType = 2;
+            $totalLaporan->ErrorMessage = $e->getMessage();
+            return $totalLaporan;
         }
     }
 
