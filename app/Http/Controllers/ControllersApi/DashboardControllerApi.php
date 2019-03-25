@@ -144,6 +144,8 @@ class DashboardControllerApi extends Controller
                 {
                     $performa->IDUser = $analis->IDUser;
                     $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisisPercepatan = $data->TotalAnalisisPercepatan;
+                    $performa->TotalAnalisisBiasa = $data->TotalAnalisisBiasa;
                     $performa->TotalAnalisis = $data->TotalAnalisis;
                     $performa->TotalSelia = $data->TotalSelia;
                 }
@@ -151,6 +153,8 @@ class DashboardControllerApi extends Controller
                 {
                     $performa->IDUser = $analis->IDUser;
                     $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisisPercepatan = 0;
+                    $performa->TotalAnalisisBiasa = 0;
                     $performa->TotalAnalisis = 0;
                     $performa->TotalSelia = 0;
                 }
@@ -187,6 +191,8 @@ class DashboardControllerApi extends Controller
                 {
                     $performa->IDUser = $analis->IDUser;
                     $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisisPercepatan = $data->TotalAnalisisPercepatan;
+                    $performa->TotalAnalisisBiasa = $data->TotalAnalisisBiasa;
                     $performa->TotalAnalisis = $data->TotalAnalisis;
                     $performa->TotalSelia = $data->TotalSelia;
                 }
@@ -194,6 +200,8 @@ class DashboardControllerApi extends Controller
                 {
                     $performa->IDUser = $analis->IDUser;
                     $performa->NamaLengkap = $analis->NamaLengkap;
+                    $performa->TotalAnalisisPercepatan = 0;
+                    $performa->TotalAnalisisBiasa = 0;
                     $performa->TotalAnalisis = 0;
                     $performa->TotalSelia = 0;
                 }
