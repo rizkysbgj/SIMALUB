@@ -76,8 +76,6 @@ var Control = {
                     Control.DateFormat();
                     GetData.Kesalahan(IDProyek);
                     GetData.Telat(IDProyek);
-                    // GetData.Init(null, null);
-                    // Control.Filter();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(errorThrown);

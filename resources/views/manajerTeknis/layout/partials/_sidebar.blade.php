@@ -89,8 +89,8 @@
                                 Laporan
                             </span>
                             <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger">
-                                    2
+                                <span class="m-badge m-badge--danger warnaBadge" style="display:none;" id="TotalLaporan">
+                                    
                                 </span>
                             </span>
                         </span>

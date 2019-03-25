@@ -1,6 +1,7 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Pinned.Init();
+    Total.Laporan();
 });
 
 var Pinned = {
@@ -26,3 +27,26 @@ var Pinned = {
         });
     }
 }
+
+var Total = {
+    Laporan: function(){
+        $.ajax({
+            url: "/api/laporan/total",
+            type: "GET",
+            dataType: "json",
+            contenType: "application/json",
+            success: function (data) {
+                if(data.totalLaporan != 0){
+                    $(".warnaBadge").show();
+                    $("#TotalLaporan").html(data.totalLaporan);
+                }
+                else
+                    $(".warnaBadge").hide();
+            },
+            error: function (xhr) {
+                alert(xhr.responseText)
+            }
+        });
+    }
+}
+

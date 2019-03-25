@@ -1,53 +1,68 @@
+var today = new Date();
+var tahun = today.getFullYear();
+var bulan = today.getMonth()+1;
+
 jQuery(document).ready(function () {
-    // Control.Init();
-    Graph.Performa();
+    Control.Init();
+    GetData.Init(tahun,bulan);
+
+    $("#tbxTahun").val(tahun);
+    $("#tbxBulan").val(bulan);
 });
 
 var Control = {
     Init: function () {
         $('#tbxTahun').keypress(function(event){
+            $("#alertTahunKosong").hide();
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){
-                var tahun = $("#tbxTahun").val();
-                // GetData.Init(tahun); 
+                if($("#tbxTahun").val() == ""){
+                    $("#alertTahunKosong").show();
+                    $("#alertAdaPerformaAnalis").hide();
+                }
+                else{
+                    $("#alertAdaPerformaAnalis").show();
+                    GetData.Init($("#tbxTahun").val(),$("#tbxBulan").val()); 
+                }
             }
         });
+
         $("#btnSearch").click(function(){
-            var tahun = $("#tbxTahun").val();
-            // GetData.Init(tahun);
+            if($("#tbxTahun").val() == ""){
+                $("#alertTahunKosong").show();
+                $("#alertAdaPerformaAnalis").hide();
+            }
+            else{
+                $("#alertTahunKosong").hide();
+                $("#alertAdaPerformaAnalis").show();
+                GetData.Init($("#tbxTahun").val(),$("#tbxBulan").val());
+            }
         });
     }
 }
 
 var GetData = {
-    Init: function (tahun) {
-        console.log("lalala");
+    Init: function (tahun,bulan) {
+        // console.log(bulan);
+        // console.log("lalala");
         $.ajax({
-            url: "/api/dashboardmanajerpuncak/" + tahun,
+            url: "/api/dashboardperforma/"+ bulan +"/" + tahun,
             type: "GET",
             dataType: "json",
             contenType: "application/json",
             success: function (data) {
-                
-                if(data.totalProyek != 0){
-                    $("#alertTidakAdaProyekTahun").hide();
-                    $("#alertAdaProyek").show();
-                    var jumlahProyek = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                    $.each(data.statistikBulanan, function(index, item){
-                        jumlahProyek[item.Bulan - 1] = item.TotalProyek;
-                    })
-                    // DashboardBulan.init(jumlahProyek);
+                Graph.Performa(data);
+                // if(data.totalProyek != 0){
+                //     $("#alertTidakAdaPerformaAnalis").hide();
+                //     $("#alertAdaPerformaAnalis").show();
+                   
+                //     Graph.Performa(data);
 
-                    // Graph.Persentase(data);
-
-                    $("#totalProyek").html(data.totalProyek);
-                    $("#totalProyekSelesai").html(data.totalProyekSelesai);
-                    $("#totalProyekBerlangsung").html(data.totalProyekBerlangsung);
-                }
-                else {
-                    $("#alertAdaProyek").hide();
-                    $("#alertTidakAdaProyekTahun").show();
-                }
+                // }
+                // else {
+                //     $("#alertAdaPerformaAnalis").hide();
+                //     $("#alertTidakAdaPerformaAnalis").show();
+                // }
                     
             },
             error: function (xhr) {
@@ -58,7 +73,7 @@ var GetData = {
 }
 
 var Graph = {
-    Performa: function (){
+    Performa: function (data){
         // Themes begin
         function am4themes_animated(target) {
             if (target instanceof am4core.ColorSet) {
@@ -74,31 +89,23 @@ var Graph = {
 
         // Create chart instance
         var chart = am4core.create("chartPerformaAnalis", am4charts.XYChart);
+        chart.data = [];
 
         // Add data
-        chart.data = [ {
-        "analis": "Rio Al Rasyid",
-        "analisisbiasa": 3,
-        "analisisdipercepat": 2,
-        "menyelia": 4
-        
-        }, {
-        "analis": "Rizky Subagja",
-        "analisisbiasa": 2,
-        "analisisdipercepat": 3,
-        "menyelia": 5
-        
-        }, {
-        "analis": "Rio Subagja",
-        "analisisbiasa": 3,
-        "analisisdipercepat": 3,
-        "menyelia": 2
-        
-        } ];
+        $.each(data.performaList, function(index, item){
+            var params = {
+                NamaLengkap: item.NamaLengkap,
+                TotalAnalisisPercepatan: item.TotalAnalisisPercepatan,
+                TotalAnalisisBiasa: item.TotalAnalisisBiasa,
+                TotalSelia: item.TotalSelia
+            }
+            // console.log(params);
+            chart.data.push(params);
+        })
 
         // Create axes
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "analis";
+        categoryAxis.dataFields.category = "NamaLengkap";
         categoryAxis.title.text = "";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.minGridDistance = 20;
@@ -113,16 +120,16 @@ var Graph = {
         function createSeries(field, name, stacked) {
         var series = chart.series.push(new am4charts.ColumnSeries());
         series.dataFields.valueY = field;
-        series.dataFields.categoryX = "analis";
+        series.dataFields.categoryX = "NamaLengkap";
         series.name = name;
         series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
         series.stacked = stacked;
         series.columns.template.width = am4core.percent(95);
         }
 
-        createSeries("analisisbiasa", "Analisis Biasa", false);
-        createSeries("analisisdipercepat", "Analisis Dipercepat", true);
-        createSeries("menyelia", "Sebagai Penyelia", false);
+        createSeries("TotalAnalisisBiasa", "Analisis Biasa", false);
+        createSeries("TotalAnalisisPercepatan", "Analisis Dipercepat", true);
+        createSeries("TotalSelia", "Sebagai Penyelia", false);
 
         // Add legend
         chart.legend = new am4charts.Legend();

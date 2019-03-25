@@ -68,6 +68,19 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
+                                Proyek Percepatan:
+                            </label>
+                            <div class="col-lg-6">
+                                <div class="m-checkbox-inline m-checkbox-list">
+                                    <label class="m-checkbox">
+                                        <input type="checkbox" checked="checked" id="cbxPercepatan">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-form-label col-lg-3 col-sm-12">
                                 Penanggung Jawab<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">

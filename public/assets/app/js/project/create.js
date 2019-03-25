@@ -54,7 +54,8 @@ var Transaction = function () {
 	var params = {
 		NamaProyek: $("#tbxProjectName").val(),
         InisialProyek: $("#tbxProjectInitial").val(),
-        PinKeMenu: $("#cbx").is(":checked"),
+		PinKeMenu: $("#cbx").is(":checked"),
+		Percepatan: $("#cbxPercepatan").is(":checked"),
 		PenanggungJawab: $('#slsProjectManager').val(),
 		TanggalMulai: $('#tbxKickOffDate').val(),
 		RencanaSelesai: $("#tbxDeadline").val(),

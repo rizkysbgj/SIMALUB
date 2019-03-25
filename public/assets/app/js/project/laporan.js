@@ -1,6 +1,7 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Control.Init();
+    // Total.Laporan();
 
     $("#slsNamaProyek").on("change", function () {
         $("#alertPilihProyekLaporan").hide();
@@ -98,7 +99,10 @@ var Table = {
                     sortable: false,
                     textAlign: "center",
                     template: function (t) {
-                        var strBuilder = '<a href="/api/download/laporan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        if(t.Attachment != null)
+                            var strBuilder = '<a href="/api/download/laporan/' + t.IDTrxLapor + '" class="m-portlet__nav-link btn m-btn m-btn--hover-primary m-btn--icon m-btn--icon-only m-btn--pill" title="Download Lampiran"><i class="la la-download"></i></a>\t\t\t\t\t\t';
+                        else
+                            var strBuilder = '<a>-</a>\t\t\t\t\t\t';
                         return strBuilder;
                     }
                 },
@@ -199,11 +203,11 @@ var Modal = {
             }).done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (Common.CheckError.Object(data) == true) {
-                    Common.Alert.Success("Berhasil Menindaklanjuti");
-                    $('#modalstatusproseslaporan').modal("toggle");
-                    $("#divLaporanList").mDatatable("reload");        
-                    $("#tbxRemark").val('');
-                    $("#inputFile").val('');
+                    Common.Alert.SuccessRoute("Berhasil Menindaklanjuti", '/halamanLaporan');
+                    // $('#modalstatusproseslaporan').modal("toggle");
+                    // $("#divLaporanList").mDatatable("reload");        
+                    // $("#tbxRemark").val('');
+                    // $("#inputFile").val('');
                     
                 }
                 btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
@@ -220,3 +224,4 @@ var Modal = {
 		})
     }
 }
+
