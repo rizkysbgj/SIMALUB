@@ -412,19 +412,19 @@ class TugasControllerApi extends Controller
 
             $updateValue = array('IDMilestoneTugas' => $IDMilestoneNext, 'RealitaSelesai' => Carbon::now()->toDateString());
 
-            $listTugas = mstTugas::where('IDProyek', $request->IDProyek)->update($updateValue);
             // $listTugas->IDMilestoneTugas = $IDMilestoneNext;
             // $listTugas->RealitaSelesai = Carbon::now()->toDateString();
 
             //upload sertifikat
             $sertifikat = new mstSertifikat();
+            $sertifikat->IDProyek = $request->IDProyek;
+            $sertifikat->Catatan = $request->Remark;
             if($request->hasFile('Attachment'))
             {
                 $Attachment = $request->file('Attachment');
                 $helper = new HelpersController();
                 if($helper->cekFiles($Attachment))
                 {
-                    $sertifikat->IDProyek = $request->IDProyek;
                     $sertifikat->Attachment = $Attachment->store('public/files');
                     $sertifikat->ContentType = $Attachment->getCLientMimeType();
                     $sertifikat->NamaFile = $Attachment->getClientOriginalName();
@@ -435,10 +435,10 @@ class TugasControllerApi extends Controller
                     $sertifikat->ErrorMessage = "Format File Tidak Valid"; 
                     return $sertifikat;
                 }
-                $sertifikat->Catatan = $request->Remark;
             }
 
             $sertifikat->save();
+            $listTugas = mstTugas::where('IDProyek', $request->IDProyek)->update($updateValue);
             $proyek->save();
             // $listTugas->save();
             $proyek->ErrorType = 0;

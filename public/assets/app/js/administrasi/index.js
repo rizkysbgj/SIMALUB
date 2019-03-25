@@ -107,25 +107,25 @@ var TaskTransaction = {
 
 		console.log(model.get('IDProyek'));
 
-		// $.ajax({
-		// 	url: "/api/tugas/administrasi",
-		// 	type: 'POST',
-		// 	data: model,
-		// 	dataType: "json",
-		// 	contentType: false,
-		// 	processData: false
-		// }).done(function (data, textStatus, jqXHR) {
-		// 	console.log(data);
-		// 	var link = '/halamanpinnedProjectAdministrasi';
-		// 	// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
-		// 	if (Common.CheckError.Object(data) == true) {
-		// 		Common.Alert.SuccessRoute("Berhasil", link);
-		// 	}
-		// 	btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-		// }).fail(function (jqXHR, textStatus, errorThrown) {
-		// 	Common.Alert.Error(errorThrown);
-		// 	btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-		// })
+		$.ajax({
+			url: "/api/tugas/administrasi",
+			type: 'POST',
+			data: model,
+			dataType: "json",
+			contentType: false,
+			processData: false
+		}).done(function (data, textStatus, jqXHR) {
+			console.log(data);
+			var link = '/halamanpinnedProjectAdministrasi';
+			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			if (Common.CheckError.Object(data) == true) {
+				Common.Alert.SuccessRoute("Berhasil", link);
+			}
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			Common.Alert.Error(errorThrown);
+			btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+		})
 
 	}
 }
