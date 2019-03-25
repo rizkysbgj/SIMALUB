@@ -18,7 +18,7 @@
 
 //Route untuk manager teknis
     
-    Route::group(['middleware' => '\App\Http\Middleware\ManajerPuncakMiddleware'], function(){
+    Route::group(['middleware' => ['rule1']], function(){
         //Dashboard Top Manajemen
         Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
         //Dashboard Manajer Teknis
@@ -26,21 +26,7 @@
         Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
     });
 
-    Route::group(['middleware' => '\App\Http\Middleware\ManajerTeknisMiddleware'], function(){
-        //Dashboard Manajer Teknis
-        Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
-        Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
-        //Dashboard Top Manajemen
-        Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
-        //Dashboard Performa Analais
-        Route::get('/halamandashboardPerformaAnalis', 'DashboardPerformaAnalisController@indexDashboardPerformaAnalis') -> name('halamandashboardPerformaAnalis');
-        //Route Pinned Project
-        Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
-        Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
-        Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
-    });
-
-    Route::group(['middleware' => '\App\Http\Middleware\AnalisMiddleware'], function(){
+    Route::group(['middleware' => ['rule2']], function(){
         //Dashboard Performa Analis
         Route::get('/halamandashboardPerformaAnalis', 'DashboardPerformaAnalisController@indexDashboardPerformaAnalis') -> name('halamandashboardPerformaAnalis');     
         //Route Pinned Project
@@ -49,26 +35,7 @@
         Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
     });
 
-    Route::group(['middleware' => '\App\Http\Middleware\AdministrasiMiddleware'], function(){
-        //Dashboard Manajer Teknis
-        Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
-        Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
-        //Dashboard Top Manajemen
-        Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
-        //Dashboard Performa
-        Route::get('/halamandashboardPerformaAnalis', 'DashboardPerformaAnalisController@indexDashboardPerformaAnalis') -> name('halamandashboardPerformaAnalis');     
-        //Route Pinned Project
-        Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
-        Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
-        Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
-        //Route Pinned Project Administrasi
-        Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanpinnedProjectAdministrasi');
-        Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanpinnedProjectAdministrasi.proyekList');
-        Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanpinnedProjectAdministrasi.detailProyek');
-        
-    });
-
-    Route::group(['middleware' => '\App\Http\Middleware\MasterMiddleware'], function(){
+    Route::group(['middleware' => ['rule3']], function(){
         //Route proyek 
         Route::get('/halamanProject', 'ProjectController@indexProject') -> name('halamanProject');
         Route::get('/halamanProject/tambahProject', 'ProjectController@createProject') -> name('halamanProject.tambahProject');
@@ -89,6 +56,14 @@
         Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
         Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
         Route::get('/editJabatan/{IDRole}', 'JabatanController@editJabatan');
+    });
+
+    Route::group(['middleware' => ['rule4']], function(){
+        //Route Pinned Project Administrasi
+        Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanpinnedProjectAdministrasi');
+        Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanpinnedProjectAdministrasi.proyekList');
+        Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanpinnedProjectAdministrasi.detailProyek');
+        
     });
 
 Auth::routes();

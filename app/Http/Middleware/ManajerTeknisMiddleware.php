@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class ManajerTeknisMiddleware
 {
@@ -19,10 +20,10 @@ class ManajerTeknisMiddleware
         {
             return $next($request);
         }
-        else
-        {
-            Auth::logout();
-            return redirect()->route('login');
-        }
+        // else
+        // {
+        //     Auth::logout();
+        //     return redirect()->route('login');
+        // }
     }
 }
