@@ -16,12 +16,13 @@ class ManajerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(in_array(Auth::user()->IDRole, [1, 2, 3, 6]))
+        if(Auth::check() && in_array(Auth::user()->IDRole, [1, 2, 3, 6]))
         {
             return $next($request);
         }
         else
         {
+            Auth::logout();
             return redirect()->route('login');
         }
     }

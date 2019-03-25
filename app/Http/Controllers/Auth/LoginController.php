@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request; 
+use Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,26 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    public function authenticated($request, $user){
+        if(in_array($user->IDRole, [2]))
+        {
+            return redirect('halamandashboardTopManagement');
+            // return redirect('halamandashboardTopManagement');
+        }
+        else if(in_array(Auth::user()->IDRole, [4, 5]))
+        {
+            return redirect('/halamandashboardPerformaAnalis');
+        }
+        else if(in_array(Auth::user()->IDRole, [3, 6]))
+        {
+            return redirect('/');
+        }
+        else
+        {
+            return redirect('/');
+        }
+    }
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

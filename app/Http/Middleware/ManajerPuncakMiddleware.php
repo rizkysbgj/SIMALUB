@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class AdministrasiMiddleware
+class ManajerPuncakMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AdministrasiMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && in_array(Auth::user()->IDRole, [1, 6]))
+        if(Auth::check() && in_array(Auth::user()->IDRole, [1, 2]))
         {
             return $next($request);
         }
