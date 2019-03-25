@@ -284,12 +284,6 @@ var Page = {
 		if(IDTugas != 0)
 			GetData.TaskDetail(IDTugas);
 
-		//Event
-		// $(".TaskOrderBy").on("click", function () {
-		// 	var order = (this.id).replace("Order-", "");
-		// 	GetData.TaskList(order);
-		// });
-
 		$('#showTask').on('click', '.divShowDetail', function () {
 			var IDTugas = this.id;
 			$(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
@@ -297,8 +291,6 @@ var Page = {
 			console.log(IDTugas);
 			GetData.TaskDetail(IDTugas);
 		});
-
-		
 	},
 }
 

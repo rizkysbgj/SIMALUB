@@ -80,4 +80,4 @@ Route::get('dashboardmanajerpuncak/{tahun}', 'ControllersApi\DashboardController
 Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadAttachment');
 Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 
-Route::get('exportsertifikat', 'HelpersController@exportdocx');
+Route::get('exportsertifikat', 'HelpersController@exportsertifikat');

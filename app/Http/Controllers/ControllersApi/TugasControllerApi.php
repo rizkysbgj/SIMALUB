@@ -417,9 +417,9 @@ class TugasControllerApi extends Controller
             // $listTugas->RealitaSelesai = Carbon::now()->toDateString();
 
             //upload sertifikat
+            $sertifikat = new mstSertifikat();
             if($request->hasFile('Attachment'))
             {
-                $sertifikat = new mstSertifikat();
                 $Attachment = $request->file('Attachment');
                 $helper = new HelpersController();
                 if($helper->cekFiles($Attachment))

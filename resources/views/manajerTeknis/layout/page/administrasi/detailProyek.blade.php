@@ -18,15 +18,6 @@
         <div class="form-group m-form__group">
             <div class="alert m-alert m-alert--default" role="alert" style="margin-bottom: 20px;">
                 <div class="col-lg-12 m--align-center" id="btnGenerate">
-                    <a href="#" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
-                        style="margin-right: 10px;">
-                        <span>
-                            <i class="la la-edit"></i>
-                            <span>
-                                Edit
-                            </span>
-                        </span>
-                    </a>
                     <!-- looping dan kondisi untuk modal dan button -->
                     <div class="modal hide fade" id="modal-SELESAI" tabindex="-1"
                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,8 +79,8 @@
                             </span>
                         </a>
                     @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() == $mstProyekDetail['detailProyek']['TotalTugas'])
-                        <a href="#" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
-                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                        <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                            style="margin-left:10px; margin-right:10px">
                             <span>
                                 <i class="la la-download"></i>
                                 <span>
@@ -107,8 +98,8 @@
                             </span>
                         </a>
                     @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 2 && $mstProyekDetail['listTugas']->count() != $mstProyekDetail['detailProyek']['TotalTugas'])
-                        <a href="#" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate"
-                            style="margin-left:10px; margin-right:10px" data-toggle="modal">
+                        <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-warning btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                            style="margin-left:10px; margin-right:10px">
                             <span>
                                 <i class="la la-download"></i>
                                 <span>

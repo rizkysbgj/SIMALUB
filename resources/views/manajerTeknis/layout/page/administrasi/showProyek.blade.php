@@ -48,8 +48,6 @@
 
 										<span class="m-badge m-badge--success m-badge--wide" style="float: right;">
 											<!-- @Html.DisplayFor(model => task.Milestone) -->
-											Status
-											
 										</span>
 									</div>
 								</div>

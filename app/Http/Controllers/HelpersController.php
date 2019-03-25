@@ -9,7 +9,7 @@ class HelpersController extends Controller
     public function exportsertifikat()
     {
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $template = $phpWord->loadTemplate(storage_path('template_sertifikat'));
+        $template = $phpWord->loadTemplate(storage_path('template_sertifikat.docx'));
         // $template->setValue('test', 'Hello');
 
         header('Content-Type: application/octet-stream');
