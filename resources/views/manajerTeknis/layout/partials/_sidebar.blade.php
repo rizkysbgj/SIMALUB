@@ -7,6 +7,9 @@
     <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1"
         m-menu-scrollable="0" m-menu-dropdown-timeout="500">
         <ul id="sidebar" class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+            
+            @if(in_array(Auth::user()->IDRole,[1, 2, 3, 6]))
+            <!-- Dashboard Top Management -->
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamandashboardTopManagement">
                 <a href="{{ url('/halamandashboardTopManagement') }}" class="m-menu__link ">
                     <i class="m-menu__link-icon flaticon-line-graph"></i>
@@ -24,6 +27,9 @@
                     </span>
                 </a>
             </li>
+            @endif
+            @if(in_array(Auth::user()->IDRole,[1,2,3,6]))
+            <!-- Dashboard Manajer Teknis -->
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="">
                 <a href="{{ url('/') }}" class="m-menu__link ">
                     <i class="m-menu__link-icon flaticon-statistics"></i>
@@ -41,6 +47,9 @@
                     </span>
                 </a>
             </li>
+            @endif
+            @if(in_array(Auth::user()->IDRole,[1,3,4,5,6]))
+            <!-- Dashboard Performa Analis -->
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamandashboardPerformaAnalis">
                 <a href="{{ url('/halamandashboardPerformaAnalis') }}" class="m-menu__link ">
                     <i class="m-menu__link-icon flaticon-users"></i>
@@ -58,19 +67,27 @@
                     </span>
                 </a>
             </li>
+            @endif
+            @if(in_array(Auth::user()->IDRole,[1,3,4,5,6]))
+            <!-- Pinned -->
             <li id="parent" class="m-menu__section">
                 <h4 class="m-menu__section-text">
                     Analisis dan Pengujian
                 </h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
+            @endif
+            @if(in_array(Auth::user()->IDRole,[1,3,6]))
+            <!-- Master -->
             <li class="m-menu__section">
                 <h4 class="m-menu__section-text">
                     Management
                 </h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
+            @endif
             <!-- MODUL PROJECT -->
+            @if(in_array(Auth::user()->IDRole,[1,3,6]))
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanProject">
                 <a href="{{ url('halamanProject') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-folder-1"></i>
@@ -79,7 +96,9 @@
                     </span>
                 </a>
             </li>
+            @endif
             <!-- MODUL LAPORAN -->
+            @if(in_array(Auth::user()->IDRole,[1,3,6]))
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanLaporan">
                 <a href="{{ url('halamanLaporan') }}" class="m-menu__link ">
                     <i class="m-menu__link-icon flaticon-comment"></i>
@@ -116,7 +135,9 @@
                     </span>
                 </a>
             </li>
+            @endif
             <!-- MODUL PinnedProject Administrasi -->
+            @if(in_array(Auth::user()->IDRole,[1,6]))
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanpinnedProjectAdministrasi">
                 <!-- m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}} -->
                 <a href="{{ url('halamanpinnedProjectAdministrasi') }}" class="m-menu__link m-menu__toggle">
@@ -126,6 +147,7 @@
                     </span>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
     <!-- END: Aside Menu -->

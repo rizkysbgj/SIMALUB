@@ -35,7 +35,7 @@
                     <!-- disini -->
                     @foreach ($mstTugasDetail['flow'] as $flow)
                     <!-- modal -->
-                        @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI" )
+                        @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI")
                             <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -533,7 +533,7 @@
                         @endif
 
                     <!-- button -->
-                        @if($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2)
+                        @if($mstTugasDetail['tugas']['IDMilestoneTugas'] == 2 && (Auth::user()->IDRole == 6 || Auth::user()->IDUser == $mstTugasDetail['tugas']['IDPenanggungJawab']))
                             @if($mstTugasDetail['tugas']['StatusKajiUlang'] == "SIAP")
                                 <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="KAJIULANG"
                                     style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#modalkajiUlang" disabled>
@@ -576,7 +576,7 @@
                                     </span>
                                 </a>
                             @endif
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8)
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && (Auth::user()->IDUser == $mstTugasDetail['tugas']['IDPenanggungJawab']))
                             @if ( $flow['Kode'] == 'SALAH')
                             <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
@@ -599,7 +599,7 @@
                             </a>
                             @endif
 
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 5)
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 5 && (Auth::user()->IDUser == $mstTugasDetail['tugas']['IDPenanggungJawab']))
                             <a href="#" class="btn btn-danger btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="LAPOR"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#laporkan">
                                 <span>
@@ -618,7 +618,7 @@
                                     </span>
                                 </span>
                             </a>
-                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 9)
+                        @elseif($mstTugasDetail['tugas']['IDMilestoneTugas'] == 9 && (Auth::user()->IDUser == $mstTugasDetail['tugas']['IDPenanggungJawab']))
                             <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="PILIHADMINISTRASI"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#pilihadministrasi">
                                 <span>
@@ -638,7 +638,7 @@
                                     </span>
                                 </span>
                             </a>
-                        @else
+                        @elseif(Auth::user()->IDUser == $mstTugasDetail['tugas']['IDPenanggungJawab'])
                             <a href="#" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air btn-generate" id="{{ $flow['Kode'] }}"
                                 style="margin-left:10px; margin-right:10px" data-toggle="modal" data-target="#{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}">
                                 <span>
