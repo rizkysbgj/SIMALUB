@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\mstUser;
+use App\model\mstUser;
 use App\Http\Controllers\ControllersApi\UserControllerApi;
 use Illuminate\Http\Request;
 

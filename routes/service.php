@@ -21,6 +21,8 @@ Route::get('user/list/{IDRole}', 'ControllersApi\UserControllerApi@GetListUser')
 Route::put('user', 'ControllersApi\UserControllerApi@UpdateUser');
 Route::delete('user/{IDUser}', 'ControllersApi\UserControllerApi@DeleteUser');
 
+Route::put('profile', 'ControllersApi\UserControllerApi@UpdateProfile');
+
 Route::post('role', 'ControllersApi\RoleControllerApi@CreateRole');
 Route::get('role', 'ControllersApi\RoleControllerApi@GetListRole');
 Route::get('role/{IDRole}', 'ControllersApi\RoleControllerApi@GetRole');
@@ -85,3 +87,4 @@ Route::get('download/{IDTrxTugas}', 'ControllersApi\TugasControllerApi@DownloadA
 Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 
 Route::get('exportsertifikat', 'HelpersController@exportsertifikat');
+Route::get('exportmemo', 'HelpersController@exportmemo');

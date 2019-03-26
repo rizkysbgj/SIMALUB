@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\mstRole;
+use App\model\mstRole;
 use App\Http\Controllers\ControllersApi\RoleControllerApi;
 use Illuminate\Http\Request;
 use Auth;

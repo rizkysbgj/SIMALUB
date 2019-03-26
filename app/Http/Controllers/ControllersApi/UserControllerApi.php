@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
-use App\mstUser;
-use App\vwUser;
+use App\model\mstUser;
+use App\model\vwUser;
 use Auth;
 
 class UserControllerApi extends Controller
@@ -22,6 +22,12 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorType = 1;
                 $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
+            }
+            if($request->hasFile('Attachment'))
+            {
+                $Attachment = $request->file('Attachment');
+                
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $request->IDUser);
             }
             $mstUser->IDUser = $request->IDUser;
             $mstUser->NIK = $request->NIK;
@@ -99,6 +105,11 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorMessage = "NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
+            if($request->hasFile('Attachment'))
+            {
+                $Attachment = $request->file('Attachment');
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $request->IDUser);
+            }
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
@@ -139,6 +150,47 @@ class UserControllerApi extends Controller
             $user->ErrorType = 2;
             $user->ErrorMessage = $e->getMessage(); 
             return $user;
+        }
+    }
+
+    public function UpdateProfile()
+    {
+        try {
+            if(mstUser::where('NIK', $request->NIK)->where('IDUser', '!=', Auth::user()->IDUser)
+                ->count() > 0)
+            {
+                $mstUser->ErrorType = 1;
+                $mstUser->ErrorMessage = "NIK sudah dipakai!";
+                return response($mstUser->jsonSerialize());
+            }
+            if($request->hasFile('Attachment'))
+            {
+                $Attachment = $request->file('Attachment');
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', Auth::user()->IDUser);
+            }
+            $mstUser = mstUser::where('IDUser', Auth::user()->IDUser)->firstorfail();
+            $mstUser->NamaLengkap = $request->NamaLengkap;
+            $mstUser->IDRole = $request->IDRole;
+            $mstUser->Email = $request->Email;
+            $mstUser->Password = bcrypt($request->Password);
+            $mstUser->Status = $request->Status;
+            $mstUser->UpdatedBy = Auth::user()->IDUser;
+            /*Update Avatar
+             *
+             * Code di sini 
+             * 
+             */
+            $mstUser->save();
+            $mstUser->email = $mstUser->IDUser;
+            Auth::login($mstUser);
+            $mstUser->ErrorType = 0;
+            return response($mstUser->jsonSerialize(), Response::HTTP_OK);
+        }
+        catch (\Exception $e) {
+            $mstUser = new mstUser();
+            $mstUser->ErrorType = 2;
+            $mstUser->ErrorMessage = $e->getMessage();
+            return response($mstUser->jsonSerialize());
         }
     }
 }

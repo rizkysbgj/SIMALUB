@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
-use App\mstrole;
+use App\model\mstrole;
 
 class RoleControllerApi extends Controller
 {

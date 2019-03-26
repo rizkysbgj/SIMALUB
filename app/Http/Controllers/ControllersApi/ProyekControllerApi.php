@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
-use App\mstProyek;
-use App\vwProyek;
-use App\mstUlasan;
+use App\model\mstProyek;
+use App\model\vwProyek;
+use App\model\mstUlasan;
+use App\model\vwUlasan;
 use Auth;
 
 class ProyekControllerApi extends Controller
@@ -147,7 +148,7 @@ class ProyekControllerApi extends Controller
             $ulasan->Pertanyaan7 = $request->Pertanyaan7;
             $ulasan->Pertanyaan8 = $request->Pertanyaan8;
             $ulasan->Pertanyaan9 = $request->Pertanyaan9;
-            $ulasan->Ulasan = $request->Ulasan;
+            $ulasan->KritikSaran = $request->KritikSaran;
             $ulasan->save();
             $ulasan->ErrorType = 0;
             return $ulasan;
@@ -164,13 +165,13 @@ class ProyekControllerApi extends Controller
     {
         try
         {
-            $ulasan = mstUlasan::where('IDProyek', $IDProyek)->firstorfail();
+            $ulasan = vwUlasan::where('IDProyek', $IDProyek)->firstorfail();
             $ulasan->ErrorType = 0;
             return $ulasan;
         }
         catch(\Exception $e)
         {
-            $ulasan = new mstUlasan();
+            $ulasan = new vwUlasan();
             $ulasan->ErrorType = 2;
             $ulasan->ErrorMessage = $e->getMessage();
             return $ulasan;
@@ -181,13 +182,13 @@ class ProyekControllerApi extends Controller
     {
         try
         {
-            $ulasanList = mstUlasan::whereMonth('created_at', $bulan)->whereYear('created_at', $tahun)->get();
+            $ulasanList = vwUlasan::whereMonth('created_at', $bulan)->whereYear('created_at', $tahun)->get();
             $ulasanList->ErrorType = 0;
             return $ulasanList;
         }
         catch(\Exception $e)
         {
-            $ulasanList = new mstUlasan();
+            $ulasanList = new vwUlasan();
             $ulasanList->ErrorType = 2;
             $ulasanList->ErrorMessage = $e->getMessage();
             return $ulasanList;

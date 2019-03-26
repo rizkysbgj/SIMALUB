@@ -8,13 +8,13 @@ jQuery(document).ready(function () {
     $('#tbxConfirmNewPassword').on('keyup', function () {
         if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) 
         {
-            var elemen = document.getElementById("btnEditStaff")
+            var elemen = document.getElementById("btnEditProfile")
             elemen.removeAttribute("disabled");
             $('#message').html('');
         } else
         {
             $('#message').html('Password Tidak Sama').css('color', 'red');
-            var elemen = document.getElementById("btnEditStaff")
+            var elemen = document.getElementById("btnEditProfile")
             elemen.setAttribute("disabled", "disabled");
         }
     });
@@ -22,7 +22,7 @@ jQuery(document).ready(function () {
 
 var Form = {
     Init: function () {
-        $("#formEditStaff").validate({
+        $("#formEditProfil").validate({
             invalidHandler: function (e, r) {
                 var i = $("#msgLogFail");
                 i.removeClass("m--hide").show(), mApp.scrollTo(i, -200)
@@ -66,7 +66,7 @@ var Control = {
 }
 
 var Transaction = function () {
-    var btn = $("#btnEditStaff");
+    var btn = $("#btnEditProfile");
 
     btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
@@ -98,7 +98,7 @@ var Transaction = function () {
         data: JSON.stringify(params),
     }).done(function (data, textStatus, jqXHR) {
         if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Pengguna Berhasil diedit", '/halamanStaff');
+            Common.Alert.SuccessRoute("Profil Anda Berhasil Diubah", '/');
         else
             Common.Alert.Error(data.ErrorMessage);
         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

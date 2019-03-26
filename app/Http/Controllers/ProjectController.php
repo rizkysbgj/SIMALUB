@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\mstProyek;
+use App\model\mstProyek;
 use App\Http\Controllers\ControllersApi\ProyekControllerApi;
 use Illuminate\Http\Request;
 

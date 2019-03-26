@@ -4,14 +4,14 @@ namespace App\Http\Controllers\ControllersApi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\vwDashboardManajerTeknis;
-use App\vwStatistikProyek;
-use App\vwTugas;
-use App\vwProyek;
-use App\vwDashboardPerformaBulanan;
-use App\vwDashboardPerformaTahunan;
+use App\model\vwDashboardManajerTeknis;
+use App\model\vwStatistikProyek;
+use App\model\vwTugas;
+use App\model\vwProyek;
+use App\model\vwDashboardPerformaBulanan;
+use App\model\vwDashboardPerformaTahunan;
 use App\viewmodel\vmDashboardManajerPuncak;
-use App\vwUser;
+use App\model\vwUser;
 use DateTime;
 
 class DashboardControllerApi extends Controller

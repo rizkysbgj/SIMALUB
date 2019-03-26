@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\mstTugas;
+use App\model\mstTugas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllersApi\ProyekControllerApi;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;

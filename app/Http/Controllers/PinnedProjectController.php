@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\mstTugas;
-use App\vwProyek;
+use App\model\mstTugas;
+use App\model\vwProyek;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ControllersApi\ProyekControllerApi;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;

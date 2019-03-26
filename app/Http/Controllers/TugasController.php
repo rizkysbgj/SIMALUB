@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\mstTugas;
-use App\vwProyek;
+use App\model\mstTugas;
+use App\model\vwProyek;
 use App\Http\Controllers\ControllersApi\TugasControllerApi;
 
 class TugasController extends Controller

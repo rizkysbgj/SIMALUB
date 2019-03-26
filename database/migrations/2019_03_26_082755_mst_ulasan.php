@@ -25,7 +25,7 @@ class MstUlasan extends Migration
             $table->integer('Pertanyaan7')->nullable();
             $table->integer('Pertanyaan8')->nullable();
             $table->integer('Pertanyaan9')->nullable();
-            $table->string('Ulasan')->nullable();
+            $table->string('KritikSaran')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form m-form--label-align-right" id="formEditStaff">
+                <form class="m-form m-form--label-align-right" id="formEditProfil">
                     {{ csrf_field() }} 
                     <div class="m-form__content">
                         <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="msgProjectFail">
@@ -103,7 +103,7 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Batal
                                     </button>
-                                    <button id="btnEditProfilku" class="btn btn-primary" >
+                                    <button id="btnEditProfile" class="btn btn-primary" >
                                         Edit
                                     </button>
                                 </div>
@@ -120,6 +120,6 @@
 
 <input type="hidden" id="inptRoleID" value="{{ $mstUser['IDRole'] }}">
 <input type="hidden" id="tbxUserID" value="{{ $mstUser['IDUser'] }}">
-<script src="{{ asset('assets/app/js/staff/edit.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/app/js/staff/editUser.js') }}" type="text/javascript"></script>
 
 @endsection

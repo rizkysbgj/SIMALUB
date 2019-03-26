@@ -6,6 +6,20 @@ use Illuminate\Http\Request;
 
 class HelpersController extends Controller
 {
+    public function exportmemo()
+    {
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $template = $phpWord->loadTemplate(storage_path('template_memo.docx'));
+        // $template->setValue('test', 'Hello');
+
+        header('Content-Type: application/octet-stream');
+        header("Content-Disposition: attachment; filename=memo.docx");
+        
+        $template->saveAs(storage_path('memo.docx'));
+        readfile(storage_path('memo.docx'));
+        unlink(storage_path('memo.docx'));
+    }
+
     public function exportsertifikat()
     {
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
@@ -13,7 +27,7 @@ class HelpersController extends Controller
         // $template->setValue('test', 'Hello');
 
         header('Content-Type: application/octet-stream');
-        header("Content-Disposition: attachment; filename=result.docx");
+        header("Content-Disposition: attachment; filename=sertifikat.docx");
         
         $template->saveAs(storage_path('sertifikat.docx'));
         readfile(storage_path('sertifikat.docx'));
