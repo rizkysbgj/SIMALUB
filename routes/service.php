@@ -33,6 +33,10 @@ Route::get('proyek/{IDProyek}', 'ControllersApi\ProyekControllerApi@GetProyek');
 Route::put('proyek', 'ControllersApi\ProyekControllerApi@UpdateProyek');
 Route::delete('proyek/{IDProyek}', 'ControllersApi\ProyekControllerApi@DeteleProyek');
 
+Route::post('ulasan', 'ControllersApi\ProyekControllerApi@CreateUlasanProyek');
+Route::get('ulasan/{IDProyek}', 'ControllersApi\ProyekControllerApi@GetUlasanProyek');
+Route::get('ulasan/{bulan}/{tahun}', 'ControllersApi\ProyekControllerApi@GetUlasanList');
+
 Route::post('tugas', 'ControllersApi\TugasControllerApi@CreateTugas');
 Route::get('tugas/list/{IDProyek}', 'ControllersApi\TugasControllerApi@GetListTugas');
 Route::get('tugas/{IDTugas}', 'ControllersApi\TugasControllerApi@GetTugas');

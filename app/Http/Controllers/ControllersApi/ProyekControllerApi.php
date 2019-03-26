@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use App\mstProyek;
 use App\vwProyek;
+use App\mstUlasan;
 use Auth;
 
 class ProyekControllerApi extends Controller
@@ -129,6 +130,67 @@ class ProyekControllerApi extends Controller
             $proyek->ErrorType = 2;
             $proyek->ErrorMessage = $e->getMessage(); 
             return $proyek;
+        }
+    }
+
+    public function CreateUlasanProyek(Request $request)
+    {
+        try {
+            $ulasan = new mstUlasan();
+            $ulasan->IDProyek = $request->IDProyek;
+            $ulasan->Pertanyaan1 = $request->Pertanyaan1;
+            $ulasan->Pertanyaan2 = $request->Pertanyaan2;
+            $ulasan->Pertanyaan3 = $request->Pertanyaan3;
+            $ulasan->Pertanyaan4 = $request->Pertanyaan4;
+            $ulasan->Pertanyaan5 = $request->Pertanyaan5;
+            $ulasan->Pertanyaan6 = $request->Pertanyaan6;
+            $ulasan->Pertanyaan7 = $request->Pertanyaan7;
+            $ulasan->Pertanyaan8 = $request->Pertanyaan8;
+            $ulasan->Pertanyaan9 = $request->Pertanyaan9;
+            $ulasan->Ulasan = $request->Ulasan;
+            $ulasan->save();
+            $ulasan->ErrorType = 0;
+            return $ulasan;
+        }
+        catch (\Exception $e) {
+            $ulasan = new mstUlasan();
+            $ulasan->ErrorType = 2;
+            $ulasan->ErrorMessage = $e->getMessage();
+            return $ulasan;
+        }
+    }
+
+    public function GetUlasanProyek($IDProyek)
+    {
+        try
+        {
+            $ulasan = mstUlasan::where('IDProyek', $IDProyek)->firstorfail();
+            $ulasan->ErrorType = 0;
+            return $ulasan;
+        }
+        catch(\Exception $e)
+        {
+            $ulasan = new mstUlasan();
+            $ulasan->ErrorType = 2;
+            $ulasan->ErrorMessage = $e->getMessage();
+            return $ulasan;
+        }
+    }
+
+    public function GetUlasanList($bulan, $tahun)
+    {
+        try
+        {
+            $ulasanList = mstUlasan::whereMonth('created_at', $bulan)->whereYear('created_at', $tahun)->get();
+            $ulasanList->ErrorType = 0;
+            return $ulasanList;
+        }
+        catch(\Exception $e)
+        {
+            $ulasanList = new mstUlasan();
+            $ulasanList->ErrorType = 2;
+            $ulasanList->ErrorMessage = $e->getMessage();
+            return $ulasanList;
         }
     }
 
