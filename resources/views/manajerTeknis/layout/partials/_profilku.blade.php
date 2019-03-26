@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-@section('title', 'Halaman Edit Staff')
+@section('title', 'Halaman Profilku')
 @section('content')
 <div class="m-content">
     <div class="row">
@@ -14,7 +14,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Edit Staff
+                                Edit Profil
                             </h3>
                         </div>
                     </div>
@@ -86,7 +86,6 @@
                                 <span id="message"></span>
                             </div>
                         </div>
-                       
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Photo Profil<strong style="color:red" ;>*</strong>:
@@ -104,7 +103,7 @@
                                     <button onclick="JavaScript: window.history.back(1); return false;" class="btn btn-secondary">
                                         Batal
                                     </button>
-                                    <button id="btnEditStaff" class="btn btn-primary" >
+                                    <button id="btnEditProfilku" class="btn btn-primary" >
                                         Edit
                                     </button>
                                 </div>

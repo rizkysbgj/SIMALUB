@@ -101,14 +101,14 @@
                             </div>
                         </div>
                        
-                        <!-- <div class="form-group m-form__group row">
+                        <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
                                 Photo Profil<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
                                 <input type="file" class="custom-file" id="inputPhotoProfile" name="inputPhotoProfile" style="margin-top: 5px" />
                             </div>
-                        </div> -->
+                        </div>
                     </div>                    
 
                     <div class="m-portlet__foot m-portlet__foot--fit">

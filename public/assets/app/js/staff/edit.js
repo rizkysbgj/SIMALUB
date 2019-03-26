@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
     Form.Init();
     Control.Init();
     BootstrapSwitch.init();
+    Profilku();
 
 
     $('#tbxConfirmNewPassword').on('keyup', function () {
@@ -99,6 +100,49 @@ var Transaction = function () {
     }).done(function (data, textStatus, jqXHR) {
         if (Common.CheckError.Object(data) == true)
             Common.Alert.SuccessRoute("Pengguna Berhasil diedit", '/halamanStaff');
+        else
+            Common.Alert.Error(data.ErrorMessage);
+        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        Common.Alert.Error(errorThrown)
+        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+    })
+};
+
+var Profilku = function () {
+    var btn = $("#btnEditProfilku");
+
+    btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+
+    // var model = new FormData();
+
+    if($("#btnStatus").prop('checked')) {
+        var status = 1;
+    }
+    else {
+        var status = 2;
+    }
+
+    var params = {
+        Status: status,
+        // Status: $("#btnStatus").prop('checked'),
+        IDUser: $("#tbxUserID").val(),
+        NamaLengkap: $("#tbxFullName").val(),
+        Email: $("#tbxEmail").val(),
+        IDRole: $("#slsRole").val(),
+        Password: $("#tbxNewPassword").val(),
+        
+    }
+    
+    $.ajax({
+        url: "/api/user/",
+        type: "PUT",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(params),
+    }).done(function (data, textStatus, jqXHR) {
+        if (Common.CheckError.Object(data) == true)
+            Common.Alert.SuccessRoute("Pengguna Berhasil diedit", '/');
         else
             Common.Alert.Error(data.ErrorMessage);
         btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);

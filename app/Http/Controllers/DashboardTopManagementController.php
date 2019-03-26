@@ -10,4 +10,8 @@ class DashboardTopManagementController extends Controller
     {
         return view('manajerTeknis.layout.page.dashboardTopManagement.halamandashboardTopManagement');
     }
+    public function indexHalamanUraian()
+    {
+        return view('manajerTeknis.layout.page.dashboardTopManagement.halamanUraian');
+    }
 }

@@ -136,13 +136,65 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Ulasan Proyek dari Customer
+                                Total Uraian Semua Proyek dari Customer
                             </h3>
                         </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a href="{{ url('/halamanUraian') }}" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                    <span>
+                                        <i class="la la-archive"></i>
+                                        <span>
+                                            Lihat Uraian
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="m-portlet__body">
                     <div id="chartReviewCustomer" style="width: 100%;height: 500px;"></div>
+                    <div class="m-portlet__head">
+                        <div class="row">
+                            <strong>Keterangan Pertanyaan :</strong>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <strong>1 : </strong> Independensi laboratorium dalam menghasilkan data pengujian
+                                </div>
+                                <div class="row">
+                                    <strong>2 : </strong> Perlindungan atas kerahasiaan informasi
+                                </div>
+                                <div class="row">
+                                    <strong>3 : </strong> Keakuratan laporan hasil uji
+                                </div>
+                                <div class="row">
+                                    <strong>4 : </strong> Ketepatan waktu pengujian
+                                </div>
+                                <div class="row">
+                                    <strong>5 : </strong> Komunikasi
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <strong>6 : </strong> Tindakan lanjut dari pengaduan
+                                </div>
+                                <div class="row">
+                                    <strong>7 : </strong> Fasilitas dan sumber daya manusia
+                                </div>
+                                <div class="row">
+                                    <strong>8 : </strong> Penerapan good profesional practice
+                                </div>
+                                <div class="row">
+                                    <strong>9 : </strong> Biaya pengujian
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> 

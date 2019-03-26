@@ -4,6 +4,7 @@ var tahun = today.getFullYear();
 jQuery(document).ready(function () {
   Control.Init();
   Table.Init();
+  Table.Uraian();
   GetData.Init(tahun);
   Graph.ReviewCustomer();
 });
@@ -111,7 +112,63 @@ var Table = {
               { field: "#", title: "Total Keterlambatan", textAlign: "center", width: 200 },
           ]
       })
-  }
+  },
+  Uraian: function () {
+    t = $("#divUraian").mDatatable({
+        data: {
+            type: "remote",
+            source: {
+                read: {
+                    url: "/api/",
+                    method: "GET",
+                    map: function (r) {
+                        var e = r;
+                        return void 0 !== r.data && (e = r.data), e;
+                    }
+                }
+            },
+            pageSize: 10,
+            saveState: {
+                cookie: true,
+                webstorage: true
+            },
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false
+        },
+        layout: {
+            scroll: false,
+            footer: false
+        },
+        sortable: true,
+        pagination: true,
+        toolbar: {
+            items: {
+                pagination: {
+                    pageSizeSelect: [10, 20, 30, 50, 100]
+                }
+            }
+        },
+        search: {
+            input: $("#tbxSearch")
+        },
+        columns: [
+            { field: "#", title: "Nama Proyek", textAlign: "center", width: 200 },
+            { field: "#", title: "Sponsor", textAlign: "center", width: 200 },
+            {
+                field: "#", title: "Waktu Dimulai", sortable: false, textAlign: "center", template: function (t) {
+                    return t.WaktuDimulai != null ? Common.Format.Date(t.WaktuDimulai) : "-"
+                }
+            },
+            {
+                field: "#", title: "Waktu Selesai", sortable: false, textAlign: "center", template: function (t) {
+                    return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
+                }
+            },
+            { field: "#", title: "Kritik dan Saran", textAlign: "center", width: 200 },
+        ]
+    })
+    }
 }
 
 var Graph = {
@@ -236,6 +293,22 @@ var Graph = {
             },
             {
                 "pertanyaan": "7",
+                "sangatmemuaskan": 5,
+                "memuaskan": 1,
+                "sedang": 2,
+                "tidakmemuaskan":3,
+                "sangattidakmemuaskan":5
+            },
+            {
+                "pertanyaan": "8",
+                "sangatmemuaskan": 5,
+                "memuaskan": 1,
+                "sedang": 2,
+                "tidakmemuaskan":3,
+                "sangattidakmemuaskan":5
+            },
+            {
+                "pertanyaan": "9",
                 "sangatmemuaskan": 5,
                 "memuaskan": 1,
                 "sedang": 2,

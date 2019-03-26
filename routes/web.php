@@ -21,6 +21,7 @@
     Route::group(['middleware' => ['rule1']], function(){
         //Dashboard Top Manajemen
         Route::get('/halamandashboardTopManagement', 'DashboardTopManagementController@indexDashboardTopManagement') -> name('halamandashboardTopManagement');
+        Route::get('/halamanUraian', 'DashboardTopManagementController@indexHalamanUraian') -> name('halamanUraian');
         //Dashboard Manajer Teknis
         Route::get('/', 'DashboardMTController@indexDashboardMT') -> name('halamandashboardMT');
         Route::get('/dashboardmanajerteknis/{IDProyek}', 'DashboardMTController@detailDashboardMT')->name('dashboardmanajerteknis.detailDashboardMT');
@@ -48,10 +49,11 @@
         Route::get('/halamanLaporan', 'ProjectController@indexLaporan') -> name('halamanLaporan');
         //Route Sub Kontrak
         Route::get('/halamanSubkontrak/{IDProyek}', 'TugasController@indexSubkontrak') -> name('halamanSubkontrak');
-        //Route staff
+        //Route staff dan user
         Route::get('/halamanStaff', 'StaffController@indexStaff') -> name('halamanStaff');
         Route::get('/halamanStaff/tambahStaff', 'StaffController@createStaff') -> name('halamanStaff.tambahStaff');
         Route::get('/editStaff/{IDUser}', 'StaffController@editStaff');
+        Route::get('/editUser/{IDUser}', 'StaffController@editUser');
         //Route Jabatan
         Route::get('/halamanJabatan', 'JabatanController@indexJabatan') -> name('halamanJabatan');
         Route::get('/halamanJabatan/tambahJabatan', 'JabatanController@createJabatan') -> name('halamanJabatan.tambahJabatan');
