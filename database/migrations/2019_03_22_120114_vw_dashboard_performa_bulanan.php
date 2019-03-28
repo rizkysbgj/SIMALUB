@@ -49,7 +49,7 @@ SELECT
     SUM(CASE vtt.`IDMilestoneTugas` WHEN 5 THEN 1 ELSE 0 END) as `TotalAnalisis`,
     SUM(CASE vtt.`IDMilestoneTugas` WHEN 8 THEN 1 ELSE 0 END) as `TotalSelia`
     FROM `mstuser` as mu
-    INNER JOIN `vwtrxtugas` as vtt ON vtt.`IDPenanggungJawab` = mu.`IDUser` AND vtt.`StatusTugas` IS NULL AND vtt.`WaktuMulai` IS NOT NULL
+    INNER JOIN `vwtrxtugas` as vtt ON vtt.`IDPenanggungJawab` = mu.`IDUser` AND (vtt.`StatusTugas` IS NULL OR vtt.`StatusTugas` = 'SELESAI') AND vtt.`WaktuMulai` IS NOT NULL
     WHERE `IDRole` = 4 OR `IDRole` = 5
     GROUP BY mu.`IDUser`, MONTH(vtt.`WaktuMulai`), YEAR(vtt.`WaktuMulai`), mu.`NamaLengkap`
 SQL;

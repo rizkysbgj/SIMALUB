@@ -116,6 +116,25 @@
                                 </span>
                             </span>
                         </a>
+                    @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 3)
+                    <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                        style="margin-left:10px; margin-right:10px">
+                        <span>
+                            <i class="la la-download"></i>
+                            <span>
+                                Download Memo Analisis
+                            </span>
+                        </span>
+                    </a>
+                    <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                        style="margin-left:10px; margin-right:10px">
+                        <span>
+                            <i class="la la-download"></i>
+                            <span>
+                                Download Sertifikat
+                            </span>
+                        </span>
+                    </a>
                     @endif
                 </div>
             </div>
@@ -197,7 +216,7 @@
 
         <div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide m--margin-top-15" data-scrollbar-shown="true"
             data-scrollable="true" data-max-height="380" style="overflow: visible; position: relative;">
-            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;"></textarea>
+            <textarea readonly class="form-control m-input m-input--air" id="exampleTextarea" rows="5" style="margin-bottom: 30px;">{{ $mstProyekDetail['detailProyek']['DeskripsiProyek'] }}</textarea>
         </div>
 
         <ul class="nav nav-pills nav-fill nav-pills--warning" role="tablist">

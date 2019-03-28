@@ -270,7 +270,7 @@ var Table = {
 						return t.WaktuSelesai != null ? Common.Format.Date(t.WaktuSelesai) : "-"
 					}
 				},
-				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 300 },
+				{ field: "Catatan", title: "Catatan", textAlign: "center", width: 100 },
 			]
 		})
 	}

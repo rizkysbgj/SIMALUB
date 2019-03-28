@@ -18,11 +18,7 @@
                             <span class="m-menu__link-text">
                                 Dashboard Top Management
                             </span>
-                            <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger">
-                                    2
-                                </span>
-                            </span>
+                            
                         </span>
                     </span>
                 </a>
@@ -38,11 +34,7 @@
                             <span class="m-menu__link-text">
                                 Dashboard Manajer Teknis
                             </span>
-                            <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger">
-                                    2
-                                </span>
-                            </span>
+                            
                         </span>
                     </span>
                 </a>
@@ -58,11 +50,7 @@
                             <span class="m-menu__link-text">
                                 Dashboard Performa Analis
                             </span>
-                            <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger">
-                                    2
-                                </span>
-                            </span>
+                            
                         </span>
                     </span>
                 </a>
@@ -139,11 +127,19 @@
             <!-- MODUL PinnedProject Administrasi -->
             @if(in_array(Auth::user()->IDRole,[1,6]))
             <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanpinnedProjectAdministrasi">
-                <!-- m-menu__item {{Request::is('halamanJabatan')?'m-menu__item--active':''}} -->
-                <a href="{{ url('halamanpinnedProjectAdministrasi') }}" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-file"></i>
-                    <span class="m-menu__link-text">
-                        Pembuatan Sertifikat
+                <a href="{{ url('halamanpinnedProjectAdministrasi') }}" class="m-menu__link ">
+                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                Pembuatan Sertifikat
+                            </span>
+                            <span class="m-menu__link-badge">
+                                <span class="m-badge m-badge--danger warnaBadge" style="display:none;" id="TotalPembuatanSertifikat">
+                                    
+                                </span>
+                            </span>
+                        </span>
                     </span>
                 </a>
             </li>
