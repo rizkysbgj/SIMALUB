@@ -47,6 +47,7 @@ SELECT
     mp.`TanggalMulai`,
     mp.`RencanaSelesai`,
     mp.`RealitaSelesai`,
+    mp.`DeskripsiProyek`,
     (SELECT COUNT(`IDTugas`) FROM `mstTugas` AS mt WHERE mt.`IDProyek` = mp.`IDProyek` AND mt.`StatusKajiUlang` <> 'Tidak' ) AS `TotalTugas`,
     mp.`SiapBuatSertifikat`
     FROM `mstproyek` as mp

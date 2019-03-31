@@ -34,6 +34,7 @@ SELECT
     tt.`IDTugas`,
     mt.`IDProyek`,
     mt.`NamaTugas`,
+    mt.`InisialTugas`,
     tt.`IDPenanggungJawab`,
     mu.`NamaLengkap`,
     tt.`IDMilestoneTugas`,

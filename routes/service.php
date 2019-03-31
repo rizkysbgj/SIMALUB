@@ -51,6 +51,10 @@ Route::get('memo/{IDTugas}', 'ControllersApi\TugasControllerApi@GetListTrxTugas'
 Route::get('tugas/administrasi/list/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiGetListTugas');
 Route::post('tugas/administrasi', 'ControllersApi\TugasControllerApi@AdministrasiTransaction');
 Route::get('tugas/administrasi/hasil/{IDProyek}', 'ControllersApi\TugasControllerApi@AdministrasiGetListTrxTugas');
+Route::get('tugas/administrasi/total', 'ControllersApi\AdministrasiControllerApi@GetTotalPembuatanSertifikat');
+
+Route::get('sertifikat', 'ControllersApi\AdministrasiControllerApi@GetListSertifikat');
+Route::get('sertifikat/{IDProyek}', 'ControllersApi\AdministrasiControllerApi@DownloadSertifikat');
 
 Route::post('subkontrak', 'ControllersApi\SubKontrakControllerApi@CreateSubKontrak');
 Route::get('subkontrak/{IDProyek}', 'ControllersApi\SubKontrakControllerApi@GetListSubKontrak');
