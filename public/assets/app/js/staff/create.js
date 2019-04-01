@@ -90,6 +90,7 @@ var ClearForm = {
         $("#tbxInitialName").val("");
         $("#tbxEmail").val("");
         $("#tbxNewPassword").val("");
+        $("inputPhotoProfile").val("");
     }
 }
 
@@ -141,59 +142,49 @@ var Form = {
 
 var Transaction = function () {
     var btn = $("#btnAddUser");
+    btn.on("click", function(){
+        btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
-    btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+        // var fileInput = document.getElementById("inputPhotoProfile");
+        // var uploadedFile = fileInput.files[0];
+    
+        console.log($("#btnStatus").val());
+    
+        var model = new FormData();
+        if($("#btnStatus").prop('checked')) {
+            var status = 1;
+        }
+        else {
+            var status = 2;
+        }
+        model.append('Status', status);
+        model.append('IDUser', $("#tbxUserID").val());
+        model.append('NIK', $("#tbxNIK").val());
+        model.append('NamaLengkap', $("#tbxFullName").val());
+        model.append('Email', $("#tbxEmail").val());
+        model.append('IDRole', $("#slsRole").val());
+        model.append('Password', $("#tbxNewPassword").val());
+        $('input[type="file"]').each(function($i){
+            model.append("Avatar", $(this)[0].files[0]);
+        });
 
-
-    // var fileInput = document.getElementById("inputPhotoProfile");
-    // var uploadedFile = fileInput.files[0];
-
-    console.log($("#btnStatus").val());
-
-    var model = new FormData();
-
-    if($("#btnStatus").prop('checked')) {
-        var status = 1;
-    }
-    else {
-        var status = 2;
-    }
-
-    var params = {
-        Status: status,
-        // Status: $("#btnStatus").prop('checked'),
-        IDUser: $("#tbxUserID").val(),
-        NIK: $("#tbxNIK").val(),
-        NamaLengkap: $("#tbxFullName").val(),
-        Email: $("#tbxEmail").val(),
-        IDRole: $("#slsRole").val(),
-        Password: $("#tbxNewPassword").val(),
-        
-    }
-    // model.append('Status', $("#btnStatus").prop('checked'));
-    // model.append('IDUser', $.trim($("#tbxUserID").val()));
-    // model.append('NIK', $.trim($("#tbxNIK").val()));
-    // model.append('NamaLengkap', $.trim($("#tbxFullName").val()));
-    // model.append('Email', $.trim($("#tbxEmail").val()));
-    // model.append('IDRole', $.trim($("#slsRole").val()));
-    // model.append('Password', $.trim($("#tbxNewPassword").val()));
-    // model.append('Avatar', uploadedFile);
-
-    $.ajax({
-        url: "/api/user",
-        type: 'POST',
-        dataType: "json",
-        contentType: "application/json",
-        data: JSON.stringify(params),
-        cache: false,
-    }).done(function (data, textStatus, jqXHR) {
-        if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Pengguna Berhasil ditambah", '/halamanStaff');
-        else
-            Common.Alert.Warning(data.ErrorMessage);
-        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        Common.Alert.Error(errorThrown)
-        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        $.ajax({
+            url: "/api/user",
+            type: 'POST',
+            data: model,
+            dataType: "json",
+            contentType: false,
+            processData: false
+        }).done(function (data, textStatus, jqXHR) {
+            if (Common.CheckError.Object(data) == true)
+                Common.Alert.SuccessRoute("Pengguna Berhasil ditambah", '/halamanStaff');
+            else
+                Common.Alert.Warning(data.ErrorMessage);
+            btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            Common.Alert.Error(errorThrown)
+            btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        })
     })
+
 };

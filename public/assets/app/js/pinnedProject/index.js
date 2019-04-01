@@ -124,7 +124,7 @@ var Button = {
 
 					$('input[type="file"]').each(function($i){
 						model.append("Attachment", $(this)[0].files[0]);
-						});
+					});
 
 					params.Remarks = Remark;
 					model.append("Remark", Remark);
@@ -164,7 +164,7 @@ var Button = {
 
 							$('input[type="file"]').each(function($i){
 								model.append("Attachment", $(this)[0].files[0]);
-							  });
+							});
 
 							model.append("PIC", params.PIC);
 							model.append("Remark", Remark);
@@ -195,7 +195,7 @@ var Button = {
 
 							$('input[type="file"]').each(function($i){
 								model.append("Attachment", $(this)[0].files[0]);
-							  });
+							});
 
 							params.PIC = $("#slsUser").val();
 
