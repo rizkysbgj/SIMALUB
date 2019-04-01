@@ -50,13 +50,14 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="tab-pane" id="topbar_notifications_notifications" role="tabpanel">
-                            <div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
-                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
+                            <div class="m-scrollable" data-scrollable="true" data-max-height="250"
+                                data-mobile-max-height="200">
+                                <div class="m-stack__item m-stack__item--center m-stack__item--middle m--align-center">
                                     <span class="">
-                                        All caught up!
+                                        Tidak Ada
                                         <br>
-                                        No new logs.
+                                        Notifikasi Baru
                                     </span>
                                 </div>
                             </div>
