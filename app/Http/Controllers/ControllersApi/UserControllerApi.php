@@ -23,11 +23,11 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorMessage = "ID atau NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
-            if($request->hasFile('Attachment'))
+            if($request->hasFile('Avatar'))
             {
-                $Attachment = $request->file('Attachment');
-                
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $request->IDUser);
+                $Attachment = $request->file('Avatar');
+                $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
             }
             $mstUser->IDUser = $request->IDUser;
             $mstUser->NIK = $request->NIK;
@@ -105,16 +105,20 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorMessage = "NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
-            if($request->hasFile('Attachment'))
+            if($request->hasFile('Avatar'))
             {
-                $Attachment = $request->file('Attachment');
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $request->IDUser);
+                $Attachment = $request->file('Avatar');
+                $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
             }
             $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
             $mstUser->Email = $request->Email;
-            $mstUser->Password = bcrypt($request->Password);
+            if($request->Password != null)
+            {
+                $mstUser->Password = bcrypt($request->Password);
+            }
             $mstUser->Status = $request->Status;
             $mstUser->UpdatedBy = Auth::user()->IDUser;
             /*Update Avatar
