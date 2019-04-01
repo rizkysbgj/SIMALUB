@@ -111,6 +111,15 @@ class UserControllerApi extends Controller
                 $Attachment = $request->file('Avatar');
                 $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
                 $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
+                $mstUser->ErrorType = 1;
+                $mstUser->ErrorMessage = "NIK sudah dipakai!";
+                return response($mstUser->jsonSerialize());
+            }
+            else
+            {
+                $mstUser->ErrorType = 1;
+                $mstUser->ErrorMessage = "Tidak Ada";
+                return response($mstUser->jsonSerialize());
             }
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
@@ -168,15 +177,19 @@ class UserControllerApi extends Controller
                 return response($mstUser->jsonSerialize());
             }
             $mstUser = mstUser::where('IDUser', Auth::user()->IDUser)->firstorfail();
-            if($request->hasFile('Attachment'))
+            if($request->hasFile('Avatar'))
             {
-                $Attachment = $request->file('Attachment');
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', Auth::user()->IDUser);
+                $Attachment = $request->file('Avatar');
+                $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
+                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
             }
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
             $mstUser->Email = $request->Email;
-            $mstUser->Password = bcrypt($request->Password);
+            if($request->Password != null)
+            {
+                $mstUser->Password = bcrypt($request->Password);
+            }
             $mstUser->Status = $request->Status;
             $mstUser->UpdatedBy = Auth::user()->IDUser;
             /*Update Avatar

@@ -67,43 +67,43 @@ var Control = {
 
 var Transaction = function () {
     var btn = $("#btnEditProfile");
+    btn.on("click", function(){
+        btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
-    btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-
-    // var model = new FormData();
-
-    if($("#btnStatus").prop('checked')) {
-        var status = 1;
-    }
-    else {
-        var status = 2;
-    }
-
-    var params = {
-        Status: status,
-        // Status: $("#btnStatus").prop('checked'),
-        IDUser: $("#tbxUserID").val(),
-        NamaLengkap: $("#tbxFullName").val(),
-        Email: $("#tbxEmail").val(),
-        IDRole: $("#slsRole").val(),
-        Password: $("#tbxNewPassword").val(),
-        
-    }
+        var model = new FormData();
     
-    $.ajax({
-        url: "/api/user/",
-        type: "PUT",
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(params),
-    }).done(function (data, textStatus, jqXHR) {
-        if (Common.CheckError.Object(data) == true)
-            Common.Alert.SuccessRoute("Profil Anda Berhasil Diubah", '/');
-        else
-            Common.Alert.Error(data.ErrorMessage);
-        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        Common.Alert.Error(errorThrown)
-        btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        if($("#btnStatus").prop('checked')) {
+            var status = 1;
+        }
+        else {
+            var status = 2;
+        }
+        model.append('Status', status);
+        model.append('IDUser', $("#tbxUserID").val());
+        model.append('NamaLengkap', $("#tbxFullName").val());
+        model.append('Email', $("#tbxEmail").val());
+        model.append('IDRole', $("#slsRole").val());
+        model.append('Password', $("#tbxNewPassword").val());
+        $('input[type="file"]').each(function($i){
+            model.append("Avatar", $(this)[0].files[0]);
+        });
+    
+        $.ajax({
+            url: "/api/user/update",
+            type: 'POST',
+            data: model,
+            dataType: "json",
+            contentType: false,
+            processData: false
+        }).done(function (data, textStatus, jqXHR) {
+            if (Common.CheckError.Object(data) == true)
+                Common.Alert.SuccessRoute("Profil Anda Berhasil Diubah", '/');
+            else
+                Common.Alert.Error(data.ErrorMessage);
+            btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            Common.Alert.Error(errorThrown)
+            btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+        })
     })
 };
