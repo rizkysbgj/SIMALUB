@@ -21,6 +21,7 @@ use App\model\vwTrxTugas;
 use App\model\vwProyek;
 use App\model\mstSertifikat;
 use App\model\mstSubKontrak;
+use App\model\mstNotifikasi;
 use Auth;
 use Storage;
 use App\Http\Controllers\HelpersController;
@@ -331,6 +332,12 @@ class TugasControllerApi extends Controller
                             $trxTugas->StatusTugas = "Ulangan ke-" . $count;
                         }
                         $trxTugas->IDMilestoneTugas = $flow->IDMilestoneLanjut;
+                        
+                        //Kirim Notifikasi
+                        $IDUser = $request->PIC;
+                        $pesan = "Anda menerima tugas baru";
+                        $aksi = "/halamanTugasSaya";
+                        $this->KirimNotifikasi($IDUser, $pesan, $aksi);
                     }
                     else if($request->Kode == "MULAI")
                     {
@@ -537,6 +544,14 @@ class TugasControllerApi extends Controller
             $trxLapor->Catatan = $request->Remark;
             $trxLapor->IDPelapor = Auth::user()->IDUser;
             $trxLapor->save();
+
+            //Kirim Notifikasi
+            $proyek = mstProyek::where('IDProyek',  $request->IDProyek)->firstorfail();
+            $IDUser = "ManajerTeknis";
+            $pesan = "Anda menerima laporan baru pada proyek " . $proyek->NamaProyek;
+            $aksi = "/halamanLaporan";
+            $this->KirimNotifikasi($IDUser, $pesan, $aksi);
+
             $trxLapor->ErrorType = 0;
             return $trxLapor;
         }
@@ -866,6 +881,25 @@ class TugasControllerApi extends Controller
     private function AttachmentUpload($Attachment) 
     {
         return true;
+    }
+
+    private function KirimNotifikasi($IDUser, $pesan, $aksi)
+    {
+        try
+        {
+            $notifikasi = new mstNotifikasi();
+            $notifikasi->IDUser = $IDUser;
+            $notifikasi->Pesan = $pesan;
+            $notifikasi->Aksi = $aksi;
+            $notifikasi->Dibaca = false;
+
+            $notifikasi->save();
+            return "sukses";
+        }
+        catch (\Exception $e)
+        {
+            return $e->getMessage();
+        }
     }
     #endregion
 }

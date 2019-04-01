@@ -44,37 +44,23 @@
                                                     
                                                 </span>
                                             </div>
-                                            
-                                            <div class="m-list-timeline__item m-list-timeline__item--read">
-                                                <span class="m-list-timeline__badge"></span>
-                                                <span href="" class="m-list-timeline__text">
-                                                    New order received
-                                                    <span class="m-badge m-badge--danger m-badge--wide">
-                                                        urgent
-                                                    </span>
-                                                </span>
-                                                <span class="m-list-timeline__time">
-                                                    7 hrs
-                                                </span>
-                                            </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     @else
-                    <div class="tab-pane" id="tidakAdaNotifikasi" role="tabpanel">
-                        <div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
-                            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                <span class="">
-                                    All caught up!
-                                    <br>
-                                    No new logs.
-                                </span>
+                        <div class="tab-pane" id="topbar_notifications_notifications" role="tabpanel">
+                            <div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
+                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                    <span class="">
+                                        All caught up!
+                                        <br>
+                                        No new logs.
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>

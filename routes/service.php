@@ -92,3 +92,6 @@ Route::get('openTBS', 'ControllersApi\UserControllerApi@testTBS');
 
 Route::get('exportsertifikat', 'HelpersController@exportsertifikat');
 Route::get('exportmemo', 'HelpersController@exportmemo');
+
+Route::get('notifikasi', 'HelpersController@GetNotifikasi');
+Route::put('notifikasi', 'HelpersController@ReadNotifikasi');

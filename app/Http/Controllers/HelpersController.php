@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\model\mstNotifikasi;
+use Auth;
 
 class HelpersController extends Controller
 {
@@ -65,5 +67,22 @@ class HelpersController extends Controller
         {
             return false;
         }
+    }
+
+    public function GetNotifikasi()
+    {
+        $notifikasi = new mstNotifikasi();
+        // $admin = 'admin';
+        $notifikasi->notifikasiList = mstNotifikasi::where('IDUser', Auth::user()->IDUser)->orderBy('Dibaca', 'asc')->get();
+        $notifikasi->totalNotifikasi = $notifikasi->notifikasiList->where('Dibaca', false)->count();
+        return $notifikasi;
+    }
+
+    public function ReadNotifikasi()
+    {
+        $updateValue = array('Dibaca' => 1);
+        // $admin = 'admin';
+        $notifikasiList = mstNotifikasi::where('IDUser', Auth::user()->IDUser)->where('Dibaca', 0)->update($updateValue);
+        return $notifikasiList;
     }
 }

@@ -175,5 +175,3 @@
     <!-- END: Aside Menu -->
 </div>
 <!-- END: Left Aside -->
-
-<script src="{{ asset('assets/app/js/sidebar.js') }}" type="text/javascript"></script>

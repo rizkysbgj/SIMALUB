@@ -38,8 +38,6 @@ var Total = {
             dataType: "json",
             contenType: "application/json",
             success: function (data) {
-                
-                console.log(data.totalLaporan);
                 if(data.totalLaporan != 0){
                     $(".warnaBadge").show();
                     $("#TotalLaporan").html(data.totalLaporan);
@@ -78,13 +76,12 @@ var Header = {
         $.ajax({
             url: "/notifikasi",
             type: "GET",
-            dataType: "json",
-            contenType: "application/json",
             success: function (data) {
+                // console.log("hehehe");
                 $("#dropdownNotifikasi").html(data);
             },
             error: function (xhr) {
-                alert("error")
+                alert("lalala")
             }
         });
     }
