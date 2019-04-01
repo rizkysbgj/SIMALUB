@@ -77,22 +77,7 @@ var Button = {
 				});
 			}
 		});
-	},
-	// Download: function(){
-	// 	$("#downloadBorang").on("click", function (){
-	// 		console.log("lalalal");
-	// 		$.ajax({
-	// 			url: 'api/exportsertifikat',
-	// 			type: 'GET',
-	// 			success: function (data) {
-	// 				console.log('yoi');
-	// 			},
-	// 			error: function () {
-	// 				alert("error");
-	// 			}
-	// 		});
-	// 	});
-	// }
+	}
 }
 
 var TaskTransaction = {
@@ -157,12 +142,13 @@ var Function = {
 
 var GetData = {
 	ProyekList: function () {
-		// var link = pageNow == "PinnedProject" ? "/PinnedProject/TaskList" : "/MyTask/MyTaskList"
+		$("#removeTaskList").addClass('m-loader m-loader--brand').attr('disabled', true);
 		var link = "/halamanpinnedProjectAdministrasi/proyekList/";
 		$.ajax({
 			url: link,
 			type: 'GET',
 			success: function (data) {
+				$("#removeTaskList").removeClass('m-loader m-loader--brand').attr('disabled', true);
 				$("#removeTaskList").html(data);
 				IDProyek = $("#IDProyek").val();
 				GetData.ProyekDetail(IDProyek);
@@ -173,13 +159,14 @@ var GetData = {
 		});
     },
     ProyekDetail: function (IDProyek) {
-		// var link = pageNow == "PinnedProject" ? "/PinnedProject/DetailTask" : "/MyTask/DetailTask"
+		$("#detailProyek").addClass('m-loader m-loader--brand').attr('disabled', true);
 		var link = "/halamanpinnedProjectAdministrasi/detailProyek/" + IDProyek;
 		$.ajax({
 			url: link,
 			type: "GET",
 			// data: { IDTugas: IDTugas },
 			success: function (data) {
+				$("#detailProyek").removeClass('m-loader m-loader--brand').attr('disabled', true);
 				$("#detailProyek").html(data);
 				Function.ChangeFormatDate();
 				// Button.Download();

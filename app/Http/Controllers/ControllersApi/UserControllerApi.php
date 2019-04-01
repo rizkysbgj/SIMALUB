@@ -27,7 +27,8 @@ class UserControllerApi extends Controller
             {
                 $Attachment = $request->file('Avatar');
                 $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
+                $Attachment->storeAs('public/avatars', $filename);
+                $mstUser->Avatar = $filename;
             }
             $mstUser->IDUser = $request->IDUser;
             $mstUser->NIK = $request->NIK;
@@ -110,16 +111,8 @@ class UserControllerApi extends Controller
             {
                 $Attachment = $request->file('Avatar');
                 $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
-                $mstUser->ErrorType = 1;
-                $mstUser->ErrorMessage = "NIK sudah dipakai!";
-                return response($mstUser->jsonSerialize());
-            }
-            else
-            {
-                $mstUser->ErrorType = 1;
-                $mstUser->ErrorMessage = "Tidak Ada";
-                return response($mstUser->jsonSerialize());
+                $Attachment->storeAs('public/avatars', $filename);
+                $mstUser->Avatar = $filename;
             }
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
@@ -181,7 +174,8 @@ class UserControllerApi extends Controller
             {
                 $Attachment = $request->file('Avatar');
                 $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
-                $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
+                $Attachment->storeAs('public/avatars', $filename);
+                $mstUser->Avatar = $filename;
             }
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;

@@ -24,7 +24,7 @@ class CreateMstusersTable extends Migration
             $table->enum('Status', ['Aktif', 'Tidak Aktif']);
             $table->string('CreatedBy');
             $table->string('UpdatedBy')->nullable();
-            $table->string('Avatar')->nullable();
+            $table->string('Avatar')->default('default.png');
             $table->timestamps();
         });
     }

@@ -1,13 +1,3 @@
-// var KeyID = $("#inptKeyID").val(); gausah ini ga dipakek di simalub
-// var IDTugas = $("#inptTaskID").val();
-// var pageNow = $("#inptPage").val();
-
-// if (TaskID == -1) {
-// 	if (pageNow == "PinnedProject")
-// 		window.location.href = "/Story/Create/" + ProjectID;
-// 	else
-// 		$("#containerMyTask").html("<div class='m-content' style='padding-top:10px'><div class='alert alert-success m-alert--default m--align-center' role='alert' style='padding:20px;'><strong>Yay, </strong>you don't have any task right now! </div></div>");
-// }
 var IDProyek = $("#IDProyek").val();
 var IDTugas = $("#IDTugas").val();
 
@@ -135,13 +125,6 @@ var Button = {
 					done = true;
 				});
 			}
-			else if(Kode == "KAJIULANG")
-			{
-				var IDTugas = $("#inptTaskID").val()
-				$("#submitKajiUlang").on("click", function () {
-					Modal.kajiUlang(IDTugas);
-				});
-			}
 			else {
 				$("#btnSubmit-" + Kode).on("click", function () {
 					var fileInput;
@@ -214,70 +197,6 @@ var Button = {
 	}
 }
 
-var Modal = {
-	kajiUlang:function(id){
-		$("#modalkajiUlang").modal({
-			backdrop: "static"
-		});
-		var btn = $("#submitKajiUlang");
-		btn.on("click", function(){
-			var params = {
-				IDTugas: id,
-				Metode:$("input[name='modalMetode']:checked").val(),
-				Peralatan:$("input[name='modalPeralatan']:checked").val(),
-				Personil:$("input[name='modalPersonil']:checked").val(),
-				BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
-				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
-				Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
-			};
-			btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-			
-			console.log(params)
-
-			$.ajax({
-				url: "/api/kajiulang/",
-				type: "PUT",
-				dataType: "json",
-				contentType: "application/json",
-				data: JSON.stringify(params),
-				cache: false,
-			}).done(function (data, textStatus, jqXHR) {
-				$("#divStoryList").mDatatable("reload");
-				
-				$("input[name='modalMetode']").prop('checked', false);
-				$("input[name='modalPeralatan']").prop('checked', false);
-				$("input[name='modalPersonil']").prop('checked', false);
-				$("input[name='modalbahanKimia']").prop('checked', false);
-				$("input[name='modalkondisiAkomodasi']").prop('checked', false);
-				$("input[name='modalKesimpulan']").prop('checked', false);
-	
-				$("#modalkajiUlang").modal("toggle");
-				var link = '/halamanpinnedProject/' + IDProyek;
-				
-				if (Common.CheckError.Object(data) == true)
-					Common.Alert.SuccessRoute("Kaji Ulang Berhasil", link);
-				else
-					Common.Alert.Warning(data.ErrorMessage);
-
-				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-			}).fail(function (jqXHR, textStatus, errorThrown) {
-				Common.Alert.Error(errorThrown);
-				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
-			})
-		})
-		$("#btnClose").on("click", function(){
-			$("#divStoryList").mDatatable("reload");
-			
-			$("input[name='modalMetode']").prop('checked', false);
-			$("input[name='modalPeralatan']").prop('checked', false);
-			$("input[name='modalPersonil']").prop('checked', false);
-			$("input[name='modalbahanKimia']").prop('checked', false);
-			$("input[name='modalkondisiAkomodasi']").prop('checked', false);
-			$("input[name='modalKesimpulan']").prop('checked', false);
-		})
-	}
-}
-
 var Page = {
 	Init: function () {
 		GetData.TaskList();
@@ -313,8 +232,7 @@ var TaskTransaction = {
 			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
-			var link = '/halamanpinnedProject/' + data.IDProyek;
-			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			var link = '/halamanTugasSaya';
 			if (Common.CheckError.Object(data) == true) {
 				Common.Alert.SuccessRoute("Berhasil", link);
 			}
@@ -338,8 +256,7 @@ var TaskTransaction = {
 			processData: false
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
-			var link = '/halamanpinnedProject/' + data.IDProyek;
-			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			var link = '/halamanTugasSaya';
 			if (Common.CheckError.Object(data) == true) {
 				Common.Alert.SuccessRoute("Berhasil Melaporkan", link);
 			}
@@ -354,7 +271,7 @@ var TaskTransaction = {
 var GetData = {
 	TaskList: function () {
 		$("#removeTaskList").addClass('m-loader m-loader--brand').attr('disabled', true);
-		var link = "/halamanpinnedProject/TaskList/" + IDProyek;
+		var link = "/halamanTugasSaya/TaskList/";
 		$.ajax({
 			url: link,
 			type: 'GET',
@@ -369,7 +286,7 @@ var GetData = {
 	},
 	TaskDetail: function (IDTugas) {
 		$("#detailTask").addClass('m-loader m-loader--brand').attr('disabled', true);
-		var link = "/halamanpinnedProject/detailTask/" + IDTugas;
+		var link = "/halamanTugasSaya/detailTask/" + IDTugas;
 		$.ajax({
 			url: link,
 			type: "GET",

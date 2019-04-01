@@ -117,7 +117,7 @@
                             </span>
                         </a>
                     @elseif($mstProyekDetail['detailProyek']['SiapBuatSertifikat'] == 3)
-                    <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                    <a href="api/exportmemo" class="btn btn-primary btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
                         style="margin-left:10px; margin-right:10px">
                         <span>
                             <i class="la la-download"></i>
@@ -126,7 +126,7 @@
                             </span>
                         </span>
                     </a>
-                    <a href="api/exportsertifikat" id="downloadBorang" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
+                    <a href="{{ url('/api/sertifikat/'.$mstProyekDetail['detailProyek']['IDProyek']) }}" class="btn btn-success btn-m m-btn m-btn--icon m-btn--pill m-btn--air"
                         style="margin-left:10px; margin-right:10px">
                         <span>
                             <i class="la la-download"></i>

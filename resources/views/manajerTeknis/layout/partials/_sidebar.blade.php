@@ -64,6 +64,32 @@
                 </h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
+            
+            <!-- Halaman Saya -->
+            <li class="m-menu__section">
+                <h4 class="m-menu__section-text">
+                    Halaman Saya
+                </h4>
+                <i class="m-menu__section-icon flaticon-more-v3"></i>
+            </li>
+            
+            <li class="m-menu__item sidebarActive" aria-haspopup="true" m-menu-submenu-toggle="hover" id="halamanTugasSaya">
+                <a href="{{ url('halamanTugasSaya') }}" class="m-menu__link ">
+                    <i class="m-menu__link-icon flaticon-paper-plane"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                Tugas Saya
+                            </span>
+                            <span class="m-menu__link-badge">
+                                <span class="m-badge m-badge--danger warnaBadgeTugasSaya" style="display:none;" id="TotalTugasSaya">
+                                    
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
             @endif
             @if(in_array(Auth::user()->IDRole,[1,3,6]))
             <!-- Master -->
@@ -135,7 +161,7 @@
                                 Pembuatan Sertifikat
                             </span>
                             <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger warnaBadge" style="display:none;" id="TotalPembuatanSertifikat">
+                                <span class="m-badge m-badge--danger warnaBadgeSertifikat" style="display:none;" id="TotalPembuatanSertifikat">
                                     
                                 </span>
                             </span>

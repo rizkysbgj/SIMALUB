@@ -34,6 +34,11 @@
         Route::get('/halamanpinnedProject/{IDProyek}', 'PinnedProjectController@indexPinned') -> name('halamanPinned');
         Route::get('/halamanpinnedProject/TaskList/{IDProyek}', 'PinnedProjectController@taskList')->name('halamanPinned.taskList');
         Route::get('/halamanpinnedProject/detailTask/{IDTugas}', 'PinnedProjectController@detailTask')->name('halamanPinned.detailTask');
+        //Route Halaman Tugas Saya
+        Route::get('/halamanTugasSaya', 'HalamanTugasSayaController@indexHalamanTugasSaya') -> name('halamanTugasSaya');
+        Route::get('/halamanTugasSaya/TaskList', 'HalamanTugasSayaController@taskList')->name('halamanTugasSaya.taskList');
+        Route::get('/halamanTugasSaya/detailTask/{IDTugas}', 'HalamanTugasSayaController@detailTask')->name('halamanTugasSaya.detailTask');
+        Route::get('/notifikasi', 'HalamanTugasSayaController@notifikasi') -> name('notifikasi');
     });
 
     Route::group(['middleware' => ['rule3']], function(){
@@ -65,7 +70,6 @@
         Route::get('/halamanpinnedProjectAdministrasi', 'BuatSertifikatController@indexPinnedProjectAdministrasi') -> name('halamanpinnedProjectAdministrasi');
         Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanpinnedProjectAdministrasi.proyekList');
         Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanpinnedProjectAdministrasi.detailProyek');
-        
     });
 
 Auth::routes();

@@ -179,7 +179,7 @@ class TugasControllerApi extends Controller
     public function GetTugasSaya()
     {
         try {
-            $tugasList = vwTugas::where('IDPenanggungJawab', Auth::user()->IDUser);
+            $tugasList = vwTugas::where('IDPenanggungJawab', Auth::user()->IDUser)->get();
             $tugasList->ErrorType = 0;
             return $tugasList;
         }
@@ -425,7 +425,7 @@ class TugasControllerApi extends Controller
                 $helper = new HelpersController();
                 if($helper->cekFiles($Attachment))
                 {
-                    $sertifikat->Attachment = $Attachment->store('public/files');
+                    $sertifikat->Attachment = $Attachment->storeAs('public/sertifikat');
                     $sertifikat->ContentType = $Attachment->getCLientMimeType();
                     $sertifikat->NamaFile = $Attachment->getClientOriginalName();
                 }

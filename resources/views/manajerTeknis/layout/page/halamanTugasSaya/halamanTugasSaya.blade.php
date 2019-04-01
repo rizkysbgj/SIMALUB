@@ -1,5 +1,5 @@
 @extends('manajerTeknis.layout.index')
-@section('title', 'Proyek : ' . $vwProyek['NamaProyek'])
+@section('title', 'Halaman Tugas Saya')
 @section('content')
 
 @if($IDTugas != null)
@@ -35,10 +35,10 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Daftar Tugas
+                                Daftar Tugas Saya
 								<span class="m-menu__link-badge">
 									<span class="m-badge m-badge--info">
-										{{ $vwProyek['TotalTugas'] }}
+										5
 									</span>
 								</span>
                             </h3>
@@ -66,8 +66,6 @@
             </div>
         </div>
 
-        
-
         <div class="col-lg-8" id="detailTask">
         
         </div>
@@ -77,24 +75,15 @@
 
 @else
 <div class="m-content">
-    <div class="alert alert-warning m-alert--default m--align-center" role="alert" style="padding:20px;">
+    <div class="alert alert-success m-alert--default m--align-center" role="alert" style="padding:20px;">
         <strong>
-            Maaf,
+            Yeay,
         </strong>
-        proyek ini belum memiliki tugas. Silahkan klik tombol disamping untuk membuat tugas terlebih dahulu
-        <a href="{{ url('halamanTugas/tambahTugas/' .$vwProyek['IDProyek']) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
-		    <span>
-                <i class="fa fa-plus"></i>
-                <span>
-                    Tambah Tugas
-                </span>
-            </span>
-        </a>
+            saat ini Anda belum memiliki tugas...
     </div>
 </div>
 @endif
 
-<input type="hidden" id="IDProyek" value="{{ $vwProyek['IDProyek'] }}" >
 <input type="hidden" id="IDTugas" value="{{ $IDTugas }}" >
-<script src="{{ asset('assets/app/js/pinnedProject/index.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/app/js/halamanTugasSaya/index.js') }}" type="text/javascript"></script>
 @endsection

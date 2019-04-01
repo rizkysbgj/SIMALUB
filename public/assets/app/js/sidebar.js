@@ -2,6 +2,8 @@
 jQuery(document).ready(function () {
     Pinned.Init();
     Total.Laporan();
+    Total.Sertifikat();
+    Header.Notifikasi();
 });
 
 var Pinned = {
@@ -36,6 +38,8 @@ var Total = {
             dataType: "json",
             contenType: "application/json",
             success: function (data) {
+                
+                console.log(data.totalLaporan);
                 if(data.totalLaporan != 0){
                     $(".warnaBadge").show();
                     $("#TotalLaporan").html(data.totalLaporan);
@@ -47,6 +51,41 @@ var Total = {
                 alert(xhr.responseText)
             }
         });
+    },
+    Sertifikat: function(){
+        $.ajax({
+            url: "/api/tugas/administrasi/total",
+            type: "GET",
+            dataType: "json",
+            contenType: "application/json",
+            success: function (data) {
+                if(data != 0){
+                    $(".warnaBadgeSertifikat").show();
+                    $("#TotalPembuatanSertifikat").html(data);
+                }
+                else
+                    $(".warnaBadgeSertifikat").hide();
+            },
+            error: function (xhr) {
+                alert(xhr.responseText)
+            }
+        });
     }
 }
 
+var Header = {
+    Notifikasi: function(){
+        $.ajax({
+            url: "/notifikasi",
+            type: "GET",
+            dataType: "json",
+            contenType: "application/json",
+            success: function (data) {
+                $("#dropdownNotifikasi").html(data);
+            },
+            error: function (xhr) {
+                alert("error")
+            }
+        });
+    }
+}
