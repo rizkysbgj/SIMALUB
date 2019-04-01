@@ -105,13 +105,13 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorMessage = "NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
+            $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
             if($request->hasFile('Avatar'))
             {
                 $Attachment = $request->file('Avatar');
                 $filename =  $request->IDUser.'.'.$Attachment->getClientOriginalExtension();
                 $mstUser->Avatar = $Attachment->storeAs('public/avatars', $filename);
             }
-            $mstUser = mstUser::where('IDUser', $request->IDUser)->firstorfail();
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
             $mstUser->Email = $request->Email;
@@ -157,7 +157,7 @@ class UserControllerApi extends Controller
         }
     }
 
-    public function UpdateProfile()
+    public function UpdateProfile(Request $request)
     {
         try {
             if(mstUser::where('NIK', $request->NIK)->where('IDUser', '!=', Auth::user()->IDUser)
@@ -167,12 +167,12 @@ class UserControllerApi extends Controller
                 $mstUser->ErrorMessage = "NIK sudah dipakai!";
                 return response($mstUser->jsonSerialize());
             }
+            $mstUser = mstUser::where('IDUser', Auth::user()->IDUser)->firstorfail();
             if($request->hasFile('Attachment'))
             {
                 $Attachment = $request->file('Attachment');
                 $mstUser->Avatar = $Attachment->storeAs('public/avatars', Auth::user()->IDUser);
             }
-            $mstUser = mstUser::where('IDUser', Auth::user()->IDUser)->firstorfail();
             $mstUser->NamaLengkap = $request->NamaLengkap;
             $mstUser->IDRole = $request->IDRole;
             $mstUser->Email = $request->Email;

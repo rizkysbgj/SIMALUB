@@ -89,7 +89,7 @@ var Transaction = function () {
     
         
         $.ajax({
-            url: "/api/user",
+            url: "/api/user/update",
             type: 'POST',
             data: model,
             dataType: "json",

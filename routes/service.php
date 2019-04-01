@@ -18,10 +18,10 @@
 Route::post('user', 'ControllersApi\UserControllerApi@CreateUser');
 Route::get('user/{IDUser}', 'ControllersApi\UserControllerApi@GetUser');
 Route::get('user/list/{IDRole}', 'ControllersApi\UserControllerApi@GetListUser');
-Route::put('user', 'ControllersApi\UserControllerApi@UpdateUser');
+Route::post('user/update', 'ControllersApi\UserControllerApi@UpdateUser');
 Route::delete('user/{IDUser}', 'ControllersApi\UserControllerApi@DeleteUser');
 
-Route::put('profile', 'ControllersApi\UserControllerApi@UpdateProfile');
+Route::post('profile', 'ControllersApi\UserControllerApi@UpdateProfile');
 
 Route::post('role', 'ControllersApi\RoleControllerApi@CreateRole');
 Route::get('role', 'ControllersApi\RoleControllerApi@GetListRole');
