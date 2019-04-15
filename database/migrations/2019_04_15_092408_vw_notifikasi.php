@@ -42,7 +42,7 @@ CREATE VIEW `vwnotifikasi` AS
 SELECT 
     mn.`IDNotifikasi`,
     mn.`IDUser`,
-    mn.`pesan`,
+    mn.`Pesan`,
     mn.`Aksi`,
     mn.`Dibaca`,
     CASE WHEN TIMESTAMPDIFF(DAY,mn.`created_at`,NOW()) != 0 THEN CONCAT(TIMESTAMPDIFF(DAY,mn.`created_at`,NOW()), " hari lalu")
