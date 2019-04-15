@@ -337,7 +337,7 @@ class TugasControllerApi extends Controller
                         $IDUser = $request->PIC;
                         $pesan = "Anda menerima tugas baru";
                         $aksi = "/halamanTugasSaya";
-                        $this->KirimNotifikasi($IDUser, $pesan, $aksi);
+                        $notifikasi = $this->KirimNotifikasi($IDUser, $pesan, $aksi);
                     }
                     else if($request->Kode == "MULAI")
                     {
@@ -550,7 +550,7 @@ class TugasControllerApi extends Controller
             $IDUser = "ManajerTeknis";
             $pesan = "Anda menerima laporan baru pada proyek " . $proyek->NamaProyek;
             $aksi = "/halamanLaporan";
-            $this->KirimNotifikasi($IDUser, $pesan, $aksi);
+            $notifikasi = $this->KirimNotifikasi($IDUser, $pesan, $aksi);
 
             $trxLapor->ErrorType = 0;
             return $trxLapor;

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\model\mstNotifikasi;
+use App\model\vwNotifikasi;
+use Carbon\Carbon;
 use Auth;
 
 class HelpersController extends Controller
@@ -71,18 +74,21 @@ class HelpersController extends Controller
 
     public function GetNotifikasi()
     {
-        $notifikasi = new mstNotifikasi();
+        $notifikasi = new vwNotifikasi();
+        $dtnow = Carbon::now()->toDateTimeString();;
         // $admin = 'admin';
-        $notifikasi->notifikasiList = mstNotifikasi::where('IDUser', Auth::user()->IDUser)->orderBy('Dibaca', 'asc')->get();
+        if(Auth::user()->IDRole == 3 || Auth::user()->IDRole == 6)
+            $notifikasi->notifikasiList = vwNotifikasi::where('IDUser', 'ManajerTeknis')->orderBy('Dibaca', 'asc')->get();
+        else
+            $notifikasi->notifikasiList = vwNotifikasi::where('IDUser', Auth::user()->IDUser)->orderBy('Dibaca', 'asc')->get();
         $notifikasi->totalNotifikasi = $notifikasi->notifikasiList->where('Dibaca', false)->count();
         return $notifikasi;
     }
 
-    public function ReadNotifikasi()
+    public function ReadNotifikasi($IDNotifikasi)
     {
         $updateValue = array('Dibaca' => 1);
-        // $admin = 'admin';
-        $notifikasiList = mstNotifikasi::where('IDUser', Auth::user()->IDUser)->where('Dibaca', 0)->update($updateValue);
+        $notifikasiList = mstNotifikasi::where('IDNotifikasi', $IDNotifikasi)->update($updateValue);
         return $notifikasiList;
     }
 }
