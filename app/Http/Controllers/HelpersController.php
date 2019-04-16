@@ -80,15 +80,17 @@ class HelpersController extends Controller
         if(Auth::user()->IDRole == 3 || Auth::user()->IDRole == 6)
             $notifikasi->notifikasiList = vwNotifikasi::where('IDUser', 'ManajerTeknis')->orderBy('Dibaca', 'asc')->get();
         else
-            $notifikasi->notifikasiList = vwNotifikasi::where('IDUser', Auth::user()->IDUser)->orderBy('Dibaca', 'asc')->get();
+            $notifikasi->notifikasiList = vwNotifikasi::where('IDUser', Auth::user()->IDUser)->orderBy('Dibaca', 'asc')->orderBy('created_at', 'desc')->get();
         $notifikasi->totalNotifikasi = $notifikasi->notifikasiList->where('Dibaca', false)->count();
         return $notifikasi;
     }
 
-    public function ReadNotifikasi($IDNotifikasi)
+    public function ReadNotifikasi(Request $request)
     {
-        $updateValue = array('Dibaca' => 1);
-        $notifikasiList = mstNotifikasi::where('IDNotifikasi', $IDNotifikasi)->update($updateValue);
+        $updateValue = 1;
+        $notifikasiList = mstNotifikasi::where('IDNotifikasi', $request->IDNotifikasi)->first();
+        $notifikasiList->Dibaca = $updateValue;
+        $notifikasiList->save();
         return $notifikasiList;
     }
 }

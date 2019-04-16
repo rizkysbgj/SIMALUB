@@ -217,7 +217,7 @@ var Control = {
         // Add data
         $.each(data, function(index, item){
             var params = {
-                NamaTugas: item.NamaTugas,
+                InisialTugas: item.InisialTugas,
                 Kesalahan: item.TotalKesalahanAnalisis
             }
             chart.data.push(params);
@@ -225,7 +225,7 @@ var Control = {
 
         // Create axess
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "NamaTugas";
+        categoryAxis.dataFields.category = "InisialTugas";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.minGridDistance = 30;
 
@@ -241,7 +241,7 @@ var Control = {
         // Create series
         var series = chart.series.push(new am4charts.ColumnSeries());
         series.dataFields.valueY = "Kesalahan";
-        series.dataFields.categoryX = "NamaTugas";
+        series.dataFields.categoryX = "InisialTugas";
         series.name = "Kesalahan";
         series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
         series.columns.template.fillOpacity = .8;

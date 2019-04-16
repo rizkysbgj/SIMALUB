@@ -78,8 +78,8 @@ var Graph = {
         function am4themes_animated(target) {
             if (target instanceof am4core.ColorSet) {
                 target.list = [
-                am4core.color("#67b7dc"),
                 am4core.color("#5a8dde"),
+                am4core.color("#34bfa3"),
                 am4core.color("#f4516c")
                 ];
             }

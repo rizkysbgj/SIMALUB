@@ -359,6 +359,8 @@ var DashboardBulan = function(data) {
             t;
             console.log("la la la");
             !function() {
+                $("#m_chart_daily_sales").remove();
+                $(".chart").append('<canvas id="m_chart_daily_sales" width="282" height="120" class="chartjs-render-monitor" style="display: block; width: 282px; height: 120px;"></canvas>');
                 var e=$("#m_chart_daily_sales");
                 if(0!=e.length) {
                     var t= {

@@ -23,9 +23,9 @@
         <div class="m-dropdown__body">
             <div class="m-dropdown__content">
                 <div class="tab-content">
-                    @if($listNotifikasi['totalNotifikasi'] > 0)
+                    @if($listNotifikasi['notifikasiList']->count() > 0)
                         @foreach($listNotifikasi['notifikasiList'] as $notifikasi)
-                            <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
+                            <div class="tab-pane active klikNotif" id="{{ $notifikasi['IDNotifikasi'] }}" role="tabpanel" style="cursor:pointer;">
                                 <div class="m-scrollable" data-scrollable="true" data-max-height="250"
                                     data-mobile-max-height="200">
                                     <div class="m-list-timeline m-list-timeline--skin-light">
@@ -35,13 +35,12 @@
                                             @else
                                             <div class="m-list-timeline__item m-list-timeline__item--read">
                                             @endif
-                                                <span
-                                                    class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
+                                                <span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
                                                 <span class="m-list-timeline__text">
                                                     {{ $notifikasi['Pesan'] }}
                                                 </span>
                                                 <span class="m-list-timeline__time">
-                                                    
+                                                    {{ $notifikasi['WaktuKirim'] }}
                                                 </span>
                                             </div>
                                         </div>
@@ -50,7 +49,7 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
+                        <div class="tab-pane active" id="" role="tabpanel">
                             <div class="m-scrollable" data-scrollable="true" data-max-height="250"
                                 data-mobile-max-height="200">
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle m--align-center">
@@ -68,3 +67,5 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('assets/app/js/notifikasi.js') }}" type="text/javascript"></script>

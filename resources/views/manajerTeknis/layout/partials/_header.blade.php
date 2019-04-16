@@ -138,4 +138,4 @@
     </div>
 </header>
 
-<script src="{{ asset('assets/app/js/sidebar.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('assets/app/js/sidebar.js') }}" type="text/javascript"></script> -->

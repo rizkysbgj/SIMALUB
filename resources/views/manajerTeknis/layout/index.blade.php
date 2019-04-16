@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- begin::Head -->
 @include('manajerTeknis.layout.partials._head')
-
+<script src="{{ asset('assets/app/js/sidebar.js') }}" type="text/javascript"></script>
 <!-- end::Head -->
 
 <!-- begin::body -->

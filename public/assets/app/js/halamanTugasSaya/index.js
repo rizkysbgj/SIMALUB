@@ -277,7 +277,7 @@ var GetData = {
 			type: 'GET',
 			success: function (data) {
 				$("#removeTaskList").removeClass('m-loader m-loader--brand').attr('disabled', true);
-				$("#showTask").html(data);
+				$("#removeTaskList").html(data);
 			},
 			error: function () {
 				alert("error");

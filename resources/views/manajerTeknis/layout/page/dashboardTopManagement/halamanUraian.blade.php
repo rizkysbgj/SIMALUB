@@ -8,6 +8,11 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
+                            <div class="m-portlet__head-text">
+                                <button onclick="JavaScript: window.history.back(1); return false;" class="btn m-btn--pill m-btn--air btn-primary" style="margin-right: 10px;">
+                                    <div class="fa fa-arrow-left"></div>
+                                </button>
+                            </div>
                             <h3 class="m-portlet__head-text">
                                 Kritik dan Saran Seluruh Proyek dari Customer
                             </h3>
@@ -17,7 +22,7 @@
 
                 <div class="m-portlet__body">
                     <!--begin: Search Form -->
-                    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                    <div class="m-form m-form--label-align-right m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-8 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
