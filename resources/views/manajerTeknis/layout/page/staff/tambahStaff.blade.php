@@ -26,7 +26,7 @@
                                 <i class="la la-warning"></i>
                             </div>
                             <div class="m-alert__text">
-                                Oh sorry! Please check your form Log again :).
+                                Maaf, silahkan periksa kembali form yang telah Anda isi!.
                             </div>
                             <div class="m-alert__close">
                                 <button type="button" class="close" data-close="alert" aria-label="Close"></button>
@@ -48,7 +48,7 @@
                                 ID Staff<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" name="tbxUserID" id="tbxUserID" />
+                                <input type="text" class="form-control m-input" name="tbxUserID" id="tbxUserID" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -56,7 +56,7 @@
                                 NIK<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control m-input" name="tbxNIK" id="tbxNIK" />
+                                <input type="text" class="form-control m-input" name="tbxNIK" id="tbxNIK" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -64,7 +64,7 @@
                                 Nama Lengkap<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="text" id="tbxFullName" class="form-control m-input" maxlength="100" name="tbxFullName" />
+                                <input type="text" id="tbxFullName" class="form-control m-input" maxlength="100" name="tbxFullName" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -72,7 +72,7 @@
                                 Email<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="email" id="tbxEmail" class="form-control m-input" maxlength="100" name="tbxEmail" />
+                                <input type="email" id="tbxEmail" class="form-control m-input" maxlength="100" name="tbxEmail" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -88,7 +88,7 @@
                                 Password <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" id="tbxNewPassword" name="tbxNewPassword" />
+                                <input type="password" class="form-control" id="tbxNewPassword" name="tbxNewPassword" required />
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
@@ -96,7 +96,7 @@
                                 Konfirmasi Password <strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" id="tbxConfirmNewPassword" name="tbxConfirmNewPassword" />
+                                <input type="password" class="form-control" id="tbxConfirmNewPassword" name="tbxConfirmNewPassword" required />
                                 <span id="message"></span>
                             </div>
                         </div>

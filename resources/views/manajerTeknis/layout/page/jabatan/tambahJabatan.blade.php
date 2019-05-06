@@ -26,7 +26,7 @@
                                 <i class="la la-warning"></i>
                             </div>
                             <div class="m-alert__text">
-                                Oh sorry! Please check your form Log again :).
+                                Maaf, silahkan periksa kembali form yang telah Anda isi!.
                             </div>
                             <div class="m-alert__close">
                                 <button type="button" class="close" data-close="alert" aria-label="Close"></button>

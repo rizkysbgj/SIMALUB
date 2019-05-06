@@ -432,7 +432,8 @@ class TugasControllerApi extends Controller
                 $helper = new HelpersController();
                 if($helper->cekFiles($Attachment))
                 {
-                    $sertifikat->Attachment = $Attachment->storeAs('public/sertifikat');
+                    $filename = $Attachment->getClientOriginalName().'.'.$Attachment->getClientOriginalName();
+                    $sertifikat->Attachment = $Attachment->storeAs('public/sertifikat', $filename);
                     $sertifikat->ContentType = $Attachment->getCLientMimeType();
                     $sertifikat->NamaFile = $Attachment->getClientOriginalName();
                 }

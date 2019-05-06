@@ -28,7 +28,7 @@
                                 <i class="la la-warning"></i>
                             </div>
                             <div class="m-alert__text">
-                                Oh sorry! Please check your form project again :).
+                                Maaf, silahkan periksa kembali form yang telah Anda isi!.
                             </div>
                             <div class="m-alert__close">
                                 <button type="button" class="close" data-close="alert" aria-label="Close"></button>
@@ -89,11 +89,11 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Tanggal Mulai:
+                                Tanggal Mulai<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" />
+                                <div class="input-group date" id="start">
+                                    <input type="text" class="form-control m-input datepicker" name="tbxKickOffDate" readonly id="tbxKickOffDate" required />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -104,11 +104,11 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Rencana Selesai:
+                                Rencana Selesai<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-4 col-md-9 col-sm-12">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control m-input datepicker" name="tbxDeadline" readonly id="tbxDeadline" />
+                                <div class="input-group date" id="deadline" data-date-start-date="+0d">
+                                    <input type="text" class="form-control m-input datepicker" name="tbxDeadline" readonly id="tbxDeadline" required />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar"></i>
@@ -119,18 +119,18 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Deskripsi Proyek:
+                                Deskripsi Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4"></textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectDescription" id="tbxProjectDescription" rows="4" required ></textarea>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-3 col-sm-12">
-                                Sponsor Proyek:
+                                Sponsor Proyek<strong style="color:red" ;>*</strong>:
                             </label>
                             <div class="col-lg-6">
-                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4"></textarea>
+                                <textarea type="text" class="form-control m-input" name="tbxProjectSponsor" id="tbxProjectSponsor" rows="4" required></textarea>
                             </div>
                         </div>
 

@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
     Control.Init();
     BootstrapSwitch.init();
     // ClearForm.init();
-    // FileValidation.Init();
+    FileValidation.Init();
 
     $('#tbxConfirmNewPassword').on('keyup', function () {
         if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) 
@@ -62,16 +62,22 @@ var FileValidation = {
             var files = this.files;
             var errors = "";
             if (!files) {
-                errors += "File upload not supported by your browser.";
+                errors += "File yang Anda Upload tidak didukung";
             }
             if (files && files[0]) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     if ((/\.(png|jpeg|jpg)$/i).test(file.name)) {
-                        readImage(file);
+                        console.log(file.size);
+                        if (Math.round(file.size) < 1250000) {
+                            readImage(file);
+                        } else {
+                            errors += file.name + " melebihi 10MB\n";
+                        }
                     } else {
-                        errors += file.name + " Unsupported Image extension\n";
+                        errors += file.name + " ekstensi tidak didukung\n";
                     }
+                    
                 }
             }
             if (errors) {
