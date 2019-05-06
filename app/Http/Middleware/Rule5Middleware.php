@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
-class Rule6Middleware
+class Rule5Middleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,14 @@ class Rule6Middleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check() && in_array(Auth::user()->IDRole, [1, 2, 3, 4, 5, 6]))
+        {
+            return $next($request);
+        }
+        else
+        {
+            Auth::logout();
+            return redirect()->route('login');
+        }
     }
 }

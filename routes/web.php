@@ -38,7 +38,6 @@
         Route::get('/halamanTugasSaya', 'HalamanTugasSayaController@indexHalamanTugasSaya') -> name('halamanTugasSaya');
         Route::get('/halamanTugasSaya/TaskList', 'HalamanTugasSayaController@taskList')->name('halamanTugasSaya.taskList');
         Route::get('/halamanTugasSaya/detailTask/{IDTugas}', 'HalamanTugasSayaController@detailTask')->name('halamanTugasSaya.detailTask');
-        Route::get('/notifikasi', 'HalamanTugasSayaController@notifikasi') -> name('notifikasi');
     });
 
     Route::group(['middleware' => ['rule3']], function(){
@@ -71,6 +70,12 @@
         Route::get('/halamanpinnedProjectAdministrasi/proyekList', 'BuatSertifikatController@proyekList')->name('halamanpinnedProjectAdministrasi.proyekList');
         Route::get('/halamanpinnedProjectAdministrasi/detailProyek/{IDProyek}', 'BuatSertifikatController@detailProyek')->name('halamanpinnedProjectAdministrasi.detailProyek');
     });
+
+    Route::group(['middleware' => ['rule5']], function(){
+        //Route Notifikasi
+    Route::get('/notifikasi', 'HalamanTugasSayaController@notifikasi') -> name('notifikasi');
+    });
+
 
 Auth::routes();
 

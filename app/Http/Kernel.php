@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
         'rule2' => \App\Http\Middleware\Rule2Middleware::class,
         'rule3' => \App\Http\Middleware\Rule3Middleware::class,
         'rule4' => \App\Http\Middleware\Rule4Middleware::class,
+        'rule5' => \App\Http\Middleware\Rule5Middleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.basic.once' => \App\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
