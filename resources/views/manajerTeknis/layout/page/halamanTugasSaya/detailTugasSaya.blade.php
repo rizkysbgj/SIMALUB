@@ -158,7 +158,7 @@
                                                     <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
                                                         <div class="m-radio-inline" style="margin-top: 8px;">
                                                             <label class="m-radio">
-                                                                <input class="radiobtn" type="radio" name="modalMetode" value="Bisa">
+                                                                <input class="radiobtn" type="radio" name="modalMetode" value="Bisa" checked required>
                                                                     Bisa
                                                                 <span></span>
                                                             </label>
@@ -177,7 +177,7 @@
                                                     <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPeralatan" !important>
                                                         <div class="m-radio-inline" style="margin-top: 8px;">
                                                             <label class="m-radio">
-                                                                <input type="radio" name="modalPeralatan" value="Bisa">
+                                                                <input type="radio" name="modalPeralatan" value="Bisa" checked required>
                                                                     Bisa
                                                                 <span></span>
                                                             </label>
@@ -196,7 +196,7 @@
                                                     <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPersonil" !important>
                                                         <div class="m-radio-inline" style="margin-top: 8px;">
                                                             <label class="m-radio">
-                                                                <input type="radio" name="modalPersonil" value="Bisa">
+                                                                <input type="radio" name="modalPersonil" value="Bisa" checked required>
                                                                     Bisa
                                                                 <span></span>
                                                             </label>
@@ -215,7 +215,7 @@
                                                     <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalbahanKimia" !important>
                                                         <div class="m-radio-inline" style="margin-top: 8px;">
                                                             <label class="m-radio">
-                                                                <input type="radio" name="modalbahanKimia" value="Bisa">
+                                                                <input type="radio" name="modalbahanKimia" value="Bisa" checked required>
                                                                     Bisa
                                                                 <span></span>
                                                             </label>
@@ -234,7 +234,7 @@
                                                     <div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
                                                         <div class="m-radio-inline" style="margin-top: 8px;">
                                                             <label class="m-radio">
-                                                                <input type="radio" name="modalkondisiAkomodasi" value="Bisa">
+                                                                <input type="radio" name="modalkondisiAkomodasi" value="Bisa" checked required>
                                                                     Bisa
                                                                 <span></span>
                                                             </label>

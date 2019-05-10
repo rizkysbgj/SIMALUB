@@ -56,7 +56,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalMetode" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input class="radiobtn" type="radio" name="modalMetode" value="Bisa">
+																<input class="radiobtn" type="radio" name="modalMetode" value="Bisa" checked required>
 																	Bisa
 																<span></span>
 															</label>
@@ -75,7 +75,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPeralatan" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalPeralatan" value="Bisa">
+																<input type="radio" name="modalPeralatan" value="Bisa" checked required>
 																	Bisa
 																<span></span>
 															</label>
@@ -94,7 +94,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalPersonil" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalPersonil" value="Bisa">
+																<input type="radio" name="modalPersonil" value="Bisa" checked required>
 																	Bisa
 																<span></span>
 															</label>
@@ -113,7 +113,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalbahanKimia" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalbahanKimia" value="Bisa">
+																<input type="radio" name="modalbahanKimia" value="Bisa" checked required>
 																	Bisa
 																<span></span>
 															</label>
@@ -132,7 +132,7 @@
 													<div class="col-lg-7 col-md-7 col-sm-12 m--align-left" style="padding-left: 0px;" id="modalkondisiAkomodasi" !important>
 														<div class="m-radio-inline" style="margin-top: 8px;">
 															<label class="m-radio">
-																<input type="radio" name="modalkondisiAkomodasi" value="Bisa">
+																<input type="radio" name="modalkondisiAkomodasi" value="Bisa" checked required>
 																	Bisa
 																<span></span>
 															</label>
@@ -237,24 +237,36 @@
 
 							<!-- 2 Button di atas kanan halaman -->
 							<div class="col-xl-8 order-1 order-xl-2 m--align-right">
-								<a href="{{ url('halamanSubkontrak/'.$IDProyek) }}" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-								<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
-									<span>
-										<i class="fa fa-folder"></i>
+								@if ($vwProyek['RealitaSelesai'] != NULL)
+									<a href="{{ url('halamanSubkontrak/'.$IDProyek) }}" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+									<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
 										<span>
-											Daftar Subkontrak
+											<i class="fa fa-folder"></i>
+											<span>
+												Daftar Subkontrak
+											</span>
 										</span>
-									</span>
-								</a>
-								<a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
-								<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;"> -->
-									<span>
-										<i class="fa fa-plus"></i>
+									</a>
+								@else
+									<a href="{{ url('halamanSubkontrak/'.$IDProyek) }}" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+									<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"> -->
 										<span>
-											Tambah Tugas
+											<i class="fa fa-folder"></i>
+											<span>
+												Daftar Subkontrak
+											</span>
 										</span>
-									</span>
-								</a>
+									</a>
+									<a href="{{ url('halamanTugas/tambahTugas/'.$IDProyek) }}" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;">
+									<!-- <a href="#" data-toggle="modal" data-target="#tambahTugas" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" style="margin-left: 10px;"> -->
+										<span>
+											<i class="fa fa-plus"></i>
+											<span>
+												Tambah Tugas
+											</span>
+										</span>
+									</a>
+								@endif
 								<div class="m-separator m-separator--dashed d-xl-none"></div>
 							</div>
 						</div>

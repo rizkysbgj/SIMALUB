@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2019 at 03:03 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: May 10, 2019 at 06:37 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -179,6 +179,26 @@ CREATE TABLE `mstnotifikasi` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `mstnotifikasi`
+--
+
+INSERT INTO `mstnotifikasi` (`IDNotifikasi`, `IDUser`, `Pesan`, `Aksi`, `Dibaca`, `created_at`, `updated_at`) VALUES
+(1, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 13:28:58', '2019-05-10 14:02:42'),
+(2, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 13:41:17', '2019-05-10 13:55:22'),
+(3, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Chimory', '/halamanLaporan', 1, '2019-05-10 13:57:49', '2019-05-10 14:00:34'),
+(4, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:04:00', '2019-05-10 14:08:10'),
+(5, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-10 14:45:13', '2019-05-10 14:45:13'),
+(6, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:45:15', '2019-05-10 14:55:43'),
+(7, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:45:16', '2019-05-10 14:55:10'),
+(8, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:14:10', '2019-05-10 15:15:53'),
+(9, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:17:51', '2019-05-10 15:19:50'),
+(10, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:43:47', '2019-05-10 15:49:36'),
+(11, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:46:12', '2019-05-10 15:53:34'),
+(12, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Pertamina', '/halamanLaporan', 1, '2019-05-10 15:50:47', '2019-05-10 15:58:18'),
+(13, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-10 15:51:51', '2019-05-10 15:51:51'),
+(14, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:53:17', '2019-05-10 15:54:25');
+
 -- --------------------------------------------------------
 
 --
@@ -204,6 +224,14 @@ CREATE TABLE `mstproyek` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mstproyek`
+--
+
+INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `Percepatan`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
+(1, 'Chimory', 'CHI', 'rudi_heryanto', 'Aktif', 1, '2019-05-10 00:00:00', '2019-05-24 00:00:00', '2019-05-10 00:00:00', 'Analisis produk perusahaan chimory', 'PT Chimory', 1, 3, 'rudi_heryanto', NULL, '2019-05-10 13:21:43', '2019-05-10 15:24:29'),
+(2, 'Pertamina', 'PTM', 'rudi_heryanto', 'Aktif', 1, '2019-05-10 00:00:00', '2019-05-24 00:00:00', '2019-05-10 00:00:00', 'Analisis minyak', 'PT Pertamina', 0, 3, 'rudi_heryanto', NULL, '2019-05-10 15:35:37', '2019-05-10 16:01:19');
 
 -- --------------------------------------------------------
 
@@ -243,6 +271,14 @@ CREATE TABLE `mstsertifikat` (
   `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `mstsertifikat`
+--
+
+INSERT INTO `mstsertifikat` (`IDSertifikat`, `IDProyek`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`) VALUES
+(1, 1, 'public/sertifikat/ISENG.jpg.ISENG.jpg', 'image/jpeg', 'ISENG.jpg', 'Selesai buat sertifikat'),
+(2, 2, 'public/sertifikat/citra.jpg.citra.jpg', 'image/jpeg', 'citra.jpg', 'selesai proyek');
+
 -- --------------------------------------------------------
 
 --
@@ -265,6 +301,14 @@ CREATE TABLE `mstsubkontrak` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mstsubkontrak`
+--
+
+INSERT INTO `mstsubkontrak` (`IDSubKontrak`, `IDTugas`, `WaktuDikirim`, `WaktuDiterima`, `StatusSubKontrak`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `IDPenanggungJawab`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
+(1, 4, '2019-05-10', '2019-05-10', 1, 'public/files/3kEDkvwzdjZUHtAbEE83wbBgUgcPpVo2c7J4HqdF.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'sudah ya ditindaklanjuti tugas subkontraknya', 'rudi_heryanto', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 14:22:18', '2019-05-10 14:23:12'),
+(2, 8, '2019-05-10', '2019-05-10', 1, 'public/files/wlHH7XJkJQXWKZYvmSBkcjCbnvmEXIO3fx0pqlhc.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'sudah ditindaklanjuti ya subkontranknya', 'rudi_heryanto', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:47:04', '2019-05-10 15:48:38');
 
 -- --------------------------------------------------------
 
@@ -290,6 +334,19 @@ CREATE TABLE `msttugas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `msttugas`
+--
+
+INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `StatusKajiUlang`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
+(1, '190520190001', 'Analisis Coklat Conflakes', 'Analisis cokelat dengan kadar gula 50%', 1, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 13:25:18', '2019-05-10 15:24:29'),
+(2, '130920190002', 'Analisis Susu Chimory', 'Pakai gula 90%', 1, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 13:26:33', '2019-05-10 15:24:29'),
+(4, '170520190003', 'Analisis Sapi Chimory', 'Gunakan daging iga ya', 1, 'rudi_heryanto', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Tidak', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 14:20:34', '2019-05-10 15:24:29'),
+(5, '150520190004', 'Analisis Tempe', 'tempenya 76%', 1, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:03:05', '2019-05-10 15:24:29'),
+(6, '190520190001', 'Minyak Asam', 'Ethanolnya 76%', 2, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:39:38', '2019-05-10 16:01:19'),
+(7, '150520190002', 'Minyak Basa', 'Soklin 90%', 2, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:40:22', '2019-05-10 16:01:19'),
+(8, '170920190003', 'Minyak Ceria', 'Samplenya 15% saja', 2, 'rudi_heryanto', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Tidak', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:41:14', '2019-05-10 16:01:19');
 
 -- --------------------------------------------------------
 
@@ -348,10 +405,7 @@ INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, 
 (4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 11:10:41', '2019-03-03 11:10:41', ''),
 (5, 'rizky_ipb', 'RIZ', 'Rizky Subagja', 5, 'rizky@ipb.ac.id', '$2y$10$hBx7aQEK/YjEJLjrM.OWJ.YFCulmc/UtofQOirEu7z30ZQPDs0DFS', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 11:19:13', '2019-03-28 04:23:39', ''),
 (6, 'wiwik_biofarmaka', 'WBI', 'Wiwik', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', NULL, 'default.png', '2019-03-05 03:11:59', '2019-03-05 03:11:59', ''),
-(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$FyFkHvjd1SBGjHf/GdVWJe/EFX2..hp3fwxLXvVygm3hdbGVWPs5e', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-26 01:34:03', '2019-04-01 01:26:29', ''),
-(8, 'rasyidrio', 'G64150080', 'Rio Ottoman', 1, 'rioalrasyid@gmail.com', '$2y$10$AVAbzuW.Afk.KVD.K5/A0O0PfdhgNh4Ec/Z6ymknPi.GcZMFrGc0a', 'Aktif', 'admin', 'admin', 'rasyidrio.png', '2019-04-01 01:45:51', '2019-04-01 02:48:35', ''),
-(13, 'asasasasa', 'asasasasa', 'asasasa', 1, 'asasa@mail.com', '$2y$10$rnco6xnHT335CkNoeSYcwO00eXDACbBRU9inuejFLWst5jhLtQy56', 'Aktif', 'admin', NULL, 'asasasasa.png', '2019-04-01 02:27:09', '2019-04-01 02:27:09', ''),
-(14, 'panda', 'g66666', 'panda', 1, 'panda@gmail.com', '$2y$10$zrlajK.D.w18RfNn8n1Bg.KVPzSZGVvDIw3ou5A9CKOgI8JvjyHJ.', 'Aktif', 'admin', NULL, 'default.png', '2019-04-01 03:50:59', '2019-04-01 03:50:59', '');
+(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$gHOt6CrWXa.q72Njx./61OC8ULGlCisszlEv2WmT4TMD6x6NrZuRG', 'Aktif', 'admin', 'admin', 'rioalrasyid.jpg', '2019-03-26 01:34:03', '2019-05-10 14:07:10', '');
 
 -- --------------------------------------------------------
 
@@ -371,6 +425,19 @@ CREATE TABLE `trxkajiulang` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trxkajiulang`
+--
+
+INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, `Personil`, `BahanKimia`, `KondisiAkomodasi`, `Kesimpulan`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 13:27:18', '2019-05-10 13:27:18'),
+(2, 2, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 13:35:26', '2019-05-10 13:35:26'),
+(4, 4, 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '2019-05-10 14:22:18', '2019-05-10 14:22:18'),
+(5, 5, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:10:04', '2019-05-10 15:10:04'),
+(6, 6, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:42:46', '2019-05-10 15:42:46'),
+(7, 7, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:45:04', '2019-05-10 15:45:04'),
+(8, 8, 'Tidak', 'Tidak', 'Bisa', 'Bisa', 'Bisa', 'Tidak', '2019-05-10 15:47:04', '2019-05-10 15:47:04');
 
 -- --------------------------------------------------------
 
@@ -396,6 +463,14 @@ CREATE TABLE `trxlapor` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `trxlapor`
+--
+
+INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `StatusTindakan`, `AttachmentTindakan`, `ContentTypeTindakan`, `NamaFileTindakan`, `CatatanTindakan`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'nunuk_biofarmaka', 'public/files/H0BoAWE3KTlbqcQImnwwh9qBc5d3K3bYddXDVjdO.jpeg', 'image/jpeg', 'top.jpg', 'ada kekurangan bahan gula pak', 1, 'public/files/nbUtXjnFwwleCJVsIsy9hPtgKNB21Gmcai8fE8zg.jpeg', 'image/jpeg', 'top.jpg', 'sudah ya ditindak lanjuti', '2019-05-10 13:57:49', '2019-05-10 14:01:18'),
+(2, 6, 2, 'nunuk_biofarmaka', 'public/files/4fNjnSa2ZJrUK7kVAEYkwv2CAoXQAWYyYF9q8rFw.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'mesin rusak pak', 1, 'public/files/RzHymqbEEqn1jwfUr1QwZ2cnXOclVB7SQf5t28ua.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'sudah ya', '2019-05-10 15:50:47', '2019-05-10 15:58:53');
+
 -- --------------------------------------------------------
 
 --
@@ -419,6 +494,32 @@ CREATE TABLE `trxtugas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trxtugas`
+--
+
+INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggungJawab`, `StatusTugas`, `WaktuMulai`, `WaktuSelesai`, `Catatan`, `Attachment`, `ContentType`, `FileName`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'Selesai kaji ulang', 'public/files/MwX80lBkmR6TYEzHgXQvIW6YUYfvQ4v7oQJ6ZCES.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 13:27:47', '2019-05-10 13:28:28'),
+(2, 1, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/aijuvqoFgFOh2ybgDjfG1BKiJNc5yFVNhtyaY3tw.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 13:28:58', '2019-05-10 14:03:13'),
+(3, 2, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai kaji ulang', 'public/files/fXVv7YgSuwylab7MHGv3tFoh0pA26A6DShlu56LY.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 13:29:27', '2019-05-10 13:40:51'),
+(4, 3, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', NULL, NULL, NULL, NULL, NULL, 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 13:37:52', '2019-05-10 13:37:52'),
+(5, 2, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/wXsZMkgZOUyfjsG1tPHkgYWpB7csL8UCWoY0OPgf.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 13:41:17', '2019-05-10 14:40:01'),
+(6, 1, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai dikoreksi', 'public/files/3kEDkvwzdjZUHtAbEE83wbBgUgcPpVo2c7J4HqdF.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 14:04:00', '2019-05-10 14:09:28'),
+(7, 2, 8, 'rioalrasyid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 14:45:13', '2019-05-10 14:45:13'),
+(8, 2, 8, 'rioalrasyid', 'Ulangan ke-1', NULL, NULL, NULL, NULL, NULL, NULL, 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 14:45:15', '2019-05-10 14:45:15'),
+(9, 2, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/h7x23oK5OcAgLzu3ViZd3yW0frDYA1qKGlqGPvvq.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 14:45:16', '2019-05-10 14:58:15'),
+(10, 4, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', NULL, NULL, NULL, NULL, NULL, 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:04:16', '2019-05-10 15:04:16'),
+(11, 5, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai kaji ulang', 'public/files/uhhdpOeATsmbuYc9HSBQivqAonk0IfXrZQXtJTP6.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:12:38', '2019-05-10 15:13:31'),
+(12, 5, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/OqCqcUc8a7HEmFJVLroYMUNV7lmCWU5Jyk5YeMjb.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:14:10', '2019-05-10 15:16:56'),
+(13, 5, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/OancTDQemLT7w6HY9SdQmuRA1y3yl270Jwj0HHDX.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:17:51', '2019-05-10 15:22:04'),
+(14, 6, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'Selesai kaji ulang', 'public/files/E6i8cFybBbiVlWu9y2OHbMirvhu1q8y9RZgAg22M.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:42:19', '2019-05-10 15:43:18'),
+(15, 6, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/cizLslDaIWgoAgItxTBxMMU0DaRQFo7cRw79aMlY.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:43:47', '2019-05-10 15:51:19'),
+(16, 7, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai kaji ulang', 'public/files/G5Snx5O6yqHn0CvlpTszpHPFaoqQlgGz5bsjS8KI.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:44:22', '2019-05-10 15:45:38'),
+(17, 7, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/Q14gmPzyEMWd2s6hlkzRgeMklCXAztIKH5uZ20tm.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:46:12', '2019-05-10 15:52:50'),
+(18, 8, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', NULL, NULL, NULL, NULL, NULL, 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:46:35', '2019-05-10 15:46:35'),
+(19, 6, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/cKA6tZUCphHr2OKLDudGfeJuT77mo46hqtz6W0bn.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:51:51', '2019-05-10 15:55:25'),
+(20, 7, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/0A0B2WA0nKadqEFKiXBS2R0k4u1NyCaIYm8uvew6.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:53:17', '2019-05-10 15:56:59');
 
 -- --------------------------------------------------------
 
@@ -551,6 +652,7 @@ CREATE TABLE `vwsubkontrak` (
 ,`WaktuDiterima` date
 ,`StatusSubKontrak` int(11)
 ,`Catatan` varchar(255)
+,`Attachment` varchar(255)
 ,`NamaLengkap` varchar(255)
 );
 
@@ -729,7 +831,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwsubkontrak`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwsubkontrak`  AS  select `msk`.`IDSubKontrak` AS `IDSubKontrak`,`vt`.`IDTugas` AS `IDTugas`,`vt`.`IDProyek` AS `IDProyek`,`vt`.`NamaTugas` AS `NamaTugas`,`msk`.`WaktuDikirim` AS `WaktuDikirim`,`msk`.`WaktuDiterima` AS `WaktuDiterima`,`msk`.`StatusSubKontrak` AS `StatusSubKontrak`,`msk`.`Catatan` AS `Catatan`,`mu`.`NamaLengkap` AS `NamaLengkap` from ((`mstsubkontrak` `msk` left join `vwtugas` `vt` on((`msk`.`IDTugas` = `vt`.`IDTugas`))) left join `mstuser` `mu` on((`msk`.`IDPenanggungJawab` = `mu`.`IDUser`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwsubkontrak`  AS  select `msk`.`IDSubKontrak` AS `IDSubKontrak`,`vt`.`IDTugas` AS `IDTugas`,`vt`.`IDProyek` AS `IDProyek`,`vt`.`NamaTugas` AS `NamaTugas`,`msk`.`WaktuDikirim` AS `WaktuDikirim`,`msk`.`WaktuDiterima` AS `WaktuDiterima`,`msk`.`StatusSubKontrak` AS `StatusSubKontrak`,`msk`.`Catatan` AS `Catatan`,`msk`.`Attachment` AS `Attachment`,`mu`.`NamaLengkap` AS `NamaLengkap` from ((`mstsubkontrak` `msk` left join `vwtugas` `vt` on((`msk`.`IDTugas` = `vt`.`IDTugas`))) left join `mstuser` `mu` on((`msk`.`IDPenanggungJawab` = `mu`.`IDUser`))) ;
 
 -- --------------------------------------------------------
 
@@ -911,13 +1013,13 @@ ALTER TABLE `mstmilestonetugas`
 -- AUTO_INCREMENT for table `mstnotifikasi`
 --
 ALTER TABLE `mstnotifikasi`
-  MODIFY `IDNotifikasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDNotifikasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
@@ -929,19 +1031,19 @@ ALTER TABLE `mstrole`
 -- AUTO_INCREMENT for table `mstsertifikat`
 --
 ALTER TABLE `mstsertifikat`
-  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mstsubkontrak`
 --
 ALTER TABLE `mstsubkontrak`
-  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `mstulasan`
@@ -959,19 +1061,19 @@ ALTER TABLE `mstuser`
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`

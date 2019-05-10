@@ -113,6 +113,13 @@ var Button = {
 
 				TaskTransaction.Init(model, params);
 			}
+			else if(Kode == "KAJIULANG")
+			{
+				var IDTugas = $("#inptTaskID").val()
+				$("#submitKajiUlang").on("click", function () {
+					Modal.kajiUlang(IDTugas);
+				});
+			}
 			else if(Kode == "LAPOR")
 			{
 				$("#btnSubmit-" + Kode).on("click", function () {
@@ -133,13 +140,6 @@ var Button = {
 					TaskTransaction.Lapor(model, params);
 					
 					done = true;
-				});
-			}
-			else if(Kode == "KAJIULANG")
-			{
-				var IDTugas = $("#inptTaskID").val()
-				$("#submitKajiUlang").on("click", function () {
-					Modal.kajiUlang(IDTugas);
 				});
 			}
 			else {

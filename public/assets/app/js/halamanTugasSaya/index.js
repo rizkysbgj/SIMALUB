@@ -103,6 +103,13 @@ var Button = {
 
 				TaskTransaction.Init(model, params);
 			}
+			else if(Kode == "KAJIULANG")
+			{
+				var IDTugas = $("#inptTaskID").val()
+				$("#submitKajiUlang").on("click", function () {
+					Modal.kajiUlang(IDTugas);
+				});
+			}
 			else if(Kode == "LAPOR")
 			{
 				$("#btnSubmit-" + Kode).on("click", function () {
@@ -193,6 +200,70 @@ var Button = {
 					}
 				});
 			}
+		})
+	}
+}
+
+var Modal = {
+	kajiUlang:function(id){
+		$("#modalkajiUlang").modal({
+			backdrop: "static"
+		});
+		var btn = $("#submitKajiUlang");
+		btn.on("click", function(){
+			var params = {
+				IDTugas: id,
+				Metode:$("input[name='modalMetode']:checked").val(),
+				Peralatan:$("input[name='modalPeralatan']:checked").val(),
+				Personil:$("input[name='modalPersonil']:checked").val(),
+				BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
+				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
+				Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
+			};
+			btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
+			
+			console.log(params)
+
+			$.ajax({
+				url: "/api/kajiulang/",
+				type: "PUT",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(params),
+				cache: false,
+			}).done(function (data, textStatus, jqXHR) {
+				$("#divStoryList").mDatatable("reload");
+				
+				$("input[name='modalMetode']").prop('checked', false);
+				$("input[name='modalPeralatan']").prop('checked', false);
+				$("input[name='modalPersonil']").prop('checked', false);
+				$("input[name='modalbahanKimia']").prop('checked', false);
+				$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+				$("input[name='modalKesimpulan']").prop('checked', false);
+	
+				$("#modalkajiUlang").modal("toggle");
+				var link = '/halamanTugasSaya';
+				
+				if (Common.CheckError.Object(data) == true)
+					Common.Alert.SuccessRoute("Kaji Ulang Berhasil", link);
+				else
+					Common.Alert.Warning(data.ErrorMessage);
+
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				Common.Alert.Error(errorThrown);
+				btn.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
+			})
+		})
+		$("#btnClose").on("click", function(){
+			$("#divStoryList").mDatatable("reload");
+			
+			$("input[name='modalMetode']").prop('checked', false);
+			$("input[name='modalPeralatan']").prop('checked', false);
+			$("input[name='modalPersonil']").prop('checked', false);
+			$("input[name='modalbahanKimia']").prop('checked', false);
+			$("input[name='modalkondisiAkomodasi']").prop('checked', false);
+			$("input[name='modalKesimpulan']").prop('checked', false);
 		})
 	}
 }

@@ -180,7 +180,7 @@ class TugasControllerApi extends Controller
     public function GetTugasSaya()
     {
         try {
-            $tugasList = vwTugas::where('IDPenanggungJawab', Auth::user()->IDUser)->get();
+            $tugasList = vwTugas::where('IDPenanggungJawab', Auth::user()->IDUser)->where('StatusKajiUlang', '!=', 'Tidak')->get();
             $tugasList->ErrorType = 0;
             return $tugasList;
         }
