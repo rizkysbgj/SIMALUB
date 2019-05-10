@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2019 at 09:26 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: May 10, 2019 at 03:03 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -84,7 +84,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (43, '2019_03_26_131321_vw_ulasan', 15),
 (44, '2019_03_22_120114_vw_dashboard_performa_bulanan', 16),
 (45, '2019_02_12_085359_vw_proyek', 17),
-(46, '2019_03_03_152027_vw_trx_tugas', 17);
+(46, '2019_03_03_152027_vw_trx_tugas', 17),
+(47, '2019_04_01_111105_mst_notifikasi', 18),
+(48, '2019_04_15_092404_vw_notifikasi', 19),
+(49, '2019_04_15_092405_vw_notifikasi', 20),
+(50, '2019_04_15_092406_vw_notifikasi', 21),
+(51, '2019_04_15_092407_vw_notifikasi', 22),
+(52, '2019_04_15_092408_vw_notifikasi', 23);
 
 -- --------------------------------------------------------
 
@@ -160,6 +166,22 @@ INSERT INTO `mstmilestonetugas` (`IDMilestoneTugas`, `MilestoneTugas`, `IDRole`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mstnotifikasi`
+--
+
+CREATE TABLE `mstnotifikasi` (
+  `IDNotifikasi` int(10) UNSIGNED NOT NULL,
+  `IDUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Pesan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Aksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Dibaca` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mstproyek`
 --
 
@@ -182,13 +204,6 @@ CREATE TABLE `mstproyek` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mstproyek`
---
-
-INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `Percepatan`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 'Monokem', 'MKM', 'rudi_heryanto', 'Aktif', 1, '2019-03-28 00:00:00', '2019-04-04 00:00:00', '2019-04-03 00:00:00', 'Ektraksi beberapa tanaman obat', 'PT Monokem Indonesia', 1, 3, 'admin', NULL, '2019-03-28 02:52:05', '2019-03-28 05:10:09');
 
 -- --------------------------------------------------------
 
@@ -227,13 +242,6 @@ CREATE TABLE `mstsertifikat` (
   `NamaFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mstsertifikat`
---
-
-INSERT INTO `mstsertifikat` (`IDSertifikat`, `IDProyek`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`) VALUES
-(1, 1, 'public/sertifikat/WvdJfP8PzlXCtCcBMoCl9UHZ0jvY92Enp7yzSIDs.png', 'image/png', '580b585b2edbce24c47b29ac.png', 'Selesai buat sertifikat');
 
 -- --------------------------------------------------------
 
@@ -283,14 +291,6 @@ CREATE TABLE `msttugas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `msttugas`
---
-
-INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`, `IDProyek`, `IDPenanggungJawab`, `IDMilestoneTugas`, `RencanaMulai`, `RencanaSelesai`, `RealitaMulai`, `RealitaSelesai`, `StatusKajiUlang`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, '23032019001', 'Ektraksi Tanaman Jahe', 'Gunakan Ethanol 90%', 1, 'wiwik_biofarmaka', 11, '2019-03-28', '2019-03-30', '2019-03-28', '2019-03-28', 'Bisa', 'admin', 'rizky_ipb', '2019-03-28 02:52:53', '2019-03-28 05:10:08'),
-(2, '01042019001', 'Analisis Susu Sapi', 'Sapi adalah', 1, 'nunuk_biofarmaka', 4, '2019-04-01', '2019-04-08', '2019-04-01', NULL, 'Bisa', 'Admin', 'nunuk_biofarmaka', NULL, '2019-04-01 06:52:54');
-
 -- --------------------------------------------------------
 
 --
@@ -333,24 +333,25 @@ CREATE TABLE `mstuser` (
   `UpdatedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `api_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `mstuser`
 --
 
-INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, `Password`, `Status`, `CreatedBy`, `UpdatedBy`, `Avatar`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'G64150033', 'Admin Sistem', 1, 'admin@ipb.ac.id', '$2y$10$RhnaypsodKH.fX5ZUyQNiuNBmtue7he92R5ueFs9ZfOwIV2ioqa2i', 'Aktif', 'admin', 'admin', 'admin.jpg', '2019-03-02 17:00:00', '2019-04-01 03:42:44'),
-(2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 09:12:22', '2019-03-03 09:15:53'),
-(3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 09:25:26', '2019-03-03 09:25:26'),
-(4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 11:10:41', '2019-03-03 11:10:41'),
-(5, 'rizky_ipb', 'RIZ', 'Rizky Subagja', 5, 'rizky@ipb.ac.id', '$2y$10$hBx7aQEK/YjEJLjrM.OWJ.YFCulmc/UtofQOirEu7z30ZQPDs0DFS', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 11:19:13', '2019-03-28 04:23:39'),
-(6, 'wiwik_biofarmaka', 'WBI', 'Wiwik', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', NULL, 'default.png', '2019-03-05 03:11:59', '2019-03-05 03:11:59'),
-(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$FyFkHvjd1SBGjHf/GdVWJe/EFX2..hp3fwxLXvVygm3hdbGVWPs5e', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-26 01:34:03', '2019-04-01 01:26:29'),
-(8, 'rasyidrio', 'G64150080', 'Rio Ottoman', 1, 'rioalrasyid@gmail.com', '$2y$10$AVAbzuW.Afk.KVD.K5/A0O0PfdhgNh4Ec/Z6ymknPi.GcZMFrGc0a', 'Aktif', 'admin', 'admin', 'rasyidrio.png', '2019-04-01 01:45:51', '2019-04-01 02:48:35'),
-(13, 'asasasasa', 'asasasasa', 'asasasa', 1, 'asasa@mail.com', '$2y$10$rnco6xnHT335CkNoeSYcwO00eXDACbBRU9inuejFLWst5jhLtQy56', 'Aktif', 'admin', NULL, 'asasasasa.png', '2019-04-01 02:27:09', '2019-04-01 02:27:09'),
-(14, 'panda', 'g66666', 'panda', 1, 'panda@gmail.com', '$2y$10$zrlajK.D.w18RfNn8n1Bg.KVPzSZGVvDIw3ou5A9CKOgI8JvjyHJ.', 'Aktif', 'admin', NULL, 'default.png', '2019-04-01 03:50:59', '2019-04-01 03:50:59');
+INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, `Password`, `Status`, `CreatedBy`, `UpdatedBy`, `Avatar`, `created_at`, `updated_at`, `api_token`) VALUES
+(1, 'admin', 'G64150033', 'Admin Sistem', 1, 'admin@ipb.ac.id', '$2y$10$RhnaypsodKH.fX5ZUyQNiuNBmtue7he92R5ueFs9ZfOwIV2ioqa2i', 'Aktif', 'admin', 'admin', 'admin.jpg', '2019-03-02 17:00:00', '2019-05-10 12:01:45', 'YWRtaW46YWRtaW4='),
+(2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 09:12:22', '2019-03-03 09:15:53', ''),
+(3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 09:25:26', '2019-03-03 09:25:26', ''),
+(4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 11:10:41', '2019-03-03 11:10:41', ''),
+(5, 'rizky_ipb', 'RIZ', 'Rizky Subagja', 5, 'rizky@ipb.ac.id', '$2y$10$hBx7aQEK/YjEJLjrM.OWJ.YFCulmc/UtofQOirEu7z30ZQPDs0DFS', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 11:19:13', '2019-03-28 04:23:39', ''),
+(6, 'wiwik_biofarmaka', 'WBI', 'Wiwik', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', NULL, 'default.png', '2019-03-05 03:11:59', '2019-03-05 03:11:59', ''),
+(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$FyFkHvjd1SBGjHf/GdVWJe/EFX2..hp3fwxLXvVygm3hdbGVWPs5e', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-26 01:34:03', '2019-04-01 01:26:29', ''),
+(8, 'rasyidrio', 'G64150080', 'Rio Ottoman', 1, 'rioalrasyid@gmail.com', '$2y$10$AVAbzuW.Afk.KVD.K5/A0O0PfdhgNh4Ec/Z6ymknPi.GcZMFrGc0a', 'Aktif', 'admin', 'admin', 'rasyidrio.png', '2019-04-01 01:45:51', '2019-04-01 02:48:35', ''),
+(13, 'asasasasa', 'asasasasa', 'asasasa', 1, 'asasa@mail.com', '$2y$10$rnco6xnHT335CkNoeSYcwO00eXDACbBRU9inuejFLWst5jhLtQy56', 'Aktif', 'admin', NULL, 'asasasasa.png', '2019-04-01 02:27:09', '2019-04-01 02:27:09', ''),
+(14, 'panda', 'g66666', 'panda', 1, 'panda@gmail.com', '$2y$10$zrlajK.D.w18RfNn8n1Bg.KVPzSZGVvDIw3ou5A9CKOgI8JvjyHJ.', 'Aktif', 'admin', NULL, 'default.png', '2019-04-01 03:50:59', '2019-04-01 03:50:59', '');
 
 -- --------------------------------------------------------
 
@@ -370,13 +371,6 @@ CREATE TABLE `trxkajiulang` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `trxkajiulang`
---
-
-INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, `Personil`, `BahanKimia`, `KondisiAkomodasi`, `Kesimpulan`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-03-28 02:54:00', '2019-03-28 02:54:00');
 
 -- --------------------------------------------------------
 
@@ -402,13 +396,6 @@ CREATE TABLE `trxlapor` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `trxlapor`
---
-
-INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `StatusTindakan`, `AttachmentTindakan`, `ContentTypeTindakan`, `NamaFileTindakan`, `CatatanTindakan`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'nunuk_biofarmaka', NULL, NULL, NULL, 'Ada kesalahan bahan', 0, NULL, NULL, NULL, NULL, '2019-04-01 06:52:17', '2019-04-01 06:52:17');
-
 -- --------------------------------------------------------
 
 --
@@ -432,17 +419,6 @@ CREATE TABLE `trxtugas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `trxtugas`
---
-
-INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggungJawab`, `StatusTugas`, `WaktuMulai`, `WaktuSelesai`, `Catatan`, `Attachment`, `ContentType`, `FileName`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'admin', NULL, '2019-03-28 00:00:00', '2019-03-28 00:00:00', 'Tolong analisis ekstraksi ini selama 3 hari', 'public/files/KJ6thLOdIzDac3w3nkGCRuCHYjUOpbYMjIAPSgK5.jpeg', 'image/jpeg', '1.jpg', 'admin', 'admin', '2019-03-28 02:53:27', '2019-03-28 02:54:33'),
-(2, 1, 5, 'nunuk_biofarmaka', NULL, '2019-03-28 00:00:00', '2019-03-28 00:00:00', 'selesai analisis', 'public/files/0A9RJ6k2C0B6TtG3dICkuRl9opTYMknEU4hpu6Gk.jpeg', 'image/jpeg', '2.jpg', 'admin', 'admin', '2019-03-28 02:54:55', '2019-03-28 04:21:03'),
-(3, 1, 8, 'rizky_ipb', 'SELESAI', '2019-03-28 00:00:00', '2019-03-28 00:00:00', 'selesai koreksi', 'public/files/keAuV3DCno20Hx8iqGqZU6fNakkTtOiN2sbjMys0.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-03-28 04:21:38', '2019-03-28 04:24:32'),
-(4, 2, 5, 'nunuk_biofarmaka', NULL, '2019-04-01 00:00:00', '2019-04-01 00:00:00', 'Selesai analisis', 'public/files/hxz7QDql97LYws8ksQGyzXIKxYOemaIfrwYZUcM5.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-04-01 06:49:14', '2019-04-01 06:52:35'),
-(5, 2, 8, 'rizky_ipb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-04-01 06:52:54', '2019-04-01 06:52:54');
 
 -- --------------------------------------------------------
 
@@ -509,6 +485,22 @@ CREATE TABLE `vwdashboardperformatahunan` (
 ,`TotalAnalisisPercepatan` decimal(23,0)
 ,`TotalAnalisis` decimal(23,0)
 ,`TotalSelia` decimal(23,0)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vwnotifikasi`
+-- (See below for the actual view)
+--
+CREATE TABLE `vwnotifikasi` (
+`IDNotifikasi` int(10) unsigned
+,`IDUser` varchar(255)
+,`Pesan` varchar(255)
+,`Aksi` varchar(255)
+,`Dibaca` tinyint(1)
+,`created_at` timestamp
+,`WaktuKirim` varchar(32)
 );
 
 -- --------------------------------------------------------
@@ -596,6 +588,7 @@ CREATE TABLE `vwtrxtugas` (
 ,`IDProyek` int(11)
 ,`NamaTugas` varchar(255)
 ,`InisialTugas` varchar(255)
+,`DeskripsiTugas` varchar(255)
 ,`IDPenanggungJawab` varchar(255)
 ,`NamaLengkap` varchar(255)
 ,`IDMilestoneTugas` int(11)
@@ -705,6 +698,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `vwnotifikasi`
+--
+DROP TABLE IF EXISTS `vwnotifikasi`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwnotifikasi`  AS  select `mn`.`IDNotifikasi` AS `IDNotifikasi`,`mn`.`IDUser` AS `IDUser`,`mn`.`Pesan` AS `Pesan`,`mn`.`Aksi` AS `Aksi`,`mn`.`Dibaca` AS `Dibaca`,`mn`.`created_at` AS `created_at`,(case when (timestampdiff(DAY,`mn`.`created_at`,now()) <> 0) then concat(timestampdiff(DAY,`mn`.`created_at`,now()),' hari lalu') when (timestampdiff(HOUR,`mn`.`created_at`,now()) <> 0) then concat(timestampdiff(HOUR,`mn`.`created_at`,now()),' jam lalu') else concat(timestampdiff(MINUTE,`mn`.`created_at`,now()),' menit lalu') end) AS `WaktuKirim` from `mstnotifikasi` `mn` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `vwproyek`
 --
 DROP TABLE IF EXISTS `vwproyek`;
@@ -745,7 +747,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vwtrxtugas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxtugas`  AS  select `tt`.`IDTrxTugas` AS `IDTrxTugas`,`tt`.`IDTugas` AS `IDTugas`,`mt`.`IDProyek` AS `IDProyek`,`mt`.`NamaTugas` AS `NamaTugas`,`mt`.`InisialTugas` AS `InisialTugas`,`tt`.`IDPenanggungJawab` AS `IDPenanggungJawab`,`mu`.`NamaLengkap` AS `NamaLengkap`,`tt`.`IDMilestoneTugas` AS `IDMilestoneTugas`,`mmt`.`MilestoneTugas` AS `MilestoneTugas`,`tt`.`StatusTugas` AS `StatusTugas`,`mp`.`Percepatan` AS `Percepatan`,`tt`.`WaktuMulai` AS `WaktuMulai`,`tt`.`WaktuSelesai` AS `WaktuSelesai`,`tt`.`Catatan` AS `Catatan`,`tt`.`Attachment` AS `Attachment` from ((((`trxtugas` `tt` left join `mstuser` `mu` on((`tt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`tt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) left join `msttugas` `mt` on((`tt`.`IDTugas` = `mt`.`IDTugas`))) left join `mstproyek` `mp` on((`mt`.`IDProyek` = `mp`.`IDProyek`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwtrxtugas`  AS  select `tt`.`IDTrxTugas` AS `IDTrxTugas`,`tt`.`IDTugas` AS `IDTugas`,`mt`.`IDProyek` AS `IDProyek`,`mt`.`NamaTugas` AS `NamaTugas`,`mt`.`InisialTugas` AS `InisialTugas`,`mt`.`DeskripsiTugas` AS `DeskripsiTugas`,`tt`.`IDPenanggungJawab` AS `IDPenanggungJawab`,`mu`.`NamaLengkap` AS `NamaLengkap`,`tt`.`IDMilestoneTugas` AS `IDMilestoneTugas`,`mmt`.`MilestoneTugas` AS `MilestoneTugas`,`tt`.`StatusTugas` AS `StatusTugas`,`mp`.`Percepatan` AS `Percepatan`,`tt`.`WaktuMulai` AS `WaktuMulai`,`tt`.`WaktuSelesai` AS `WaktuSelesai`,`tt`.`Catatan` AS `Catatan`,`tt`.`Attachment` AS `Attachment` from ((((`trxtugas` `tt` left join `mstuser` `mu` on((`tt`.`IDPenanggungJawab` = `mu`.`IDUser`))) left join `mstmilestonetugas` `mmt` on((`tt`.`IDMilestoneTugas` = `mmt`.`IDMilestoneTugas`))) left join `msttugas` `mt` on((`tt`.`IDTugas` = `mt`.`IDTugas`))) left join `mstproyek` `mp` on((`mt`.`IDProyek` = `mp`.`IDProyek`))) ;
 
 -- --------------------------------------------------------
 
@@ -801,6 +803,12 @@ ALTER TABLE `mstmilestoneflowtugas`
 --
 ALTER TABLE `mstmilestonetugas`
   ADD PRIMARY KEY (`IDMilestoneTugas`);
+
+--
+-- Indexes for table `mstnotifikasi`
+--
+ALTER TABLE `mstnotifikasi`
+  ADD PRIMARY KEY (`IDNotifikasi`);
 
 --
 -- Indexes for table `mstproyek`
@@ -879,7 +887,7 @@ ALTER TABLE `trxtugaslog`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `mstkategoritugas`
@@ -900,10 +908,16 @@ ALTER TABLE `mstmilestonetugas`
   MODIFY `IDMilestoneTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `mstnotifikasi`
+--
+ALTER TABLE `mstnotifikasi`
+  MODIFY `IDNotifikasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
@@ -915,7 +929,7 @@ ALTER TABLE `mstrole`
 -- AUTO_INCREMENT for table `mstsertifikat`
 --
 ALTER TABLE `mstsertifikat`
-  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mstsubkontrak`
@@ -927,7 +941,7 @@ ALTER TABLE `mstsubkontrak`
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mstulasan`
@@ -945,19 +959,19 @@ ALTER TABLE `mstuser`
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`
