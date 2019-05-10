@@ -203,7 +203,7 @@ var Page = {
 		if(IDTugas != 0)
 			GetData.TaskDetail(IDTugas);
 
-		$('#showTask').on('click', '.divShowDetail', function () {
+		$('#removeTaskList').on('click', '.divShowDetail', function () {
 			var IDTugas = this.id;
 			$(this).css({ background: "whitesmoke" }).siblings().css({ background: "transparent" });
 			$(this).addClass("selected").siblings().removeClass("selected");

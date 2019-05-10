@@ -6,24 +6,72 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\model\mstNotifikasi;
 use App\model\vwNotifikasi;
+use App\model\mstTugas;
+use App\model\vwTrxTugas;
 use Carbon\Carbon;
 use Auth;
 
 class HelpersController extends Controller
 {
-    public function exportmemo()
+    public function exportmemo($IDProyek)
     {
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $template = $phpWord->loadTemplate(storage_path('template_memo.docx'));
-        // $template->setValue('test', 'Hello');
+        try { 
+            $phpWord = new \PhpOffice\PhpWord\PhpWord();
+            $template = $phpWord->loadTemplate(storage_path('template_memo.docx'));
 
-        header('Content-Type: application/octet-stream');
-        header("Content-Disposition: attachment; filename=memo.docx");
-        
-        $template->saveAs(storage_path('memo.docx'));
-        readfile(storage_path('memo.docx'));
-        unlink(storage_path('memo.docx'));
+            $listTugas = mstTugas::where('IDProyek', $IDProyek)->get();
+            $listMemoAnalis = vwTrxTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', 5)->where('StatusTugas', null)->get();
+            $listMemoPenyelia = vwTrxTugas::where('IDProyek', $IDProyek)->where('IDMilestoneTugas', 8)->where('StatusTugas', 'SELESAI')->get();
+            
+            foreach($listTugas as $memoTugas)
+            {
+                $array_memoTugas[] = array(
+                    'nama_tugas1' => $memoTugas->NamaTugas, 'inisial_tugas1' => $memoTugas->InisialTugas
+                );
+            }
+            $template->cloneBlock('administrasi_blok', 0, true, false, $array_memoTugas);
+            
+            foreach($listMemoAnalis as $memoManajer)
+            {
+                $array_memoManajer[] = array(
+                    'nama_tugas2' => $memoManajer->NamaTugas, 'inisial_tugas2' => $memoManajer->InisialTugas, 
+                    'analis1' => $memoManajer->NamaLengkap, 'pesan1' => $memoManajer->DeskripsiTugas
+                );
+            }
+            $template->cloneBlock('manajer_blok', 0, true, false, $array_memoManajer);
+
+            foreach($listMemoAnalis as $memoAnalis)
+            {
+                $array_memoAnalis[] = array(
+                    'nama_tugas3' => $memoAnalis->NamaTugas, 'inisial_tugas3' => $memoAnalis->InisialTugas, 
+                    'analis2' => $memoAnalis->NamaLengkap, 'pesan2' => $memoAnalis->Catatan
+                );
+            }
+            $template->cloneBlock('analis_blok', 0, true, false, $array_memoAnalis);
+
+            foreach($listMemoPenyelia as $memoPenyelia)
+            {
+                $array_memoPenyelia[] = array(
+                    'nama_tugas4' => $memoPenyelia->NamaTugas, 'inisial_tugas4' => $memoPenyelia->InisialTugas, 
+                    'penyelia' => $memoPenyelia->NamaLengkap, 'pesan3' => $memoPenyelia->Catatan
+                );
+            }
+            $template->cloneBlock('penyelia_blok', 0, true, false, $array_memoPenyelia);
+
+            header('Content-Type: application/octet-stream');
+            header("Content-Disposition: attachment; filename=memo.docx");
+            
+            $template->saveAs(storage_path('memo.docx'));
+            readfile(storage_path('memo.docx'));
+            unlink(storage_path('memo.docx'));
+        }
+        catch(\Exception $e)
+        {
+            $error = 'Error';
+            return $error;
+        }
     }
+
 
     public function exportsertifikat()
     {
