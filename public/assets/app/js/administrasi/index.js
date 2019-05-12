@@ -146,9 +146,9 @@ var FileValidation = {
                 var msg = "";
                 image.addEventListener("load", function () {
                     elPreview.appendChild(this);
-                    if (Math.round(file.size / 1024) > 625000)
+                    if (Math.round(file.size) <= 10536596)
                         msg += "Max Size 5MB";
-                    if (file.type != "application/pdf" && file.type != "application/docx" && file.type != "application/zip")
+                    if (file.type != "application/jpg" && file.type != "application/pdf" && file.type != "application/docx" && file.type != "application/zip" && file.type != "application/png" && file.type != "application/txt" && file.type != "application/xls" && file.type != "application/xlsx" && file.type != "application/doc" && file.type != "application/jpeg")
                         msg += "Extension pdf/docx/zip";
                     if ((image.width / image.height == 1))
                         msg += "";
@@ -178,7 +178,7 @@ var FileValidation = {
             if (files && files[0]) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
-                    if ((/\.(pdf|zip|png|jpg|txt|doc|docx|xls|xlsx|jpeg)$/i).test(file.name)) {
+                    if ((/\.(jpg|pdf|docx|zip|png|txt|xls|xlsx|doc|jpeg)$/i).test(file.name)) {
                         console.log(file.size);
                         if (Math.round(file.size) <= 10536596) {
                             readImage(file);

@@ -1,6 +1,7 @@
 //== Class Initialization
 jQuery(document).ready(function () {
     Control.Init();
+    FileValidation.Init();
     // Total.Laporan();
 
     $("#slsNamaProyek").on("change", function () {
@@ -222,6 +223,74 @@ var Modal = {
             $("#tbxRemark").val('');
 			$("#inputFile").val('');
 		})
+    }
+}
+
+var FileValidation = {
+    Init: function () {
+        window.URL = window.URL || window.webkitURL;
+        var elBrowse = document.getElementById("inputFile"),
+            elPreview = document.getElementById("preview"),
+            useBlob = false && window.URL;
+
+        function readImage(file) {
+            var reader = new FileReader();
+            reader.addEventListener("load", function () {
+                var image = new Image();
+                var msg = "";
+                image.addEventListener("load", function () {
+                    elPreview.appendChild(this);
+                    if (Math.round(file.size) <= 10536596)
+                        msg += "Max Size 5MB";
+                    if (file.type != "application/jpg" && file.type != "application/pdf" && file.type != "application/docx" && file.type != "application/zip" && file.type != "application/png" && file.type != "application/txt" && file.type != "application/xls" && file.type != "application/xlsx" && file.type != "application/doc" && file.type != "application/jpeg")
+                        msg += "Extension pdf/docx/zip";
+                    if ((image.width / image.height == 1))
+                        msg += "";
+                    else
+                        msg += "Resolution should be 1:1";
+                    if (msg != "") {
+                        Common.Alert.Error(msg);
+                        $("#inputFile").val("");
+                        $("#preview").html("");
+                    }
+                    $("#preview").html("");
+                    if (useBlob) {
+                        window.URL.revokeObjectURL(image.src);
+                    }
+                });
+                if (msg == "")
+                    image.src = useBlob ? window.URL.createObjectURL(file) : reader.result;
+            });
+            reader.readAsDataURL(file);
+        }
+        elBrowse.addEventListener("change", function () {
+            var files = this.files;
+            var errors = "";
+            if (!files) {
+                errors += "File yang Anda Upload tidak didukung";
+            }
+            if (files && files[0]) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if ((/\.(jpg|pdf|docx|zip|png|txt|xls|xlsx|doc|jpeg)$/i).test(file.name)) {
+                        console.log(file.size);
+                        if (Math.round(file.size) <= 10536596) {
+                            readImage(file);
+                        } else {
+                            errors += file.name + " melebihi 10MB\n";
+                        }
+                    } else {
+                        errors += file.name + " ekstensi tidak didukung\n";
+                    }
+                    
+                }
+            }
+            if (errors) {
+                Common.Alert.Error(errors);
+                $("#inputFile").val("");
+                $("#preview").html("");
+            }
+        });
     }
 }
 

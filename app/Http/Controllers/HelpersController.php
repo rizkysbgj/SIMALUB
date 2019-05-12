@@ -107,7 +107,7 @@ class HelpersController extends Controller
     public function cekFiles($File)
     {
         $test = $File->getCLientMimeType();
-        $allowedContentType = array("application/zip" , "application/pdf" , 
+        $allowedContentType = array("application/x-zip-compressed", "application/zip", "multipart/x-zip" , "application/pdf" , 
             "application/msword" , "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
             "application/vnd.ms-excel" , "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" , 
             "text/plain" , "image/png" , "image/jpeg");

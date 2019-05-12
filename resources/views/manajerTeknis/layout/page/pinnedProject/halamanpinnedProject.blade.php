@@ -35,7 +35,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Daftar Tugas
+                                Daftar Analisis
 								<span class="m-menu__link-badge">
 									<span class="m-badge m-badge--info">
 										{{ $vwProyek['TotalTugas'] }}
@@ -57,7 +57,7 @@
                 </div>
                 <div class="m-portlet__body" style="padding-left: 15px; padding-right: 15px;">
                     <!-- <div class="m-scrollable" data-scrollable="true" data-max-height="500px" style="height: 380px; overflow: hidden;"> -->
-                    <div class="m-scrollable" data-scrollable="true" data-max-height="380px" style="height: 380px; overflow: hidden;">
+                    <div class="m-scrollable" data-scrollable="true" data-max-height="720px" style="height: 720px; overflow: hidden;">
                         <div id="showTask">
 
                         </div>
