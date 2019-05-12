@@ -79,7 +79,9 @@ class UserControllerApi extends Controller
                 if($IDRole == 4 || $IDRole == 5)
                 {
                     $userList = vwUser::where('IDUser', '!=', Auth::user()->IDUser)
-                    ->where('IDRole', '4')->orwhere('IDRole', '5')->get();
+                    ->where(function ($q) {
+                        $q->where('IDRole', '4')->orwhere('IDRole', '5');
+                    })->get();
                     return response($userList, Response::HTTP_OK);
                 }
                 else
