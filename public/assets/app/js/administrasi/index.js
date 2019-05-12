@@ -126,9 +126,78 @@ var Page = {
 			$(this).addClass("selected").siblings().removeClass("selected");
 			console.log(IDProyek);
 			GetData.ProyekDetail(IDProyek);
+			
 		});		
 	},
 	
+}
+
+var FileValidation = {
+    Init: function () {
+        window.URL = window.URL || window.webkitURL;
+        var elBrowse = document.getElementById("inputFile"),
+            elPreview = document.getElementById("preview"),
+            useBlob = false && window.URL;
+
+        function readImage(file) {
+            var reader = new FileReader();
+            reader.addEventListener("load", function () {
+                var image = new Image();
+                var msg = "";
+                image.addEventListener("load", function () {
+                    elPreview.appendChild(this);
+                    if (Math.round(file.size / 1024) > 625000)
+                        msg += "Max Size 5MB";
+                    if (file.type != "application/pdf" && file.type != "application/docx" && file.type != "application/zip")
+                        msg += "Extension pdf/docx/zip";
+                    if ((image.width / image.height == 1))
+                        msg += "";
+                    else
+                        msg += "Resolution should be 1:1";
+                    if (msg != "") {
+                        Common.Alert.Error(msg);
+                        $("#inputFile").val("");
+                        $("#preview").html("");
+                    }
+                    $("#preview").html("");
+                    if (useBlob) {
+                        window.URL.revokeObjectURL(image.src);
+                    }
+                });
+                if (msg == "")
+                    image.src = useBlob ? window.URL.createObjectURL(file) : reader.result;
+            });
+            reader.readAsDataURL(file);
+        }
+        elBrowse.addEventListener("change", function () {
+            var files = this.files;
+            var errors = "";
+            if (!files) {
+                errors += "File yang Anda Upload tidak didukung";
+            }
+            if (files && files[0]) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if ((/\.(pdf|zip|png|jpg|txt|doc|docx|xls|xlsx|jpeg)$/i).test(file.name)) {
+                        console.log(file.size);
+                        if (Math.round(file.size) <= 10536596) {
+                            readImage(file);
+                        } else {
+                            errors += file.name + " melebihi 10MB\n";
+                        }
+                    } else {
+                        errors += file.name + " ekstensi tidak didukung\n";
+                    }
+                    
+                }
+            }
+            if (errors) {
+                Common.Alert.Error(errors);
+                $("#inputFile").val("");
+                $("#preview").html("");
+            }
+        });
+    }
 }
 
 var Function = {
@@ -172,6 +241,7 @@ var GetData = {
 				// Button.Download();
 				Button.Init();
 				Table.HasilAnalisis(IDProyek);
+				FileValidation.Init();
 
 				$("#minimizeTaskRight").hide();
 
@@ -201,8 +271,6 @@ var GetData = {
 		});
 	},
 }
-
-
 
 var Table = {
 	HasilAnalisis: function (IDProyek) {

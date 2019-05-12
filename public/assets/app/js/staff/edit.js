@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     Form.Init();
     Control.Init();
     BootstrapSwitch.init();
-
+    FileValidation.Init();
 
     $('#tbxConfirmNewPassword').on('keyup', function () {
         if ($('#tbxNewPassword').val() == $('#tbxConfirmNewPassword').val()) 
@@ -19,6 +19,74 @@ jQuery(document).ready(function () {
         }
     });
 });
+
+var FileValidation = {
+    Init: function () {
+        window.URL = window.URL || window.webkitURL;
+        var elBrowse = document.getElementById("inputPhotoProfile"),
+            elPreview = document.getElementById("preview"),
+            useBlob = false && window.URL;
+
+        function readImage(file) {
+            var reader = new FileReader();
+            reader.addEventListener("load", function () {
+                var image = new Image();
+                var msg = "";
+                image.addEventListener("load", function () {
+                    elPreview.appendChild(this);
+                    if (Math.round(file.size / 1024) > 625000)
+                        msg += "Max Size 5MB";
+                    if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg")
+                        msg += "Extension jpg/png/jpeg";
+                    if ((image.width / image.height == 1))
+                        msg += "";
+                    else
+                        msg += "Resolution should be 1:1";
+                    if (msg != "") {
+                        Common.Alert.Error(msg);
+                        $("#inputPhotoProfile").val("");
+                        $("#preview").html("");
+                    }
+                    $("#preview").html("");
+                    if (useBlob) {
+                        window.URL.revokeObjectURL(image.src);
+                    }
+                });
+                if (msg == "")
+                    image.src = useBlob ? window.URL.createObjectURL(file) : reader.result;
+            });
+            reader.readAsDataURL(file);
+        }
+        elBrowse.addEventListener("change", function () {
+            var files = this.files;
+            var errors = "";
+            if (!files) {
+                errors += "File yang Anda Upload tidak didukung";
+            }
+            if (files && files[0]) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if ((/\.(png|jpeg|jpg)$/i).test(file.name)) {
+                        console.log(file.size);
+                        if (Math.round(file.size) < 1250000) {
+                            readImage(file);
+                        } else {
+                            errors += file.name + " melebihi 10MB\n";
+                        }
+                    } else {
+                        errors += file.name + " ekstensi tidak didukung\n";
+                    }
+                    
+                }
+            }
+            if (errors) {
+                Common.Alert.Error(errors);
+                $("#inputPhotoProfile").val("");
+                $("#preview").html("");
+            }
+        });
+    }
+}
 
 var Form = {
     Init: function () {
