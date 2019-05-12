@@ -36,7 +36,7 @@
                     @foreach ($mstTugasDetail['flow'] as $flow)
                     <!-- modal -->
                         @if ( $mstTugasDetail['tugas']['IDMilestoneTugas'] == 8 && $flow['Kode'] == "SELESAI")
-                            <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
+                        <div class="modal hide fade" id="{{ $flow['IDMilestoneTugas'] }}-{{ $flow['Kode'] }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
@@ -57,7 +57,7 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                        <input type="file" class="custom-file test" id="inputFile2" name="inputFile"
                                                             style="margin-top: 5px">
                                                     </div>
                                                 </div>
@@ -369,7 +369,7 @@
                                                 </label>
                                                 <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 0px;">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file" id="inputFile" name="inputFile"
+                                                        <input type="file" class="custom-file" id="inputFile2" name="inputFile"
                                                             style="margin-top: 5px">
                                                     </div>
                                                 </div>

@@ -207,7 +207,8 @@ var Button = {
 var FileValidation = {
     Init: function () {
         window.URL = window.URL || window.webkitURL;
-        var elBrowse = document.getElementById("inputFile"),
+		var elBrowse = document.getElementById("inputFile"),
+			elBrowse2 = document.getElementById("inputFile2"),
             elPreview = document.getElementById("preview"),
             useBlob = false && window.URL;
 
@@ -242,6 +243,34 @@ var FileValidation = {
             reader.readAsDataURL(file);
         }
         elBrowse.addEventListener("change", function () {
+            var files = this.files;
+            var errors = "";
+            if (!files) {
+                errors += "File yang Anda Upload tidak didukung";
+            }
+            if (files && files[0]) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if ((/\.(jpg|pdf|docx|zip|png|txt|xls|xlsx|doc|jpeg)$/i).test(file.name)) {
+                        console.log(file.size);
+                        if (Math.round(file.size) <= 10536596) {
+                            readImage(file);
+                        } else {
+                            errors += file.name + " melebihi 10MB\n";
+                        }
+                    } else {
+                        errors += file.name + " ekstensi tidak didukung\n";
+                    }
+                    
+                }
+            }
+            if (errors) {
+                Common.Alert.Error(errors);
+                $("#inputFile").val("");
+                $("#preview").html("");
+            }
+		});
+		elBrowse2.addEventListener("change", function () {
             var files = this.files;
             var errors = "";
             if (!files) {

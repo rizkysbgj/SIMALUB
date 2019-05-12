@@ -252,7 +252,8 @@ var FileValidation = {
             reader.readAsDataURL(file);
         }
         elBrowse.addEventListener("change", function () {
-            var files = this.files;
+			var files = this.files;
+			console.log("aaaa");
             var errors = "";
             if (!files) {
                 errors += "File yang Anda Upload tidak didukung";
