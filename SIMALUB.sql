@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2019 at 06:37 PM
+-- Generation Time: May 18, 2019 at 05:42 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -188,7 +188,7 @@ INSERT INTO `mstnotifikasi` (`IDNotifikasi`, `IDUser`, `Pesan`, `Aksi`, `Dibaca`
 (2, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 13:41:17', '2019-05-10 13:55:22'),
 (3, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Chimory', '/halamanLaporan', 1, '2019-05-10 13:57:49', '2019-05-10 14:00:34'),
 (4, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:04:00', '2019-05-10 14:08:10'),
-(5, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-10 14:45:13', '2019-05-10 14:45:13'),
+(5, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:45:13', '2019-05-12 14:47:04'),
 (6, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:45:15', '2019-05-10 14:55:43'),
 (7, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 14:45:16', '2019-05-10 14:55:10'),
 (8, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:14:10', '2019-05-10 15:15:53'),
@@ -196,8 +196,29 @@ INSERT INTO `mstnotifikasi` (`IDNotifikasi`, `IDUser`, `Pesan`, `Aksi`, `Dibaca`
 (10, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:43:47', '2019-05-10 15:49:36'),
 (11, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:46:12', '2019-05-10 15:53:34'),
 (12, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Pertamina', '/halamanLaporan', 1, '2019-05-10 15:50:47', '2019-05-10 15:58:18'),
-(13, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-10 15:51:51', '2019-05-10 15:51:51'),
-(14, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:53:17', '2019-05-10 15:54:25');
+(13, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:51:51', '2019-05-12 11:03:43'),
+(14, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-10 15:53:17', '2019-05-10 15:54:25'),
+(15, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 14:24:26', '2019-05-12 14:30:40'),
+(16, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 14:28:51', '2019-05-12 14:39:03'),
+(17, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 14:37:21', '2019-05-12 14:51:11'),
+(18, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 14:44:34', '2019-05-12 14:54:26'),
+(19, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 16:55:57', '2019-05-12 17:26:47'),
+(20, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 17:05:16', '2019-05-12 17:44:57'),
+(21, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 17:24:26', '2019-05-12 17:45:29'),
+(22, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 17:29:55', '2019-05-12 17:51:15'),
+(23, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 17:36:35', '2019-05-12 18:06:53'),
+(24, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 17:46:55', '2019-05-12 18:22:37'),
+(25, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 18:05:58', '2019-05-12 18:22:52'),
+(26, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 18:09:04', '2019-05-12 18:13:42'),
+(27, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 18:43:11', '2019-05-12 18:45:17'),
+(28, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 18:43:12', '2019-05-12 18:51:03'),
+(29, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Bukit Asam', '/halamanLaporan', 0, '2019-05-12 18:50:39', '2019-05-12 18:50:39'),
+(30, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-12 18:53:00', '2019-05-12 18:54:02'),
+(31, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Bukit Asam', '/halamanLaporan', 0, '2019-05-13 00:42:47', '2019-05-13 00:42:47'),
+(32, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-13 00:47:58', '2019-05-13 00:47:58'),
+(33, 'nunuk_biofarmaka', 'Anda menerima tugas baru', '/halamanTugasSaya', 0, '2019-05-13 01:04:45', '2019-05-13 01:04:45'),
+(34, 'ManajerTeknis', 'Anda menerima laporan baru pada proyek Bukit Asam', '/halamanLaporan', 0, '2019-05-13 01:08:00', '2019-05-13 01:08:00'),
+(35, 'rioalrasyid', 'Anda menerima tugas baru', '/halamanTugasSaya', 1, '2019-05-13 01:09:48', '2019-05-13 01:10:49');
 
 -- --------------------------------------------------------
 
@@ -231,7 +252,11 @@ CREATE TABLE `mstproyek` (
 
 INSERT INTO `mstproyek` (`IDProyek`, `NamaProyek`, `InisialProyek`, `PenanggungJawab`, `Status`, `PinKeMenu`, `TanggalMulai`, `RencanaSelesai`, `RealitaSelesai`, `DeskripsiProyek`, `SponsorProyek`, `Percepatan`, `SiapBuatSertifikat`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
 (1, 'Chimory', 'CHI', 'rudi_heryanto', 'Aktif', 1, '2019-05-10 00:00:00', '2019-05-24 00:00:00', '2019-05-10 00:00:00', 'Analisis produk perusahaan chimory', 'PT Chimory', 1, 3, 'rudi_heryanto', NULL, '2019-05-10 13:21:43', '2019-05-10 15:24:29'),
-(2, 'Pertamina', 'PTM', 'rudi_heryanto', 'Aktif', 1, '2019-05-10 00:00:00', '2019-05-24 00:00:00', '2019-05-10 00:00:00', 'Analisis minyak', 'PT Pertamina', 0, 3, 'rudi_heryanto', NULL, '2019-05-10 15:35:37', '2019-05-10 16:01:19');
+(2, 'Pertamina', 'PTM', 'rudi_heryanto', 'Aktif', 1, '2019-05-10 00:00:00', '2019-05-24 00:00:00', '2019-05-10 00:00:00', 'Analisis minyak', 'PT Pertamina', 0, 3, 'rudi_heryanto', NULL, '2019-05-10 15:35:37', '2019-05-10 16:01:19'),
+(3, 'Sugar Indonesia', 'SI', 'rudi_heryanto', 'Aktif', 1, '2018-08-30 00:00:00', '2018-09-13 00:00:00', '2019-05-12 00:00:00', 'Analisis berbagai sample tebu', 'PT Sugar Indonesia', 1, 3, 'rudi_heryanto', NULL, '2019-05-12 14:11:59', '2019-05-12 16:43:21'),
+(4, 'Garuda', 'GA', 'rudi_heryanto', 'Aktif', 0, '2019-05-12 00:00:00', '2019-05-26 00:00:00', '2019-05-13 00:00:00', 'tes', 'PT Garuda', 1, 3, 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 16:47:46', '2019-05-13 01:23:27'),
+(5, 'Bukit Asam', 'BA', 'rudi_heryanto', 'Aktif', 0, '2019-05-13 00:00:00', '2019-05-27 00:00:00', '2019-05-13 00:00:00', 'Test aja', 'PT Bukit Asam', 1, 3, 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:34:52', '2019-05-13 01:30:17'),
+(6, 'Kaltex', 'KX', 'rudi_heryanto', 'Aktif', 1, '2019-05-13 00:00:00', '2019-05-27 00:00:00', NULL, 'Analisa minyak bumi', 'PT Kaltex', 1, NULL, 'wiwik_biofarmaka', NULL, '2019-05-13 02:51:00', '2019-05-13 02:51:00');
 
 -- --------------------------------------------------------
 
@@ -277,7 +302,10 @@ CREATE TABLE `mstsertifikat` (
 
 INSERT INTO `mstsertifikat` (`IDSertifikat`, `IDProyek`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`) VALUES
 (1, 1, 'public/sertifikat/ISENG.jpg.ISENG.jpg', 'image/jpeg', 'ISENG.jpg', 'Selesai buat sertifikat'),
-(2, 2, 'public/sertifikat/citra.jpg.citra.jpg', 'image/jpeg', 'citra.jpg', 'selesai proyek');
+(2, 2, 'public/sertifikat/citra.jpg.citra.jpg', 'image/jpeg', 'citra.jpg', 'selesai proyek'),
+(3, 3, 'public/sertifikat/Analisis Lab Trop BRC.docx.Analisis Lab Trop BRC.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Analisis Lab Trop BRC.docx', 'sertifikat selesai'),
+(4, 4, 'public/sertifikat/9MB.zip.9MB.zip', 'application/x-zip-compressed', '9MB.zip', 'Sertifikat selesai'),
+(5, 5, 'public/sertifikat/9MB.zip.9MB.zip', 'application/x-zip-compressed', '9MB.zip', 'sertifikat hasil');
 
 -- --------------------------------------------------------
 
@@ -308,7 +336,9 @@ CREATE TABLE `mstsubkontrak` (
 
 INSERT INTO `mstsubkontrak` (`IDSubKontrak`, `IDTugas`, `WaktuDikirim`, `WaktuDiterima`, `StatusSubKontrak`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `IDPenanggungJawab`, `CreatedBy`, `UpdatedBy`, `created_at`, `updated_at`) VALUES
 (1, 4, '2019-05-10', '2019-05-10', 1, 'public/files/3kEDkvwzdjZUHtAbEE83wbBgUgcPpVo2c7J4HqdF.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'sudah ya ditindaklanjuti tugas subkontraknya', 'rudi_heryanto', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 14:22:18', '2019-05-10 14:23:12'),
-(2, 8, '2019-05-10', '2019-05-10', 1, 'public/files/wlHH7XJkJQXWKZYvmSBkcjCbnvmEXIO3fx0pqlhc.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'sudah ditindaklanjuti ya subkontranknya', 'rudi_heryanto', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:47:04', '2019-05-10 15:48:38');
+(2, 8, '2019-05-10', '2019-05-10', 1, 'public/files/wlHH7XJkJQXWKZYvmSBkcjCbnvmEXIO3fx0pqlhc.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'sudah ditindaklanjuti ya subkontranknya', 'rudi_heryanto', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:47:04', '2019-05-10 15:48:38'),
+(3, 11, '2019-05-12', '2019-05-13', 1, 'public/files/T5YlpZQJMlFt1B1wxnKrt5XXkRzIT5atg8nc73kH.xls', 'application/vnd.ms-excel', 'Analisis Sample Tebu.xls', 'Selesai tugas ini', 'rudi_heryanto', 'rudi_heryanto', 'wiwik_biofarmaka', '2019-05-12 14:16:25', '2019-05-12 18:32:27'),
+(4, 19, '2019-05-13', '2019-05-13', 1, NULL, NULL, NULL, NULL, 'wiwik_biofarmaka', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 02:53:27', '2019-05-13 02:53:54');
 
 -- --------------------------------------------------------
 
@@ -346,7 +376,18 @@ INSERT INTO `msttugas` (`IDTugas`, `InisialTugas`, `NamaTugas`, `DeskripsiTugas`
 (5, '150520190004', 'Analisis Tempe', 'tempenya 76%', 1, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:03:05', '2019-05-10 15:24:29'),
 (6, '190520190001', 'Minyak Asam', 'Ethanolnya 76%', 2, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:39:38', '2019-05-10 16:01:19'),
 (7, '150520190002', 'Minyak Basa', 'Soklin 90%', 2, 'wiwik_biofarmaka', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-10 15:40:22', '2019-05-10 16:01:19'),
-(8, '170920190003', 'Minyak Ceria', 'Samplenya 15% saja', 2, 'rudi_heryanto', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Tidak', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:41:14', '2019-05-10 16:01:19');
+(8, '170920190003', 'Minyak Ceria', 'Samplenya 15% saja', 2, 'rudi_heryanto', 11, '2019-05-10', '2019-05-24', '2019-05-10', '2019-05-10', 'Tidak', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:41:14', '2019-05-10 16:01:19'),
+(9, '300820180001', 'Analisis Tebu Lampung Utara', 'Gunakan ethanol 20%', 3, 'wiwik_biofarmaka', 11, '2018-08-30', '2018-09-12', '2019-05-12', '2019-05-12', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-12 14:13:43', '2019-05-12 16:43:21'),
+(10, '310820180002', 'Analisis Tebu Lampung Barat', 'gunakan sampel 78%', 3, 'wiwik_biofarmaka', 11, '2018-08-30', '2018-09-06', '2019-05-12', '2019-05-12', 'Bisa', 'rudi_heryanto', 'rioalrasyid', '2019-05-12 14:14:43', '2019-05-12 16:43:21'),
+(11, '010920180003', 'Analisis Tebu Lambung Selatan', 'ekstrak ethanolnya 15% saja', 3, 'rudi_heryanto', 11, '2018-08-30', '2018-10-03', NULL, '2019-05-12', 'Tidak', 'rudi_heryanto', 'rudi_heryanto', '2019-05-12 14:16:03', '2019-05-12 16:43:21'),
+(12, '1', 'Test 1', 'test aja', 4, 'wiwik_biofarmaka', 11, '2019-05-12', '2019-05-26', '2019-05-12', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'rioalrasyid', '2019-05-12 16:48:40', '2019-05-12 18:25:35'),
+(13, '2', 'Test 2', 'Test 2 ya', 4, 'wiwik_biofarmaka', 11, '2019-05-12', '2019-05-26', '2019-05-13', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'rioalrasyid', '2019-05-12 16:58:21', '2019-05-12 18:25:35'),
+(14, '3', 'Test 3', 'Test 3 ya', 4, 'wiwik_biofarmaka', 11, '2019-05-12', '2019-05-26', '2019-05-13', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'rioalrasyid', '2019-05-12 16:59:04', '2019-05-12 18:25:35'),
+(15, '4', 'Test 4', 'Ini test 4', 4, 'wiwik_biofarmaka', 11, '2019-05-13', '2019-05-20', '2019-05-13', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 18:01:03', '2019-05-12 18:25:35'),
+(16, '1', 'Testing 1', 'test', 5, 'wiwik_biofarmaka', 11, '2019-05-13', '2019-05-27', '2019-05-13', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'rioalrasyid', '2019-05-12 18:36:10', '2019-05-13 01:18:17'),
+(17, '2', 'Test Bukit Asam', 'tes yaa', 5, 'wiwik_biofarmaka', 11, '2019-05-13', '2019-05-27', '2019-05-13', '2019-05-13', 'Bisa', 'wiwik_biofarmaka', 'rioalrasyid', '2019-05-13 01:00:29', '2019-05-13 01:18:17'),
+(18, '130520190001', 'Analisa Minyak Bumi A', 'Gunakan sampel 35% saja', 6, 'wiwik_biofarmaka', 2, '2019-05-13', '2019-05-27', '2019-05-13', NULL, 'Bisa', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 02:52:12', '2019-05-13 02:54:51'),
+(19, '130520190002', 'Analisis Minyak Bumi B', 'Gunakan preparat 65%', 6, 'wiwik_biofarmaka', 1, '2019-05-13', '2019-05-20', NULL, NULL, 'Tidak', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 02:53:04', '2019-05-13 02:53:28');
 
 -- --------------------------------------------------------
 
@@ -400,12 +441,12 @@ CREATE TABLE `mstuser` (
 
 INSERT INTO `mstuser` (`id`, `IDUser`, `NIK`, `NamaLengkap`, `IDRole`, `Email`, `Password`, `Status`, `CreatedBy`, `UpdatedBy`, `Avatar`, `created_at`, `updated_at`, `api_token`) VALUES
 (1, 'admin', 'G64150033', 'Admin Sistem', 1, 'admin@ipb.ac.id', '$2y$10$RhnaypsodKH.fX5ZUyQNiuNBmtue7he92R5ueFs9ZfOwIV2ioqa2i', 'Aktif', 'admin', 'admin', 'admin.jpg', '2019-03-02 17:00:00', '2019-05-10 12:01:45', 'YWRtaW46YWRtaW4='),
-(2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 09:12:22', '2019-03-03 09:15:53', ''),
-(3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 09:25:26', '2019-03-03 09:25:26', ''),
-(4, 'nunuk_biofarmaka', 'NBI', 'Nunuk', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', NULL, 'default.png', '2019-03-03 11:10:41', '2019-03-03 11:10:41', ''),
-(5, 'rizky_ipb', 'RIZ', 'Rizky Subagja', 5, 'rizky@ipb.ac.id', '$2y$10$hBx7aQEK/YjEJLjrM.OWJ.YFCulmc/UtofQOirEu7z30ZQPDs0DFS', 'Aktif', 'admin', 'admin', 'default.png', '2019-03-03 11:19:13', '2019-03-28 04:23:39', ''),
-(6, 'wiwik_biofarmaka', 'WBI', 'Wiwik', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', NULL, 'default.png', '2019-03-05 03:11:59', '2019-03-05 03:11:59', ''),
-(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$gHOt6CrWXa.q72Njx./61OC8ULGlCisszlEv2WmT4TMD6x6NrZuRG', 'Aktif', 'admin', 'admin', 'rioalrasyid.jpg', '2019-03-26 01:34:03', '2019-05-10 14:07:10', '');
+(2, 'wisnu_ananta', 'WAK', 'Wisnu Ananta Kusuma', 2, 'wisnu@ipb.ac.id', '$2y$10$/0aLnEg71pL38huj8J46puWvfyhZoYpcdbQvcCttu2i9ytohgLX2u', 'Aktif', 'admin', 'admin', 'wisnu_ananta.png', '2019-03-03 09:12:22', '2019-05-12 10:56:17', ''),
+(3, 'rudi_heryanto', 'RHE', 'Rudi Heryanto', 3, 'rudi@ipb.ac.id', '$2y$10$cKMHhgDkzYZ/UA8T8pS.nuseIp/sXAYhiWLml6OK1DSJ5bE.6ou1G', 'Aktif', 'admin', 'rudi_heryanto', 'rudi_heryanto.png', '2019-03-03 09:25:26', '2019-05-12 11:06:25', ''),
+(4, 'nunuk_biofarmaka', 'NBI', 'Nunuk Kurniati Nengsih', 4, 'nunuk@ipb.ac.id', '$2y$10$Q5N/JEsmqR1ItQm1YJRnBOKGV8Keiu4hGrTcvoxCBRMY9dj5tarHS', 'Aktif', 'admin', 'admin', 'nunuk_biofarmaka.png', '2019-03-03 11:10:41', '2019-05-12 10:57:49', ''),
+(5, 'rizky_ipb', 'RIZ', 'Rizky Subagja', 5, 'rizky@ipb.ac.id', '$2y$10$hBx7aQEK/YjEJLjrM.OWJ.YFCulmc/UtofQOirEu7z30ZQPDs0DFS', 'Aktif', 'admin', 'admin', 'rizky_ipb.jpg', '2019-03-03 11:19:13', '2019-05-12 10:58:28', ''),
+(6, 'wiwik_biofarmaka', 'WBI', 'Wiwi Widiyanti', 6, 'wiwik@ipb.ac.id', '$2y$10$oaPcbZjmYENUYH86DxzFWOjsoeyWbakORa/uJncJ7evnvfXtkpqHe', 'Aktif', 'admin', 'admin', 'wiwik_biofarmaka.png', '2019-03-05 03:11:59', '2019-05-12 10:59:46', ''),
+(7, 'rioalrasyid', 'G64150023', 'Rio Al Rasyid', 4, 'rio@gmail.com', '$2y$10$gHOt6CrWXa.q72Njx./61OC8ULGlCisszlEv2WmT4TMD6x6NrZuRG', 'Aktif', 'admin', 'admin', 'rioalrasyid.jpg', '2019-03-26 01:34:03', '2019-05-12 11:00:23', '');
 
 -- --------------------------------------------------------
 
@@ -437,7 +478,18 @@ INSERT INTO `trxkajiulang` (`IDTrxKajiUlang`, `IDTugas`, `Metode`, `Peralatan`, 
 (5, 5, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:10:04', '2019-05-10 15:10:04'),
 (6, 6, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:42:46', '2019-05-10 15:42:46'),
 (7, 7, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-10 15:45:04', '2019-05-10 15:45:04'),
-(8, 8, 'Tidak', 'Tidak', 'Bisa', 'Bisa', 'Bisa', 'Tidak', '2019-05-10 15:47:04', '2019-05-10 15:47:04');
+(8, 8, 'Tidak', 'Tidak', 'Bisa', 'Bisa', 'Bisa', 'Tidak', '2019-05-10 15:47:04', '2019-05-10 15:47:04'),
+(9, 11, 'Bisa', 'Tidak', 'Bisa', 'Bisa', 'Bisa', 'Tidak', '2019-05-12 14:16:25', '2019-05-12 14:16:25'),
+(10, 9, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 14:16:57', '2019-05-12 14:16:57'),
+(11, 10, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 14:25:55', '2019-05-12 14:25:55'),
+(12, 12, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 16:49:44', '2019-05-12 16:49:44'),
+(13, 13, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 16:59:39', '2019-05-12 16:59:39'),
+(14, 14, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 17:12:17', '2019-05-12 17:12:17'),
+(15, 15, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 18:02:21', '2019-05-12 18:02:21'),
+(16, 16, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-12 18:41:31', '2019-05-12 18:41:31'),
+(17, 17, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-13 01:02:52', '2019-05-13 01:02:52'),
+(18, 18, 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', 'Bisa', '2019-05-13 02:52:33', '2019-05-13 02:52:33'),
+(19, 19, 'Bisa', 'Tidak', 'Bisa', 'Bisa', 'Bisa', 'Tidak', '2019-05-13 02:53:28', '2019-05-13 02:53:28');
 
 -- --------------------------------------------------------
 
@@ -469,7 +521,10 @@ CREATE TABLE `trxlapor` (
 
 INSERT INTO `trxlapor` (`IDTrxLapor`, `IDTugas`, `IDProyek`, `IDPelapor`, `Attachment`, `ContentType`, `NamaFile`, `Catatan`, `StatusTindakan`, `AttachmentTindakan`, `ContentTypeTindakan`, `NamaFileTindakan`, `CatatanTindakan`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'nunuk_biofarmaka', 'public/files/H0BoAWE3KTlbqcQImnwwh9qBc5d3K3bYddXDVjdO.jpeg', 'image/jpeg', 'top.jpg', 'ada kekurangan bahan gula pak', 1, 'public/files/nbUtXjnFwwleCJVsIsy9hPtgKNB21Gmcai8fE8zg.jpeg', 'image/jpeg', 'top.jpg', 'sudah ya ditindak lanjuti', '2019-05-10 13:57:49', '2019-05-10 14:01:18'),
-(2, 6, 2, 'nunuk_biofarmaka', 'public/files/4fNjnSa2ZJrUK7kVAEYkwv2CAoXQAWYyYF9q8rFw.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'mesin rusak pak', 1, 'public/files/RzHymqbEEqn1jwfUr1QwZ2cnXOclVB7SQf5t28ua.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'sudah ya', '2019-05-10 15:50:47', '2019-05-10 15:58:53');
+(2, 6, 2, 'nunuk_biofarmaka', 'public/files/4fNjnSa2ZJrUK7kVAEYkwv2CAoXQAWYyYF9q8rFw.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'mesin rusak pak', 1, 'public/files/RzHymqbEEqn1jwfUr1QwZ2cnXOclVB7SQf5t28ua.png', 'image/png', 'Drone-PNG-Transparent-Image.png', 'sudah ya', '2019-05-10 15:50:47', '2019-05-10 15:58:53'),
+(3, 16, 5, 'nunuk_biofarmaka', 'public/files/JmZHVzsbBFVR0MIoUX8OrFdLhrzxNnxwhq7po6QV.jpeg', 'image/jpeg', '1.jpg', 'lapor', 1, 'public/files/Sw5dV9x4QhcqysqHLzA74q7XCSPJsXi6pEfUdBAt.zip', 'application/x-zip-compressed', '9MB.zip', 'selesai ditindak ya', '2019-05-12 18:50:39', '2019-05-12 18:59:07'),
+(4, 16, 5, 'nunuk_biofarmaka', 'public/files/OEA8lIgLETOTom0elgCymExc9Sfj2PRTyRsuFnHe.doc', 'application/msword', 'Analisis Lab Trop BRC.doc', 'laporkan', 1, NULL, NULL, NULL, NULL, '2019-05-13 00:42:47', '2019-05-13 02:47:06'),
+(5, 17, 5, 'nunuk_biofarmaka', 'public/files/xNKVGPbhdFnS4NCvUlp92Vwi8lVhZQEnZ1kap08b.jpeg', 'image/jpeg', '1.jpg', 'rio', 0, NULL, NULL, NULL, NULL, '2019-05-13 01:08:00', '2019-05-13 01:08:00');
 
 -- --------------------------------------------------------
 
@@ -519,7 +574,35 @@ INSERT INTO `trxtugas` (`IDTrxTugas`, `IDTugas`, `IDMilestoneTugas`, `IDPenanggu
 (17, 7, 5, 'nunuk_biofarmaka', NULL, '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai analisis', 'public/files/Q14gmPzyEMWd2s6hlkzRgeMklCXAztIKH5uZ20tm.jpeg', 'image/jpeg', '2.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:46:12', '2019-05-10 15:52:50'),
 (18, 8, 2, 'rudi_heryanto', NULL, '2019-05-10 00:00:00', NULL, NULL, NULL, NULL, NULL, 'rudi_heryanto', 'rudi_heryanto', '2019-05-10 15:46:35', '2019-05-10 15:46:35'),
 (19, 6, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/cKA6tZUCphHr2OKLDudGfeJuT77mo46hqtz6W0bn.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:51:51', '2019-05-10 15:55:25'),
-(20, 7, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/0A0B2WA0nKadqEFKiXBS2R0k4u1NyCaIYm8uvew6.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:53:17', '2019-05-10 15:56:59');
+(20, 7, 8, 'rioalrasyid', 'SELESAI', '2019-05-10 00:00:00', '2019-05-10 00:00:00', 'selesai koreksi', 'public/files/0A0B2WA0nKadqEFKiXBS2R0k4u1NyCaIYm8uvew6.jpeg', 'image/jpeg', '3.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-10 15:53:17', '2019-05-10 15:56:59'),
+(21, 9, 2, 'rudi_heryanto', NULL, '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai kaji ulang', 'public/files/31c6MIIAUtsFHG5s13sxyPXGLmBoKKMtSB5uuWiB.jpeg', 'image/jpeg', '1.jpg', 'rudi_heryanto', 'rudi_heryanto', '2019-05-12 14:17:49', '2019-05-12 14:23:42'),
+(22, 9, 5, 'nunuk_biofarmaka', NULL, '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai analisis', 'public/files/wUcdZlwGwTxVHtDHjMAxsUsXF6soaMyXmku7WW2J.xls', 'application/vnd.ms-excel', 'Analisis Sample Tebu.xls', 'rudi_heryanto', 'rudi_heryanto', '2019-05-12 14:24:26', '2019-05-12 14:36:39'),
+(23, 10, 2, 'rudi_heryanto', NULL, '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'Selesai kaji ulang', 'public/files/qirCP7zvXPoESTEskCiozmmPgSxkJaTOGqRimczL.doc', 'application/msword', 'Analisis Lab Trop BRC.doc', 'rudi_heryanto', 'rudi_heryanto', '2019-05-12 14:25:15', '2019-05-12 14:27:26'),
+(24, 10, 5, 'nunuk_biofarmaka', NULL, '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai analisis', 'public/files/yg3JK73sJhC7aYVZAo85ACdqGaCV8IyMKRu0FEur.pdf', 'application/pdf', '2510-7417-1-PB.pdf', 'rudi_heryanto', 'rudi_heryanto', '2019-05-12 14:28:52', '2019-05-12 14:42:42'),
+(25, 9, 8, 'rioalrasyid', 'SELESAI', '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai koreksi', 'public/files/7OVyYhZbL2cJfgWxRM3OVpfITp8erh4jHvaYBma8.jpeg', 'image/jpeg', 'WhatsApp Image 2017-11-30 at 21.13.54.jpeg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 14:37:21', '2019-05-12 14:52:46'),
+(26, 10, 8, 'rioalrasyid', 'SELESAI', '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai koreksi', 'public/files/M4AL2nLdT7rf5HqfxaXOXEoeAQ2DC2Qiuft3ReZy.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Analisis Lab Trop BRC.docx', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 14:44:34', '2019-05-12 15:05:40'),
+(27, 12, 2, 'wiwik_biofarmaka', NULL, '2019-05-12 00:00:00', '2019-05-12 00:00:00', 'selesai kaji ulang', 'public/files/zVxvb7mHl4ioEzvLSrBuQChX6rA6Bl1CSCtulXPQ.pdf', 'application/pdf', '1471-2105-13-15.pdf', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 16:49:20', '2019-05-12 16:55:24'),
+(28, 12, 5, 'nunuk_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/rZh1Ocxy8Md20HFIQh6OvqdD8IKxyeK0nl5Hl6gp.jpeg', 'image/jpeg', '10MB.jpg', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 16:55:57', '2019-05-12 17:28:28'),
+(29, 13, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai kaji ulang', 'public/files/1y2T6r7Wc1qAYMhjYXOkKUsxqyMKEZQybPSLJpc1.pdf', 'application/pdf', '5MB.pdf', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 17:02:46', '2019-05-12 17:04:13'),
+(30, 13, 5, 'nunuk_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/Nl2emiehZwRSK0gZ7XICWu75DrfvGvmer2IJDgxt.zip', 'application/x-zip-compressed', '9MB.zip', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 17:05:16', '2019-05-12 17:35:22'),
+(31, 14, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai kaji ulang', 'public/files/X79vG3yc70ZQkQS3UGcocHOCKY6sBd2XCnITMOvT.pdf', 'application/pdf', '5MB.pdf', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 17:11:32', '2019-05-12 17:23:54'),
+(32, 14, 5, 'nunuk_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/zOHtPXmIc1MaKionVaToyxa1dH0TjTV4viQb8f5t.zip', 'application/x-zip-compressed', '9MB.zip', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 17:24:26', '2019-05-12 17:46:23'),
+(33, 12, 8, 'rioalrasyid', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai dikoreksi', 'public/files/1pD4rmxnLfHNoQAY7kqAECrhAZAUebqWuyEWxDcm.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'draft skripsi Rio #11.docx', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 17:29:55', '2019-05-12 17:49:20'),
+(34, 13, 8, 'rioalrasyid', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai dikoreksi', 'public/files/fnT0YV8GjAnbFmwLzBkEuwEMSPZ56aQwUk2ZasS1.jpeg', 'image/jpeg', '2.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 17:36:35', '2019-05-12 18:18:43'),
+(35, 14, 8, 'rioalrasyid', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai dikoreksi', 'public/files/vGkiMNotz4bXOxoHPQdigFdO5i5VrUzvKIPxirUR.jpeg', 'image/jpeg', '2.jpg', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 17:46:55', '2019-05-12 18:21:40'),
+(36, 15, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai kaji ulang', 'public/files/HslW3u2kwaavXeTgiTZQfcqsOImPMQumcjIZW3jZ.zip', 'application/x-zip-compressed', '9MB.zip', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:01:51', '2019-05-12 18:05:17'),
+(37, 15, 5, 'rioalrasyid', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/lorELLBSLqCFS2NLUAYjzP6c1Dx5zg1KEqgZ5aIr.jpeg', 'image/jpeg', '10MB.jpg', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:05:58', '2019-05-12 18:08:29'),
+(38, 15, 8, 'nunuk_biofarmaka', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai dikoreksi', 'public/files/608GNk0nKDfl5EZkDr6L03BA7pGY6FHrMZaUUj1V.jpeg', 'image/jpeg', '1.jpg', 'rioalrasyid', 'rioalrasyid', '2019-05-12 18:09:04', '2019-05-12 18:14:49'),
+(39, 16, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai kaji ulang', 'public/files/OdFbekgo63FzC4cdoei4F3kli1d9H3k4M2ELt37s.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'hasil toska.xlsx', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:41:06', '2019-05-12 18:42:34'),
+(40, 16, 5, 'nunuk_biofarmaka', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:43:11', '2019-05-12 18:43:11'),
+(41, 16, 5, 'nunuk_biofarmaka', 'Ulangan ke-1', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/6rs2FhBPuAzHcbOyH7ZGmdhKhMxYDDQhWCpP3tAd.doc', 'application/msword', 'Analisis Lab Trop BRC.doc', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-12 18:43:13', '2019-05-12 18:51:50'),
+(42, 16, 8, 'rioalrasyid', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'salah analisis bu, tolong diperbaiki', 'public/files/6fXshhDM6QBxsMy78I3NwZkHKB93oHGuvt3OJbaK.zip', 'application/x-zip-compressed', '7MB.zip', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-12 18:53:00', '2019-05-13 00:39:50'),
+(43, 16, 5, 'nunuk_biofarmaka', 'Ulangan ke-2', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/i5yuQdR0joRJlIzx8bg2V1ROArsnBO0XA3If9bhy.pdf', 'application/pdf', '5MB.pdf', 'rioalrasyid', 'rioalrasyid', '2019-05-13 00:39:50', '2019-05-13 00:47:28'),
+(44, 16, 8, 'rioalrasyid', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'Selesai dikoreksi', 'public/files/7BEjxbh40U30ZhS85xWDRIIKg62uFhLSV6CfNA89.pdf', 'application/pdf', '5MB.pdf', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-13 00:47:58', '2019-05-13 00:55:47'),
+(45, 17, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai kaji ulang', 'public/files/JCaqMDLK1kKVeYsCpKup6opQsQFiykMzXXvtFsM6.doc', 'application/msword', 'Analisis Lab Trop BRC.doc', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 01:02:07', '2019-05-13 01:04:06'),
+(46, 17, 5, 'nunuk_biofarmaka', NULL, '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai analisis', 'public/files/x6ga4fy8H5kKzTOEeAlHnnwKOpwrXXIXcLXW78Bi.jpeg', 'image/jpeg', '10MB.jpg', 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 01:04:45', '2019-05-13 01:08:56'),
+(47, 17, 8, 'rioalrasyid', 'SELESAI', '2019-05-13 00:00:00', '2019-05-13 00:00:00', 'selesai dikoreksi', 'public/files/qisbvSvnGyRUu1nsyq7sM4FCcWwud62bxhMj8YHQ.zip', 'application/x-zip-compressed', '9MB.zip', 'nunuk_biofarmaka', 'nunuk_biofarmaka', '2019-05-13 01:09:48', '2019-05-13 01:13:47'),
+(48, 18, 2, 'wiwik_biofarmaka', NULL, '2019-05-13 00:00:00', NULL, NULL, NULL, NULL, NULL, 'wiwik_biofarmaka', 'wiwik_biofarmaka', '2019-05-13 02:54:51', '2019-05-13 02:54:51');
 
 -- --------------------------------------------------------
 
@@ -1013,13 +1096,13 @@ ALTER TABLE `mstmilestonetugas`
 -- AUTO_INCREMENT for table `mstnotifikasi`
 --
 ALTER TABLE `mstnotifikasi`
-  MODIFY `IDNotifikasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IDNotifikasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `mstproyek`
 --
 ALTER TABLE `mstproyek`
-  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDProyek` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mstrole`
@@ -1031,19 +1114,19 @@ ALTER TABLE `mstrole`
 -- AUTO_INCREMENT for table `mstsertifikat`
 --
 ALTER TABLE `mstsertifikat`
-  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDSertifikat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mstsubkontrak`
 --
 ALTER TABLE `mstsubkontrak`
-  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDSubKontrak` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `msttugas`
 --
 ALTER TABLE `msttugas`
-  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `mstulasan`
@@ -1055,25 +1138,25 @@ ALTER TABLE `mstulasan`
 -- AUTO_INCREMENT for table `mstuser`
 --
 ALTER TABLE `mstuser`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `trxkajiulang`
 --
 ALTER TABLE `trxkajiulang`
-  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDTrxKajiUlang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `trxlapor`
 --
 ALTER TABLE `trxlapor`
-  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDTrxLapor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trxtugas`
 --
 ALTER TABLE `trxtugas`
-  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `IDTrxTugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `trxtugaslog`
