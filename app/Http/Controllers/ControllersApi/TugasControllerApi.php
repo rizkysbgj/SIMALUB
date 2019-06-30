@@ -25,11 +25,11 @@ use App\model\mstNotifikasi;
 use Auth;
 use Storage;
 use App\Http\Controllers\HelpersController;
+use App\Http\Controllers\ControllersApi\IntegrasiApi;
 
 class TugasControllerApi extends Controller
 {
     #region Tugas
-    //Fungsi create tugas baru
     public function CreateTugas(Request $request)
     {
         try {
@@ -43,6 +43,44 @@ class TugasControllerApi extends Controller
             
             $mstTugas->CreatedBy = Auth::user()->IDUser;
             $mstTugas->UpdatedBy = Auth::user()->IDUser;
+            $mstTugas->save();
+            $mstTugas->ErrorType = 0;
+            return response($mstTugas->jsonSerialize(), Response::HTTP_CREATED);
+        }
+        catch (\Exception $e) {
+            $tugas = new mstTugas();
+            $tugas->ErrorType = 2;
+            $tugas->ErrorMessage = $e->getMessage(); 
+            return $tugas;
+            // return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+    
+    //Fungsi create tugas baru
+    public function IntegrasiTugas($tugas, $IDProyek)
+    {
+        try {
+            $mstTugas = new mstTugas();
+            // $mstTugas->fill($request->all());
+            $mstTugas->NamaTugas = $tugas['NamaTugas'];
+            $mstTugas->InisialTugas = $tugas['InisialTugas'];
+            $mstTugas->DeskripsiTugas = $tugas['DeskripsiTugas'];
+            $mstTugas->IDProyek = $IDProyek;
+            $mstTugas->IDMilestoneTugas = $tugas['IDMilestoneTugas'];
+            // $mstTugas->RencanaMulai = $tugas['RencanaMulai'];
+            // $mstTugas->RencanaSelesai = $tugas['RencanaSelesai'];
+
+            $mstTugas->RencanaMulai = Carbon::now()->toDateString();
+            $mstTugas->RencanaSelesai = Carbon::now()->toDateString();
+
+            // $mstTugas = $this->ChangeDateFormat($mstTugas);
+            
+            // set default value
+            $mstTugas->StatusKajiUlang = "SIAP";
+            $mstTugas->IDPenanggungJawab = "rudi_heryanto";
+            
+            $mstTugas->CreatedBy = "Administrasi";
+            $mstTugas->UpdatedBy = "Administrasi";
 
             $mstTugas->save();
             $mstTugas->ErrorType = 0;
@@ -412,6 +450,9 @@ class TugasControllerApi extends Controller
             {
                 $proyek->SiapBuatSertifikat = '3';
                 $proyek->RealitaSelesai = Carbon::now()->toDateString();
+
+                $IntegrasiApi = new IntegrasiApi();
+                $result = $IntegrasiApi->SendTrackingStatus($tugas->IDProyek, '3');   
             }
             $flow = new mstmilestoneflowtugas();
             $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', 10)->firstorfail();
@@ -815,6 +856,8 @@ class TugasControllerApi extends Controller
             // $this->CreateTrxLog($IDTugas, $MilestoneAksi, $IDUser);
 
             //Update mstTugas
+            $IntegrasiApi = new IntegrasiApi();
+                
             $tugas = new mstTugas();
             $tugas = mstTugas::where('IDTugas', $IDTugas)->firstorfail();
             $tugas->IDMilestoneTugas = $IDMilestoneTugas;
@@ -824,6 +867,12 @@ class TugasControllerApi extends Controller
             if($IDMilestoneTugas == 2)
             {
                 $tugas->RealitaMulai = Carbon::now()->toDateString();
+                
+                $result = $IntegrasiApi->SendTrackingStatus($tugas->IDProyek, '1');
+            }
+            else if($IDMilestoneTugas == 5)
+            {
+                $result = $IntegrasiApi->SendTrackingStatus($tugas->IDProyek, '2');
             }
             else if($IDMilestoneTugas == 10)
             {

@@ -43,6 +43,49 @@ class ProyekControllerApi extends Controller
             return response()->json($mstProyek->jsonSerialize());
         }
     }
+    
+    public function IntegrasiProyek($proyek)
+    {
+        try {
+            if(mstProyek::where('NamaProyek', $proyek['NamaProyek'])->count()==0)
+            {
+                $mstProyek = new mstProyek();
+                //$mstProyek->fill($request->all());
+                $mstProyek->NamaProyek = $proyek['NamaProyek'];
+                $mstProyek->InisialProyek = $proyek['InisialProyek'];
+                $mstProyek->PinKeMenu = $proyek['PinKeMenu'];
+                $mstProyek->Percepatan = $proyek['Percepatan'];
+                $mstProyek->PenanggungJawab = $proyek['PenanggungJawab'];
+                // $mstProyek->TanggalMulai = $proyek['TanggalMulai'];
+                // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
+
+                $mstProyek->TanggalMulai = Carbon::now()->toDateString();
+                $mstProyek->RencanaSelesai = Carbon::now()->toDateString();
+
+                $mstProyek->DeskripsiProyek = $proyek['DeskripsiProyek'];
+                $mstProyek->SponsorProyek = $proyek['SponsorProyek'];
+                $mstProyek->CreatedBy = 'Administrasi';
+                // $mstProyek = $this->ChangeDateFormat($mstProyek);
+                $mstProyek->save();
+                $mstProyek->ErrorType = 0;
+            }
+            else
+            {
+                $mstProyek = new mstProyek();
+                $mstProyek->ErrorType = 1;
+                $mstProyek->ErrorMessage = "Nama proyek sudah ada!";
+            }
+            
+            return $mstProyek;
+            // return response($mstProyek->jsonSerialize(), Response::HTTP_CREATED);
+        }
+        catch (\Exception $e) {
+            $mstProyek = new mstProyek();
+            $mstProyek->ErrorType = 2;
+            $mstProyek->ErrorMessage = $e->getMessage();
+            return response()->json($mstProyek->jsonSerialize());
+        }
+    }
 
     public function GetProyek($IDProyek)
     {

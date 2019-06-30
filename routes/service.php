@@ -95,3 +95,7 @@ Route::get('exportmemo/{IDProyek}', 'HelpersController@exportmemo');
 
 Route::get('notifikasi', 'HelpersController@GetNotifikasi');
 Route::put('notifikasi', 'HelpersController@ReadNotifikasi');
+
+Route::get('integrasi/tracking/{IDProyek}', 'ControllersApi\IntegrasiApi@GetTracking');
+Route::get('integrasi/tracking/detail/{IDProyek}', 'ControllersApi\IntegrasiApi@GetDetailTracking');
+Route::post('integrasi/proyek', 'ControllersApi\IntegrasiApi@CreatePesananProyek');

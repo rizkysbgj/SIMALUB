@@ -27,6 +27,7 @@ class MstProyek extends Migration
             $table->string('SponsorProyek');
             $table->integer('Percepatan')->default(0);
             $table->integer('SiapBuatSertifikat')->nullable();
+            $table->integer('StatusPengerjaan')->nullable();
             $table->string('CreatedBy');
             $table->string('UpdatedBy')->nullable();
             $table->timestamps();
