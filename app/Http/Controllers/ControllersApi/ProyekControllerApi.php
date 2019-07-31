@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Exception;
 use App\model\mstProyek;
+use App\model\mstUser;
 use App\model\vwProyek;
 use App\model\mstUlasan;
 use App\model\vwUlasan;
@@ -49,13 +50,14 @@ class ProyekControllerApi extends Controller
         try {
             if(mstProyek::where('NamaProyek', $proyek['NamaProyek'])->count()==0)
             {
+                $defaultPenanggungJawab = mstUser::where('IDRole', 3)->first();
                 $mstProyek = new mstProyek();
                 //$mstProyek->fill($request->all());
                 $mstProyek->NamaProyek = $proyek['NamaProyek'];
                 $mstProyek->InisialProyek = $proyek['InisialProyek'];
-                $mstProyek->PinKeMenu = $proyek['PinKeMenu'];
+                $mstProyek->PinKeMenu = 1;
                 $mstProyek->Percepatan = $proyek['Percepatan'];
-                $mstProyek->PenanggungJawab = $proyek['PenanggungJawab'];
+                $mstProyek->PenanggungJawab = $defaultPenanggungJawab; //penanggung jawab
                 // $mstProyek->TanggalMulai = $proyek['TanggalMulai'];
                 // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
@@ -181,7 +183,9 @@ class ProyekControllerApi extends Controller
     {
         try {
             $ulasan = new mstUlasan();
-            $ulasan->IDProyek = $request->IDProyek;
+            // $ulasan->IDProyek = $request->IDProyek;
+            $proyek = mstProyek::where('InisialProyek', $request->InisialProyek)->firstorfail();
+            $ulsana->IDProyek = $proyek->IDProyek;
             $ulasan->Pertanyaan1 = $request->Pertanyaan1;
             $ulasan->Pertanyaan2 = $request->Pertanyaan2;
             $ulasan->Pertanyaan3 = $request->Pertanyaan3;
