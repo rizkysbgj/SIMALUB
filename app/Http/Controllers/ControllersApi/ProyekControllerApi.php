@@ -62,7 +62,7 @@ class ProyekControllerApi extends Controller
                 // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
                 $mstProyek->TanggalMulai = Carbon::now()->toDateString();
-                $mstProyek->RencanaSelesai = Carbon::now()->toDateString();
+                $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
                 $mstProyek->DeskripsiProyek = $proyek['DeskripsiProyek'];
                 $mstProyek->SponsorProyek = $proyek['SponsorProyek'];

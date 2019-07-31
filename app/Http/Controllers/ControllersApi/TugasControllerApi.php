@@ -60,24 +60,25 @@ class TugasControllerApi extends Controller
     public function IntegrasiTugas($tugas, $IDProyek)
     {
         try {
+            $defaultPenanggungJawab = mstUser::where('IDRole', 3)->first();
             $mstTugas = new mstTugas();
             // $mstTugas->fill($request->all());
             $mstTugas->NamaTugas = $tugas['NamaTugas'];
             $mstTugas->InisialTugas = $tugas['InisialTugas'];
-            $mstTugas->DeskripsiTugas = $tugas['DeskripsiTugas'];
+            // $mstTugas->DeskripsiTugas = $tugas['DeskripsiTugas'];
             $mstTugas->IDProyek = $IDProyek;
-            $mstTugas->IDMilestoneTugas = $tugas['IDMilestoneTugas'];
-            // $mstTugas->RencanaMulai = $tugas['RencanaMulai'];
-            // $mstTugas->RencanaSelesai = $tugas['RencanaSelesai'];
+            $mstTugas->IDMilestoneTugas = 1;
+            $mstTugas->RencanaMulai = $tugas['RencanaMulai'];
+            $mstTugas->RencanaSelesai = $tugas['RencanaSelesai'];
 
-            $mstTugas->RencanaMulai = Carbon::now()->toDateString();
-            $mstTugas->RencanaSelesai = Carbon::now()->toDateString();
+            // $mstTugas->RencanaMulai = Carbon::now()->toDateString();
+            // $mstTugas->RencanaSelesai = Carbon::now()->toDateString();
 
             // $mstTugas = $this->ChangeDateFormat($mstTugas);
             
             // set default value
             $mstTugas->StatusKajiUlang = "SIAP";
-            $mstTugas->IDPenanggungJawab = "rudi_heryanto";
+            $mstTugas->IDPenanggungJawab = $defaultPenanggungJawab;
             
             $mstTugas->CreatedBy = "Administrasi";
             $mstTugas->UpdatedBy = "Administrasi";
