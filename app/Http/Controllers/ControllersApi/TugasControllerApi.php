@@ -57,7 +57,7 @@ class TugasControllerApi extends Controller
     }
     
     //Fungsi create tugas baru
-    public function IntegrasiTugas($tugas, $IDProyek)
+    public function IntegrasiTugas($tugas, $IDProyek, $RencanaMulai)
     {
         try {
             $defaultPenanggungJawab = mstUser::where('IDRole', 3)->first();
@@ -68,8 +68,8 @@ class TugasControllerApi extends Controller
             // $mstTugas->DeskripsiTugas = $tugas['DeskripsiTugas'];
             $mstTugas->IDProyek = $IDProyek;
             $mstTugas->IDMilestoneTugas = 1;
-            $mstTugas->RencanaMulai = $tugas['RencanaMulai'];
-            $mstTugas->RencanaSelesai = $tugas['RencanaSelesai'];
+            $mstTugas->RencanaMulai = Carbon::now()->toDateString();
+            $mstTugas->RencanaSelesai = $RencanaMulai;
 
             // $mstTugas->RencanaMulai = Carbon::now()->toDateString();
             // $mstTugas->RencanaSelesai = Carbon::now()->toDateString();

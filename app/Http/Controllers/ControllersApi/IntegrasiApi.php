@@ -26,7 +26,7 @@ class IntegrasiApi extends Controller
             foreach($tugasList as $tugas)
             {
                 //call CreateTugas Function
-                $tugas = $TugasControllerApi->IntegrasiTugas($tugas, $proyek->IDProyek);
+                $tugas = $TugasControllerApi->IntegrasiTugas($tugas, $proyek->IDProyek, $proyek->RencanaSelesai);
             }
             return "Success";
         }
