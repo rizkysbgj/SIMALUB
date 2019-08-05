@@ -22,6 +22,7 @@ use App\model\vwProyek;
 use App\model\mstSertifikat;
 use App\model\mstSubKontrak;
 use App\model\mstNotifikasi;
+use App\model\mstUser;
 use Auth;
 use Storage;
 use App\Http\Controllers\HelpersController;
@@ -78,7 +79,8 @@ class TugasControllerApi extends Controller
             
             // set default value
             $mstTugas->StatusKajiUlang = "SIAP";
-            $mstTugas->IDPenanggungJawab = $defaultPenanggungJawab;
+            $mstTugas->IDPenanggungJawab = $defaultPenanggungJawab->IDUser;
+            $mstTugas->DeskripsiTugas = "";
             
             $mstTugas->CreatedBy = "Administrasi";
             $mstTugas->UpdatedBy = "Administrasi";

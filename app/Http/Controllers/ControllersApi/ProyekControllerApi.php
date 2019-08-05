@@ -57,12 +57,13 @@ class ProyekControllerApi extends Controller
                 $mstProyek->InisialProyek = $proyek['InisialProyek'];
                 $mstProyek->PinKeMenu = 1;
                 $mstProyek->Percepatan = $proyek['Percepatan'];
-                $mstProyek->PenanggungJawab = $defaultPenanggungJawab; //penanggung jawab
+                $mstProyek->PenanggungJawab = $defaultPenanggungJawab->IDUser; //penanggung jawab
                 // $mstProyek->TanggalMulai = $proyek['TanggalMulai'];
                 // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
                 $mstProyek->TanggalMulai = Carbon::now()->toDateString();
-                $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
+                $mstProyek->RencanaSelesai = Carbon::now()->toDateString();
+                // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
                 $mstProyek->DeskripsiProyek = $proyek['DeskripsiProyek'];
                 $mstProyek->SponsorProyek = $proyek['SponsorProyek'];
