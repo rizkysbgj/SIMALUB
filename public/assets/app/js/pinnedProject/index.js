@@ -296,12 +296,10 @@ var Modal = {
 				Peralatan:$("input[name='modalPeralatan']:checked").val(),
 				Personil:$("input[name='modalPersonil']:checked").val(),
 				BahanKimia:$("input[name='modalbahanKimia']:checked").val(),
-				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val(),
-				Kesimpulan:$("input[name='modalKesimpulan']:checked").val()
+				KondisiAkomodasi:$("input[name='modalkondisiAkomodasi']:checked").val()
 			};
+			console.log(params);
 			btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
-			
-			console.log(params)
 
 			$.ajax({
 				url: "/api/kajiulang/",
@@ -318,7 +316,6 @@ var Modal = {
 				$("input[name='modalPersonil']").prop('checked', false);
 				$("input[name='modalbahanKimia']").prop('checked', false);
 				$("input[name='modalkondisiAkomodasi']").prop('checked', false);
-				$("input[name='modalKesimpulan']").prop('checked', false);
 	
 				$("#modalkajiUlang").modal("toggle");
 				var link = '/halamanpinnedProject/' + IDProyek;
@@ -383,7 +380,7 @@ var TaskTransaction = {
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
 			var link = '/halamanpinnedProject/' + data.IDProyek;
-			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
 			if (Common.CheckError.Object(data) == true) {
 				Common.Alert.SuccessRoute("Berhasil", link);
 			}

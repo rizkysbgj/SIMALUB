@@ -102,7 +102,7 @@ var TaskTransaction = {
 		}).done(function (data, textStatus, jqXHR) {
 			console.log(data);
 			var link = '/halamanpinnedProjectAdministrasi';
-			// Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
+			Common.Alert.SuccessRoute("success", '/halamanpinnedProject/' + data.IDProyek);
 			if (Common.CheckError.Object(data) == true) {
 				Common.Alert.SuccessRoute("Berhasil", link);
 			}

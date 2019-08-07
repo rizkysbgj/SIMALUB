@@ -455,7 +455,7 @@ class TugasControllerApi extends Controller
                 $proyek->RealitaSelesai = Carbon::now()->toDateString();
 
                 $IntegrasiApi = new IntegrasiApi();
-                $result = $IntegrasiApi->SendTrackingStatus($tugas->IDProyek, '3');   
+                $result = $IntegrasiApi->SendTrackingStatus($proyek->IDProyek, '3');   
             }
             $flow = new mstmilestoneflowtugas();
             $flow = mstmilestoneflowtugas::where('IDMilestoneTugas', 10)->firstorfail();

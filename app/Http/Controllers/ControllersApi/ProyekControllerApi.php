@@ -61,8 +61,17 @@ class ProyekControllerApi extends Controller
                 // $mstProyek->TanggalMulai = $proyek['TanggalMulai'];
                 // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
-                $mstProyek->TanggalMulai = Carbon::now()->toDateString();
-                $mstProyek->RencanaSelesai = Carbon::now()->toDateString();
+                $dtNow = Carbon::now();
+                $mstProyek->TanggalMulai = $dtNow->toDateString();
+                if($mstProyek->Percepatan == 1)
+                {
+                    $mstProyek->RencanaSelesai = $dtNow->addWeekDays(7)->toDateString();
+                }
+                else
+                {
+                    $mstProyek->RencanaSelesai = $dtNow->addWeekDays(14)->toDateString();
+                }
+                
                 // $mstProyek->RencanaSelesai = $proyek['RencanaSelesai'];
 
                 $mstProyek->DeskripsiProyek = $proyek['DeskripsiProyek'];
